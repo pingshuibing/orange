@@ -1,0 +1,5 @@
+# Normalize line-ending
+*.java text
+*.properties text
+*.xml text
+*.html text
