@@ -1,7 +1,6 @@
 ORANGE PROJECT
 ==============
-
-this is the real repository. orangecalculator will be used as a testing repo
+This is the real repository. orangecalculator will be used as a testing repo
 
 
 SETUP INSTRUCTION
@@ -33,6 +32,8 @@ RECOMMENDED WORKFLOW
 1. Develop on a local branch rather than "master" branch
 * Assume we are in "master" branch, make sure repo is up to date
   $ git fetch
+  OR fetch + merge (should be careful)
+  $ git pull --rebase
 
 + If the branch does not exist
   Create and checkout a new branch
@@ -54,10 +55,13 @@ RECOMMENDED WORKFLOW
   OR
   $ git rebase <BRANCH>
 
+* Push changes to the repo
+  $ git push
+
 See http://mettadore.com/analysis/a-simple-git-rebase-workflow-explained/
 
 
-CREATE AN TEST CASE
+CREATE A TEST CASE
 ===================
 1. Right-click on the class under test,
   Select New > JUnit Test Case
