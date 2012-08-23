@@ -30,39 +30,55 @@ SETUP INSTRUCTION
 RECOMMENDED WORKFLOW
 ====================
 1. Develop on a local branch rather than "master" branch
-* Assume we are in "master" branch, make sure repo is up to date
+* Assume we are in "master" branch, make sure repo is up to date before
+  developing:
+
+  Fetch source code (should be careful)
   $ git fetch
-  OR fetch + merge (should be careful)
+  OR Fetch source code and merge with your local chances (not recommended)
+  $ git pull
+  OR Fetch source code and rebase your local changes (recommended)
   $ git pull --rebase
 
-+ If the branch does not exist
++ If the branch does not exist:
   Create and checkout a new branch
   $ git checkout -b <BRANCH>
 
-+ If the branch exists
++ If the branch exists:
   Check out the branch
   $ git checkout <BRANCH>
-  Synch the branch
+  Bring changes from master to this branch if needed
   $ git rebase master
 
 * Edit and commit your changes
   $ git add ...
   $ git commit ...
 
-* Bring changes into master
-  $ git checkout master
-  $ git merge <BRANCH>
-  OR
-  $ git rebase <BRANCH>
+* If a public branch is needed in order to work collaboratively or without
+  interfere with the master branch:
 
-* Push changes to the repo
+  Save this branch to the public repo
+  $ git push origin <BRANCH>
+
+  For next development cycle, see "If the branch exists" above, just stay
+  in that branch, commit and push
+
+* Bring changes into master branch:
+
+  Go back to master branch
+  $ git checkout master
+  Merge your local changes
+  $ git merge <BRANCH>
+  OR rebase if the master is modified during development
+  $ git rebase <BRANCH>
+  Push changes to the public repo
   $ git push
 
 See http://mettadore.com/analysis/a-simple-git-rebase-workflow-explained/
 
 
 CREATE A TEST CASE
-===================
+==================
 1. Right-click on the class under test,
   Select New > JUnit Test Case
 
