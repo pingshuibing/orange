@@ -1,3 +1,6 @@
 ﻿body { background-color: #f3f3f3; }
-.menu {border-top: 6px solid #000;font-family: 'Anton', sans-serif;}
+.menu-bar {border-top: 6px solid #000;font-family: 'Anton', sans-serif; margin-bottom:10px;}
+.menu-item{min-height:126px;padding-left:4px;}
+.menu-item:hover{background-color:#B6B5AC;}
 .logo{line-height:1em; font-size:42px;}
+.white{background-color:#ffffff; border-top:1px dotted #B6B5AC; border-bottom:1px dotted #B6B5AC; padding-top:10px; padding-bottom:10px; padding-left:20px; }
