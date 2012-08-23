@@ -7,20 +7,24 @@
 
 package com.qut.spc.model;
 
-public class SolarPanel implements SolarComponent {
+import javax.persistence.*; 
+
+@Entity
+public class SolarPanel extends SolarComponent {
+
+	private float outputEnergy;
 	
-	public SolarPanel() {
+	/**
+	 * @return The output energy
+	 */
+	public float getOutputEnergy() {
+		return outputEnergy;
 	}
 
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public float getPrice() {
-		// TODO Auto-generated method stub
-		return 0;
+	/**
+	 * @param outputEnergy The output energy to set
+	 */
+	public void setOutputEnergy(float outputEnergy) {
+		this.outputEnergy = outputEnergy;
 	}
 }
