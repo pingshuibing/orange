@@ -7,6 +7,7 @@
 
 package com.qut.spc.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.appengine.api.datastore.Key;
@@ -91,9 +92,19 @@ public abstract class SolarComponent {
 	/**
 	 * Get the list of efficiency by years
 	 * @param years Number of years to retrieve
-	 * @return 
+	 * @return list of efficiency
 	 */
 	public List<Double> getEfficiencyByYear(int years) throws Exception {
-		return null;
+		if (years < 0) {
+			throw new Exception("Years must not be negative");
+		}
+		List<Double> listEff = new ArrayList<Double>();
+		Double eff = 100.0; 
+		
+		for (int i = 0; i < years; ++i) {
+			listEff.add(eff);
+			eff -= efficiencyDecrease;
+		}
+		return listEff;
 	}
 }
