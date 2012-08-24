@@ -15,12 +15,16 @@
     <!-- Use the .htaccess and remove these lines to avoid edge case issues.
        More info: h5bp.com/i/378 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
+    <title>INN372 - Solar Power Calculator</title>
     <meta name="description" content="">
     <!-- Mobile viewport optimized: h5bp.com/viewport -->
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
-    <link rel="stylesheet" href="css/style.css">
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/GUI.css" rel="stylesheet" type="text/css" />
+    <!-- typography -->
+    <link href='http://fonts.googleapis.com/css?family=Anton' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
     <!-- All JavaScript at the bottom, except this Modernizr build.
        Modernizr enables HTML5 elements & feature detects for optimal performance.
@@ -29,18 +33,48 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body class="container_12">
+<body>
     <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
        chromium.org/developers/how-tos/chrome-frame-getting-started -->
     <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-    <header></header>
-    <div role="main">
+    <header>
+        <div class="container_12 menu-bar">
+            <div class="grid_3 alpha"><h1 class="logo">SOLAR<br />PANEL<br />CALCULATOR</h1></div>
+            <div class="grid_3 menu-item">FIND
+            <br /><a class="menu-link" href="Default.aspx">SOLAR PANELS</a>
+            <br /><a class="menu-link" href="Default.aspx">INVERTERS</a>
+            <br /><a class="menu-link" href="Default.aspx">BATTERIES</a>
+            </div>
+            <div class="grid_3 menu-item">NEWS</div>
+            <div class="grid_3 menu-item omega">ABOUT</div>
+
+            <div class="clear"></div>
+        </div>
+    </header>
+    <div role="main" class="main">
         <form id="form1" runat="server">
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
         </form>
     </div>
-    <footer></footer>
+    <footer class="container_12">
+        <div class="grid_3 prefix_9">
+            <h3>TEAM ORANGE</h3>
+            <ul style="list-style:none;">
+                <li>VINCENT</li>
+                <li>KEVIN</li>
+                <li>ALEX</li>
+                <li>SIMEN</li>
+                <li>MAJID</li>
+                <li>HERMAN</li>
+                <li>SEBASTIAN</li>
+                <li>ALAN</li>
+            </ul>
+
+        </div>
+        
+
+    </footer>
     <!-- JavaScript at the bottom for fast page loading -->
     <!-- Grab ASP.NET CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
