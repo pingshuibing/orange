@@ -9,6 +9,7 @@
     <p>form will go here</p>
     </div>
     <div class="clear"></div>
+    <input type="text" id="txtSolarPanelMinimumPrice" />
 </div>
 </asp:Content>
 
