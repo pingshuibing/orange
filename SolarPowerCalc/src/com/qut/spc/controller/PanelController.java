@@ -15,6 +15,20 @@ public class PanelController extends HttpServlet{
 			throws ServletException, IOException {
 		resp.getWriter().println("oif");
 		resp.setContentType("application/xml");
+		
+		resp.sendRedirect("/view/PanelView.jsp");
+	}
+
+
+	
+	public String parseRequest(HttpServletRequest request,String name) {
+		return "";
+	}
+
+
+
+	public String parseParameter(HttpServletRequest request, String string) {
+		return request.getParameter(string);
 	}
 
 }
