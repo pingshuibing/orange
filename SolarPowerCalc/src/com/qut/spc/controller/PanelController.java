@@ -1,34 +1,18 @@
 package com.qut.spc.controller;
 
-import java.io.IOException;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-@SuppressWarnings("serial")
-public class PanelController extends HttpServlet{
+@Path("/panel/")
+public class PanelController {
+
+	@GET
+	@Produces("text/plain")
+	@Path("/")
+	public String getPanel(){
+		return "WHAZZAP WORLD?";
+	}
 	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		resp.getWriter().println("oif");
-		resp.setContentType("application/xml");
-		
-		resp.sendRedirect("/view/PanelView.jsp");
-	}
-
-
-	
-	public String parseRequest(HttpServletRequest request,String name) {
-		return "";
-	}
-
-
-
-	public String parseParameter(HttpServletRequest request, String string) {
-		return request.getParameter(string);
-	}
-
 }
