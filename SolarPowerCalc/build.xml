@@ -1,5 +1,5 @@
 <project>
-  <property name="sdk.dir" location="../appengine-java-sdk" />
+  <property name="sdk.dir" location="lib/appengine-java-sdk" />
 
   <import file="${sdk.dir}/config/user/ant-macros.xml" />
 
@@ -13,6 +13,16 @@
     </fileset>
   </path>
 
+  <path id="test.classpath">
+    <pathelement path="test"/>
+    <pathelement path="lib/junit.jar"/> 
+    <pathelement path="${sdk.dir}/lib/testing/appengine-testing.jar"/>
+    <pathelement path="${sdk.dir}/lib/impl/appengine-api.jar"/>
+    <pathelement path="${sdk.dir}/lib/impl/appengine-api-labs.jar"/>
+    <pathelement path="${sdk.dir}/lib/impl/appengine-api-stubs.jar"/>
+  </path>
+
+  <!-- Copy dependencies -->
   <target name="copyjars"
       description="Copies the App Engine JARs to the WAR.">
     <copy
@@ -24,6 +34,7 @@
     </copy>
   </target>
 
+  <!-- Compile java sources -->
   <target name="compile" depends="copyjars"
       description="Compiles Java source and copies other source files to the WAR.">
     <mkdir dir="war/WEB-INF/classes" />
@@ -44,6 +55,7 @@
     <enhance_war war="war" />
   </target>
 
+  <!-- Run server at port 8080 -->
   <target name="runserver" depends="datanucleusenhance"
       description="Starts the development server.">
     <dev_appserver war="war" />
@@ -76,4 +88,35 @@
     </appcfg>
   </target>
 
+  <!-- Compile tests -->
+  <target name="compile-tests" depends="compile">
+    <javac
+      srcdir="test"
+      destdir="war/WEB-INF/classes"
+      debug="on"
+      deprecation="on">
+        <classpath>
+          <path refid="project.classpath"/>
+          <path refid="test.classpath"/>
+        </classpath>
+    </javac>
+  </target>
+
+  <!-- Run tests -->
+  <target name="test" depends="compile-tests" description="Run unit tests">
+    <junit printsummary="yes" haltonfailure="no" haltonerror="no">
+      <classpath>
+        <path refid="project.classpath"/>
+        <path refid="test.classpath"/>
+      </classpath>
+
+      <formatter type="plain"/>
+
+      <batchtest fork="yes">
+        <fileset dir="test">
+          <include name="**/*Test*.java"/>
+        </fileset>
+      </batchtest>
+    </junit>
+  </target>
 </project>
