@@ -104,15 +104,16 @@
 
   <!-- Run tests -->
   <target name="test" depends="compile-tests" description="Run unit tests">
+    <mkdir dir="report" />
     <junit printsummary="yes" haltonfailure="no" haltonerror="no">
       <classpath>
         <path refid="project.classpath"/>
         <path refid="test.classpath"/>
       </classpath>
 
-      <formatter type="plain"/>
+      <formatter type="xml"/>
 
-      <batchtest fork="yes">
+      <batchtest fork="yes" todir="report">
         <fileset dir="test">
           <include name="**/*Test*.java"/>
         </fileset>
