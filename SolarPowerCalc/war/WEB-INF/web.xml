@@ -13,15 +13,15 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>PanelServlet</servlet-name>
-		<servlet-class>com.qut.spc.PanelServlet</servlet-class>
+		<servlet-name>PanelController</servlet-name>
+		<servlet-class>com.qut.spc.controller.PanelController</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>PanelServlet</servlet-name>
+		<servlet-name>PanelController</servlet-name>
 		<url-pattern>solarpowercalc/panel/</url-pattern>
 	</servlet-mapping>	
 		<servlet-mapping>
-		<servlet-name>PanelServlet</servlet-name>
+		<servlet-name>PanelController</servlet-name>
 		<url-pattern>solarpowercalc/panel</url-pattern>
 	</servlet-mapping>	
 	<welcome-file-list>
