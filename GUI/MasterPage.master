@@ -24,6 +24,7 @@
     <link href="css/GUI.css" rel="stylesheet" type="text/css" />
     <!-- typography -->
     <link href='http://fonts.googleapis.com/css?family=Anton' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
     <!-- All JavaScript at the bottom, except this Modernizr build.
        Modernizr enables HTML5 elements & feature detects for optimal performance.
@@ -39,7 +40,11 @@
     <header>
         <div class="container_12 menu-bar">
             <div class="grid_3 alpha"><h1 class="logo">SOLAR<br />PANEL<br />CALCULATOR</h1></div>
-            <div class="grid_3 menu-item">PRODUCTS</div>
+            <div class="grid_3 menu-item">FIND
+            <br /><a class="menu-link" href="Default.aspx">SOLAR PANELS</a>
+            <br /><a class="menu-link" href="Default.aspx">INVERTERS</a>
+            <br /><a class="menu-link" href="Default.aspx">BATTERIES</a>
+            </div>
             <div class="grid_3 menu-item">NEWS</div>
             <div class="grid_3 menu-item omega">ABOUT</div>
 
@@ -52,7 +57,24 @@
         </asp:ContentPlaceHolder>
         </form>
     </div>
-    <footer></footer>
+    <footer class="container_12">
+        <div class="grid_3 prefix_9">
+            <h3>TEAM ORANGE</h3>
+            <ul style="list-style:none;">
+                <li>VINCENT</li>
+                <li>KEVIN</li>
+                <li>ALEX</li>
+                <li>SIMEN</li>
+                <li>MAJID</li>
+                <li>HERMAN</li>
+                <li>SEBASTIAN</li>
+                <li>ALAN</li>
+            </ul>
+
+        </div>
+        
+
+    </footer>
     <!-- JavaScript at the bottom for fast page loading -->
     <!-- Grab ASP.NET CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
