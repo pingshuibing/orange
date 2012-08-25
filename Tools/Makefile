@@ -1,4 +1,3 @@
-#!/bin/sh
 # Dependencies downloader for ORANGE project
 # Author: Quoc-Viet Nguyen
 
@@ -16,28 +15,29 @@ COBERTURA=cobertura
 COBERTURA_ARC=cobertura-1.9.4.1-bin.zip
 COBERTURA_URL=http://downloads.sourceforge.net/project/cobertura/cobertura/1.9.4.1/cobertura-1.9.4.1-bin.zip
 
+# Verify checksum
+# #1: md5 file, #2: archieve, #3: url
+CHKSUM=\
+  md5sum --status -c "$(1)";            \
+  if [ $$? -ne 0 ]; then                \
+    wget -O "$(2)" "$(3)";              \
+    md5sum --status -c "$(1)";          \
+  fi;
+
 all: $(GAE) $(JUNIT) $(COBERTURA)
 
 $(GAE):
-	@md5sum --status -c "$@.md5"; if [ $$? -ne 0 ]; then \
-	  wget -O "$(GAE_ARC)" "$(GAE_URL)"; \
-	  md5sum --status -c "$@.md5"; fi;
+	$(call CHKSUM,$@.md5,$(GAR_ARC),$(GAE_URL))
 	unzip "$(GAE_ARC)"
 	mv "$(GAE_ARC:.zip=)" "$@"
 
 $(JENKINS):
-	md5sum --status -c "$@.md5"; if [ $$? -ne 0 ]; then \
-	  wget -O "$@" "$(JENKINS_URL)"; \
-	  md5sum --status -c "$@.md5"; fi;
+	$(call CHKSUM,$@.md5,$@,$(JENKINS_URL))
 
 $(JUNIT):
-	md5sum --status -c "$@.md5"; if [ $$? -ne 0 ]; then \
-	  wget -O "$@" "$(JUNIT_URL)"; \
-	  md5sum --status -c "$@.md5"; fi;
+	$(call CHKSUM,$@.md5,$@,$(JUNIT_URL))
 
 $(COBERTURA):
-	md5sum --status -c "$@.md5"; if [ $$? -ne 0 ]; then \
-	  wget -O "$(COBERTURA_ARC)" "$(COBERTURA_URL)"; \
-	  md5sum --status -c "$@.md5"; fi;
+	$(call CHKSUM,$@.md5,$(COBERTURA_ARC),$(COBERTURA_URL))
 	unzip "$(COBERTURA_ARC)"
 	mv "$(COBERTURA_ARC:-bin.zip=)" "$@"
