@@ -1,7 +1,16 @@
 #/bin/sh
+JPATH="jenkins.war"
 
 # Jenkins home
 JHOME=$(readlink -f `dirname "$0"`)
+
+# Look for Jenkins archive
+if [ ! -f "$JPATH" ]; then
+  JPATH="../$JPATH"
+  if [ ! -f "$JPATH" ]; then
+    JPATH="$JHOME/$JPATH"
+  fi
+fi
 
 # Daemonize
 #JDAEMON="--daemon"
@@ -9,4 +18,4 @@ JHOME=$(readlink -f `dirname "$0"`)
 # Default port 8080
 JHTTPPORT="--httpPort=9090"
 
-java -DJENKINS_HOME="$JHOME" -jar jenkins.war $JDAEMON $JHTTPPORT
+java -DJENKINS_HOME="$JHOME" -jar "$JPATH" $JDAEMON $JHTTPPORT
