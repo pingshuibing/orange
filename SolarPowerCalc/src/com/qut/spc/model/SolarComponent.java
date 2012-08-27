@@ -51,13 +51,6 @@ public class SolarComponent {
 	}
 	
 	/**
-	 * Get GAE key object, used by parent class only
-	 */
-	protected Key getKey() {
-		return key;
-	}
-	
-	/**
 	 * @return The name of manufacture
 	 */
 	public String getManufacture() {
@@ -140,14 +133,14 @@ public class SolarComponent {
 		return self;
 	}
 	
-	protected static <T> T loadComponent(Key key, Class<T> cls) {
+	protected static <T> T loadComponent(Object id, Class<T> cls) {
 		EntityManager em = EMF.get().createEntityManager();
 		T self;
 		try {
-			self = em.find(cls, key);
+			self = em.find(cls, id);
 		} finally {
 			em.close();
 		}
 		return self;
-	} 
+	}
 }

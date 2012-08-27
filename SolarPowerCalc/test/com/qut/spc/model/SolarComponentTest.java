@@ -10,7 +10,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.google.appengine.api.datastore.Key;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 
@@ -24,8 +23,8 @@ class MockSolarComponent extends SolarComponent {
 	public MockSolarComponent() {
 	}
 	
-	public static MockSolarComponent load(Key key) {
-		return loadComponent(key, MockSolarComponent.class);
+	public static MockSolarComponent load(long id) {
+		return loadComponent(id, MockSolarComponent.class);
 	}
 
 	public int getMockValue() {
@@ -122,7 +121,7 @@ public class SolarComponentTest {
 		
 		c1.save();
 		
-		c2 = MockSolarComponent.load(c1.getKey());
+		c2 = MockSolarComponent.load(c1.getId());
 		assertNotNull(c2);
 		
 		assertEquals(c1.getEfficiencyDecrease(), c2.getEfficiencyDecrease(), EPSILON);

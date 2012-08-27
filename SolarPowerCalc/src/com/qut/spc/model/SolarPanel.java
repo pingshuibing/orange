@@ -7,10 +7,7 @@
 
 package com.qut.spc.model;
 
-import javax.persistence.*; 
-
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
+import javax.persistence.Entity;
 
 @Entity
 public class SolarPanel extends SolarComponent {
@@ -35,7 +32,6 @@ public class SolarPanel extends SolarComponent {
 	}
 	
 	public static SolarPanel load(long id) {
-		Key key = KeyFactory.createKey(SolarPanel.class.getSimpleName(), id);
-		return loadComponent(key, SolarPanel.class);
+		return loadComponent(id, SolarPanel.class);
 	}
 }
