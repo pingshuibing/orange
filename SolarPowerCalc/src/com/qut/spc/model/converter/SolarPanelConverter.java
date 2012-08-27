@@ -14,7 +14,7 @@ public class SolarPanelConverter extends SolarComponentConverter{
 	}
 	
 	@XmlElement
-	public float getOutputEnergy(){
+	public double getOutputEnergy(){
 		return ((SolarPanel)panel).getOutputEnergy();
 	}
 

@@ -85,7 +85,7 @@ public class SolarComponent {
 	/**
 	 * @return The efficiency decrease linearly by each year
 	 */
-	public double getEfficiencyDecrease() throws Exception {
+	public double getEfficiencyDecrease() {
 		return efficiencyDecrease;
 	}
 
