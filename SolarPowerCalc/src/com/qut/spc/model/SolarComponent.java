@@ -7,11 +7,15 @@
 
 package com.qut.spc.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
 import com.google.appengine.api.datastore.Key;
-import javax.persistence.*;
+import com.qut.spc.EMF;
 
 /**
  * Common interface for each component in solar system.
@@ -20,7 +24,7 @@ import javax.persistence.*;
  */
 @Entity
 @MappedSuperclass
-public abstract class SolarComponent {
+public class SolarComponent {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,9 +33,13 @@ public abstract class SolarComponent {
 	// TODO: Create class Manufacture
 	private String manufacture;
 	
-	private Double price;
+	private double price;
 	
-	private Double efficiencyDecrease;
+	private double efficiencyDecrease;
+	
+	public Key getKey() {
+		return key;
+	}
 	
 	public SolarComponent() {
 		manufacture = "";
@@ -56,7 +64,7 @@ public abstract class SolarComponent {
 	/**
 	 * @return The price of this component
 	 */
-	public Double getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
@@ -64,7 +72,7 @@ public abstract class SolarComponent {
 	 * @param price The price to set
 	 * @throws Exception If price is negative
 	 */
-	public void setPrice(Double price) throws Exception {
+	public void setPrice(double price) throws Exception {
 		if (price < 0.0) {
 			throw new Exception("Price must not be negative");
 		}
@@ -74,7 +82,7 @@ public abstract class SolarComponent {
 	/**
 	 * @return The efficiency decrease linearly by each year
 	 */
-	public Double getEfficiencyDecrease() throws Exception {
+	public double getEfficiencyDecrease() throws Exception {
 		return efficiencyDecrease;
 	}
 
@@ -82,7 +90,7 @@ public abstract class SolarComponent {
 	 * @param efficiencyDecrease The efficiency to set
 	 * @throws Exception If efficiency less than 0 or greater than 100
 	 */
-	public void setEfficiencyDecrease(Double efficiencyDecrease) throws Exception {
+	public void setEfficiencyDecrease(double efficiencyDecrease) throws Exception {
 		if (efficiencyDecrease < 0.0 || efficiencyDecrease > 100.0) {
 			throw new Exception("Efficiency must be from 0 to 100");
 		}
@@ -94,17 +102,26 @@ public abstract class SolarComponent {
 	 * @param years Number of years to retrieve
 	 * @return list of efficiency
 	 */
-	public List<Double> getEfficiencyByYear(int years) throws Exception {
+	public double[] getEfficiencyByYear(int years) throws Exception {
 		if (years < 0) {
 			throw new Exception("Years must not be negative");
 		}
-		List<Double> listEff = new ArrayList<Double>();
-		Double eff = 100.0; 
+		double listEff[] = new double[years];
+		double eff = 100.0;
 		
 		for (int i = 0; i < years; ++i) {
-			listEff.add(eff);
+			listEff[i] = eff;
 			eff -= efficiencyDecrease;
 		}
 		return listEff;
+	}
+	
+	public void save() {
+		EntityManager em = EMF.get().createEntityManager();
+		try {
+			em.persist(this);
+		} finally {
+			em.close();
+		}
 	}
 }
