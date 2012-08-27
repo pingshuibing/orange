@@ -1,19 +1,19 @@
 ﻿<panels>
   <panel>
     <id>1</id>
-    <name>A Panel</name>
+    <name>One Panel</name>
     <model>A model</model>
     <manufacturer>ACompany</manufacturer>
-    <price>1233.12</price>
+    <price>$500.89</price>
     <companyWebsite>www.somewebsite.com</companyWebsite>
     <capacity>someCapcity</capacity>
   </panel>
   <panel>
-    <id>1</id>
-    <name>A Panel</name>
+    <id>2</id>
+    <name>Another Panel</name>
     <model>A model</model>
     <manufacturer>ACompany</manufacturer>
-    <price>1233.12</price>
+    <price>$43.56</price>
     <companyWebsite>www.somewebsite.com</companyWebsite>
     <capacity>someCapacity</capacity>
   </panel>

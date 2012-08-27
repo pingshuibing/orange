@@ -23,7 +23,7 @@
                         Minimum Price
                     </td>
                     <td>
-                        <input id="Text1" type="text" />
+                        <input id="txtMinimumPrice" type="text" />
                     </td>
                 </tr>
                 <tr>
@@ -31,7 +31,7 @@
                         Maximum Price
                     </td>
                     <td>
-                        <input id="Text2" type="text" />
+                        <input id="txtMaximumPrice" type="text" />
                     </td>
                 </tr>
                 <tr>
@@ -39,7 +39,7 @@
                         Minimum Efficiency
                     </td>
                     <td>
-                        <input id="Text3" type="text" />
+                        <input id="txtMinimumEfficiency" type="text" />
                     </td>
                 </tr>
                 <tr>
@@ -47,7 +47,7 @@
                         Maximum Efficiency
                     </td>
                     <td>
-                        <input id="Text4" type="text" />
+                        <input id="txtMaximumEfficiency" type="text" />
                     </td>
                 </tr>
             </table>
@@ -72,11 +72,44 @@
         {
             $('#btnFindSolarPanels').click(function (e)
             {
+                var solarPanelMinimumPrice = $('#txtSolarPanelMinimumPrice').text();
+                var solarPanelMaximumPrice = $('#txtSolarPanelMaximumPrice').text();
+
                 e.preventDefault();
-                $('#divNoResults').hide();
-                $('#divResults').slideDown();
+                $.ajax({
+                    type: 'GET',
+                    url: 'proxy.aspx',
+                    dataType: 'xml',
+                    data: {
+                        'operation': 'FindSolarPanel',
+                        'solarPanelMinimumPrice': solarPanelMinimumPrice,
+                        'solarPanelMaximumPrice': solarPanelMaximumPrice
+                    },
+                    success: function (data)
+                    {
+                        var str = '';
+                        $(data).find("panel").each(function ()
+                        {
+                            str += '<p>';
+                            str += $(this).find("id").text() + '</br>';
+                            str += $(this).find("name").text() + '</br>';
+                            str += $(this).find("model").text() + '</br>';
+                            str += $(this).find("manufacturer").text() + '</br>';
 
+                            str += $(this).find("price").text() + '</br>';
+                            str += $(this).find("companyWebsite").text() + '</br>';
+                            str += $(this).find("capacity").text() + '</br>';
+                            
+                            
+                            str += '</p>';
 
+                        });
+
+                        $('#divResults').html(str);
+                        $('#divResults').slideDown();
+                        $('#divNoResults').hide();
+                    }
+                });
             });
         });
     </script>
