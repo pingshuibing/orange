@@ -22,7 +22,7 @@ public partial class Proxy : System.Web.UI.Page
         }
 
         //set url to call google apps engine
-        string url = "http://localhost:50747/GUI/TestXml.xml";
+        string url = "http://orange.alansoto.com/TestXml.xml";
 
         //combine the google apps engine and paramters list to do a full get
         string fullUrl = string.Format("{0}?{1}", url, strParameters.ToString());
