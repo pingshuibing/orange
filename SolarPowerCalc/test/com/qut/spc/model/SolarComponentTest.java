@@ -1,9 +1,10 @@
 package com.qut.spc.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
 
 import org.junit.After;
 import org.junit.Before;
@@ -12,26 +13,27 @@ import org.junit.Test;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
-import com.qut.spc.EMF;
 
 /**
  * Used for testing the abstract class
  */
 @Entity
 class MockSolarComponent extends SolarComponent {
+	private int mockValue;
+	
 	public MockSolarComponent() {
 	}
 	
 	public static MockSolarComponent load(Key key) {
-		MockSolarComponent self;
-		
-		EntityManager em = EMF.get().createEntityManager();
-		try {
-			self = em.find(MockSolarComponent.class, key);
-		} finally {
-			em.close();
-		}
-		return self;
+		return loadComponent(key, MockSolarComponent.class);
+	}
+
+	public int getMockValue() {
+		return mockValue;
+	}
+
+	public void setMockValue(int mockValue) {
+		this.mockValue = mockValue;
 	}
 }
 
@@ -110,17 +112,22 @@ public class SolarComponentTest {
 
 	@Test
 	public void testSaveComponent() throws Exception {
-		component.setEfficiencyDecrease(100.0);
-		component.setManufacture("A new manufacture");
-		component.setPrice(8000.0);
+		MockSolarComponent c1, c2;
 		
-		component.save();
+		c1 = (MockSolarComponent)component;
+		c1.setEfficiencyDecrease(100.0);
+		c1.setManufacture("A new manufacture");
+		c1.setPrice(8000.0);
+		c1.setMockValue(12);
 		
-		MockSolarComponent saved = MockSolarComponent.load(component.getKey());
-		assertNotNull(saved);
+		c1.save();
 		
-		assertEquals(component.getEfficiencyDecrease(), saved.getEfficiencyDecrease(), EPSILON);
-		assertEquals(component.getManufacture(), saved.getManufacture());
-		assertEquals(component.getPrice(), saved.getPrice(), EPSILON);
+		c2 = MockSolarComponent.load(c1.getKey());
+		assertNotNull(c2);
+		
+		assertEquals(c1.getEfficiencyDecrease(), c2.getEfficiencyDecrease(), EPSILON);
+		assertEquals(c1.getManufacture(), c2.getManufacture());
+		assertEquals(c1.getPrice(), c2.getPrice(), EPSILON);
+		assertEquals(c1.getMockValue(), c2.getMockValue(), EPSILON);
 	}
 }

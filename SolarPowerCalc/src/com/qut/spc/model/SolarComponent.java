@@ -117,11 +117,27 @@ public class SolarComponent {
 	}
 	
 	public void save() {
+		saveComponent(this);
+	}
+	
+	protected static <T> T saveComponent(T self) {
 		EntityManager em = EMF.get().createEntityManager();
 		try {
-			em.persist(this);
+			em.persist(self);
 		} finally {
 			em.close();
 		}
+		return self;
 	}
+	
+	protected static <T> T loadComponent(Key key, Class<T> cls) {
+		EntityManager em = EMF.get().createEntityManager();
+		T self;
+		try {
+			self = em.find(cls, key);
+		} finally {
+			em.close();
+		}
+		return self;
+	} 
 }
