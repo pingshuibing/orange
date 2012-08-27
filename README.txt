@@ -24,13 +24,27 @@ SETUP INSTRUCTION
   Select /path/to/project/SolarPowerCalc as project path
   Finish
 
+* To run unit test in eclipse.
+  Right click on SolarPowerCalc project
+  Select Build Path > Add External Archieves
+  From the location of Eclipse installed in your computer, find and add
+  these files:
+  ./plugins/com.google.appengine.eclipse.sdkbundle_1.7.0/appengine-java-sdk-1.7.0/lib/testing/appengine-testing.jar
+  ./plugins/com.google.appengine.eclipse.sdkbundle_1.7.0/appengine-java-sdk-1.7.0/lib/impl/appengine-api.jar
+  ./plugins/com.google.appengine.eclipse.sdkbundle_1.7.0/appengine-java-sdk-1.7.0/lib/impl/appengine-api-labs.jar
+  ./plugins/com.google.appengine.eclipse.sdkbundle_1.7.0/appengine-java-sdk-1.7.0/lib/impl/appengine-api-stubs.jar
+
 1b. Using Ant
+* Goto Tools directory, run "make"
+
+  OR
+
 * Download Google App Engine SDK for Java
   https://developers.google.com/appengine/downloads
 
-* Unpack and move its content to ./lib/appengine-java-sdk
+* Unpack and move its content to Tools/appengine-java-sdk
 
-* Download junit (JAR file), save into ./lib folder
+* Download junit (JAR file), save into Tools folder
   
 
 RECOMMENDED WORKFLOW
