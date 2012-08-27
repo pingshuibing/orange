@@ -5,7 +5,10 @@ This is the real repository. orangecalculator will be used as a testing repo
 
 SETUP INSTRUCTION
 =================
-0. Install IDE
+0. Clone this repository
+  $ git clone <URL> /path/to/project
+
+1a. Using Eclipe IDE
 * Eclipse Juno for Java EE Developers
   http://www.eclipse.org/downloads/
 
@@ -14,18 +17,21 @@ SETUP INSTRUCTION
   Add: http://dl.google.com/eclipse/plugin/4.2
   Install: "Google Plugin for Eclipse" and "SDKs"
 
-* A GIT client
+* Open Eclipse, choose /path/to/project as Workspace path
 
-1. Clone this repository
-  $ git clone <URL> /path/to/project
-
-2. Open Eclipse, choose /path/to/project as Workspace path
-
-3. Goto File > Import..
+* Goto File > Import..
   Select General > Existing Projects into Workspace
   Select /path/to/project/SolarPowerCalc as project path
   Finish
 
+1b. Using Ant
+* Download Google App Engine SDK for Java
+  https://developers.google.com/appengine/downloads
+
+* Unpack and move its content to ./lib/appengine-java-sdk
+
+* Download junit (JAR file), save into ./lib folder
+  
 
 RECOMMENDED WORKFLOW
 ====================

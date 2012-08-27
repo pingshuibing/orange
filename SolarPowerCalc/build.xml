@@ -1,0 +1,123 @@
+<project>
+  <property name="sdk.dir" location="../Tools/appengine-java-sdk" />
+
+  <import file="${sdk.dir}/config/user/ant-macros.xml" />
+
+  <path id="project.classpath">
+    <pathelement path="war/WEB-INF/classes" />
+    <fileset dir="war/WEB-INF/lib">
+      <include name="**/*.jar" />
+    </fileset>
+    <fileset dir="${sdk.dir}/lib">
+      <include name="shared/**/*.jar" />
+    </fileset>
+  </path>
+
+  <path id="test.classpath">
+    <pathelement path="test"/>
+    <pathelement path="../Tools/junit.jar"/> 
+    <pathelement path="${sdk.dir}/lib/testing/appengine-testing.jar"/>
+    <pathelement path="${sdk.dir}/lib/impl/appengine-api.jar"/>
+    <pathelement path="${sdk.dir}/lib/impl/appengine-api-labs.jar"/>
+    <pathelement path="${sdk.dir}/lib/impl/appengine-api-stubs.jar"/>
+  </path>
+
+  <!-- Copy dependencies -->
+  <target name="copyjars"
+      description="Copies the App Engine JARs to the WAR.">
+    <copy
+        todir="war/WEB-INF/lib"
+        flatten="true">
+      <fileset dir="${sdk.dir}/lib/user">
+        <include name="**/*.jar" />
+      </fileset>
+    </copy>
+  </target>
+
+  <!-- Compile java sources -->
+  <target name="compile" depends="copyjars"
+      description="Compiles Java source and copies other source files to the WAR.">
+    <mkdir dir="war/WEB-INF/classes" />
+    <copy todir="war/WEB-INF/classes">
+      <fileset dir="src">
+        <exclude name="**/*.java" />
+      </fileset>
+    </copy>
+    <javac
+        srcdir="src"
+        destdir="war/WEB-INF/classes"
+        classpathref="project.classpath"
+        debug="on" />
+  </target>
+
+  <target name="datanucleusenhance" depends="compile"
+      description="Performs JDO enhancement on compiled data classes.">
+    <enhance_war war="war" />
+  </target>
+
+  <!-- Run server at port 8080 -->
+  <target name="runserver" depends="datanucleusenhance"
+      description="Starts the development server.">
+    <dev_appserver war="war" />
+  </target>
+
+  <target name="update" depends="datanucleusenhance"
+      description="Uploads the application to App Engine.">
+    <appcfg action="update" war="war" />
+  </target>
+
+  <target name="update_indexes" depends="datanucleusenhance"
+      description="Uploads just the datastore index configuration to App Engine.">
+    <appcfg action="update_indexes" war="war" />
+  </target>
+
+  <target name="rollback" depends="datanucleusenhance"
+      description="Rolls back an interrupted application update.">
+    <appcfg action="rollback" war="war" />
+  </target>
+
+  <target name="request_logs"
+      description="Downloads log data from App Engine for the application.">
+    <appcfg action="request_logs" war="war">
+      <options>
+        <arg value="--num_days=5"/>
+      </options>
+      <args>
+        <arg value="logs.txt"/>
+      </args>
+    </appcfg>
+  </target>
+
+  <!-- Compile tests -->
+  <target name="compile-tests" depends="compile">
+    <javac
+      srcdir="test"
+      destdir="war/WEB-INF/classes"
+      debug="on"
+      deprecation="on">
+        <classpath>
+          <path refid="project.classpath"/>
+          <path refid="test.classpath"/>
+        </classpath>
+    </javac>
+  </target>
+
+  <!-- Run tests -->
+  <target name="test" depends="compile-tests" description="Run unit tests">
+    <mkdir dir="report" />
+    <junit printsummary="yes" haltonfailure="no" haltonerror="no">
+      <classpath>
+        <path refid="project.classpath"/>
+        <path refid="test.classpath"/>
+      </classpath>
+
+      <formatter type="xml"/>
+
+      <batchtest fork="yes" todir="report">
+        <fileset dir="test">
+          <include name="**/*Test*.java"/>
+        </fileset>
+      </batchtest>
+    </junit>
+  </target>
+</project>
