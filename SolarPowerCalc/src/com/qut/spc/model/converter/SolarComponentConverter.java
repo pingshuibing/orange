@@ -2,13 +2,18 @@ package com.qut.spc.model.converter;
 
 
 import javax.xml.bind.annotation.XmlElement;
-
 import com.qut.spc.model.SolarComponent;
+
+/**
+ * A wrapper class for SolarComponents used for XML output
+ * @author Simen
+ */
 public class SolarComponentConverter {
 
 	protected SolarComponent panel;
 
 	public SolarComponentConverter(){}
+	
 	public SolarComponentConverter(SolarComponent panel) {
 		this.panel=panel;
 	}
@@ -25,8 +30,4 @@ public class SolarComponentConverter {
 	public double getEfficiencyDecrease(){
 		return panel.getEfficiencyDecrease();
 	}
-	
-
-
-
 }

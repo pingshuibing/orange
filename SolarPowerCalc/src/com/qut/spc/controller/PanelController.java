@@ -13,7 +13,11 @@ import com.qut.spc.model.converter.SolarPanelConverter;
 import com.qut.spc.model.db.MockDB;
 import com.qut.spc.model.db.PanelDatabase;
 
-
+/**
+ * Public entrypoint for requests to /panel/
+ * @author Simen
+ *
+ */
 @Path("/panel/")
 public class PanelController {
 	
