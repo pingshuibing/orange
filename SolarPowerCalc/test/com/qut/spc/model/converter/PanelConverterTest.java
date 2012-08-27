@@ -25,7 +25,7 @@ public class PanelConverterTest {
 	public void testGetOutputEnergy_validPanel_panelsResultIsReturn(){
 		when(panel.getOutputEnergy()).thenReturn(2424.4334);
 		
-		assertEquals(2424.4334f, converter.getOutputEnergy(),0.00001f);
+		assertEquals(2424.4334f, converter.getOutputEnergy(),0.0001f);
 	}
 
 	
