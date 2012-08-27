@@ -5,7 +5,7 @@ GAE=appengine-java-sdk
 GAE_ARC=appengine-java-sdk-1.7.1.zip
 GAE_URL=http://googleappengine.googlecode.com/files/appengine-java-sdk-1.7.1.zip
 
-JENKINS=jenkin.war
+JENKINS=jenkins.war
 JENKINS_URL=http://mirrors.jenkins-ci.org/war/1.478/jenkins.war
 
 JUNIT=junit.jar
@@ -24,7 +24,7 @@ CHKSUM=\
     md5sum --status -c "$(1)";          \
   fi;
 
-all: $(GAE) $(JUNIT) $(COBERTURA)
+all: $(GAE) $(JUNIT) $(COBERTURA) $(JENKINS)
 
 $(GAE):
 	$(call CHKSUM,$@.md5,$(GAR_ARC),$(GAE_URL))
