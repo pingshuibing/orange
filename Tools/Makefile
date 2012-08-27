@@ -27,7 +27,7 @@ CHKSUM=\
 all: $(GAE) $(JUNIT) $(COBERTURA) $(JENKINS)
 
 $(GAE):
-	$(call CHKSUM,$@.md5,$(GAR_ARC),$(GAE_URL))
+	$(call CHKSUM,$@.md5,$(GAE_ARC),$(GAE_URL))
 	unzip "$(GAE_ARC)"
 	mv "$(GAE_ARC:.zip=)" "$@"
 
