@@ -1,24 +1,29 @@
 package com.qut.spc.controller;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 
 import com.qut.spc.model.SolarPanel;
+import com.qut.spc.model.converter.PanelConverterWrapper;
+import com.qut.spc.model.converter.SolarPanelConverter;
+import com.qut.spc.model.db.MockDB;
 import com.qut.spc.model.db.PanelDatabase;
 
 
 @Path("/panel/")
 public class PanelController {
-
+	
 	private PanelDatabase db;
 	
-	public PanelController(@Context PanelDatabase db) {
+	public PanelController(){
+		this.db=new MockDB();
+	}
+	
+	public PanelController(PanelDatabase db){
 		this.db=db;
 	}
 
@@ -31,8 +36,16 @@ public class PanelController {
 	@GET
 	@Produces("application/xml")
 	@Path("/price/{min}/{max}")
-	public List<SolarPanel> getPanelsByPrice(@PathParam("min") int min, @PathParam("max") int max){
-		return new ArrayList<SolarPanel>();
+	public PanelConverterWrapper getPanelsByPrice(@PathParam("min") double min, @PathParam("max") double max){
+		ArrayList<SolarPanelConverter> converters=new ArrayList<SolarPanelConverter>();
+		
+		for(SolarPanel p: db.getSolarPanelsInPriceRange(min, max)){
+			converters.add(new SolarPanelConverter(p));
+		}
+		
+		return new PanelConverterWrapper(converters);
 	}
+	
+
 
 }
