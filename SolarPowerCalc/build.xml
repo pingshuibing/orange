@@ -1,5 +1,5 @@
 <project>
-  <property name="sdk.dir" location="lib/appengine-java-sdk" />
+  <property name="sdk.dir" location="../Tools/appengine-java-sdk" />
 
   <import file="${sdk.dir}/config/user/ant-macros.xml" />
 
@@ -15,7 +15,7 @@
 
   <path id="test.classpath">
     <pathelement path="test"/>
-    <pathelement path="lib/junit.jar"/> 
+    <pathelement path="../Tools/junit.jar"/> 
     <pathelement path="${sdk.dir}/lib/testing/appengine-testing.jar"/>
     <pathelement path="${sdk.dir}/lib/impl/appengine-api.jar"/>
     <pathelement path="${sdk.dir}/lib/impl/appengine-api-labs.jar"/>
