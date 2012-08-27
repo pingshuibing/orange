@@ -37,14 +37,24 @@ public class SolarComponent {
 	
 	private double efficiencyDecrease;
 	
-	public Key getKey() {
-		return key;
-	}
-	
 	public SolarComponent() {
 		manufacture = "";
 		price = 0.0;
 		efficiencyDecrease = 0.0;
+	}
+	
+	public long getId() {
+		if (key != null) {
+			return key.getId();
+		}
+		return -1;
+	}
+	
+	/**
+	 * Get GAE key object, used by parent class only
+	 */
+	protected Key getKey() {
+		return key;
 	}
 	
 	/**
