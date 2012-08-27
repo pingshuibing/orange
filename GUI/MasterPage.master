@@ -8,9 +8,7 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en">
 <!--<![endif]-->
-
 <head>
-
     <meta charset="utf-8">
     <!-- Use the .htaccess and remove these lines to avoid edge case issues.
        More info: h5bp.com/i/378 -->
@@ -39,28 +37,38 @@
     <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
     <header>
         <div class="container_12 menu-bar">
-            <div class="grid_3 alpha"><h1 class="logo">SOLAR<br />PANEL<br />CALCULATOR</h1></div>
-            <div class="grid_3 menu-item">FIND
-            <br /><a class="menu-link" href="Default.aspx">SOLAR PANELS</a>
-            <br /><a class="menu-link" href="Default.aspx">INVERTERS</a>
-            <br /><a class="menu-link" href="Default.aspx">BATTERIES</a>
+            <div class="grid_3 alpha">
+                <h1 class="logo">SOLAR<br />
+                    PANEL<br />
+                    CALCULATOR</h1>
             </div>
-            <div class="grid_3 menu-item">NEWS</div>
-            <div class="grid_3 menu-item omega">ABOUT</div>
-
-            <div class="clear"></div>
+            <div class="grid_3 menu-item">
+                FIND
+                <br />
+                <a class="menu-link" href="Default.aspx">SOLAR PANELS</a>
+                <br />
+                <a class="menu-link" href="Default.aspx">INVERTERS</a>
+                <br />
+                <a class="menu-link" href="Default.aspx">BATTERIES</a>
+            </div>
+            <div class="grid_3 menu-item">
+                NEWS</div>
+            <div class="grid_3 menu-item omega">
+                ABOUT</div>
+            <div class="clear">
+            </div>
         </div>
     </header>
+    <form id="form1" runat="server">
     <div role="main" class="main">
-        <form id="form1" runat="server">
+        
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
-        </form>
     </div>
     <footer class="container_12">
         <div class="grid_3 prefix_9">
             <h3>TEAM ORANGE</h3>
-            <ul style="list-style:none;">
+            <ul style="list-style: none;">
                 <li>VINCENT</li>
                 <li>KEVIN</li>
                 <li>ALEX</li>
@@ -70,15 +78,15 @@
                 <li>SEBASTIAN</li>
                 <li>ALAN</li>
             </ul>
-
         </div>
-        
-
     </footer>
     <!-- JavaScript at the bottom for fast page loading -->
     <!-- Grab ASP.NET CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
     <script>        window.jQuery || document.write('<script src="js/libs/jquery-1.8.0.min.js"><\/script>')</script>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolderJquery" runat="server">
+    </asp:ContentPlaceHolder>
+    </form>
     <!-- scripts concatenated and minified via build script -->
     <script src="js/plugins.js"></script>
     <script src="js/script.js"></script>
@@ -93,6 +101,6 @@
             g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g, s)
         } (document, 'script'));
-  </script>
+    </script>
 </body>
 </html>
