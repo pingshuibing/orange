@@ -23,7 +23,7 @@ import com.qut.spc.EMF;
  * @author QuocViet
  */
 @XmlRootElement(name="panels")
-public class PanelContainer {
+public class PanelContainer implements PanelDB {
 	
 	@XmlElement(name="panel")
 	private List<Panel> list;
@@ -43,23 +43,31 @@ public class PanelContainer {
 	public void getList(List<Panel> list) {
 		this.list = list;
 	}
+	
+	@Override
+	public List<Panel> getPanelsInPriceRange(double min, double max) {
+		list = fetchPanelsByRange("price", min, max);
+		return list;
+	}
+	
+
+	@Override
+	public List<Panel> getPanelsInLocation(String location) {
+		// TODO
+		return new ArrayList<Panel>();
+	}
+
+	@Override
+	public List<Panel> getPanelsInCapacity(double min, double max) {
+		list = fetchPanelsByRange("capacity", min, max);
+		return list;
+	}
 
 	@SuppressWarnings("unchecked")
-	public static List<Panel> getPanelsInPriceRange(double min, double max) {
-		String queryStr = "SELECT FROM " + Panel.class.getName();
+	protected static List<Panel> fetchPanelsByRange(String field, double min,
+			double max) {
+		String queryStr = buildQueryStringFromRange(field, min, max);
 		
-		if (min > 0.0 || max > 0.0) {
-			queryStr += " WHERE";
-			if (min > 0.0) {
-				queryStr += " price >= :min";
-			}
-			if (max > 0.0) {
-				if (min > 0.0) {
-					queryStr += " AND";
-				}
-				queryStr += " price <= :max";
-			}
-		}
 		EntityManager em = EMF.get().createEntityManager();
 		
 		Query query = em.createQuery(queryStr);
@@ -77,5 +85,25 @@ public class PanelContainer {
 			em.close();
 		}
 		return resultList;
+	}
+	
+	protected static String buildQueryStringFromRange(String field, double min,
+			double max) {
+		String str = "SELECT FROM " + Panel.class.getName();
+		
+		// Min/max is optional
+		if (min > 0.0 || max > 0.0) {
+			str += " WHERE";
+			if (min > 0.0) {
+				str += " " + field + " >= :min";
+			}
+			if (max > 0.0) {
+				if (min > 0.0) {
+					str += " AND";
+				}
+				str += " " + field + " <= :max";
+			}
+		}
+		return str;
 	}
 }

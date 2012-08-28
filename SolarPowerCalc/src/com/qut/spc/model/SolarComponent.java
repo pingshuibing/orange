@@ -28,23 +28,32 @@ import com.qut.spc.EMF;
 public abstract class SolarComponent {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Key key;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Key key;
 
+	@XmlElement
+	private String name = "";
+	
+	@XmlElement
+	private String model = "";
+	
 	// TODO: Create class Manufacture
 	@XmlElement
-	private String manufacture;
+	private String manufacture = "";
 	
 	@XmlElement
-	private double price;
+	private double price = 0.0;
 	
 	@XmlElement
-	private double efficiencyDecrease;
+	private double capacity = 0.0;
+	
+	@XmlElement
+	private double efficiencyDecrease = 0.0;
+	
+	@XmlElement
+	private String description = "";
 	
 	public SolarComponent() {
-		manufacture = "";
-		price = 0.0;
-		efficiencyDecrease = 0.0;
 	}
 
 	/**
@@ -55,6 +64,28 @@ public abstract class SolarComponent {
 			return key.getId();
 		}
 		return -1;
+	}
+	
+	/**
+	 * @return The name of this component
+	 */
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	/**
+	 * @return The model of this component
+	 */
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
 	}
 	
 	/**
@@ -88,6 +119,17 @@ public abstract class SolarComponent {
 		}
 		this.price = price;
 	}
+	
+	public double getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(double capacity) throws Exception {
+		if (capacity < 0.0) {
+			throw new Exception("Price must not be negative");
+		}
+		this.capacity = capacity;
+	}
 
 	/**
 	 * @return The efficiency decrease linearly by each year
@@ -105,6 +147,14 @@ public abstract class SolarComponent {
 			throw new Exception("Efficiency must be from 0 to 100");
 		}
 		this.efficiencyDecrease = efficiencyDecrease;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	/**
