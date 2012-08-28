@@ -42,3 +42,6 @@ gen/
 
 # Local configuration file (sdk path, etc)
 local.properties
+
+# FreeFileSync files
+*.ffs_db
