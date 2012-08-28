@@ -5,7 +5,10 @@ This is the real repository. orangecalculator will be used as a testing repo
 
 SETUP INSTRUCTION
 =================
-0. Install IDE
+0. Clone this repository
+  $ git clone <URL> /path/to/project
+
+1a. Using Eclipe IDE
 * Eclipse Juno for Java EE Developers
   http://www.eclipse.org/downloads/
 
@@ -14,18 +17,35 @@ SETUP INSTRUCTION
   Add: http://dl.google.com/eclipse/plugin/4.2
   Install: "Google Plugin for Eclipse" and "SDKs"
 
-* A GIT client
+* Open Eclipse, choose /path/to/project as Workspace path
 
-1. Clone this repository
-  $ git clone <URL> /path/to/project
-
-2. Open Eclipse, choose /path/to/project as Workspace path
-
-3. Goto File > Import..
+* Goto File > Import..
   Select General > Existing Projects into Workspace
   Select /path/to/project/SolarPowerCalc as project path
   Finish
 
+* To run unit test in eclipse.
+  Right click on SolarPowerCalc project
+  Select Build Path > Add External Archieves
+  From the location of Eclipse installed in your computer, find and add
+  these files:
+  ./plugins/com.google.appengine.eclipse.sdkbundle_1.7.0/appengine-java-sdk-1.7.0/lib/testing/appengine-testing.jar
+  ./plugins/com.google.appengine.eclipse.sdkbundle_1.7.0/appengine-java-sdk-1.7.0/lib/impl/appengine-api.jar
+  ./plugins/com.google.appengine.eclipse.sdkbundle_1.7.0/appengine-java-sdk-1.7.0/lib/impl/appengine-api-labs.jar
+  ./plugins/com.google.appengine.eclipse.sdkbundle_1.7.0/appengine-java-sdk-1.7.0/lib/impl/appengine-api-stubs.jar
+
+1b. Using Ant
+* Goto Tools directory, run "make"
+
+  OR
+
+* Download Google App Engine SDK for Java
+  https://developers.google.com/appengine/downloads
+
+* Unpack and move its content to Tools/appengine-java-sdk
+
+* Download junit (JAR file), save into Tools folder
+  
 
 RECOMMENDED WORKFLOW
 ====================
