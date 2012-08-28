@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlElement;
 @Entity
 public class Panel extends SolarComponent {
 
+	@XmlElement
 	private double outputEnergy;
 	
 	public Panel() {
@@ -22,7 +23,6 @@ public class Panel extends SolarComponent {
 	/**
 	 * @return The output energy
 	 */
-	@XmlElement
 	public double getOutputEnergy() {
 		return outputEnergy;
 	}

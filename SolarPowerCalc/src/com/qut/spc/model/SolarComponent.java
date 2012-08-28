@@ -32,10 +32,13 @@ public abstract class SolarComponent {
     private Key key;
 
 	// TODO: Create class Manufacture
+	@XmlElement
 	private String manufacture;
 	
+	@XmlElement
 	private double price;
 	
+	@XmlElement
 	private double efficiencyDecrease;
 	
 	public SolarComponent() {
@@ -47,7 +50,6 @@ public abstract class SolarComponent {
 	/**
 	 * @return Id of this component in database
 	 */
-	@XmlElement
 	public long getId() {
 		if (key != null) {
 			return key.getId();
@@ -56,18 +58,8 @@ public abstract class SolarComponent {
 	}
 	
 	/**
-	 * Stub method for setting ID, actually do nothing.
-	 * This will eliminate warning from DataNucleus
-	 * @param id ID to set
-	 */
-	public void setId(long id) {
-		// Do nothing
-	}
-	
-	/**
 	 * @return The name of manufacture
 	 */
-	@XmlElement
 	public String getManufacture() {
 		return this.manufacture;
 	}
@@ -82,7 +74,6 @@ public abstract class SolarComponent {
 	/**
 	 * @return The price of this component
 	 */
-	@XmlElement
 	public double getPrice() {
 		return price;
 	}
@@ -101,7 +92,6 @@ public abstract class SolarComponent {
 	/**
 	 * @return The efficiency decrease linearly by each year
 	 */
-	@XmlElement
 	public double getEfficiencyDecrease() {
 		return efficiencyDecrease;
 	}
