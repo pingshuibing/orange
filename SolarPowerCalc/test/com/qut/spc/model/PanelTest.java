@@ -13,11 +13,11 @@ import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
  * Tests for Panel class
  * @author QuocViet
  */
-public class SolarPanelTest {
+public class PanelTest {
 	private final LocalServiceTestHelper helper =
 	        new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
 
-	private SolarPanel panel;
+	private Panel panel;
 	
 	// For comparing double values
 	private static final double EPSILON = 0.001;
@@ -25,7 +25,7 @@ public class SolarPanelTest {
 	@Before
 	public void setUp() throws Exception {
 		helper.setUp();
-		panel = new SolarPanel();
+		panel = new Panel();
 	}
 
 	@After
@@ -44,7 +44,7 @@ public class SolarPanelTest {
 		
 		long id = panel.getId();
 		
-		panel = SolarPanel.load(id);
+		panel = Panel.load(id);
 		assertNotNull(panel);
 		assertEquals(id, panel.getId());
 		assertEquals(0.1, panel.getEfficiencyDecrease(), EPSILON);

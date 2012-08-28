@@ -3,19 +3,19 @@ package com.qut.spc.model.db;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.qut.spc.model.SolarPanel;
+import com.qut.spc.model.Panel;
 
 public class MockDB implements PanelDatabase{
 
 	@Override
-	public List<SolarPanel> getSolarPanelsInPriceRange(double minimum, double maximum) {
+	public List<Panel> getPanelsInPriceRange(double minimum, double maximum) {
 		try {
-			ArrayList<SolarPanel> panels=new ArrayList<SolarPanel>();
-			SolarPanel sp1=new SolarPanel();
+			ArrayList<Panel> panels=new ArrayList<Panel>();
+			Panel sp1=new Panel();
 			sp1.setEfficiencyDecrease(24.4);
 			sp1.setManufacture("MF1");
 			sp1.setPrice(225.35);
-			SolarPanel sp2=new SolarPanel();
+			Panel sp2=new Panel();
 			sp2.setEfficiencyDecrease(10.0);
 			sp2.setManufacture("MF2");
 			sp2.setPrice(1000000.2);
@@ -25,7 +25,7 @@ public class MockDB implements PanelDatabase{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new ArrayList<SolarPanel>();
+		return new ArrayList<Panel>();
 	}
 
 }

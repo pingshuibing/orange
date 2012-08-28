@@ -2,7 +2,7 @@ package com.qut.spc.model.converter;
 
 import javax.xml.bind.annotation.XmlElement;
 
-import com.qut.spc.model.SolarPanel;
+import com.qut.spc.model.Panel;
 /**
  * Wrapper class for SolarPanels used for jaxb XML output
  * @author Simen
@@ -11,16 +11,16 @@ import com.qut.spc.model.SolarPanel;
 public class SolarPanelConverter extends SolarComponentConverter{
 	
 	public SolarPanelConverter(){
-		super(new SolarPanel());
+		super(new Panel());
 	}
 	
-	public SolarPanelConverter(SolarPanel panel) {
+	public SolarPanelConverter(Panel panel) {
 		super(panel);	
 	}
 	
 	@XmlElement
 	public double getOutputEnergy(){
-		return ((SolarPanel)panel).getOutputEnergy();
+		return ((Panel)panel).getOutputEnergy();
 	}
 
 }

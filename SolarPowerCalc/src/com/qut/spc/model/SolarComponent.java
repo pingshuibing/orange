@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.xml.bind.annotation.XmlElement;
 
 import com.google.appengine.api.datastore.Key;
 import com.qut.spc.EMF;
@@ -42,7 +43,11 @@ public class SolarComponent {
 		price = 0.0;
 		efficiencyDecrease = 0.0;
 	}
-	
+
+	/**
+	 * @return Id of this component in database
+	 */
+	@XmlElement
 	public long getId() {
 		if (key != null) {
 			return key.getId();
@@ -51,8 +56,18 @@ public class SolarComponent {
 	}
 	
 	/**
+	 * Stub method for setting ID, actually do nothing.
+	 * This will eliminate warning from DataNucleus
+	 * @param id ID to set
+	 */
+	public void setId(long id) {
+		// Do nothing
+	}
+	
+	/**
 	 * @return The name of manufacture
 	 */
+	@XmlElement
 	public String getManufacture() {
 		return this.manufacture;
 	}
@@ -67,6 +82,7 @@ public class SolarComponent {
 	/**
 	 * @return The price of this component
 	 */
+	@XmlElement
 	public double getPrice() {
 		return price;
 	}
@@ -85,6 +101,7 @@ public class SolarComponent {
 	/**
 	 * @return The efficiency decrease linearly by each year
 	 */
+	@XmlElement
 	public double getEfficiencyDecrease() {
 		return efficiencyDecrease;
 	}

@@ -7,7 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import com.qut.spc.model.SolarPanel;
+import com.qut.spc.model.Panel;
 import com.qut.spc.model.converter.PanelConverterWrapper;
 import com.qut.spc.model.converter.SolarPanelConverter;
 import com.qut.spc.model.db.MockDB;
@@ -43,7 +43,7 @@ public class PanelController {
 	public PanelConverterWrapper getPanelsByPrice(@PathParam("min") double min, @PathParam("max") double max){
 		ArrayList<SolarPanelConverter> converters=new ArrayList<SolarPanelConverter>();
 		
-		for(SolarPanel p: db.getSolarPanelsInPriceRange(min, max)){
+		for(Panel p: db.getPanelsInPriceRange(min, max)){
 			converters.add(new SolarPanelConverter(p));
 		}
 		

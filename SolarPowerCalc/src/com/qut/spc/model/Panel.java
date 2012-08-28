@@ -8,18 +8,21 @@
 package com.qut.spc.model;
 
 import javax.persistence.Entity;
+import javax.xml.bind.annotation.XmlElement;
 
 @Entity
-public class SolarPanel extends SolarComponent {
+public class Panel extends SolarComponent {
 
 	private double outputEnergy;
 	
-	public SolarPanel() {
+	public Panel() {
+		outputEnergy = 0.0;
 	}
 	
 	/**
 	 * @return The output energy
 	 */
+	@XmlElement
 	public double getOutputEnergy() {
 		return outputEnergy;
 	}
@@ -31,7 +34,7 @@ public class SolarPanel extends SolarComponent {
 		this.outputEnergy = outputEnergy;
 	}
 	
-	public static SolarPanel load(long id) {
-		return loadComponent(id, SolarPanel.class);
+	public static Panel load(long id) {
+		return loadComponent(id, Panel.class);
 	}
 }

@@ -4,7 +4,7 @@ package com.qut.spc.model.converter;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.qut.spc.model.SolarPanel;
+import com.qut.spc.model.Panel;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -13,11 +13,11 @@ import static org.mockito.Mockito.*;
 public class PanelConverterTest {
 	
 	private SolarPanelConverter converter;
-	private SolarPanel panel;
+	private Panel panel;
 	
 	@Before
 	public void setup(){
-		panel=mock(SolarPanel.class);
+		panel=mock(Panel.class);
 		converter=new SolarPanelConverter(panel);
 	}
 

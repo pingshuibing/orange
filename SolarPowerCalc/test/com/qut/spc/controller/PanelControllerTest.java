@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.qut.spc.model.SolarPanel;
+import com.qut.spc.model.Panel;
 import com.qut.spc.model.converter.SolarPanelConverter;
 import com.qut.spc.model.db.PanelDatabase;
 
@@ -19,25 +19,25 @@ import static org.junit.Assert.*;
  */
 public class PanelControllerTest {
 	
-	private List<SolarPanel> panels;
+	private List<Panel> panels;
 	private PanelDatabase db;
 	private PanelController controller;
 
 	@Before
 	public void setup(){
-		panels = new ArrayList<SolarPanel>();
+		panels = new ArrayList<Panel>();
 		db = mock(PanelDatabase.class);
 		controller = new PanelController(db);
-		when(db.getSolarPanelsInPriceRange(0, 100)).thenReturn(panels);		
+		when(db.getPanelsInPriceRange(0, 100)).thenReturn(panels);		
 		
 	}
 	
 	@Test
 	public void testGetPanels_filledDatabase_nonEmptyListOfPanelsIsReturned(){
-		SolarPanel sp1=new SolarPanel();
-		SolarPanel sp2=new SolarPanel();
-		SolarPanel sp3=new SolarPanel();
-		SolarPanel sp4=new SolarPanel();
+		Panel sp1=new Panel();
+		Panel sp2=new Panel();
+		Panel sp3=new Panel();
+		Panel sp4=new Panel();
 		panels.add(sp1);
 		panels.add(sp2);
 		panels.add(sp3);
