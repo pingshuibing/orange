@@ -103,7 +103,7 @@
   </target>
 
   <!-- Run tests -->
-  <target name="test" depends="compile-tests" description="Run unit tests">
+  <target name="test" depends="compile-tests,datanucleusenhance" description="Run unit tests">
     <mkdir dir="report" />
     <junit printsummary="yes" haltonfailure="no" haltonerror="no">
       <classpath>
@@ -111,6 +111,7 @@
         <path refid="test.classpath"/>
       </classpath>
 
+      <formatter type="plain"/>
       <formatter type="xml"/>
 
       <batchtest fork="yes" todir="report">

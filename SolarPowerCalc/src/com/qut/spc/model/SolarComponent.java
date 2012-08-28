@@ -25,8 +25,8 @@ import com.qut.spc.EMF;
  */
 @Entity
 @MappedSuperclass
-public class SolarComponent {
-	
+public abstract class SolarComponent {
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Key key;
