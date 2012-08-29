@@ -45,3 +45,6 @@ local.properties
 
 # FreeFileSync files
 *.ffs_db
+
+# Visual Studio user options file
+*.suo
