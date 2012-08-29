@@ -9,9 +9,12 @@ public interface PanelDB {
 	 * @param max Maximum price (0 to have no upper limitation)
 	 * @return List of panel
 	 */
-	public List<Panel> getPanelsInPriceRange(double min, double max);
+	public List<Panel> getPanelsInPriceRange(double min, double max)
+			throws Exception;
 	
-	public List<Panel> getPanelsInLocation(String location);
+	public List<Panel> getPanelsInLocation(String location)
+			throws Exception;
 	
-	public List<Panel> getPanelsInCapacity(double min, double max);
+	public List<Panel> getPanelsInCapacity(double min, double max)
+			throws Exception;
 }

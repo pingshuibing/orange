@@ -40,25 +40,46 @@ public class PanelContainer implements PanelDB {
 		return list;
 	}
 	
-	public void getList(List<Panel> list) {
+	public void setList(List<Panel> list) {
 		this.list = list;
 	}
 	
 	@Override
-	public List<Panel> getPanelsInPriceRange(double min, double max) {
+	public List<Panel> getPanelsInPriceRange(double min, double max)
+			throws Exception {
+		if (min < 0.0) {
+			throw new Exception("The minimum price must not be negative");
+		}
+		if (max < 0.0) {
+			throw new Exception("The maximum price must not be negative");
+		}
+		if (max != 0.0 && max < min) {
+			throw new Exception("The minimum price must be greater than or equal to the maximum price");
+		}
 		list = fetchPanelsByRange("price", min, max);
 		return list;
 	}
 	
 
 	@Override
-	public List<Panel> getPanelsInLocation(String location) {
+	public List<Panel> getPanelsInLocation(String location)
+			throws Exception {
 		// TODO
 		return new ArrayList<Panel>();
 	}
 
 	@Override
-	public List<Panel> getPanelsInCapacity(double min, double max) {
+	public List<Panel> getPanelsInCapacity(double min, double max)
+			throws Exception {
+		if (min < 0.0) {
+			throw new Exception("The minimum capacity must not be negative");
+		}
+		if (max < 0.0) {
+			throw new Exception("The maximum capacity must not be negative");
+		}
+		if (max != 0.0 && max < min) {
+			throw new Exception("The minimum capacity must be greater than or equal to the maximum capacity");
+		}
 		list = fetchPanelsByRange("capacity", min, max);
 		return list;
 	}

@@ -31,7 +31,7 @@ public class PanelContainerTest {
 	}
 
 	@Test
-	public void testGetPanelsInPriceRange_Empty() {
+	public void testGetPanelsInPriceRange_Empty() throws Exception {
 		list = container.getPanelsInPriceRange(0.0, 100.0);
 		
 		assertNotNull(list);
