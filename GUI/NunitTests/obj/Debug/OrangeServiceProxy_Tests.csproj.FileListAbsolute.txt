@@ -1,0 +1,9 @@
+C:\Users\Alan\Documents\GitHub\orange\GUI\NunitTests\bin\Debug\NunitTests.dll
+C:\Users\Alan\Documents\GitHub\orange\GUI\NunitTests\bin\Debug\NunitTests.pdb
+C:\Users\Alan\Documents\GitHub\orange\GUI\NunitTests\bin\Debug\nunit.framework.dll
+C:\Users\Alan\Documents\GitHub\orange\GUI\NunitTests\bin\Debug\OrangeServiceProxy.dll
+C:\Users\Alan\Documents\GitHub\orange\GUI\NunitTests\bin\Debug\OrangeServiceProxy.pdb
+C:\Users\Alan\Documents\GitHub\orange\GUI\NunitTests\bin\Debug\nunit.framework.xml
+C:\Users\Alan\Documents\GitHub\orange\GUI\NunitTests\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Alan\Documents\GitHub\orange\GUI\NunitTests\obj\Debug\NunitTests.dll
+C:\Users\Alan\Documents\GitHub\orange\GUI\NunitTests\obj\Debug\NunitTests.pdb

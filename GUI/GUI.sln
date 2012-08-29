@@ -4,6 +4,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebApplication", "WebApplication\", "{85BEAECE-1800-44D7-9BCB-CB3EB95D6398}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		ProjectReferences = "{11DF1C38-FF44-44DD-B70A-0991E976AF12}|OrangeServiceProxy.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/WebApplication"
 		Debug.AspNetCompiler.PhysicalPath = "WebApplication\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\WebApplication\"
@@ -23,7 +24,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebApplication", "WebApplic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrangeServiceProxy", "OrangeServiceProxy\OrangeServiceProxy.csproj", "{11DF1C38-FF44-44DD-B70A-0991E976AF12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrangeProxyService_Tests", "NunitTests\OrangeProxyService_Tests.csproj", "{4787B0BC-AB03-4007-BC35-151F4409DA44}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrangeServiceProxy_Tests", "NunitTests\OrangeServiceProxy_Tests.csproj", "{4787B0BC-AB03-4007-BC35-151F4409DA44}"
 	ProjectSection(ProjectDependencies) = postProject
 		{11DF1C38-FF44-44DD-B70A-0991E976AF12} = {11DF1C38-FF44-44DD-B70A-0991E976AF12}
 	EndProjectSection
