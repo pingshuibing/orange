@@ -11,18 +11,28 @@ using System.Text;
 
 public partial class Proxy : System.Web.UI.Page
 {
+    public string ServletCallUrl
+    {
+        get {
+            if (Request["servletCallUrl"] != null)
+            {
+                return Request.Form["servletCallUrl"];
+            }
+            else
+            {
+                throw new Exception("parameter ServletCallUrl was not defined");
+            }
+        }
+    }
+
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        
-
-        //set url to call google apps engine
-        string urlToQuery = HttpUtility.HtmlDecode(Request.QueryString["urlToQuery"]);
-
         //make call to external url and display results
         WebResponse result = null;
         string output = "";
 
-        WebRequest req = WebRequest.Create(urlToQuery);
+        WebRequest req = WebRequest.Create(ServletCallUrl);
         result = req.GetResponse();
         Stream ReceiveStream = result.GetResponseStream();
         Encoding encode = System.Text.Encoding.GetEncoding("utf-8");
