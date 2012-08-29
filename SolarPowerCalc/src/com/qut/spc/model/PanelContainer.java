@@ -84,6 +84,14 @@ public class PanelContainer implements PanelDB {
 		return list;
 	}
 
+	/**
+	 * Get panels from database which its property is in provided range
+	 *   
+	 * @param field Property name
+	 * @param min Minimum value
+	 * @param max Maximum value
+	 * @return List of panels
+	 */
 	@SuppressWarnings("unchecked")
 	protected static List<Panel> fetchPanelsByRange(String field, double min,
 			double max) {
@@ -108,6 +116,14 @@ public class PanelContainer implements PanelDB {
 		return resultList;
 	}
 	
+	/**
+	 * Build string to query min/max value
+	 * 
+	 * @param field Database field name
+	 * @param min Minimum value
+	 * @param max Maximum value
+	 * @return Query string
+	 */
 	protected static String buildQueryStringFromRange(String field, double min,
 			double max) {
 		String str = "SELECT FROM " + Panel.class.getName();

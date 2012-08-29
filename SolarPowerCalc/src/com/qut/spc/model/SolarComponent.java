@@ -176,10 +176,19 @@ public abstract class SolarComponent {
 		return listEff;
 	}
 	
+	/**
+	 * Store this component to database
+	 */
 	public void save() {
 		saveComponent(this);
 	}
 	
+	/**
+	 * Store object to database
+	 * 
+	 * @param self Object to store
+	 * @return Provided object
+	 */
 	protected static <T> T saveComponent(T self) {
 		EntityManager em = EMF.get().createEntityManager();
 		try {
@@ -190,6 +199,13 @@ public abstract class SolarComponent {
 		return self;
 	}
 	
+	/**
+	 * Get the object from database using its ID
+	 * 
+	 * @param id ID of the object, its type can be "long" or "Key"
+	 * @param cls Class name of the object, e.g. "Panel.class"
+	 * @return Object which full properties are retrieved from database 
+	 */
 	protected static <T> T loadComponent(Object id, Class<T> cls) {
 		EntityManager em = EMF.get().createEntityManager();
 		T self;
