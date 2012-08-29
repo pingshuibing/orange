@@ -77,7 +77,7 @@
                 
                 
                 var url = new UrlBuilder();
-                url.GoogleAppsEngineBaseUrl = "http://localhost:50681/TestXml.xml";
+                url.GoogleAppsEngineBaseUrl = "http://googleAppsBaseUrl";
                 url.ComponentName = "panel";
                 url.MinimumPrice = $('#txtSolarPanelMinimumPrice').text();
                 url.MaximumPrice = $('#txtSolarPanelMaximumPrice').text();
