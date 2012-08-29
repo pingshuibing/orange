@@ -13,25 +13,16 @@ public partial class Proxy : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //read all values from collection f paramters
-        StringBuilder strParameters = new StringBuilder();
-        foreach (string key in Request.QueryString.Keys)
-        {
-            strParameters.Append(string.Format("{0}={1}&",key,Request.QueryString[key]));
-            
-        }
+        
 
         //set url to call google apps engine
-        string url = "http://orange.alansoto.com/TestXml.xml";
-
-        //combine the google apps engine and paramters list to do a full get
-        string fullUrl = string.Format("{0}?{1}", url, strParameters.ToString());
+        string urlToQuery = HttpUtility.HtmlDecode(Request.QueryString["urlToQuery"]);
 
         //make call to external url and display results
         WebResponse result = null;
         string output = "";
 
-        WebRequest req = WebRequest.Create(fullUrl);
+        WebRequest req = WebRequest.Create(urlToQuery);
         result = req.GetResponse();
         Stream ReceiveStream = result.GetResponseStream();
         Encoding encode = System.Text.Encoding.GetEncoding("utf-8");

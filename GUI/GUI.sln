@@ -4,7 +4,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebApplication", "WebApplication\", "{85BEAECE-1800-44D7-9BCB-CB3EB95D6398}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		ProjectReferences = "{11DF1C38-FF44-44DD-B70A-0991E976AF12}|OrangeServiceProxy.dll;"
+		ProjectReferences = ""
 		Debug.AspNetCompiler.VirtualPath = "/WebApplication"
 		Debug.AspNetCompiler.PhysicalPath = "WebApplication\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\WebApplication\"
@@ -20,13 +20,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebApplication", "WebApplic
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "50681"
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrangeServiceProxy", "OrangeServiceProxy\OrangeServiceProxy.csproj", "{11DF1C38-FF44-44DD-B70A-0991E976AF12}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrangeServiceProxy_Tests", "NunitTests\OrangeServiceProxy_Tests.csproj", "{4787B0BC-AB03-4007-BC35-151F4409DA44}"
-	ProjectSection(ProjectDependencies) = postProject
-		{11DF1C38-FF44-44DD-B70A-0991E976AF12} = {11DF1C38-FF44-44DD-B70A-0991E976AF12}
 	EndProjectSection
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SeleniumTests", "SeleniumTests\", "{5F1C5B68-548F-45D9-8B34-E3892D590B25}"
@@ -59,14 +52,6 @@ Global
 		{85BEAECE-1800-44D7-9BCB-CB3EB95D6398}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85BEAECE-1800-44D7-9BCB-CB3EB95D6398}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{85BEAECE-1800-44D7-9BCB-CB3EB95D6398}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{11DF1C38-FF44-44DD-B70A-0991E976AF12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{11DF1C38-FF44-44DD-B70A-0991E976AF12}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{11DF1C38-FF44-44DD-B70A-0991E976AF12}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{11DF1C38-FF44-44DD-B70A-0991E976AF12}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4787B0BC-AB03-4007-BC35-151F4409DA44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4787B0BC-AB03-4007-BC35-151F4409DA44}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4787B0BC-AB03-4007-BC35-151F4409DA44}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4787B0BC-AB03-4007-BC35-151F4409DA44}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5F1C5B68-548F-45D9-8B34-E3892D590B25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5F1C5B68-548F-45D9-8B34-E3892D590B25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F1C5B68-548F-45D9-8B34-E3892D590B25}.Release|Any CPU.ActiveCfg = Debug|Any CPU

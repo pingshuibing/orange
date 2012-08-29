@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="container_12 white">
@@ -62,29 +63,32 @@
 
             </div>
         </div>
-        <div class="clear">
-        </div>
+        <div class="clear"></div>
     </div>
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderJquery" runat="Server">
+    <script src="js/orange/SunCalculatorUrlBuilder.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function ()
         {
             $('#btnFindSolarPanels').click(function (e)
             {
-                var solarPanelMinimumPrice = $('#txtSolarPanelMinimumPrice').text();
-                var solarPanelMaximumPrice = $('#txtSolarPanelMaximumPrice').text();
+                
+                
+                var url = new UrlBuilder();
+                url.GoogleAppsEngineBaseUrl = "http://localhost:50681/TestXml.xml";
+                url.ComponentName = "panel";
+                url.MinimumPrice = $('#txtSolarPanelMinimumPrice').text();
+                url.MaximumPrice = $('#txtSolarPanelMaximumPrice').text();
+
 
                 e.preventDefault();
                 $.ajax({
                     type: 'GET',
                     url: 'proxy.aspx',
                     dataType: 'xml',
-                    data: {
-                        'operation': 'FindSolarPanel',
-                        'solarPanelMinimumPrice': solarPanelMinimumPrice,
-                        'solarPanelMaximumPrice': solarPanelMaximumPrice
-                    },
+                    data: {urlToQuery : url.toString()},
                     success: function (data)
                     {
                         var str = '';
@@ -108,6 +112,9 @@
                         $('#divResults').html(str);
                         $('#divResults').slideDown();
                         $('#divNoResults').hide();
+                    },
+                    error: function(data){
+                        alert("there was an error trying to retrieve the url: "+ url.toString());
                     }
                 });
             });

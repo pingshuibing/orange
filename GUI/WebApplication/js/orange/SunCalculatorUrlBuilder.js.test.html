@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>SunCalculatorUrlBuilder Unit Tests</title>
+    <link href="../qunit/qunit.css" rel="stylesheet" type="text/css" />
+    <script src="../qunit/qunit.js" type="text/javascript"></script>
+    <script src="SunCalculatorUrlBuilder.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="qunit">
+    </div>
+    <div id="qunit-fixture">
+    </div>
+    <script type="text/javascript">
+
+
+        test("bind properties", function ()
+        {
+
+            var url = new UrlBuilder();
+
+            url.GoogleAppsEngineBaseUrl = "http://baseurl";
+            equal(url.GoogleAppsEngineBaseUrl, "http://baseurl", "binding property: GoogleAppsEngineUrl");
+
+            url.ComponentName = "panel";
+            equal(url.ComponentName, "panel", "binding property: Panel");
+
+            url.MaximumPrice = "500";
+            equal(url.MaximumPrice, "500", "binding property: MaximumPrice");
+
+            url.MinimumPrice = "100";
+            equal(url.MinimumPrice, "100", "binding property: MinimumPrice");
+
+            url.MaximumCapacity = "50";
+            equal(url.MaximumCapacity, "50", "binding property: MaximumCapacity");
+
+            url.MinimumCapacity = "20";
+            equal(url.MinimumCapacity, "20", "binding property: MinimumCapacity");
+
+            url.Postcode = "4121";
+            equal(url.Postcode, "4121", "binding property: Postcode");
+
+        });
+
+        test("building url to API specifications", function ()
+        {
+            var url = new UrlBuilder();
+            url.GoogleAppsEngineBaseUrl = "http://baseurl";
+            equal(url.toString(), "http://baseurl", "testing baseUrl: http://baseurl");
+
+            url.ComponentName = "panel";
+            equal(url.toString(), "http://baseurl/panel", "testing component: http://baseurl/panel");
+
+            url.MaximumPrice = "500";
+            url.MinimumPrice = "100";
+            equal(url.toString(), "http://baseurl/panel/price/100/500", "testing price: http://baseurl/panel/price/100/500");
+
+            url.MaximumCapacity = "50";
+            url.MinimumCapacity = "20";
+            equal(url.toString(), "http://baseurl/panel/price/100/500/capacity/20/50", "testing capacity: http://baseurl/panel/price/100/500/capacity/20/50");
+
+            url.Postcode = "4121";
+            equal(url.toString(), "http://baseurl/panel/price/100/500/postcode/4121/capacity/20/50", "testing postcode: http://baseurl/panel/price/100/500/postcode/4121/capacity/20/50");
+
+            url = new UrlBuilder();
+            url.GoogleAppsEngineBaseUrl = "http://baseurl";
+            url.ComponentName = "component";
+            url.Postcode = "4121";
+            equal(url.toString(), "http://baseurl/component/postcode/4121", "only postcode: http://baseurl/component/postcode/4121");
+
+        });
+        
+    </script>
+</body>
+</html>
