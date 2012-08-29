@@ -9,9 +9,9 @@ public interface BatteryDB {
 	 * @param max Maximum price (0 to have no upper limitation)
 	 * @return List of panel
 	 */
-	public List<Battery> getBatteriesInPriceRange(double batteryMinPrice, double batteryMaxPrice);
+	public List<Battery> getBatteriesInPriceRange(double min, double max);
 	
-	public List<Battery> getBatteriesInLocation(String userPostcode);
+	public List<Battery> getBatteriesInLocation(String location);
 	
-	public List<Battery> getBatteriesInCapacity(double batteryMinCapacity, double batteryMaxCapacity);
+	public List<Battery> getBatteriesInCapacity(double min, double max);
 }
