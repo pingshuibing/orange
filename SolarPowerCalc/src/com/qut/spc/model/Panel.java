@@ -14,24 +14,26 @@ import javax.xml.bind.annotation.XmlElement;
 public class Panel extends SolarComponent {
 
 	@XmlElement
-	private double outputEnergy;
+	private double operatingCurrent = 0.0;
 	
 	public Panel() {
-		outputEnergy = 0.0;
 	}
 	
 	/**
-	 * @return The output energy
+	 * Get max power (Operating current) in A
 	 */
-	public double getOutputEnergy() {
-		return outputEnergy;
+	public double getOperatingCurrent() {
+		return operatingCurrent;
 	}
 
 	/**
 	 * @param outputEnergy The output energy to set
 	 */
-	public void setOutputEnergy(double outputEnergy) {
-		this.outputEnergy = outputEnergy;
+	public void setOperatingCurrent(double operatingCurrent) throws Exception {
+		if (operatingCurrent < 0.0) {
+			throw new Exception("Operating current must not be negative");
+		}
+		this.operatingCurrent = operatingCurrent;
 	}
 	
 	public static Panel load(long id) {

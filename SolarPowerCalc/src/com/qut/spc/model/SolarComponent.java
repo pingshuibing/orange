@@ -48,10 +48,20 @@ public abstract class SolarComponent {
 	private double capacity = 0.0;
 	
 	@XmlElement
-	private double efficiencyDecrease = 0.0;
+	private double voltage = 0.0;
+	
+	@XmlElement
+	private String dimensions = "";
 	
 	@XmlElement
 	private String description = "";
+	
+	@XmlElement
+	private int warranty = 0;
+	
+	@XmlElement
+	private double efficiencyDecrease = 0.0;
+	
 	
 	public SolarComponent() {
 	}
@@ -120,17 +130,36 @@ public abstract class SolarComponent {
 		this.price = price;
 	}
 	
+	/**
+	 * Get capacity (W or Ah)
+	 * @return
+	 */
 	public double getCapacity() {
 		return capacity;
 	}
 
 	public void setCapacity(double capacity) throws Exception {
 		if (capacity < 0.0) {
-			throw new Exception("Price must not be negative");
+			throw new Exception("Capacity must not be negative");
 		}
 		this.capacity = capacity;
 	}
 
+	/**
+	 * Get voltage (V)
+	 * @return
+	 */
+	public double getVoltage() {
+		return voltage;
+	}
+
+	public void setVoltage(double voltage) throws Exception {
+		if (voltage < 0.0) {
+			throw new Exception("Voltage must not be negative");
+		}
+		this.voltage = voltage;
+	}
+	
 	/**
 	 * @return The efficiency decrease linearly by each year
 	 */
@@ -147,6 +176,35 @@ public abstract class SolarComponent {
 			throw new Exception("Efficiency must be from 0 to 100");
 		}
 		this.efficiencyDecrease = efficiencyDecrease;
+	}
+	
+	/**
+	 * Get warranty time in months
+	 */
+	public int getWarranty() {
+		return warranty;
+	}
+
+	public void setWarranty(int warranty) throws Exception {
+		if (warranty < 0) {
+			throw new Exception("Warranty must not be negative");
+		}
+		this.warranty = warranty;
+	}
+
+	/**
+	 * Get dimensions in mm
+	 * @return Format LxWxH
+	 */
+	public String getDimensions() {
+		return dimensions;
+	}
+
+	/**
+	 * Set dimensions in mm, format LxWxH
+	 */
+	public void setDimensions(String dimensions) {
+		this.dimensions = dimensions;
 	}
 	
 	public String getDescription() {

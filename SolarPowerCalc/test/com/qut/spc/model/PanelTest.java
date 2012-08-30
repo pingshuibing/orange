@@ -37,7 +37,7 @@ public class PanelTest {
 	public void testStoring_One() throws Exception {
 		panel.setEfficiencyDecrease(0.1);
 		panel.setManufacture("Manufacture 1");
-		panel.setOutputEnergy(1009.0);
+		panel.setOperatingCurrent(1009.0);
 		panel.setPrice(13.0);
 		
 		panel.save();
@@ -51,7 +51,7 @@ public class PanelTest {
 		assertEquals(id, panel.getId());
 		assertEquals(0.1, panel.getEfficiencyDecrease(), EPSILON);
 		assertEquals("Manufacture 1", panel.getManufacture());
-		assertEquals(1009.0, panel.getOutputEnergy(), EPSILON);
+		assertEquals(1009.0, panel.getOperatingCurrent(), EPSILON);
 		assertEquals(13.0, panel.getPrice(), EPSILON);
 	}
 
