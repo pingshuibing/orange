@@ -13,6 +13,7 @@
     </fileset>
   </path>
 
+  <!-- jUnit and test tools -->
   <path id="test.classpath">
     <pathelement path="test"/>
     <pathelement path="../Tools/junit.jar"/> 
@@ -21,6 +22,15 @@
     <pathelement path="${sdk.dir}/lib/impl/appengine-api-labs.jar"/>
     <pathelement path="${sdk.dir}/lib/impl/appengine-api-stubs.jar"/>
   </path>
+
+  <!-- Cobertura -->
+  <path id="cobertura.classpath">
+    <fileset dir="../Tools/cobertura/">
+      <include name="*.jar" />
+      <include name="lib/**/*.jar" />
+    </fileset>
+  </path>
+  <taskdef classpathref="cobertura.classpath" resource="tasks.properties"/>
 
   <!-- Copy dependencies -->
   <target name="copyjars"
@@ -89,7 +99,7 @@
   </target>
 
   <!-- Compile tests -->
-  <target name="compile-tests" depends="compile">
+  <target name="compile-tests" depends="datanucleusenhance">
     <javac
       srcdir="test"
       destdir="war/WEB-INF/classes"
@@ -103,12 +113,16 @@
   </target>
 
   <!-- Run tests -->
-  <target name="test" depends="compile-tests,datanucleusenhance" description="Run unit tests">
+  <target name="test" depends="compile-tests" description="Run unit tests">
     <mkdir dir="report" />
     <junit printsummary="yes" haltonfailure="no" haltonerror="no">
+      <sysproperty key="net.sourceforge.cobertura.datafile" file="coverage/cobertura.ser" />
+      <!-- Instrumented classes must before original classes -->
+      <classpath location="coverage/instrument"/>
       <classpath>
         <path refid="project.classpath"/>
         <path refid="test.classpath"/>
+        <path refid="cobertura.classpath"/>
       </classpath>
 
       <formatter type="plain"/>
@@ -120,5 +134,27 @@
         </fileset>
       </batchtest>
     </junit>
+  </target>
+
+  <!-- Cobertura code coverage -->
+  <target name="coverage-instrument" depends="compile-tests">
+    <delete file="coverage/cobertura.ser"/>
+    <delete dir="coverage/instrument"/>
+    <mkdir dir="coverage/instrument"/>
+    <cobertura-instrument datafile="coverage/cobertura.ser"
+      todir="coverage/instrument">
+      <fileset dir="war/WEB-INF/classes">
+        <include name="**/*.class"/>
+        <exclude name="**/*Test.class"/>
+      </fileset>
+    </cobertura-instrument>
+  </target>
+
+  <target name="coverage" depends="coverage-instrument,test">
+    <mkdir dir="coverage/report-html"/>
+    <cobertura-report datafile="coverage/cobertura.ser"
+      format="xml" srcdir="src" destdir="coverage/" />
+    <cobertura-report datafile="coverage/cobertura.ser"
+      format="html" srcdir="src" destdir="coverage/report-html" />
   </target>
 </project>
