@@ -6,7 +6,7 @@ public interface PanelDB {
 	/**
 	 * Get list of panels by price range
 	 * 
-	 * @param min Minimum price (0 to have no under limitation)
+	 * @param min Minimum price (0 to have no lower limitation)
 	 * @param max Maximum price (0 to have no upper limitation)
 	 * @return List of panel
 	 * @throws Exception if min or max is negative or max is less than min
@@ -27,9 +27,10 @@ public interface PanelDB {
 	/**
 	 * Get list of panels by capacity range
 	 * 
-	 * @param location Postcode/address
+	 * @param min Minimum capacity (0 to have no lower limitation)
+	 * @param max Maximum capacity (0 to have no upper limitation)
 	 * @return List of panel
-	 * @throws Exception if location is in invalid format 
+	 * @throws Exception if min or max is negative or max is less than min
 	 */
 	public List<Panel> getPanelsInCapacity(double min, double max)
 			throws Exception;
