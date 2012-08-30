@@ -71,7 +71,7 @@
     <script type="text/javascript">
         $(document).ready(function ()
         {
-            $('#btnFindSolarPanels').click(function (e)
+            $('#btnSubmit').click(function (e)
             {
                 e.preventDefault();
 
