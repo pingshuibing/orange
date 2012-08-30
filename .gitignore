@@ -47,4 +47,4 @@ local.properties
 *.ffs_db
 
 # Visual Studio user options file
-*.suo
+.suo
