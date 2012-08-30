@@ -64,6 +64,7 @@ public class SolarComponentTest {
 
 	@Test
 	public void testConstructor_InitVariable() throws Exception {
+		// TODO: check all properties
 		assertEquals(0.0, component.getPrice(), EPSILON);
 		assertEquals(0.0, component.getEfficiencyDecrease(), EPSILON);
 		assertEquals("", component.getManufacture());

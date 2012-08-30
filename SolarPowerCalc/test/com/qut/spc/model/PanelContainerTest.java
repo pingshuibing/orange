@@ -31,7 +31,7 @@ public class PanelContainerTest {
 	}
 
 	@Test
-	public void testGetPanelsInPriceRange_Empty() throws Exception {
+	public void testGetPanelsInPriceRange_EmptyDatabase() throws Exception {
 		list = container.getPanelsInPriceRange(0.0, 100.0);
 		
 		assertNotNull(list);
@@ -39,7 +39,7 @@ public class PanelContainerTest {
 	}
 
 	@Test
-	public void testGetPanelsInPriceRange_NoItems() throws Exception {
+	public void testGetPanelsInPriceRange_AnyItem() throws Exception {
 		panel = new Panel();
 		panel.setManufacture("M 1");
 		panel.setPrice(50.0);
@@ -47,7 +47,6 @@ public class PanelContainerTest {
 		
 		list = container.getPanelsInPriceRange(0.0, 0.0);
 		
-		assertNotNull(list);
 		assertEquals(1, list.size());
 		panel = list.get(0);
 		
@@ -64,12 +63,22 @@ public class PanelContainerTest {
 		
 		list = container.getPanelsInPriceRange(0.0, 100.0);
 		
-		assertNotNull(list);
 		assertEquals(1, list.size());
 		panel = list.get(0);
 		
 		assertEquals("M 1", panel.getManufacture());
 		assertEquals(50.0, panel.getPrice(), 0.001);
+	}
+	
+	@Test
+	public void testGetPanelsInPriceRange_OneItemNotInRange() throws Exception {
+		panel = new Panel();
+		panel.setPrice(150.0);
+		panel.save();
+		
+		list = container.getPanelsInPriceRange(10.0, 100.0);
+		
+		assertEquals(0, list.size());
 	}
 	
 	@Test
@@ -176,8 +185,18 @@ public class PanelContainerTest {
 		assertEquals("M 4", list.get(1).getManufacture());
 	}
 	
+	@Test(expected=Exception.class)
+	public void testGetPanelsInPriceRange_NegativeMin() throws Exception {
+		list = container.getPanelsInPriceRange(-1.0, 3.0);
+	}
+	
+	@Test(expected=Exception.class)
+	public void testGetPanelsInPriceRange_NegativeMax() throws Exception {
+		list = container.getPanelsInPriceRange(10.0, -1.0);
+	}
+	
 	@Test
-	public void testGetPanelsInCapacity_Empty() throws Exception {
+	public void testGetPanelsInCapacity_EmptyDatabase() throws Exception {
 		list = container.getPanelsInCapacity(2.0, 3.0);
 		
 		assertNotNull(list);
@@ -310,5 +329,15 @@ public class PanelContainerTest {
 		assertEquals(1, list.size());
 		
 		assertEquals("B1", list.get(0).getModel());
+	}
+	
+	@Test(expected=Exception.class)
+	public void testGetPanelsInCapacity_NegativeMin() throws Exception {
+		list = container.getPanelsInCapacity(-1.0, 3.0);
+	}
+	
+	@Test(expected=Exception.class)
+	public void testGetPanelsInCapacity_NegativeMax() throws Exception {
+		list = container.getPanelsInCapacity(10.0, -1.0);
 	}
 }

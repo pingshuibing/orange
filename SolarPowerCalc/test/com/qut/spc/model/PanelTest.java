@@ -34,7 +34,7 @@ public class PanelTest {
 	}
 	
 	@Test
-	public void testStoring() throws Exception {
+	public void testStoring_One() throws Exception {
 		panel.setEfficiencyDecrease(0.1);
 		panel.setManufacture("Manufacture 1");
 		panel.setOutputEnergy(1009.0);
@@ -46,6 +46,8 @@ public class PanelTest {
 		
 		panel = Panel.load(id);
 		assertNotNull(panel);
+		
+		// Check that panel's properties
 		assertEquals(id, panel.getId());
 		assertEquals(0.1, panel.getEfficiencyDecrease(), EPSILON);
 		assertEquals("Manufacture 1", panel.getManufacture());
@@ -53,4 +55,37 @@ public class PanelTest {
 		assertEquals(13.0, panel.getPrice(), EPSILON);
 	}
 
+	@Test
+	public void testStoring_Many() throws Exception {
+		long id1, id2, id3;
+		
+		panel.setName("P1");
+		panel.setPrice(20.6);
+		panel.save();
+		id1 = panel.getId();
+		
+		panel = new Panel();
+		panel.setName("P2");
+		panel.setPrice(125.0);
+		panel.save();
+		id2 = panel.getId();
+		
+		panel = new Panel();
+		panel.setName("P3");
+		panel.setPrice(25.0);
+		panel.save();
+		id3 = panel.getId();
+		
+		panel = Panel.load(id1);
+		assertEquals("P1", panel.getName());
+		assertEquals(20.6, panel.getPrice(), EPSILON);
+		
+		panel = Panel.load(id2);
+		assertEquals("P2", panel.getName());
+		assertEquals(125.0, panel.getPrice(), EPSILON);
+		
+		panel = Panel.load(id3);
+		assertEquals("P3", panel.getName());
+		assertEquals(25.0, panel.getPrice(), EPSILON);
+	}
 }
