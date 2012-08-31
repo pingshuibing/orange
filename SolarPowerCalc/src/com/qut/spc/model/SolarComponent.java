@@ -64,6 +64,8 @@ public abstract class SolarComponent {
 	@XmlElement
 	private double efficiencyDecrease = 0.0;
 	
+	@XmlElement
+	private String postcode = "";
 	
 	public SolarComponent() {
 	}
@@ -212,6 +214,14 @@ public abstract class SolarComponent {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public String getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	} 
 	
 	/**
 	 * Get the list of efficiency by years
