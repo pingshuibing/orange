@@ -73,28 +73,48 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderJquery" runat="Server">
     <script src="js/orange/SunCalculatorUrlBuilder.js" type="text/javascript"></script>
-    <script src="js/jquery.dataTables.js" type="text/javascript"></script>
-    <link href="css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <script src="js/libs/jExpand.js" type="text/javascript"></script>
+    <script src="js/libs/sprintf-0.6.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function ()
         {
+            var template;
+
+           // $('#txtPostcode').text($.load('PanelTableTemplate.htm'));
+
+
+
+
             $('#btnSubmit').click(function (e)
             {
                 e.preventDefault();
 
+                alert(sprintf('%2$s %1$s', 'soto', 'alan'));
+
+
+
                 //build the url to connect with servlet
                 //uncomment the following lines to connect with real url
-                /*
+
+
                 var url = new UrlBuilder();
                 url.GoogleAppsEngineBaseUrl = "http://googleAppsBaseUrl";
-                url.ComponentName = "panel";
-                url.MinimumPrice = $('#txtSolarPanelMinimumPrice').text();
-                url.MaximumPrice = $('#txtSolarPanelMaximumPrice').text();
-                */
+                url.GoogleAppsEngineBaseUrl = "http://solarpowercalc.appspot.com";
+
+
+                url.ComponentName = 'panel';
+                url.Postcode = $('#txtPostcode').val();
+                url.MinimumPrice = $('#txtMinimumPrice').val();
+                url.MaximumPrice = $('#txtMaximumPrice').val();
+                url.MinimumCapacity = $('#txtMinimumEfficiency').val();
+                url.MaximumCapacity = $('#txtMaximumEfficiency').val();
+                alert(url.toString());
+
 
                 //create a dummy url
-                var url = new UrlBuilder();
-                url.GoogleAppsEngineBaseUrl = "http://localhost:50681/WebApplication/TestXml.xml";
+                url = new UrlBuilder();
+                url.GoogleAppsEngineBaseUrl = "http://solarpowercalc.appspot.com/panel/capacity/0/20000";
+
 
                 //make ajax call
                 $.ajax({
@@ -103,9 +123,9 @@
                     dataType: 'xml',
                     data: { servletCallUrl: url.toString() }
                 }).done(
-                    bindPanelXmlToTable
+                bindPanelXmlToTable
                 ).fail(
-                    errorWhileRetrievingUrl
+                errorWhileRetrievingUrl
                 );
             });
 
@@ -114,6 +134,9 @@
 
         function bindPanelXmlToTable(xml)
         {
+            //remove any existing table, if exists
+            $('#tblResults_wrapper').remove();
+            
             //create table element and assign basic attributes 
             var $table = $('<table>').attr({ 'id': 'tblResults' });
 
@@ -122,12 +145,9 @@
             
             //assign column names into header
             $thead = $('<tr>');
-            $thead.append($('<td>').text('ID'));
             $thead.append($('<td>').text('Name'));
-            $thead.append($('<td>').text('Model'));
             $thead.append($('<td>').text('Manufacturer'));
             $thead.append($('<td>').text('Price'));
-            $thead.append($('<td>').text('Company Website'));
             $thead.append($('<td>').text('Capacity'));
             $theader.append($thead);
 
@@ -140,36 +160,27 @@
             //iterating through every panel in the xml
             $(xml).find("panel").each(function ()
             {
-                //read data from the xml                            
-                var id = $(this).find("id").text();
-                var name = $(this).find("name").text();
-                var model = $(this).find("model").text();
-                var manufacturer = $(this).find("manufacturer").text();
-                var price = $(this).find("price").text();
-                var companyWebsite = $(this).find("companyWebsite").text();
-                var capacity = $(this).find("capacity").text();
+
+                //put the current xml row into memory
+                $xmlRow = $(this);
 
                 //create row element
                 var $row = $('<tr>');
 
-                //append data into td and then into row
-                $row.append($('<td>').text(id));
-                $row.append($('<td>').text(name));
-                $row.append($('<td>').text(model));
-                $row.append($('<td>').text(manufacturer));
-                $row.append($('<td>').text(price));
-                $row.append($('<td>').text(companyWebsite));
-                $row.append($('<td>').text(capacity));
-
+                //create html cell and append into row
+                $row.append(createCell($xmlRow, 'name'));
+                $row.append(createCell($xmlRow, 'manufacturer'));
+                $row.append(createCell($xmlRow, 'price'));
+                $row.append(createCell($xmlRow, 'capacity'));
                 $table.append($row);
+
+                
 
             });
             
             //append the table into divResults
             $('#divResults').append($table);
-
-            //add dataTable sorting functions
-            $table.dataTable();
+            $table.jExpand();
           
             //hide and show respective divs
             $('#divResults').slideDown();
@@ -177,6 +188,12 @@
 
         }
 
+        //read data values from xml row and creates a td element
+        function createCell($xmlRow, propertyName)
+        {
+            var dataValue = $xmlRow.find(propertyName).text();
+            return $('<td>').text(dataValue);
+        }
 
         function errorWhileRetrievingUrl(errorInfo)
         {
