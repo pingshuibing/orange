@@ -4,5 +4,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="Logo"></string>
+    <string name="greeting">Hello!.. nsert your data</string>
+    <string name="post">Post Code</string>
+    <string name="logoImageText">logo image</string>
 
 </resources>
