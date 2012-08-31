@@ -3,8 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div class="container_12 white">
-        <div class="grid_4 alpha">
+    
+    <div class="container_12 content">
+        <div class="grid_12">
+            <h1>Find Solar Panels</h1>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_3">
             <h2>About You</h2>
             <table style="width: 100%">
                 <tr>
@@ -54,20 +59,22 @@
             <input type="submit" id="btnSubmit" value="Find Solar Panels" 
                 style="float: right" />
         </div>
-        <div class="grid_8 omega">
+        <div class="grid_9">
             <div id="divNoResults">
                 <h2>Please use the options on the right to search for components</h2>
             </div>
             <div id="divResults" style="display: none;">
-                <h2>Table of results will appear here</h2>
+                <h2>Your results are shown below</h2>
             </div>
         </div>
-        <div class="clear">
-        </div>
+        <div class="clear"></div>
+        
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderJquery" runat="Server">
     <script src="js/orange/SunCalculatorUrlBuilder.js" type="text/javascript"></script>
+    <script src="js/jquery.dataTables.js" type="text/javascript"></script>
+    <link href="css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         $(document).ready(function ()
         {
@@ -107,34 +114,76 @@
 
         function bindPanelXmlToTable(xml)
         {
-            var str = '';
+            //create table element and assign basic attributes 
+            var $table = $('<table>').attr({ 'id': 'tblResults' });
+
+            //create header row
+            var $theader = $('<thead>');
+            
+            //assign column names into header
+            $thead = $('<tr>');
+            $thead.append($('<td>').text('ID'));
+            $thead.append($('<td>').text('Name'));
+            $thead.append($('<td>').text('Model'));
+            $thead.append($('<td>').text('Manufacturer'));
+            $thead.append($('<td>').text('Price'));
+            $thead.append($('<td>').text('Company Website'));
+            $thead.append($('<td>').text('Capacity'));
+            $theader.append($thead);
+
+            //append headers into table
+            $table.append($theader);
+
+            //append body into table
+            $table.append($('<tbody>'));
+            
+            //iterating through every panel in the xml
             $(xml).find("panel").each(function ()
             {
-                str += '<p>';
-                str += $(this).find("id").text() + '</br>';
-                str += $(this).find("name").text() + '</br>';
-                str += $(this).find("model").text() + '</br>';
-                str += $(this).find("manufacturer").text() + '</br>';
+                //read data from the xml                            
+                var id = $(this).find("id").text();
+                var name = $(this).find("name").text();
+                var model = $(this).find("model").text();
+                var manufacturer = $(this).find("manufacturer").text();
+                var price = $(this).find("price").text();
+                var companyWebsite = $(this).find("companyWebsite").text();
+                var capacity = $(this).find("capacity").text();
 
-                str += $(this).find("price").text() + '</br>';
-                str += $(this).find("companyWebsite").text() + '</br>';
-                str += $(this).find("capacity").text() + '</br>';
+                //create row element
+                var $row = $('<tr>');
 
+                //append data into td and then into row
+                $row.append($('<td>').text(id));
+                $row.append($('<td>').text(name));
+                $row.append($('<td>').text(model));
+                $row.append($('<td>').text(manufacturer));
+                $row.append($('<td>').text(price));
+                $row.append($('<td>').text(companyWebsite));
+                $row.append($('<td>').text(capacity));
 
-                str += '</p>';
+                $table.append($row);
 
             });
+            
+            //append the table into divResults
+            $('#divResults').append($table);
 
-            $('#divResults').html(str);
+            //add dataTable sorting functions
+            $table.dataTable();
+          
+            //hide and show respective divs
             $('#divResults').slideDown();
             $('#divNoResults').hide();
 
         }
 
+
         function errorWhileRetrievingUrl(errorInfo)
         {
             alert("there was an error trying to retrieve the url: " + url.toString());
         }
+
+        
 
       
     </script>
