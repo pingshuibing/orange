@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement(name="batteries")
 public class BatteryContainer extends ComponentContainer
-		implements BatteryFilterAPI, BatteryDB {
+		implements BatteryFilterAPI {
 	
 	@XmlElement(name="battery")
 	private List<Battery> list;
@@ -40,30 +40,6 @@ public class BatteryContainer extends ComponentContainer
 	
 	public void setList(List<Battery> list) {
 		this.list = list;
-	}
-	
-	@Override
-	public List<Battery> getBatteriesInPriceRange(double min, double max)
-			throws Exception {
-		setMinPrice(min);
-		setMaxPrice(max);
-		return search();
-	}
-	
-	@Override
-	public List<Battery> getBatteriesInLocation(String location)
-			throws Exception {
-		// TODO
-		list = new ArrayList<Battery>();
-		return list;
-	}
-
-	@Override
-	public List<Battery> getBatteriesInCapacity(double min, double max)
-			throws Exception {
-		setMinCapacity(min);
-		setMaxCapacity(max);
-		return search();
 	}
 
 	@Override

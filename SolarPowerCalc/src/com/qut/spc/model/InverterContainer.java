@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement(name="inverters")
 public class InverterContainer extends ComponentContainer
-		implements InverterFilterAPI, InverterDB {
+		implements InverterFilterAPI {
 	
 	@XmlElement(name="inverter")
 	private List<Inverter> list;
@@ -40,30 +40,6 @@ public class InverterContainer extends ComponentContainer
 	
 	public void setList(List<Inverter> list) {
 		this.list = list;
-	}
-	
-	@Override
-	public List<Inverter> getInvertersInPriceRange(double min, double max)
-			throws Exception {
-		setMinPrice(min);
-		setMaxPrice(max);
-		return search();
-	}
-	
-	@Override
-	public List<Inverter> getInvertersInLocation(String location)
-			throws Exception {
-		// TODO
-		list = new ArrayList<Inverter>();
-		return list;
-	}
-
-	@Override
-	public List<Inverter> getInvertersInCapacity(double min, double max)
-			throws Exception {
-		setMinCapacity(min);
-		setMaxCapacity(max);
-		return search();
 	}
 
 	@Override

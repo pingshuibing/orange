@@ -22,7 +22,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="panels")
-public class PanelContainer extends ComponentContainer implements PanelFilterAPI, PanelDB {
+public class PanelContainer extends ComponentContainer
+		implements PanelFilterAPI {
 
 	@XmlElement(name="panel")
 	private List<Panel> list;
@@ -34,30 +35,6 @@ public class PanelContainer extends ComponentContainer implements PanelFilterAPI
 	
 	public List<Panel> getList() {
 		return list;
-	}
-	
-	@Override
-	public List<Panel> getPanelsInPriceRange(double min, double max)
-			throws Exception {
-		setMinPrice(min);
-		setMaxPrice(max);
-		return search();
-	}
-	
-	@Override
-	public List<Panel> getPanelsInLocation(String location)
-			throws Exception {
-		// TODO
-		list = new ArrayList<Panel>();
-		return list;
-	}
-
-	@Override
-	public List<Panel> getPanelsInCapacity(double min, double max)
-			throws Exception {
-		setMinCapacity(min);
-		setMaxCapacity(max);
-		return search();
 	}
 
 	@Override
