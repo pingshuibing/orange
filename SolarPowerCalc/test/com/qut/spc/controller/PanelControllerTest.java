@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import com.qut.spc.exceptions.InvalidArgumentException;
 import com.qut.spc.model.PanelDB;
+import com.qut.spc.model.PanelFilterAPI;
 
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
@@ -16,97 +17,49 @@ import static org.junit.Assert.*;
  */
 public class PanelControllerTest {
 	
-	private PanelDB db;
+	private PanelFilterAPI db;
 	private PanelController controller;
 
 	@Before
 	public void setup(){
-		db = mock(PanelDB.class);
+		db = mock(PanelFilterAPI.class);
 		controller = new PanelController(db);		
+	}
+	
+	@Test
+	public void getPanelsByPriceCapacityLocation_validValues_setMaxPriceOnFilterIsCalled(){
+		controller.getPanelsByPriceCapacityLocation(1, 2, 3, 4, "2222");
+		verify(db).setMaxPrice(2);
 	}
 
 	@Test
-	public void getPanelsByPrice_validInput_correctDBIsReturned(){
-		PanelDB res=controller.getPanelsByPrice(0, 100);
-		
-		assertEquals(db, res);
+	public void getPanelsByPriceCapacityLocation_validValues_setMinPriceOnFilterIsCalled(){
+		controller.getPanelsByPriceCapacityLocation(1, 2, 3, 4, "2222");
+		verify(db).setMinPrice(1);
 	}
-	
+
 	@Test
-	public void getPanelsByPrice_validInput_dbIsCalledAppropriately(){
-		controller.getPanelsByPrice(1, 100);
-		
-		try {
-			verify(db).getPanelsInPriceRange(1, 100);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void getPanelsByPriceCapacityLocation_validValues_setMaxCapacityOnFilterIsCalled(){
+		controller.getPanelsByPriceCapacityLocation(1, 2, 3, 4, "2222");
+		verify(db).setMaxCapacity(4);
 	}
-	
-	@Test (expected=InvalidArgumentException.class)
-	public void getPanelsByPrice_exception_InvalidArgumentExceptionIsThrown(){
-		try {
-			when(db.getPanelsInPriceRange(1, 100)).thenThrow(Exception.class);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		controller.getPanelsByPrice(1, 100);
-	}
-	
+
 	@Test
-	public void getPanelsByCapacity_validInput_correctDBIsReturned(){
-		PanelDB res=controller.getPanelsByCapacity(0, 100);
-		
-		assertEquals(db, res);
+	public void getPanelsByPriceCapacityLocation_validValues_setMinCapacityOnFilterIsCalled(){
+		controller.getPanelsByPriceCapacityLocation(1, 2, 3, 4, "2222");
+		verify(db).setMinCapacity(3);
 	}
-	
+
 	@Test
-	public void getPanelsByCapacity_validInput_dbIsCalledAppropriately(){
-		controller.getPanelsByCapacity(1, 100);
-		
-		try {
-			verify(db).getPanelsInCapacity(1, 100);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void getPanelsByPriceCapacityLocation_validValues_setLocationOnFilterIsCalled(){
+		controller.getPanelsByPriceCapacityLocation(1, 2, 3, 4, "2222");
+		verify(db).setPostcode("2222");
 	}
-	
-	@Test (expected=InvalidArgumentException.class)
-	public void getPanelsByCapacity_exception_InvalidArgumentExceptionIsThrown(){
-		try {
-			when(db.getPanelsInCapacity(1, 100)).thenThrow(Exception.class);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		controller.getPanelsByCapacity(1, 100);
-	}
-	
+
 	@Test
-	public void getPanelsByLocation_validInput_correctDBIsReturned(){
-		PanelDB res=controller.getPanelsByLocation("4169");
-		
-		assertEquals(db, res);
-	}
-	
-	@Test
-	public void getPanelsByLocation_validInput_dbIsCalledAppropriately(){
-		controller.getPanelsByLocation("4444");
-		
-		try {
-			verify(db).getPanelsInLocation("4444");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@Test (expected=InvalidArgumentException.class)
-	public void getPanelsByLocation_exception_InvalidArgumentExceptionIsThrown(){
-		try {
-			when(db.getPanelsInLocation("1233")).thenThrow(Exception.class);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		controller.getPanelsByLocation("1233");
+	public void getPanelsByPriceCapacityLocation_validValues_searchOnFilterIsCalled(){
+		controller.getPanelsByPriceCapacityLocation(1, 2, 3, 4, "2222");
+		verify(db).search();
 	}
 	
 }
