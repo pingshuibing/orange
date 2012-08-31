@@ -3,18 +3,16 @@ package com.qut.spc.model;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.verify;
+
 import javax.persistence.Entity;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.qut.spc.db.Database;
-import com.qut.spc.postcode.PostcodeUtil;
 
 /**
  * Used for testing the abstract class
