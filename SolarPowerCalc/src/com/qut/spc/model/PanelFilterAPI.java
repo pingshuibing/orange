@@ -5,6 +5,11 @@ import java.util.List;
 public interface PanelFilterAPI extends ComponentFilterAPI {
 	
 	/**
+	 * Get current list of panels
+	 */
+	List<Panel> getList();
+	
+	/**
 	 * Get list of panels from current filter
 	 * 
 	 * @return List of panels
