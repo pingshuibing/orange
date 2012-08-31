@@ -7,21 +7,15 @@
 
 package com.qut.spc.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Query;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import com.google.appengine.api.datastore.Key;
-import com.qut.spc.EMF;
+
 import com.qut.spc.db.Database;
 
 /**
@@ -36,8 +30,8 @@ public abstract class SolarComponent {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@XmlElement (name="id")
-	private Key key;
+	@XmlElement
+	private Long id;
 
 	@XmlElement
 	private String name = "";
@@ -78,10 +72,7 @@ public abstract class SolarComponent {
 	 * @return Id of this component in database
 	 */
 	public long getId() {
-		if (key != null) {
-			return key.getId();
-		}
-		return -1;
+		return id;
 	}
 	/**
 	 * @return The name of this component
