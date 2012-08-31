@@ -27,7 +27,6 @@ public class InverterContainer extends ComponentContainer
 	
 	public InverterContainer() {
 		list = new ArrayList<Inverter>();
-		setDBTable(Inverter.class.getName());
 	}
 	
 	public InverterContainer(List<Inverter> list) {
@@ -44,6 +43,7 @@ public class InverterContainer extends ComponentContainer
 
 	@Override
 	public List<Inverter> search() throws Exception {
-		return fetchComponents();
+		list = fetchComponents(Inverter.class.getName());
+		return list;
 	}
 }

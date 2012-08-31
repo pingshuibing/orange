@@ -27,7 +27,6 @@ public class BatteryContainer extends ComponentContainer
 	
 	public BatteryContainer() {
 		list = new ArrayList<Battery>();
-		setDBTable(Battery.class.getName());
 	}
 	
 	public BatteryContainer(List<Battery> list) {
@@ -44,6 +43,7 @@ public class BatteryContainer extends ComponentContainer
 
 	@Override
 	public List<Battery> search() throws Exception {
-		return fetchComponents();
+		list = fetchComponents(Battery.class.getName());
+		return list;
 	}
 }

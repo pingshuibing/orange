@@ -30,7 +30,6 @@ public class PanelContainer extends ComponentContainer
 	
 	public PanelContainer() {
 		list = new ArrayList<Panel>();
-		setDBTable(Panel.class.getName());
 	}
 	
 	public List<Panel> getList() {
@@ -39,7 +38,8 @@ public class PanelContainer extends ComponentContainer
 
 	@Override
 	public List<Panel> search() throws Exception {
-		return fetchComponents();
+		list = fetchComponents(Panel.class.getName());
+		return list;
 	}
 	
 }

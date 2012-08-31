@@ -21,8 +21,6 @@ public abstract class ComponentContainer implements ComponentFilterAPI {
 	
 	private String postcode = "";
 	
-	protected String dbTable = "";
-	
 	@Override
 	public void setMinPrice(double minPrice) throws Exception {
 		if (minPrice < 0.0) {
@@ -59,13 +57,9 @@ public abstract class ComponentContainer implements ComponentFilterAPI {
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
 	}
-	
-	protected void setDBTable(String dbTable) {
-		this.dbTable = dbTable;
-	}
 
 	@SuppressWarnings("unchecked")
-	protected <T> List<T> fetchComponents() throws Exception {
+	protected <T> List<T> fetchComponents(String table) throws Exception {
 		if (maxPrice != 0.0 && maxPrice < minPrice) {
 			throw new Exception("The minimum price must be greater than or equal to the maximum price");
 		}
@@ -73,7 +67,7 @@ public abstract class ComponentContainer implements ComponentFilterAPI {
 			throw new Exception("The minimum capacity must be greater than or equal to the maximum capacity");
 		}
 		
-		QueryBuilder qb = new QueryBuilder(dbTable);
+		QueryBuilder qb = new QueryBuilder(table);
 		
 		qb.addRange("price", minPrice, maxPrice);
 		qb.addRange("capacity", minCapacity, maxCapacity);
