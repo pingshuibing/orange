@@ -32,8 +32,10 @@ public class PanelContainerTest {
 
 	@Test
 	public void testGetPanelsInPriceRange_EmptyDatabase() throws Exception {
-		list = container.getPanelsInPriceRange(0.0, 100.0);
+		container.setMinPrice(0.0);
+		container.setMaxPrice(100.0);
 		
+		list = container.search();
 		assertNotNull(list);
 		assertEquals(0, list.size());
 	}
@@ -45,7 +47,9 @@ public class PanelContainerTest {
 		panel.setPrice(50.0);
 		panel.save();
 		
-		list = container.getPanelsInPriceRange(0.0, 0.0);
+		container.setMinPrice(0.0);
+		container.setMaxPrice(0.0);
+		list = container.search();
 		
 		assertEquals(1, list.size());
 		panel = list.get(0);
@@ -61,7 +65,9 @@ public class PanelContainerTest {
 		panel.setPrice(50.0);
 		panel.save();
 		
-		list = container.getPanelsInPriceRange(0.0, 100.0);
+		container.setMinPrice(0.0);
+		container.setMaxPrice(100.0);
+		list = container.search();
 		
 		assertEquals(1, list.size());
 		panel = list.get(0);
@@ -76,7 +82,9 @@ public class PanelContainerTest {
 		panel.setPrice(150.0);
 		panel.save();
 		
-		list = container.getPanelsInPriceRange(10.0, 100.0);
+		container.setMinPrice(10.0);
+		container.setMaxPrice(100.0);
+		list = container.search();
 		
 		assertEquals(0, list.size());
 	}
@@ -113,7 +121,9 @@ public class PanelContainerTest {
 		panel.setPrice(100.1);
 		panel.save();
 		
-		list = container.getPanelsInPriceRange(10.0, 100.0);
+		container.setMinPrice(10.0);
+		container.setMaxPrice(100.0);
+		list = container.search();
 		
 		assertNotNull(list);
 		assertEquals(3, list.size());
@@ -145,7 +155,9 @@ public class PanelContainerTest {
 		panel.setPrice(40.0);
 		panel.save();
 		
-		list = container.getPanelsInPriceRange(0.0, 25.0);
+		container.setMinPrice(0.0);
+		container.setMaxPrice(25.0);
+		list = container.search();
 		
 		assertNotNull(list);
 		assertEquals(2, list.size());
@@ -176,7 +188,9 @@ public class PanelContainerTest {
 		panel.setPrice(30.0);
 		panel.save();
 		
-		list = container.getPanelsInPriceRange(20.0, 0.0);
+		container.setMinPrice(20.0);
+		container.setMaxPrice(0.0);
+		list = container.search();
 		
 		assertNotNull(list);
 		assertEquals(2, list.size());
@@ -187,17 +201,19 @@ public class PanelContainerTest {
 	
 	@Test(expected=Exception.class)
 	public void testGetPanelsInPriceRange_NegativeMin() throws Exception {
-		list = container.getPanelsInPriceRange(-1.0, 3.0);
+		container.setMinPrice(-1.0);
 	}
 	
 	@Test(expected=Exception.class)
 	public void testGetPanelsInPriceRange_NegativeMax() throws Exception {
-		list = container.getPanelsInPriceRange(10.0, -1.0);
+		container.setMaxPrice(-1.0);
 	}
 	
 	@Test
 	public void testGetPanelsInCapacity_EmptyDatabase() throws Exception {
-		list = container.getPanelsInCapacity(2.0, 3.0);
+		container.setMinCapacity(2.0);
+		container.setMaxCapacity(3.0);
+		list = container.search();
 		
 		assertNotNull(list);
 		assertEquals(0, list.size());
@@ -210,7 +226,9 @@ public class PanelContainerTest {
 		panel.setCapacity(99.99);
 		panel.save();
 		
-		list = container.getPanelsInCapacity(1.0, 99.98);
+		container.setMinCapacity(1.0);
+		container.setMaxCapacity(99.98);
+		list = container.search();
 
 		assertEquals(0, list.size());
 	}
@@ -222,7 +240,10 @@ public class PanelContainerTest {
 		panel.setCapacity(89.99);
 		panel.save();
 		
-		list = container.getPanelsInCapacity(1.0, 90.0);
+		container.setMinCapacity(1.0);
+		container.setMaxCapacity(90.0);
+		list = container.search();
+
 		assertEquals(1, list.size());
 		assertEquals("A1", list.get(0).getModel());
 	}
@@ -244,7 +265,10 @@ public class PanelContainerTest {
 		panel.setCapacity(354.00);
 		panel.save();
 		
-		list = container.getPanelsInCapacity(20.0, 150.0);
+		container.setMinCapacity(20.0);
+		container.setMaxCapacity(150.0);
+		list = container.search();
+
 		assertEquals(0, list.size());
 	}
 	
@@ -270,7 +294,10 @@ public class PanelContainerTest {
 		panel.setCapacity(150.00);
 		panel.save();
 		
-		list = container.getPanelsInCapacity(40.0, 150.0);
+		container.setMinCapacity(40.0);
+		container.setMaxCapacity(150.0);
+		list = container.search();
+		
 		assertEquals(2, list.size());
 	}
 	
@@ -296,7 +323,9 @@ public class PanelContainerTest {
 		panel.setCapacity(40.0);
 		panel.save();
 		
-		list = container.getPanelsInCapacity(0, 30.1);
+		container.setMinCapacity(0.0);
+		container.setMaxCapacity(30.1);
+		list = container.search();
 		assertEquals(2, list.size());
 		
 		assertEquals("A1", list.get(0).getModel());
@@ -325,7 +354,9 @@ public class PanelContainerTest {
 		panel.setCapacity(40.0);
 		panel.save();
 		
-		list = container.getPanelsInCapacity(43.0, 0.0);
+		container.setMinCapacity(43.0);
+		container.setMaxCapacity(0.0);
+		list = container.search();
 		assertEquals(1, list.size());
 		
 		assertEquals("B1", list.get(0).getModel());
@@ -333,11 +364,11 @@ public class PanelContainerTest {
 	
 	@Test(expected=Exception.class)
 	public void testGetPanelsInCapacity_NegativeMin() throws Exception {
-		list = container.getPanelsInCapacity(-1.0, 3.0);
+		container.setMinCapacity(-1.0);
 	}
 	
 	@Test(expected=Exception.class)
 	public void testGetPanelsInCapacity_NegativeMax() throws Exception {
-		list = container.getPanelsInCapacity(10.0, -1.0);
+		container.setMaxCapacity(-1.0);
 	}
 }
