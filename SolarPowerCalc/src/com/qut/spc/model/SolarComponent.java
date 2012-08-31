@@ -17,6 +17,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 
 import com.qut.spc.db.Database;
+import com.qut.spc.postcode.PostcodeUtil;
 
 /**
  * Common interface for each component in solar system.
@@ -219,7 +220,8 @@ public abstract class SolarComponent {
 		return postcode;
 	}
 
-	public void setPostcode(String postcode) {
+	public void setPostcode(String postcode) throws IllegalArgumentException{
+		PostcodeUtil.validatePostcode(postcode);
 		this.postcode = postcode;
 	} 
 	

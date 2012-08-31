@@ -3,16 +3,18 @@ package com.qut.spc.model;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
+import static org.mockito.Mockito.verify;
 import javax.persistence.Entity;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.qut.spc.db.Database;
+import com.qut.spc.postcode.PostcodeUtil;
 
 /**
  * Used for testing the abstract class
@@ -110,7 +112,14 @@ public class SolarComponentTest {
 	public void testEfficiencyByYear_NegativeYear() throws Exception {
 		component.getEfficiencyByYear(-1);
 	}
+	
+	@Test
+	public void testSetPostcode_validPostcode_postCodeIsSet(){
+		component.setPostcode("1234");
+		assertEquals("1234", component.getPostcode());		
+	}
 
+	
 	@Test
 	public void testSaveComponent() throws Exception {
 		MockSolarComponent c1, c2;
@@ -120,6 +129,7 @@ public class SolarComponentTest {
 		c1.setManufacture("A new manufacture");
 		c1.setPrice(8000.0);
 		c1.setMockValue(12);
+		c1.setPostcode("7777");
 		
 		c1.save();
 		
@@ -130,5 +140,6 @@ public class SolarComponentTest {
 		assertEquals(c1.getManufacture(), c2.getManufacture());
 		assertEquals(c1.getPrice(), c2.getPrice(), EPSILON);
 		assertEquals(c1.getMockValue(), c2.getMockValue(), EPSILON);
+		assertEquals("7777", c2.getPostcode());
 	}
 }
