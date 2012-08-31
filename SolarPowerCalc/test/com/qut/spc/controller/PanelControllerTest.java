@@ -27,37 +27,37 @@ public class PanelControllerTest {
 	}
 	
 	@Test
-	public void getPanelsByPriceCapacityLocation_validValues_setMaxPriceOnFilterIsCalled(){
+	public void getPanelsByPriceCapacityLocation_validValues_setMaxPriceOnFilterIsCalled() throws Exception{
 		controller.getPanelsByPriceCapacityLocation(1, 2, 3, 4, "2222");
 		verify(db).setMaxPrice(2);
 	}
 
 	@Test
-	public void getPanelsByPriceCapacityLocation_validValues_setMinPriceOnFilterIsCalled(){
+	public void getPanelsByPriceCapacityLocation_validValues_setMinPriceOnFilterIsCalled()throws Exception{
 		controller.getPanelsByPriceCapacityLocation(1, 2, 3, 4, "2222");
 		verify(db).setMinPrice(1);
 	}
 
 	@Test
-	public void getPanelsByPriceCapacityLocation_validValues_setMaxCapacityOnFilterIsCalled(){
+	public void getPanelsByPriceCapacityLocation_validValues_setMaxCapacityOnFilterIsCalled()throws Exception{
 		controller.getPanelsByPriceCapacityLocation(1, 2, 3, 4, "2222");
 		verify(db).setMaxCapacity(4);
 	}
 
 	@Test
-	public void getPanelsByPriceCapacityLocation_validValues_setMinCapacityOnFilterIsCalled(){
+	public void getPanelsByPriceCapacityLocation_validValues_setMinCapacityOnFilterIsCalled()throws Exception{
 		controller.getPanelsByPriceCapacityLocation(1, 2, 3, 4, "2222");
 		verify(db).setMinCapacity(3);
 	}
 
 	@Test
-	public void getPanelsByPriceCapacityLocation_validValues_setLocationOnFilterIsCalled(){
+	public void getPanelsByPriceCapacityLocation_validValues_setLocationOnFilterIsCalled()throws Exception{
 		controller.getPanelsByPriceCapacityLocation(1, 2, 3, 4, "2222");
 		verify(db).setPostcode("2222");
 	}
 
 	@Test
-	public void getPanelsByPriceCapacityLocation_validValues_searchOnFilterIsCalled(){
+	public void getPanelsByPriceCapacityLocation_validValues_searchOnFilterIsCalled()throws Exception{
 		controller.getPanelsByPriceCapacityLocation(1, 2, 3, 4, "2222");
 		verify(db).search();
 	}

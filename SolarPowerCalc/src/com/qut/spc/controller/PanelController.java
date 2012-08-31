@@ -44,12 +44,17 @@ public class PanelController {
 			@QueryParam("capacityMax") @DefaultValue("0") double maxCapacity,
 			@QueryParam("postcode") @DefaultValue("0000") String postcode) throws InvalidArgumentException{
 		
-		db.setMaxCapacity(maxCapacity);
-		db.setMaxPrice(maxPrice);
-		db.setMinPrice(minPrice);
-		db.setMinCapacity(minCapacity);
-		db.setPostcode(postcode);
-		db.search();
+		try {
+			db.setMaxCapacity(maxCapacity);
+			db.setMaxPrice(maxPrice);
+			db.setMinPrice(minPrice);
+			db.setMinCapacity(minCapacity);
+			db.setPostcode(postcode);
+			db.search();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return db;
 	}
 	
