@@ -15,8 +15,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.qut.spc.db.Database;
-
 
 /**
  * Wrapper class for list of SolarPanel
@@ -24,32 +22,26 @@ import com.qut.spc.db.Database;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="panels")
-public class PanelContainer implements PanelDB {
+public class PanelContainer extends ComponentContainer implements PanelFilterAPI, PanelDB {
 
 	@XmlElement(name="panel")
 	private List<Panel> list;
 	
 	public PanelContainer() {
 		list = new ArrayList<Panel>();
-	}
-	
-	public PanelContainer(List<Panel> list) {
-		this.list = list;
+		setDBTable(Panel.class.getName());
 	}
 	
 	public List<Panel> getList() {
 		return list;
 	}
 	
-	public void setList(List<Panel> list) {
-		this.list = list;
-	}
-	
 	@Override
 	public List<Panel> getPanelsInPriceRange(double min, double max)
 			throws Exception {
-		list = Database.getComponentsInPrice(Panel.class, min, max);
-		return list;
+		setMinPrice(min);
+		setMaxPrice(max);
+		return search();
 	}
 	
 	@Override
@@ -63,7 +55,14 @@ public class PanelContainer implements PanelDB {
 	@Override
 	public List<Panel> getPanelsInCapacity(double min, double max)
 			throws Exception {
-		list = Database.getComponentsInCapacity(Panel.class, min, max);
-		return list;
+		setMinCapacity(min);
+		setMaxCapacity(max);
+		return search();
 	}
+
+	@Override
+	public List<Panel> search() throws Exception {
+		return fetchComponents();
+	}
+	
 }

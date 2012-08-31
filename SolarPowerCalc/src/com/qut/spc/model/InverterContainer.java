@@ -13,21 +13,21 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.qut.spc.db.Database;
-
 
 /**
  * Wrapper class for list of Inverters
  * @author QuocViet
  */
 @XmlRootElement(name="inverters")
-public class InverterContainer implements InverterDB {
+public class InverterContainer extends ComponentContainer
+		implements InverterFilterAPI, InverterDB {
 	
 	@XmlElement(name="inverter")
 	private List<Inverter> list;
 	
 	public InverterContainer() {
 		list = new ArrayList<Inverter>();
+		setDBTable(Inverter.class.getName());
 	}
 	
 	public InverterContainer(List<Inverter> list) {
@@ -45,8 +45,9 @@ public class InverterContainer implements InverterDB {
 	@Override
 	public List<Inverter> getInvertersInPriceRange(double min, double max)
 			throws Exception {
-		list = Database.getComponentsInPrice(Inverter.class, min, max);
-		return list;
+		setMinPrice(min);
+		setMaxPrice(max);
+		return search();
 	}
 	
 	@Override
@@ -60,7 +61,13 @@ public class InverterContainer implements InverterDB {
 	@Override
 	public List<Inverter> getInvertersInCapacity(double min, double max)
 			throws Exception {
-		list = Database.getComponentsInCapacity(Inverter.class, min, max);
-		return list;
+		setMinCapacity(min);
+		setMaxCapacity(max);
+		return search();
+	}
+
+	@Override
+	public List<Inverter> search() throws Exception {
+		return fetchComponents();
 	}
 }

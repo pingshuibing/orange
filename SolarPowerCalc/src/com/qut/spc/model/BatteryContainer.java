@@ -13,21 +13,21 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.qut.spc.db.Database;
-
 
 /**
  * Wrapper class for list of Battery
  * @author QuocViet
  */
 @XmlRootElement(name="batteries")
-public class BatteryContainer implements BatteryDB {
+public class BatteryContainer extends ComponentContainer
+		implements BatteryFilterAPI, BatteryDB {
 	
 	@XmlElement(name="battery")
 	private List<Battery> list;
 	
 	public BatteryContainer() {
 		list = new ArrayList<Battery>();
+		setDBTable(Battery.class.getName());
 	}
 	
 	public BatteryContainer(List<Battery> list) {
@@ -45,8 +45,9 @@ public class BatteryContainer implements BatteryDB {
 	@Override
 	public List<Battery> getBatteriesInPriceRange(double min, double max)
 			throws Exception {
-		list = Database.getComponentsInPrice(Battery.class, min, max);
-		return list;
+		setMinPrice(min);
+		setMaxPrice(max);
+		return search();
 	}
 	
 	@Override
@@ -60,8 +61,13 @@ public class BatteryContainer implements BatteryDB {
 	@Override
 	public List<Battery> getBatteriesInCapacity(double min, double max)
 			throws Exception {
-		
-		list = Database.getComponentsInCapacity(Battery.class, min, max);
-		return list;
+		setMinCapacity(min);
+		setMaxCapacity(max);
+		return search();
+	}
+
+	@Override
+	public List<Battery> search() throws Exception {
+		return fetchComponents();
 	}
 }
