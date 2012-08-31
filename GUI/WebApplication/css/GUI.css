@@ -1,9 +1,21 @@
-﻿body { background-color: #f3f3f3; font-family:'Lato', Sans-Serif; }
+﻿body { font-family:'Lato', Sans-Serif; background-color: #FF8B00;  }
+header { font-family:'Lato', Sans-Serif; background-color: #FFFFFF; padding-bottom:10px; padding-top:10px;  }
+
+
+
+
 footer {font-family: 'Anton', sans-serif; font-size:0.8em;}
-.menu-bar {border-top: 6px solid #000;font-family: 'Anton', sans-serif; margin-bottom:10px;}
-.menu-item{min-height:126px;padding-left:4px;}
-.menu-item:hover{background-color:#B6B5AC;}
-a.menu-link {text-decoration:none; color:#555555}
-a.menu-link:hover {text-decoration:none; color:#f3f3f3}
+.menu-bar {font-family: 'Anton', sans-serif; margin-bottom:10px;}
+.menu-item{min-height:126px;}
+a.menu-link {text-decoration:none; color:#FE8719}
 .logo{line-height:1em; font-size:42px;}
-.white{background-color:#ffffff; border-top:1px dotted #B6B5AC; border-bottom:1px dotted #B6B5AC; padding-top:10px; padding-bottom:10px; padding-left:20px; }
+
+input[type=text] {width:50px;}
+.content{background-color:#ffffff;padding-top:20px;padding-bottom:20px;}
+.main{padding-top: 20px; padding-bottom:20px;}
+
+
+.content {
+-moz-border-radius: 15px;
+border-radius: 15px;
+}
