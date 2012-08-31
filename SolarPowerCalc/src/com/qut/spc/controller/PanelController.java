@@ -8,6 +8,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 import com.qut.spc.exceptions.InvalidArgumentException;
+import com.qut.spc.model.PanelContainer;
 import com.qut.spc.model.PanelFilterAPI;
 
 
@@ -22,6 +23,7 @@ public class PanelController {
 	private PanelFilterAPI db;
 	
 	public PanelController(){
+		this.db = new PanelContainer();
 	}
 	
 	public PanelController(PanelFilterAPI db){
