@@ -19,7 +19,7 @@ public interface PanelFilterAPI extends ComponentFilterAPI {
 	 * Get list of panels from current filter
 	 * 
 	 * @return List of panels
-	 * @throws Exception if a filter is invalid 
+	 * @throws IllegalArgumentException if a filter is invalid 
 	 */
-	List<Panel> search() throws Exception;
+	List<Panel> search() throws IllegalArgumentException;
 }

@@ -44,7 +44,7 @@ public class BatteryContainer extends ComponentContainer
 	}
 
 	@Override
-	public List<Battery> search() throws Exception {
+	public List<Battery> search() throws IllegalArgumentException {
 		list = fetchComponents(Battery.class.getName());
 		return list;
 	}

@@ -23,33 +23,39 @@ public abstract class ComponentContainer implements ComponentFilterAPI {
 	private String postcode = "";
 	
 	@Override
-	public void setMinPrice(double minPrice) throws Exception {
+	public void setMinPrice(double minPrice) throws IllegalArgumentException {
 		if (minPrice < 0.0) {
-			throw new Exception("The minimum price must not be negative");
+			throw new IllegalArgumentException(
+					"The minimum price must not be negative");
 		}
 		this.minPrice = minPrice;
 	}
 
 	@Override
-	public void setMaxPrice(double maxPrice) throws Exception {
+	public void setMaxPrice(double maxPrice) throws IllegalArgumentException {
 		if (maxPrice < 0.0) {
-			throw new Exception("The maximum price must not be negative");
+			throw new IllegalArgumentException(
+					"The maximum price must not be negative");
 		}
 		this.maxPrice = maxPrice;		
 	}
 
 	@Override
-	public void setMinCapacity(double minCapacity) throws Exception {
+	public void setMinCapacity(double minCapacity)
+			throws IllegalArgumentException {
 		if (minCapacity < 0.0) {
-			throw new Exception("The minimum capacity must not be negative");
+			throw new IllegalArgumentException(
+					"The minimum capacity must not be negative");
 		}
 		this.minCapacity = minCapacity;
 	}
 
 	@Override
-	public void setMaxCapacity(double maxCapacity) throws Exception {
+	public void setMaxCapacity(double maxCapacity)
+			throws IllegalArgumentException {
 		if (maxCapacity < 0.0) {
-			throw new Exception("The maximum capacity must not be negative");
+			throw new IllegalArgumentException(
+					"The maximum capacity must not be negative");
 		}
 		this.maxCapacity = maxCapacity;
 	}
@@ -60,12 +66,14 @@ public abstract class ComponentContainer implements ComponentFilterAPI {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected <T> List<T> fetchComponents(String table) throws Exception {
+	protected <T> List<T> fetchComponents(String table) throws IllegalArgumentException {
 		if (maxPrice != 0.0 && maxPrice < minPrice) {
-			throw new Exception("The minimum price must be greater than or equal to the maximum price");
+			throw new IllegalArgumentException(
+					"The minimum price must be greater than or equal to the maximum price");
 		}
 		if (maxCapacity != 0.0 && maxCapacity < minCapacity) {
-			throw new Exception("The minimum capacity must be greater than or equal to the maximum capacity");
+			throw new IllegalArgumentException(
+					"The minimum capacity must be greater than or equal to the maximum capacity");
 		}
 		
 		QueryBuilder qb = new QueryBuilder(table);

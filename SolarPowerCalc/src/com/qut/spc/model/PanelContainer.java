@@ -39,7 +39,7 @@ public class PanelContainer extends ComponentContainer
 	}
 
 	@Override
-	public List<Panel> search() throws Exception {
+	public List<Panel> search() throws IllegalArgumentException {
 		list = fetchComponents(Panel.class.getName());
 		return list;
 	}

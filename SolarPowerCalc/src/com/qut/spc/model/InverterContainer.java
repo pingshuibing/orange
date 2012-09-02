@@ -44,7 +44,7 @@ public class InverterContainer extends ComponentContainer
 	}
 
 	@Override
-	public List<Inverter> search() throws Exception {
+	public List<Inverter> search() throws IllegalArgumentException {
 		list = fetchComponents(Inverter.class.getName());
 		return list;
 	}

@@ -18,7 +18,7 @@ public interface InverterFilterAPI extends ComponentFilterAPI {
 	 * Get list of inverters from current filter
 	 * 
 	 * @return List of inverters
-	 * @throws Exception if a filter is invalid 
+	 * @throws IllegalArgumentException if a filter is invalid 
 	 */
-	List<Inverter> search() throws Exception;
+	List<Inverter> search() throws IllegalArgumentException;
 }

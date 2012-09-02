@@ -21,5 +21,5 @@ public interface BatteryFilterAPI extends ComponentFilterAPI {
 	 * @return List of batteries
 	 * @throws Exception if a filter is invalid 
 	 */
-	List<Battery> search() throws Exception;
+	List<Battery> search() throws IllegalArgumentException;
 }
