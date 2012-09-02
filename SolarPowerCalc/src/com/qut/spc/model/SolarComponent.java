@@ -19,6 +19,7 @@ import javax.persistence.MappedSuperclass;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 
 import com.qut.spc.db.Database;
 import com.qut.spc.postcode.PostcodeUtil;
@@ -69,8 +70,8 @@ public abstract class SolarComponent {
 	@XmlElement
 	private double efficiencyDecrease = 0.0;
 	
+	@XmlElementWrapper
 	@XmlElement
-	@Persistent
 	private List<String> postcode =new ArrayList<String>();
 	
 	public SolarComponent() {

@@ -1,5 +1,7 @@
 package com.qut.spc.controller;
 
+import java.util.ArrayList;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -39,6 +41,14 @@ public class DBPopulator {
 				p.setModel("ABCD"+i%6);
 				p.setName("PANEL "+i);
 				p.setWarranty(24);
+				
+				ArrayList<String> pc=new ArrayList<String>();
+				pc.add("1211");
+				pc.add("1337");
+
+				
+				p.setPostcode(pc);
+				
 				p.save();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
