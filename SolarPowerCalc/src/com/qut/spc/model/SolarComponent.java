@@ -20,7 +20,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 
-import com.qut.spc.db.Database;
 import com.qut.spc.postcode.PostcodeUtil;
 
 /**

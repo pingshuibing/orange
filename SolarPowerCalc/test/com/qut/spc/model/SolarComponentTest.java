@@ -119,6 +119,85 @@ public class SolarComponentTest {
 	}
 	
 	@Test
+	public void testSetPrice_ValidZero() throws IllegalArgumentException {
+		component.setPrice(0);
+		
+		assertEquals(0, component.getPrice(), EPSILON);
+	}
+	
+	@Test
+	public void testSetPrice_ValidPositive() throws IllegalArgumentException {
+		component.setPrice(20.0);
+		
+		assertEquals(20.0, component.getPrice(), EPSILON);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testSetPrice_InvalidNegative() throws IllegalArgumentException {
+		component.setPrice(-1);
+	}
+	
+	@Test
+	public void testSetCapacity_ValidZero() throws IllegalArgumentException {
+		component.setCapacity(0);
+		
+		assertEquals(0, component.getCapacity(), EPSILON);
+	}
+	
+	@Test
+	public void testSetCapacity_ValidPositive() throws IllegalArgumentException {
+		component.setCapacity(220.0);
+		
+		assertEquals(220.0, component.getCapacity(), EPSILON);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testSetCapacity_InvalidNegative() throws IllegalArgumentException {
+		component.setCapacity(-1);
+	}
+	
+	@Test
+	public void testSetVoltage_ValidZero() throws IllegalArgumentException {
+		component.setVoltage(0);
+		
+		assertEquals(0, component.getVoltage(), EPSILON);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testSetVoltage_InvalidNegative() throws IllegalArgumentException {
+		component.setVoltage(-1);
+	}
+	
+	@Test
+	public void testSetEfficiencyDecrease_ValidZero() throws IllegalArgumentException {
+		component.setEfficiencyDecrease(0);
+		
+		assertEquals(0, component.getEfficiencyDecrease(), EPSILON);
+	}
+	
+	@Test
+	public void testSetWarranty_ValidZero() throws IllegalArgumentException {
+		component.setWarranty(0);
+		
+		assertEquals(0, component.getWarranty(), EPSILON);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testSetWarranty_InvalidNegative() throws IllegalArgumentException {
+		component.setWarranty(-1);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testSetEfficiencyDecrease_InvalidNegative() throws IllegalArgumentException {
+		component.setEfficiencyDecrease(-1);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testSetEfficiencyDecrease_InvalidMaxRange() throws IllegalArgumentException {
+		component.setEfficiencyDecrease(101);
+	}
+	
+	@Test
 	public void testSetPostcode_validPostcode_postCodeIsSet(){
 		ArrayList<String> l=new ArrayList<String>();
 		l.add("1234");
@@ -138,6 +217,8 @@ public class SolarComponentTest {
 		c1.setEfficiencyDecrease(100.0);
 		c1.setManufacturer("A new manufacture");
 		c1.setPrice(8000.0);
+		c1.setDimensions("2x2x2");
+		c1.setDescription("desc");
 		c1.setMockValue(12);
 		c1.setPostcode(postcodes);
 		
@@ -149,6 +230,8 @@ public class SolarComponentTest {
 		assertEquals(c1.getEfficiencyDecrease(), c2.getEfficiencyDecrease(), EPSILON);
 		assertEquals(c1.getManufacturer(), c2.getManufacturer());
 		assertEquals(c1.getPrice(), c2.getPrice(), EPSILON);
+		assertEquals(c1.getDimensions(), c2.getDimensions());
+		assertEquals(c1.getDescription(), c2.getDescription());
 		assertEquals(c1.getMockValue(), c2.getMockValue(), EPSILON);
 		assertEquals("1233", c2.getPostcode().get(0));
 	}

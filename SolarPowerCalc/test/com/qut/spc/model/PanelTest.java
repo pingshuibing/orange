@@ -34,6 +34,18 @@ public class PanelTest {
 	}
 	
 	@Test
+	public void testSetVoltage_ValidZero() throws IllegalArgumentException {
+		panel.setOperatingCurrent(0);
+		
+		assertEquals(0, panel.getOperatingCurrent(), EPSILON);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testSetVoltage_InvalidNegative() throws IllegalArgumentException {
+		panel.setOperatingCurrent(-1);
+	}
+	
+	@Test
 	public void testStoring_One() throws Exception {
 		panel.setEfficiencyDecrease(0.1);
 		panel.setManufacturer("Manufacture 1");

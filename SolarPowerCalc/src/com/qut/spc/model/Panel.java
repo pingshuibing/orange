@@ -31,9 +31,11 @@ public class Panel extends SolarComponent {
 	/**
 	 * @param outputEnergy The output energy to set
 	 */
-	public void setOperatingCurrent(double operatingCurrent) throws Exception {
+	public void setOperatingCurrent(double operatingCurrent)
+			throws IllegalArgumentException {
 		if (operatingCurrent < 0.0) {
-			throw new Exception("Operating current must not be negative");
+			throw new IllegalArgumentException(
+					"Operating current must not be negative");
 		}
 		this.operatingCurrent = operatingCurrent;
 	}

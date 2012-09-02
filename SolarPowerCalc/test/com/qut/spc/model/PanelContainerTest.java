@@ -31,7 +31,7 @@ public class PanelContainerTest {
 	}
 
 	@Test
-	public void testGetPanelsInPriceRange_EmptyDatabase() throws Exception {
+	public void testGetPanelsInPriceRange_EmptyDatabase() throws IllegalArgumentException {
 		container.setMinPrice(0.0);
 		container.setMaxPrice(100.0);
 		
@@ -41,7 +41,7 @@ public class PanelContainerTest {
 	}
 
 	@Test
-	public void testGetPanelsInPriceRange_AnyItem() throws Exception {
+	public void testGetPanelsInPriceRange_AnyItem() throws IllegalArgumentException {
 		panel = new Panel();
 		panel.setManufacturer("M 1");
 		panel.setPrice(50.0);
@@ -59,7 +59,7 @@ public class PanelContainerTest {
 	}
 	
 	@Test
-	public void testGetPanelsInPriceRange_OneItemInRange() throws Exception {
+	public void testGetPanelsInPriceRange_OneItemInRange() throws IllegalArgumentException {
 		panel = new Panel();
 		panel.setManufacturer("M 1");
 		panel.setPrice(50.0);
@@ -77,7 +77,7 @@ public class PanelContainerTest {
 	}
 	
 	@Test
-	public void testGetPanelsInPriceRange_OneItemNotInRange() throws Exception {
+	public void testGetPanelsInPriceRange_OneItemNotInRange() throws IllegalArgumentException {
 		panel = new Panel();
 		panel.setPrice(150.0);
 		panel.save();
@@ -90,7 +90,7 @@ public class PanelContainerTest {
 	}
 	
 	@Test
-	public void testGetPanelsInPriceRange_ManyItemsInRange() throws Exception {
+	public void testGetPanelsInPriceRange_ManyItemsInRange() throws IllegalArgumentException {
 		panel = new Panel();
 		panel.setManufacturer("M 1");
 		panel.setPrice(9.9);
@@ -134,7 +134,7 @@ public class PanelContainerTest {
 	}
 	
 	@Test
-	public void testGetPanelsInPriceRange_NoMin() throws Exception {
+	public void testGetPanelsInPriceRange_NoMin() throws IllegalArgumentException {
 		panel = new Panel();
 		panel.setManufacturer("M 1");
 		panel.setPrice(10.0);
@@ -167,7 +167,7 @@ public class PanelContainerTest {
 	}
 	
 	@Test
-	public void testGetPanelsInPriceRange_NoMax() throws Exception {
+	public void testGetPanelsInPriceRange_NoMax() throws IllegalArgumentException {
 		panel = new Panel();
 		panel.setManufacturer("M 1");
 		panel.setPrice(9.0);
@@ -199,18 +199,27 @@ public class PanelContainerTest {
 		assertEquals("M 4", list.get(1).getManufacturer());
 	}
 	
-	@Test(expected=Exception.class)
-	public void testGetPanelsInPriceRange_NegativeMin() throws Exception {
+	@Test(expected=IllegalArgumentException.class)
+	public void testGetPanelsInPriceRange_NegativeMin() throws IllegalArgumentException {
 		container.setMinPrice(-1.0);
+		container.search();
 	}
 	
-	@Test(expected=Exception.class)
-	public void testGetPanelsInPriceRange_NegativeMax() throws Exception {
+	@Test(expected=IllegalArgumentException.class)
+	public void testGetPanelsInPriceRange_NegativeMax() throws IllegalArgumentException {
 		container.setMaxPrice(-1.0);
+		container.search();
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testGetPanelsInPriceRange_MaxGTMin() throws IllegalArgumentException {
+		container.setMinPrice(90.0);
+		container.setMaxPrice(29.0);
+		container.search();
 	}
 	
 	@Test
-	public void testGetPanelsInCapacity_EmptyDatabase() throws Exception {
+	public void testGetPanelsInCapacity_EmptyDatabase() throws IllegalArgumentException {
 		container.setMinCapacity(2.0);
 		container.setMaxCapacity(3.0);
 		list = container.search();
@@ -220,7 +229,7 @@ public class PanelContainerTest {
 	}
 	
 	@Test
-	public void testGetPanelsInCapacity_OneItemNotInRange() throws Exception {
+	public void testGetPanelsInCapacity_OneItemNotInRange() throws IllegalArgumentException {
 		panel = new Panel();
 		panel.setModel("A1");
 		panel.setCapacity(99.99);
@@ -234,7 +243,7 @@ public class PanelContainerTest {
 	}
 	
 	@Test
-	public void testGetPanelsInCapacity_OneItemInRange() throws Exception {
+	public void testGetPanelsInCapacity_OneItemInRange() throws IllegalArgumentException {
 		panel = new Panel();
 		panel.setModel("A1");
 		panel.setCapacity(89.99);
@@ -249,7 +258,7 @@ public class PanelContainerTest {
 	}
 	
 	@Test
-	public void testGetPanelsInCapacity_ManyItemsNotInRange() throws Exception {
+	public void testGetPanelsInCapacity_ManyItemsNotInRange() throws IllegalArgumentException {
 		panel = new Panel();
 		panel.setModel("A1");
 		panel.setCapacity(19.99);
@@ -273,7 +282,7 @@ public class PanelContainerTest {
 	}
 	
 	@Test
-	public void testGetPanelsInCapacity_ManyItemsInRange() throws Exception {
+	public void testGetPanelsInCapacity_ManyItemsInRange() throws IllegalArgumentException {
 		panel = new Panel();
 		panel.setModel("A1");
 		panel.setCapacity(19.99);
@@ -302,7 +311,7 @@ public class PanelContainerTest {
 	}
 	
 	@Test
-	public void testGetPanelsInCapacity_NoMin() throws Exception {
+	public void testGetPanelsInCapacity_NoMin() throws IllegalArgumentException {
 		panel = new Panel();
 		panel.setModel("A1");
 		panel.setCapacity(20.0);
@@ -333,7 +342,7 @@ public class PanelContainerTest {
 	}
 	
 	@Test
-	public void testGetPanelsInCapacity_NoMax() throws Exception {
+	public void testGetPanelsInCapacity_NoMax() throws IllegalArgumentException {
 		panel = new Panel();
 		panel.setModel("A1");
 		panel.setCapacity(20.0);
@@ -363,12 +372,21 @@ public class PanelContainerTest {
 	}
 	
 	@Test(expected=Exception.class)
-	public void testGetPanelsInCapacity_NegativeMin() throws Exception {
+	public void testGetPanelsInCapacity_NegativeMin() throws IllegalArgumentException {
 		container.setMinCapacity(-1.0);
+		container.search();
 	}
 	
 	@Test(expected=Exception.class)
-	public void testGetPanelsInCapacity_NegativeMax() throws Exception {
+	public void testGetPanelsInCapacity_NegativeMax() throws IllegalArgumentException {
 		container.setMaxCapacity(-1.0);
+		container.search();
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testGetPanelsInCapacity_MaxGTMin() throws IllegalArgumentException {
+		container.setMinCapacity(90.0);
+		container.setMaxCapacity(29.0);
+		container.search();
 	}
 }
