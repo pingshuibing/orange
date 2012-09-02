@@ -129,9 +129,9 @@ public abstract class SolarComponent {
 	 * @param price The price to set
 	 * @throws Exception If price is negative
 	 */
-	public void setPrice(double price) throws Exception {
+	public void setPrice(double price) throws IllegalArgumentException {
 		if (price < 0.0) {
-			throw new Exception("Price must not be negative");
+			throw new IllegalArgumentException("Price must not be negative");
 		}
 		this.price = price;
 	}
@@ -144,9 +144,9 @@ public abstract class SolarComponent {
 		return capacity;
 	}
 
-	public void setCapacity(double capacity) throws Exception {
+	public void setCapacity(double capacity) throws IllegalArgumentException {
 		if (capacity < 0.0) {
-			throw new Exception("Capacity must not be negative");
+			throw new IllegalArgumentException("Capacity must not be negative");
 		}
 		this.capacity = capacity;
 	}
@@ -159,9 +159,9 @@ public abstract class SolarComponent {
 		return voltage;
 	}
 
-	public void setVoltage(double voltage) throws Exception {
+	public void setVoltage(double voltage) throws IllegalArgumentException {
 		if (voltage < 0.0) {
-			throw new Exception("Voltage must not be negative");
+			throw new IllegalArgumentException("Voltage must not be negative");
 		}
 		this.voltage = voltage;
 	}
@@ -177,9 +177,11 @@ public abstract class SolarComponent {
 	 * @param efficiencyDecrease The efficiency to set
 	 * @throws Exception If efficiency less than 0 or greater than 100
 	 */
-	public void setEfficiencyDecrease(double efficiencyDecrease) throws Exception {
+	public void setEfficiencyDecrease(double efficiencyDecrease)
+			throws IllegalArgumentException {
 		if (efficiencyDecrease < 0.0 || efficiencyDecrease > 100.0) {
-			throw new Exception("Efficiency must be from 0 to 100");
+			throw new IllegalArgumentException(
+					"Efficiency must be from 0 to 100");
 		}
 		this.efficiencyDecrease = efficiencyDecrease;
 	}
@@ -191,9 +193,9 @@ public abstract class SolarComponent {
 		return warranty;
 	}
 
-	public void setWarranty(int warranty) throws Exception {
+	public void setWarranty(int warranty) throws IllegalArgumentException {
 		if (warranty < 0) {
-			throw new Exception("Warranty must not be negative");
+			throw new IllegalArgumentException("Warranty must not be negative");
 		}
 		this.warranty = warranty;
 	}
@@ -236,9 +238,10 @@ public abstract class SolarComponent {
 	 * @param years Number of years to retrieve
 	 * @return list of efficiency
 	 */
-	public double[] getEfficiencyByYear(int years) throws Exception {
+	public double[] getEfficiencyByYear(int years)
+			throws IllegalArgumentException {
 		if (years < 0) {
-			throw new Exception("Years must not be negative");
+			throw new IllegalArgumentException("Years must not be negative");
 		}
 		double listEff[] = new double[years];
 		double eff = 100.0;

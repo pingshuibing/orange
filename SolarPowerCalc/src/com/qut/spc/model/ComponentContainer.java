@@ -66,7 +66,8 @@ public abstract class ComponentContainer implements ComponentFilterAPI {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected <T> List<T> fetchComponents(String table) throws IllegalArgumentException {
+	protected <T> List<T> fetchComponents(String table)
+			throws IllegalArgumentException {
 		if (maxPrice != 0.0 && maxPrice < minPrice) {
 			throw new IllegalArgumentException(
 					"The minimum price must be greater than or equal to the maximum price");

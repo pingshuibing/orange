@@ -66,7 +66,7 @@ public class SolarComponentTest {
 	}
 
 	@Test
-	public void testConstructor_InitVariable() throws Exception {
+	public void testConstructor_InitVariable() {
 		// TODO: check all properties
 		assertEquals(0.0, component.getPrice(), EPSILON);
 		assertEquals(0.0, component.getEfficiencyDecrease(), EPSILON);
@@ -74,7 +74,7 @@ public class SolarComponentTest {
 	}
 	
 	@Test
-	public void testEfficiencyByYear_OneYear() throws Exception {
+	public void testEfficiencyByYear_OneYear() throws IllegalArgumentException {
 		double eff[] = component.getEfficiencyByYear(1);
 		double result[] = new double[] { 100.0 };
 		
@@ -82,7 +82,7 @@ public class SolarComponentTest {
 	}
 	
 	@Test
-	public void testEfficiencyByYear_ZeroDecrease() throws Exception {
+	public void testEfficiencyByYear_ZeroDecrease() throws IllegalArgumentException {
 		double eff[] = component.getEfficiencyByYear(7);
 		double result[] = new double[] { 100.0, 100.0, 100.0, 100.0, 100.0,
 				100.0, 100.0};
@@ -91,7 +91,7 @@ public class SolarComponentTest {
 	}
 	
 	@Test
-	public void testEfficiencyByYear_SomeYears() throws Exception {
+	public void testEfficiencyByYear_SomeYears() throws IllegalArgumentException {
 		component.setEfficiencyDecrease(10.0);
 		
 		double eff[] = component.getEfficiencyByYear(5);
@@ -101,15 +101,15 @@ public class SolarComponentTest {
 	}
 	
 	@Test
-	public void testEfficiencyByYear_ZeroYear() throws Exception {
+	public void testEfficiencyByYear_ZeroYear() throws IllegalArgumentException {
 		double eff[] = component.getEfficiencyByYear(0);
 		
 		assertNotNull(eff);
 		assertEquals(0, eff.length);
 	}
 
-	@Test(expected=Exception.class)
-	public void testEfficiencyByYear_NegativeYear() throws Exception {
+	@Test(expected=IllegalArgumentException.class)
+	public void testEfficiencyByYear_NegativeYear() throws IllegalArgumentException {
 		component.getEfficiencyByYear(-1);
 	}
 	
