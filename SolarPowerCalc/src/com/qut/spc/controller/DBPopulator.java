@@ -32,7 +32,7 @@ public class DBPopulator {
 		for(int i=0;i<numPanels;i++){
 			try {
 				Panel p=new Panel();
-				p.setManufacture("M "+((int)Math.random()*10));
+				p.setManufacturer("M "+((int)Math.random()*10));
 				p.setPrice(Math.random()*1337);
 				p.setCapacity(Math.random()*1800);
 				p.setDescription("Panel number: "+i);

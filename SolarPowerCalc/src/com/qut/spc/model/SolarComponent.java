@@ -7,6 +7,10 @@
 
 package com.qut.spc.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.jdo.annotations.Persistent;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -66,7 +70,8 @@ public abstract class SolarComponent {
 	private double efficiencyDecrease = 0.0;
 	
 	@XmlElement
-	private String postcode = "";
+	@Persistent
+	private List<String> postcode =new ArrayList<String>();
 	
 	public SolarComponent() {
 	}
@@ -102,15 +107,15 @@ public abstract class SolarComponent {
 	/**
 	 * @return The name of manufacture
 	 */
-	public String getManufacture() {
+	public String getManufacturer() {
 		return this.manufacturer;
 	}
 	
 	/**
 	 * @param efficiencyDecrease The efficiency to set
 	 */
-	public void setManufacture(String manufacture) {
-		this.manufacturer = manufacture;
+	public void setManufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
 	}
 	
 	/**
@@ -216,12 +221,13 @@ public abstract class SolarComponent {
 		this.description = description;
 	}
 	
-	public String getPostcode() {
+	public List<String> getPostcode() {
 		return postcode;
 	}
 
-	public void setPostcode(String postcode) throws IllegalArgumentException{
-		PostcodeUtil.validatePostcode(postcode);
+	public void setPostcode(List<String> postcode) throws IllegalArgumentException{
+		for(String s:postcode)
+			PostcodeUtil.validatePostcode(s);
 		this.postcode = postcode;
 	} 
 	

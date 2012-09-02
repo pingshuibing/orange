@@ -4,6 +4,8 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.ArrayList;
+
 import javax.persistence.Entity;
 
 import org.junit.After;
@@ -68,7 +70,7 @@ public class SolarComponentTest {
 		// TODO: check all properties
 		assertEquals(0.0, component.getPrice(), EPSILON);
 		assertEquals(0.0, component.getEfficiencyDecrease(), EPSILON);
-		assertEquals("", component.getManufacture());
+		assertEquals("", component.getManufacturer());
 	}
 	
 	@Test
@@ -113,8 +115,10 @@ public class SolarComponentTest {
 	
 	@Test
 	public void testSetPostcode_validPostcode_postCodeIsSet(){
-		component.setPostcode("1234");
-		assertEquals("1234", component.getPostcode());		
+		ArrayList<String> l=new ArrayList<String>();
+		l.add("1234");
+		component.setPostcode(l);
+		assertEquals("1234", component.getPostcode().get(0));		
 	}
 
 	
@@ -122,12 +126,15 @@ public class SolarComponentTest {
 	public void testSaveComponent() throws Exception {
 		MockSolarComponent c1, c2;
 		
+		ArrayList<String> postcodes=new ArrayList<String>();
+		postcodes.add("1233");
 		c1 = (MockSolarComponent)component;
+		
 		c1.setEfficiencyDecrease(100.0);
-		c1.setManufacture("A new manufacture");
+		c1.setManufacturer("A new manufacture");
 		c1.setPrice(8000.0);
 		c1.setMockValue(12);
-		c1.setPostcode("7777");
+		c1.setPostcode(postcodes);
 		
 		c1.save();
 		
@@ -135,9 +142,9 @@ public class SolarComponentTest {
 		assertNotNull(c2);
 		
 		assertEquals(c1.getEfficiencyDecrease(), c2.getEfficiencyDecrease(), EPSILON);
-		assertEquals(c1.getManufacture(), c2.getManufacture());
+		assertEquals(c1.getManufacturer(), c2.getManufacturer());
 		assertEquals(c1.getPrice(), c2.getPrice(), EPSILON);
 		assertEquals(c1.getMockValue(), c2.getMockValue(), EPSILON);
-		assertEquals("7777", c2.getPostcode());
+		assertEquals("1233", c2.getPostcode().get(0));
 	}
 }

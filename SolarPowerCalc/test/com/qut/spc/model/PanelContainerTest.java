@@ -43,7 +43,7 @@ public class PanelContainerTest {
 	@Test
 	public void testGetPanelsInPriceRange_AnyItem() throws Exception {
 		panel = new Panel();
-		panel.setManufacture("M 1");
+		panel.setManufacturer("M 1");
 		panel.setPrice(50.0);
 		panel.save();
 		
@@ -54,14 +54,14 @@ public class PanelContainerTest {
 		assertEquals(1, list.size());
 		panel = list.get(0);
 		
-		assertEquals("M 1", panel.getManufacture());
+		assertEquals("M 1", panel.getManufacturer());
 		assertEquals(50.0, panel.getPrice(), 0.001);
 	}
 	
 	@Test
 	public void testGetPanelsInPriceRange_OneItemInRange() throws Exception {
 		panel = new Panel();
-		panel.setManufacture("M 1");
+		panel.setManufacturer("M 1");
 		panel.setPrice(50.0);
 		panel.save();
 		
@@ -72,7 +72,7 @@ public class PanelContainerTest {
 		assertEquals(1, list.size());
 		panel = list.get(0);
 		
-		assertEquals("M 1", panel.getManufacture());
+		assertEquals("M 1", panel.getManufacturer());
 		assertEquals(50.0, panel.getPrice(), 0.001);
 	}
 	
@@ -92,32 +92,32 @@ public class PanelContainerTest {
 	@Test
 	public void testGetPanelsInPriceRange_ManyItemsInRange() throws Exception {
 		panel = new Panel();
-		panel.setManufacture("M 1");
+		panel.setManufacturer("M 1");
 		panel.setPrice(9.9);
 		panel.save();
 		
 		panel = new Panel();
-		panel.setManufacture("M 2");
+		panel.setManufacturer("M 2");
 		panel.setPrice(10.0);
 		panel.save();
 		
 		panel = new Panel();
-		panel.setManufacture("M 3");
+		panel.setManufacturer("M 3");
 		panel.setPrice(50.0);
 		panel.save();
 		
 		panel = new Panel();
-		panel.setManufacture("M 4");
+		panel.setManufacturer("M 4");
 		panel.setPrice(100.0);
 		panel.save();
 		
 		panel = new Panel();
-		panel.setManufacture("M 5");
+		panel.setManufacturer("M 5");
 		panel.setPrice(100.1);
 		panel.save();
 		
 		panel = new Panel();
-		panel.setManufacture("M 6");
+		panel.setManufacturer("M 6");
 		panel.setPrice(100.1);
 		panel.save();
 		
@@ -128,30 +128,30 @@ public class PanelContainerTest {
 		assertNotNull(list);
 		assertEquals(3, list.size());
 		
-		assertEquals("M 2", list.get(0).getManufacture());
-		assertEquals("M 3", list.get(1).getManufacture());
-		assertEquals("M 4", list.get(2).getManufacture());
+		assertEquals("M 2", list.get(0).getManufacturer());
+		assertEquals("M 3", list.get(1).getManufacturer());
+		assertEquals("M 4", list.get(2).getManufacturer());
 	}
 	
 	@Test
 	public void testGetPanelsInPriceRange_NoMin() throws Exception {
 		panel = new Panel();
-		panel.setManufacture("M 1");
+		panel.setManufacturer("M 1");
 		panel.setPrice(10.0);
 		panel.save();
 		
 		panel = new Panel();
-		panel.setManufacture("M 2");
+		panel.setManufacturer("M 2");
 		panel.setPrice(30.0);
 		panel.save();
 		
 		panel = new Panel();
-		panel.setManufacture("M 3");
+		panel.setManufacturer("M 3");
 		panel.setPrice(20.0);
 		panel.save();
 		
 		panel = new Panel();
-		panel.setManufacture("M 4");
+		panel.setManufacturer("M 4");
 		panel.setPrice(40.0);
 		panel.save();
 		
@@ -162,29 +162,29 @@ public class PanelContainerTest {
 		assertNotNull(list);
 		assertEquals(2, list.size());
 
-		assertEquals("M 1", list.get(0).getManufacture());
-		assertEquals("M 3", list.get(1).getManufacture());
+		assertEquals("M 1", list.get(0).getManufacturer());
+		assertEquals("M 3", list.get(1).getManufacturer());
 	}
 	
 	@Test
 	public void testGetPanelsInPriceRange_NoMax() throws Exception {
 		panel = new Panel();
-		panel.setManufacture("M 1");
+		panel.setManufacturer("M 1");
 		panel.setPrice(9.0);
 		panel.save();
 		
 		panel = new Panel();
-		panel.setManufacture("M 2");
+		panel.setManufacturer("M 2");
 		panel.setPrice(10.0);
 		panel.save();
 		
 		panel = new Panel();
-		panel.setManufacture("M 3");
+		panel.setManufacturer("M 3");
 		panel.setPrice(20.0);
 		panel.save();
 		
 		panel = new Panel();
-		panel.setManufacture("M 4");
+		panel.setManufacturer("M 4");
 		panel.setPrice(30.0);
 		panel.save();
 		
@@ -195,8 +195,8 @@ public class PanelContainerTest {
 		assertNotNull(list);
 		assertEquals(2, list.size());
 
-		assertEquals("M 3", list.get(0).getManufacture());
-		assertEquals("M 4", list.get(1).getManufacture());
+		assertEquals("M 3", list.get(0).getManufacturer());
+		assertEquals("M 4", list.get(1).getManufacturer());
 	}
 	
 	@Test(expected=Exception.class)
