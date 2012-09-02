@@ -29,6 +29,11 @@ class MockSolarComponent extends SolarComponent {
 	public static MockSolarComponent load(long id) {
 		return Database.loadComponent(id, MockSolarComponent.class);
 	}
+	
+	@Override
+	public void save() {
+		Database.saveComponent(this);
+	}
 
 	public int getMockValue() {
 		return mockValue;

@@ -62,4 +62,9 @@ public class Inverter extends SolarComponent {
 	public static Inverter load(long id) {
 		return Database.loadComponent(id, Inverter.class);
 	}
+	
+	@Override
+	public void save() {
+		Database.saveComponent(this);
+	}
 }

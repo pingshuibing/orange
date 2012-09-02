@@ -41,4 +41,9 @@ public class Panel extends SolarComponent {
 	public static Panel load(long id) {
 		return Database.loadComponent(id, Panel.class);
 	}
+	
+	@Override
+	public void save() {
+		Database.saveComponent(this);
+	}
 }

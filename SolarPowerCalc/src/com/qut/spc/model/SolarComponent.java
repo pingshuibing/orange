@@ -256,13 +256,6 @@ public abstract class SolarComponent {
 	/**
 	 * Store this component to database
 	 */
-	public void save() {
-		Database.saveComponent(this);
-	}
-	
-	
-	
-	
-
+	public abstract void save();
 
 }

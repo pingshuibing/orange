@@ -11,4 +11,9 @@ public class Battery extends SolarComponent {
 	public static Battery load(long id) {
 		return Database.loadComponent(id, Battery.class);
 	}
+
+	@Override
+	public void save() {
+		Database.saveComponent(this);
+	}
 }
