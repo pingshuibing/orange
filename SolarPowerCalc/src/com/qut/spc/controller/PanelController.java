@@ -7,9 +7,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+import com.qut.spc.api.PanelFilterAPI;
 import com.qut.spc.exceptions.InvalidArgumentException;
 import com.qut.spc.model.PanelContainer;
-import com.qut.spc.model.PanelFilterAPI;
 
 
 /**

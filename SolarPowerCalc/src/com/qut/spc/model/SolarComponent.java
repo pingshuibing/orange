@@ -10,7 +10,6 @@ package com.qut.spc.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.jdo.annotations.Persistent;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import com.qut.spc.EMF;
+import com.qut.spc.api.ComponentFilterAPI;
 import com.qut.spc.db.QueryBuilder;
 
 

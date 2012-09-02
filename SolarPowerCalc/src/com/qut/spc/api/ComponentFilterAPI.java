@@ -1,5 +1,9 @@
-package com.qut.spc.model;
+package com.qut.spc.api;
 
+/**
+ * Common APIs for searching component in solar power system
+ * @author QuocViet
+ */
 public interface ComponentFilterAPI {
 	
 	/**

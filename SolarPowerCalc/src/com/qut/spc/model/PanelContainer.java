@@ -15,6 +15,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.qut.spc.api.PanelFilterAPI;
+
 
 /**
  * Wrapper class for list of SolarPanel

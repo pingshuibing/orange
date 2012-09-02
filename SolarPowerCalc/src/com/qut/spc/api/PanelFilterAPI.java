@@ -1,7 +1,13 @@
-package com.qut.spc.model;
+package com.qut.spc.api;
 
 import java.util.List;
 
+import com.qut.spc.model.Panel;
+
+/**
+ * APIs for searching panels
+ * @author QuocViet
+ */
 public interface PanelFilterAPI extends ComponentFilterAPI {
 	
 	/**

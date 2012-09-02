@@ -1,7 +1,13 @@
-package com.qut.spc.model;
+package com.qut.spc.api;
 
 import java.util.List;
 
+import com.qut.spc.model.Battery;
+
+/**
+ * APIs for searching batteries
+ * @author QuocViet
+ */
 public interface BatteryFilterAPI extends ComponentFilterAPI {
 	
 	/**

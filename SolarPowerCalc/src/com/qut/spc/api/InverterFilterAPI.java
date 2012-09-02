@@ -1,7 +1,13 @@
-package com.qut.spc.model;
+package com.qut.spc.api;
 
 import java.util.List;
 
+import com.qut.spc.model.Inverter;
+
+/**
+ * APIs for searching inverters
+ * @author QuocViet
+ */
 public interface InverterFilterAPI extends ComponentFilterAPI {
 	/**
 	 * Get current list of inverters

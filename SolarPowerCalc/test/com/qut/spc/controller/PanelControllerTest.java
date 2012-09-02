@@ -7,7 +7,7 @@ import static org.mockito.Mockito.verify;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.qut.spc.model.PanelFilterAPI;
+import com.qut.spc.api.PanelFilterAPI;
 
 /**
  * Tests for PanelController
