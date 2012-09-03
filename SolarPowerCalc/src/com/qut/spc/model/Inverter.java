@@ -1,9 +1,15 @@
 package com.qut.spc.model;
 
+import javax.persistence.Entity;
 import javax.xml.bind.annotation.XmlElement;
 
 import com.qut.spc.db.Database;
 
+/**
+ * Inverter entity
+ * @author QuocViet
+ */
+@Entity
 public class Inverter extends SolarComponent {
 	
 	@XmlElement

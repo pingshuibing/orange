@@ -10,7 +10,10 @@ import com.qut.spc.EMF;
 import com.qut.spc.api.ComponentFilterAPI;
 import com.qut.spc.db.QueryBuilder;
 
-
+/**
+ * Common container for all Panel/Battery/Inverter
+ * @author QuocViet
+ */
 public abstract class ComponentContainer implements ComponentFilterAPI {
 	private double minPrice = 0.0;
 	

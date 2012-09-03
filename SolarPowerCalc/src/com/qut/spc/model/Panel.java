@@ -12,6 +12,10 @@ import javax.xml.bind.annotation.XmlElement;
 
 import com.qut.spc.db.Database;
 
+/**
+ * Panel entity
+ * @author QuocViet
+ */
 @Entity
 public class Panel extends SolarComponent {
 

@@ -1,7 +1,14 @@
 package com.qut.spc.model;
 
+import javax.persistence.Entity;
+
 import com.qut.spc.db.Database;
 
+/**
+ * Battery entity
+ * @author QuocViet
+ */
+@Entity
 public class Battery extends SolarComponent {
 	
 	public Battery() {

@@ -3,6 +3,10 @@ package com.qut.spc.db;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * SQL string builder
+ * @author QuocViet
+ */
 public class QueryBuilder {
 	private String table;
 	
@@ -13,6 +17,10 @@ public class QueryBuilder {
 		this.table = table;
 	}
 	
+	/**
+	 * Get final query string from current filters
+	 * @return Sql query string
+	 */
 	public String getQueryString() {
 		String queryString = "SELECT FROM " + table;
 		if (whereFilters.size() > 0) {
@@ -25,6 +33,13 @@ public class QueryBuilder {
 		return queryString;
 	}
 	
+	/**
+	 * Add range in the filter.
+	 * 
+	 * @param field Name of the field in database
+	 * @param min Lower bound 
+	 * @param max Upper bound
+	 */
 	public void addRange(String field, double min, double max) {
 		if (min > 0.0) {
 			String filter = field + " >= :" + field + "Min";
