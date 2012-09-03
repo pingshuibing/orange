@@ -84,7 +84,7 @@ public abstract class ComponentContainer implements ComponentFilterAPI {
 		
 		qb.addRange("price", minPrice, maxPrice);
 		qb.addRange("capacity", minCapacity, maxCapacity);
-		// TODO: search by postcode
+		qb.addStringInList("postcode", postcode);
 		
 		EntityManager em = EMF.get().createEntityManager();
 		Query query = qb.getQuery(em);

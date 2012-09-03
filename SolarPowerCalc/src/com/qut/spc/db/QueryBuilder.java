@@ -84,6 +84,24 @@ public class QueryBuilder {
 		}
 	}
 	
+	/**
+	 * Search for string in a list. Do nothing if keyword is empty
+	 * @param field Name of the field in database
+	 * @param keyword Search keyword
+	 */
+	public void addStringInList(String field, String keyword) {
+		Integer idx;
+		String filter;
+		
+		if (!keyword.isEmpty()) {
+			idx = getNextIndex();
+			filter = ":" + idx + " MEMBER OF " + field;
+			
+			whereFilters.add(filter);
+			queryValues.put(idx, keyword);
+		}
+	}
+	
 	private Integer getNextIndex() {
 		return ++fieldIdx;
 	}
