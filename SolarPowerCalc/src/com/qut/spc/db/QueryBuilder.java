@@ -16,13 +16,15 @@ import javax.persistence.Query;
 public class QueryBuilder {
 	private String table;
 	
+	private Integer fieldIdx = 0;
+	
 	private List<String> whereFilters;
 	
-	private Map<String, Object> queryValues;
+	private Map<Integer, Object> queryValues;
 	
 	public QueryBuilder(String table) {
 		whereFilters = new LinkedList<String>();
-		queryValues = new LinkedHashMap<String, Object>();
+		queryValues = new LinkedHashMap<Integer, Object>();
 		
 		this.table = table;
 	}
@@ -51,7 +53,7 @@ public class QueryBuilder {
 		Query query = em.createQuery(getQueryString());
 		
 		// Add map values
-		for (Map.Entry<String, Object> entry : queryValues.entrySet()) {
+		for (Map.Entry<Integer, Object> entry : queryValues.entrySet()) {
 		    query.setParameter(entry.getKey(), entry.getValue());
 		}
 		return query;
@@ -65,18 +67,24 @@ public class QueryBuilder {
 	 * @param max Upper bound (should greater than 0)
 	 */
 	public void addRange(String field, double min, double max) {
+		Integer idx;
+		String filter;
+		
 		if (min > 0.0) {
-			String mapName = field + "Min";
-			String filter = field + " >= :" + mapName;
+			idx = getNextIndex();
+			filter = field + " >= :" + idx;
 			whereFilters.add(filter);
-			queryValues.put(mapName, min);
+			queryValues.put(idx, min);
 		}
 		if (max > 0.0) {
-			String mapName = field + "Max";
-			String filter = field + " <= :" + mapName;
+			idx = getNextIndex();
+			filter = field + " <= :" + idx;
 			whereFilters.add(filter);
-			queryValues.put(mapName, max);
+			queryValues.put(idx, max);
 		}
 	}
 	
+	private Integer getNextIndex() {
+		return ++fieldIdx;
+	}
 }

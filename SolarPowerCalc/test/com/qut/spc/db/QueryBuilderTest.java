@@ -42,7 +42,7 @@ public class QueryBuilderTest {
 	public void testAddRangeOnlyMin_MaxIsIgnored() {
 		qb.addRange("field", 10.0, 0.0);
 		
-		assertEquals("SELECT FROM " + TABLE + " WHERE field >= :fieldMin",
+		assertEquals("SELECT FROM " + TABLE + " WHERE field >= :1",
 				qb.getQueryString());
 	}
 	
@@ -50,7 +50,7 @@ public class QueryBuilderTest {
 	public void testAddRangeOnlyMax_MinIsIgnored() {
 		qb.addRange("field", 0.0, 99.9);
 		
-		assertEquals("SELECT FROM " + TABLE + " WHERE field <= :fieldMax",
+		assertEquals("SELECT FROM " + TABLE + " WHERE field <= :1",
 				qb.getQueryString());
 	}
 	
@@ -58,7 +58,7 @@ public class QueryBuilderTest {
 	public void testAddRange() {
 		qb.addRange("field", 44, 55);
 		
-		assertEquals("SELECT FROM " + TABLE + " WHERE field >= :fieldMin AND field <= :fieldMax",
+		assertEquals("SELECT FROM " + TABLE + " WHERE field >= :1 AND field <= :2",
 				qb.getQueryString());
 	}
 }
