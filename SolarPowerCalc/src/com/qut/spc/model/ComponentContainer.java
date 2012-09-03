@@ -84,22 +84,10 @@ public abstract class ComponentContainer implements ComponentFilterAPI {
 		
 		qb.addRange("price", minPrice, maxPrice);
 		qb.addRange("capacity", minCapacity, maxCapacity);
+		// TODO: search by postcode
 		
 		EntityManager em = EMF.get().createEntityManager();
-		Query query = em.createQuery(qb.getQueryString());
-		if (minPrice > 0.0) {
-			query.setParameter("priceMin", minPrice);
-		}
-		if (maxPrice > 0.0) {
-			query.setParameter("priceMax", maxPrice);
-		}
-		if (minCapacity > 0.0) {
-			query.setParameter("capacityMin", minCapacity);
-		}
-		if (maxCapacity > 0.0) {
-			query.setParameter("capacityMax", maxCapacity);
-		}
-		// TODO: search by postcode
+		Query query = qb.getQuery(em);
 		
 		List<T> result;
 		try {
