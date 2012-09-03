@@ -2,6 +2,8 @@ package com.qut.spc.model;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.After;
@@ -388,5 +390,35 @@ public class PanelContainerTest {
 		container.setMinCapacity(90.0);
 		container.setMaxCapacity(29.0);
 		container.search();
+	}
+
+	@Test
+	public void testGetPanelsInPostcode() throws IllegalArgumentException {
+		panel = new Panel();
+		panel.setModel("A");
+		panel.setPostcode(Arrays.asList("1000"));
+		panel.save();
+		
+		panel = new Panel();
+		panel.setModel("B");
+		panel.setPostcode(Arrays.asList("1000", "4000"));
+		panel.save();
+		
+		panel = new Panel();
+		panel.setModel("C");
+		panel.setPostcode(Arrays.asList("2000", "4000"));
+		panel.save();
+		
+		panel = new Panel();
+		panel.setModel("D");
+		panel.setPostcode(Arrays.asList("1000", "4009", "4100"));
+		panel.save();
+		
+		container.setPostcode("4000");
+		list = container.search();
+		
+		assertEquals(2, list.size());
+		assertEquals("B", list.get(0).getModel());
+		assertEquals("C", list.get(1).getModel());
 	}
 }

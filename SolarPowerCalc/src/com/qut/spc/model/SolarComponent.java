@@ -10,6 +10,7 @@ package com.qut.spc.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -68,9 +69,10 @@ public abstract class SolarComponent {
 	@XmlElement
 	private double efficiencyDecrease = 0.0;
 	
+	@Basic
 	@XmlElementWrapper
 	@XmlElement
-	private List<String> postcode =new ArrayList<String>();
+	private List<String> postcode = new ArrayList<String>();
 	
 	public SolarComponent() {
 	}
@@ -226,11 +228,13 @@ public abstract class SolarComponent {
 		return postcode;
 	}
 
-	public void setPostcode(List<String> postcode) throws IllegalArgumentException{
-		for(String s:postcode)
+	public void setPostcode(List<String> postcode)
+			throws IllegalArgumentException {
+		for (String s : postcode) {
 			PostcodeUtil.validatePostcode(s);
+		}
 		this.postcode = postcode;
-	} 
+	}
 	
 	/**
 	 * Get the list of efficiency by years
