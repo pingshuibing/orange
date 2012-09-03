@@ -37,7 +37,7 @@
     <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
     <header>
         <div class="container_12 menu-bar">
-            <div class="grid_3">
+            <div class="grid_4">
                 <img src="images/orangelogo-219x69.png" style="margin-top:20px;" />
             </div>
             <div class="grid_3 menu-item">
@@ -50,8 +50,8 @@
                 <a class="menu-link" id="linkFindBatteries" href="Default.aspx">BATTERIES</a>
             </div>
             <div class="grid_3 menu-item">
-                NEWS</div>
-            <div class="grid_3 menu-item">
+                MEASURE</div>
+            <div class="grid_2 menu-item">
                 ABOUT</div>
             <div class="clear">
             </div>
@@ -63,8 +63,9 @@
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
     </div>
-    <footer class="container_12">
-        <div class="grid_3 prefix_9">
+    <footer>
+        <div class="container_12">
+            <div class="grid_3 prefix_9">
             <h3>TEAM ORANGE</h3>
             <ul style="list-style: none;">
                 <li>VINCENT</li>
@@ -76,6 +77,8 @@
                 <li>SEBASTIAN</li>
                 <li>ALAN</li>
             </ul>
+        </div>
+            <div class="clear"></div>
         </div>
     </footer>
     <!-- JavaScript at the bottom for fast page loading -->
