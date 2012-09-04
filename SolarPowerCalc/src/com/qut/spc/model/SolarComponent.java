@@ -260,5 +260,10 @@ public abstract class SolarComponent {
 	 * Store this component to database
 	 */
 	public abstract void save();
-
+	
+	public boolean equals(Object obj) {
+		if(obj instanceof SolarComponent)
+			return id==((SolarComponent)obj).id;
+		return super.equals(obj);
+	};
 }
