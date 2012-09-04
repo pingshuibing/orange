@@ -32,6 +32,7 @@ public class PostcodeUtil {
 		
 		put(new int[]{800,899},"0800");
 		put(new int[]{900,999},"0800");
+		
 					
 	}};
 	
@@ -51,13 +52,16 @@ public class PostcodeUtil {
 	}	
 	
 	public static boolean validatePostcode(String postcode) throws IllegalArgumentException{	
+
+		if(postcode.isEmpty())
+			return true;
 		try{
 			Integer.parseInt(postcode);
 		}catch(NumberFormatException e){
-			throw new IllegalArgumentException("Postcodes should only contain numbers.");
+			throw new IllegalArgumentException("Postcodes should only contain numbers. "+postcode);
 		}
 		if(postcode.length()!=4){
-			throw new IllegalArgumentException("Postcodes should consist of four numbers");
+			throw new IllegalArgumentException("Postcodes should consist of four numbers"+ postcode);
 		}
 		return true;
 	}
