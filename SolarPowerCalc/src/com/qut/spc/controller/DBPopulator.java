@@ -16,7 +16,11 @@ public class DBPopulator {
 	@Produces("text/html")
 	@Path("/{num}")
 	public String populateDB(@PathParam("num") int num){
-		generatePanels(num);
+		try {
+			generatePanels(num);
+		} catch (Exception e) {
+			return e.getMessage();
+		}
 		return "Database Populated with "+num+ " panels";
 	}
 	
@@ -24,15 +28,18 @@ public class DBPopulator {
 	@Produces("text/html")
 	@Path("/")
 	public String populateDB(){
-		generatePanels(100);
+		try {
+			generatePanels(100);
+		} catch (Exception e) {
+			return e.getMessage();
+		}
 		return "Database Populated with 100 panels";
 		
 	}
 	
 	
-	private void generatePanels(int numPanels){
+	private void generatePanels(int numPanels) throws Exception{
 		for(int i=0;i<numPanels;i++){
-			try {
 				Panel p=new Panel();
 				p.setManufacturer("M "+((int)Math.random()*10));
 				p.setPrice(Math.random()*1337);
@@ -43,17 +50,19 @@ public class DBPopulator {
 				p.setWarranty(24);
 				
 				ArrayList<String> pc=new ArrayList<String>();
-				pc.add("1211");
-				pc.add("1337");
+				double d=Math.random();
+				
+				if(d<0.33)
+					pc.add("1111");
+				else if(d>0.66)
+					pc.add("2222");
+				else
+					pc.add("3333");
 
 				
 				p.setPostcode(pc);
 				
 				p.save();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 	}
 	
