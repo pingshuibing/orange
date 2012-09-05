@@ -9,11 +9,10 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/logoImageText"
         android:src="@drawable/orangelogo" >
-
     </ImageView>
 
     <TextView
-        android:id="@+id/LocationText"
+        android:id="@+id/YourDataText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -24,27 +23,64 @@
         tools:context=".MainActivity" />
 
     <TextView
-        android:id="@+id/TextView01"
+        android:id="@+id/ChoosPriceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/LocationText"
-        android:layout_below="@+id/LocationText"
-        android:layout_marginTop="32dp"
-        android:text="@string/post"
+        android:layout_alignLeft="@+id/YourDataText"
+        android:layout_below="@+id/YourDataText"
+        android:layout_marginTop="15dp"
+        android:text="@string/choosprice"
         android:textSize="@dimen/formtext"
         tools:context=".MainActivity" />
 
     <EditText
-        android:id="@+id/post_feild"
+        android:id="@+id/TextMinPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/TextView01"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="28dp"
-        android:ems="4"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:ems="3"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/ToText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/TextMinPrice"
+        android:layout_toRightOf="@+id/TextMinPrice"
+        android:text="@string/ToString"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/TextMaxPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/ToText"
+        android:ems="3"
         android:inputType="number" >
 
         <requestFocus />
     </EditText>
+
+    <Button
+        android:id="@+id/GetPricesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="28dp"
+        android:text="@string/GetPricesString" />
+
+    <EditText
+        android:id="@+id/outText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/GetPricesButton"
+        android:layout_marginTop="23dp"
+        android:ems="10" />
 
 </RelativeLayout>
