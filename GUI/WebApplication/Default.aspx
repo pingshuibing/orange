@@ -86,15 +86,17 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderJquery" runat="Server">
     <script src="js/orange/SunCalculatorUrlBuilder.js" type="text/javascript"></script>
     <script src="js/libs/jExpand.js" type="text/javascript"></script>
-    <script src="js/libs/jqueryUI/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
-    <link href="js/libs/jqueryUI/css/orange-theme/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css" />
+    
     <script type="text/javascript">
+        fillSelect(1000, 40000, 1000, $('#drpMinimumPrice'));
+        fillSelect(1000, 40000, 1000, $('#drpMaximumPrice'));
+        fillSelect(50, 500, 50, $('#drpMinimumEfficiency'));
+        fillSelect(50, 500, 50, $('#drpMaximumEfficiency'));
+
+
         $(document).ready(function ()
         {
-            fillSelect(1000, 40000, 1000, $('#drpMinimumPrice'));
-            fillSelect(1000, 40000, 1000, $('#drpMaximumPrice'));
-            fillSelect(50, 500, 50, $('#drpMinimumEfficiency'));
-            fillSelect(50, 500, 50, $('#drpMaximumEfficiency'));
+          
 
             $('#btnSubmit').click(function (e)
             {
