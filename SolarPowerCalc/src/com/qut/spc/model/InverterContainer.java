@@ -10,6 +10,8 @@ package com.qut.spc.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -20,6 +22,7 @@ import com.qut.spc.api.InverterFilterAPI;
  * Wrapper class for list of Inverters
  * @author QuocViet
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="inverters")
 public class InverterContainer extends ComponentContainer
 		implements InverterFilterAPI {
@@ -31,17 +34,11 @@ public class InverterContainer extends ComponentContainer
 		list = new ArrayList<Inverter>();
 	}
 	
-	public InverterContainer(List<Inverter> list) {
-		this.list = list;
-	}
-	
 	public List<Inverter> getList() {
 		return list;
 	}
 	
-	public void setList(List<Inverter> list) {
-		this.list = list;
-	}
+
 
 	@Override
 	public List<Inverter> search() throws IllegalArgumentException {
