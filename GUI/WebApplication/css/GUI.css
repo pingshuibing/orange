@@ -30,7 +30,7 @@ td{
 
 
 .row-main{cursor:pointer;border-bottom:1px dotted #f5f5f5;}
-.row-details{background-color:#FBB96B;}
+.row-details,.row-details:hover{border: 1px dotted #F5F5F5; background-color:#0A0907;}
 .row-active,.row-active:hover  {background-color:#ffffff;}
 .row-active td{color:#ff8b00;font-weight:bold;}
 
