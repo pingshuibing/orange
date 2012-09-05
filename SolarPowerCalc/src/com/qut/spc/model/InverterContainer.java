@@ -37,8 +37,6 @@ public class InverterContainer extends ComponentContainer
 	public List<Inverter> getList() {
 		return list;
 	}
-	
-
 
 	@Override
 	public List<Inverter> search() throws IllegalArgumentException {
