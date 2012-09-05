@@ -262,8 +262,22 @@ public abstract class SolarComponent {
 	public abstract void save();
 	
 	public boolean equals(Object obj) {
-		if(obj instanceof SolarComponent)
-			return id==((SolarComponent)obj).id;
+		if(obj instanceof SolarComponent){
+			SolarComponent s=(SolarComponent)obj;
+			boolean ret= s.capacity==capacity & 
+					s.efficiencyDecrease==efficiencyDecrease&
+					s.price==price &
+					s.voltage==voltage&
+					s.manufacturer.equals(manufacturer)&
+					s.description.equals(description)&
+					s.dimensions.equals(dimensions)&
+					s.model.equals(model)&
+					s.name.equals(name);
+			for(String pos:s.postcode)
+				ret=ret&postcode.contains(pos);
+			return ret;
+			
+		}
 		return super.equals(obj);
 	};
 }
