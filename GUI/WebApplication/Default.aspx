@@ -178,15 +178,18 @@
             //append body into table
             $table.append($('<tbody>'));
 
+            var id = 0;
             //iterating through every panel in the xml
             $(xml).find("panel").each(function ()
             {
+                //increment for id
+                id = id+1;
 
                 //put the current xml row into memory
                 $xmlRow = $(this);
 
                 //create row element for main elements
-                var $row = $('<tr>').attr('class','row-main');
+                var $row = $('<tr>').attr({'class': 'row-main','id':'row_'+id});
 
                 //create html cell and append into row
                 $row.append(createCell(readValueFromXml($xmlRow, 'name')));
@@ -199,16 +202,16 @@
                 $table.append($row);
 
                 //create row for details elements
-                $row = $('<tr>').attr('class','row-details');
+                $row = $('<tr>').attr('class', 'row-details');
                 $row.append(
                     $('<td>').attr({ 'colspan': '4' }).html
                     (
                         '<h5>Additional Information for ' + readValueFromXml($xmlRow, 'name') + '</h5>' +
-                        'VOLTAGE: ' + readValueFromXml($xmlRow, 'voltage') + '</br>'+
-                        'DIMENSIONS: ' + readValueFromXml($xmlRow, 'dimensions') + '</br>'+
-                        'EFFIENCY DECREASE: ' + readValueFromXml($xmlRow, 'efficiencyDecrease') + '</br>'+
-                        'OPERATING CURRENT: ' + readValueFromXml($xmlRow, 'operatingCurrent') + '</br>'+
-                        'WARRANTY: ' + readValueFromXml($xmlRow, 'warranty') + '</br>'+
+                        'VOLTAGE: ' + readValueFromXml($xmlRow, 'voltage') + '</br>' +
+                        'DIMENSIONS: ' + readValueFromXml($xmlRow, 'dimensions') + '</br>' +
+                        'EFFIENCY DECREASE: ' + readValueFromXml($xmlRow, 'efficiencyDecrease') + '</br>' +
+                        'OPERATING CURRENT: ' + readValueFromXml($xmlRow, 'operatingCurrent') + '</br>' +
+                        'WARRANTY: ' + readValueFromXml($xmlRow, 'warranty') + '</br>' +
                         readValueFromXml($xmlRow, 'description')
 
                     )
