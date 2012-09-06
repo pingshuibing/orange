@@ -30,6 +30,7 @@ public abstract class ComponentContainer<T extends SolarComponent> implements Co
 	
 	private String postcode = "";
 	
+	
 	@Override
 	public void setMinPrice(double minPrice) throws IllegalArgumentException {
 		if (minPrice < 0.0) {
@@ -138,4 +139,13 @@ public abstract class ComponentContainer<T extends SolarComponent> implements Co
 		for(SolarComponent c:getList())
 			c.save();
 	}
+	
+	public List<T> search() throws IllegalArgumentException {
+		List<T> list=fetchComponents(getComponentClass().getName());
+		setList(list);
+		return getList();
+	}
+
+	public abstract Class<? extends SolarComponent> getComponentClass();
+
 }

@@ -39,14 +39,13 @@ public class BatteryContainer extends ComponentContainer<Battery>
 	}
 
 	@Override
-	public List<Battery> search() throws IllegalArgumentException {
-		list = fetchComponents(Battery.class.getName());
-		return list;
+	public void setList(List<Battery> list) {
+		this.list=list;
 	}
 
 	@Override
-	public void setList(List<Battery> list) {
-		this.list=list;
+	public Class<? extends SolarComponent> getComponentClass() {
+		return Battery.class;
 	}
 
 

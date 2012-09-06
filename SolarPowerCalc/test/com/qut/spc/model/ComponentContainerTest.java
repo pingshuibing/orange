@@ -32,6 +32,11 @@ public class ComponentContainerTest {
 			return list;
 		}
 
+		@Override
+		public Class<? extends SolarComponent> getComponentClass() {
+			return SolarComponent.class;
+		}
+
 	
 		
 	}

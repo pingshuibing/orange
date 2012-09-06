@@ -26,28 +26,24 @@ import com.qut.spc.api.PanelFilterAPI;
 @XmlRootElement(name="panels")
 public class PanelContainer extends ComponentContainer<Panel>
 		implements PanelFilterAPI {
-
+	
 	@XmlElement(name="panel")
-	private List<Panel> list;
-	
-	public PanelContainer() {
-		list = new ArrayList<Panel>();
+	private List<Panel> list=new ArrayList<Panel>();
+
+
+	@Override
+	public void setList(List<Panel> list) {
+		this.list=list;
 	}
-	
+
+	@Override
 	public List<Panel> getList() {
 		return list;
 	}
-	
-	@Override
-	public void setList(List<Panel> panels)
-	{
-		this.list=panels;
-	}
 
 	@Override
-	public List<Panel> search() throws IllegalArgumentException {
-		list = fetchComponents(Panel.class.getName());
-		return list;
+	public Class<? extends SolarComponent> getComponentClass() {
+		return Panel.class;
 	}
 	
 }

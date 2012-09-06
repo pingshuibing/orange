@@ -39,13 +39,12 @@ public class InverterContainer extends ComponentContainer<Inverter>
 	}
 
 	@Override
-	public List<Inverter> search() throws IllegalArgumentException {
-		list = fetchComponents(Inverter.class.getName());
-		return list;
+	public void setList(List<Inverter> list) {
+		this.list=list;
 	}
 
 	@Override
-	public void setList(List<Inverter> list) {
-		this.list=list;
+	public Class<? extends SolarComponent> getComponentClass() {
+		return Inverter.class;
 	}
 }
