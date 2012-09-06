@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inverters>
+<inverter>
+<manufacturer>Latronics</manufacturer>
+<model>LS 512</model>
+<voltage>12</voltage>
+<capacity>500</capacity>
+<halfHourRating>550W</halfHourRating>
+<surgeRating>1500W</surgeRating>
+<batteryVoltageRange>10.5-17V</batteryVoltageRange>
+<efficiency>90</efficiency>
+<standbyCurrent>27mA</standbyCurrent>
+<weight>4.5kg</weight>
+<outputVoltage>240V AC +/-4%</outputVoltage>
+<outputFrequency>50Hz +/- 0.02%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 4%</totalHarmonicDistortion>
+<dimensions>260x160x100</dimensions>
+<price>790</price>
+<warranty>2</warranty>
+<note>http://www.solaronline.com.au</note>
+</inverter>
+<inverter>
+<manufacturer>Latronics</manufacturer>
+<model>LS 624</model>
+<voltage>24</voltage>
+<capacity>600</capacity>
+<halfHourRating>750W</halfHourRating>
+<surgeRating>2000W</surgeRating>
+<batteryVoltageRange>21-34V</batteryVoltageRange>
+<efficiency>92</efficiency>
+<standbyCurrent>22mA</standbyCurrent>
+<weight>4.7kg</weight>
+<outputVoltage>240V AC +/-4%</outputVoltage>
+<outputFrequency>50Hz +/- 0.02%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 4%</totalHarmonicDistortion>
+<dimensions>260x160x100</dimensions>
+<price>840</price>
+<warranty>2</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Latronics</manufacturer>
+<model>LS 1012</model>
+<voltage>12</voltage>
+<capacity>1000</capacity>
+<halfHourRating>1150W</halfHourRating>
+<surgeRating>3000W</surgeRating>
+<batteryVoltageRange>10.5-17V</batteryVoltageRange>
+<efficiency>91</efficiency>
+<standbyCurrent>37mA</standbyCurrent>
+<weight>11kg</weight>
+<outputVoltage>240V AC +/-4%</outputVoltage>
+<outputFrequency>50Hz +/- 0.1%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 4%</totalHarmonicDistortion>
+<dimensions>330x296x150</dimensions>
+<price>1370</price>
+<warranty>2</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Latronics</manufacturer>
+<model>LS 1224</model>
+<voltage>24</voltage>
+<capacity>1200</capacity>
+<halfHourRating>1600W</halfHourRating>
+<surgeRating>3600W</surgeRating>
+<batteryVoltageRange>21-34V</batteryVoltageRange>
+<efficiency>92</efficiency>
+<standbyCurrent>28mA</standbyCurrent>
+<weight>11kg</weight>
+<outputVoltage>240V AC +/-4%</outputVoltage>
+<outputFrequency>50Hz +/- 0.1%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 4%</totalHarmonicDistortion>
+<dimensions>330x296x150</dimensions>
+<price>1420</price>
+<warranty>2</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Latronics</manufacturer>
+<model>LS 1512</model>
+<voltage>12</voltage>
+<capacity>1500</capacity>
+<halfHourRating>1600W</halfHourRating>
+<surgeRating>4500W</surgeRating>
+<batteryVoltageRange>10.5-17V</batteryVoltageRange>
+<efficiency>91</efficiency>
+<standbyCurrent>42mA</standbyCurrent>
+<weight>14kg</weight>
+<outputVoltage>240V AC +/-4%</outputVoltage>
+<outputFrequency>50Hz +/- 0.1%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 4%</totalHarmonicDistortion>
+<dimensions>330x296x150</dimensions>
+<price>1780</price>
+<warranty>2</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Latronics</manufacturer>
+<model>LS 1824</model>
+<voltage>24</voltage>
+<capacity>1800</capacity>
+<halfHourRating>2200W</halfHourRating>
+<surgeRating>5400W</surgeRating>
+<batteryVoltageRange>21-34V</batteryVoltageRange>
+<efficiency>94</efficiency>
+<standbyCurrent>30mA</standbyCurrent>
+<weight>14kg</weight>
+<outputVoltage>240V AC +/-4%</outputVoltage>
+<outputFrequency>50Hz +/- 0.1%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 4%</totalHarmonicDistortion>
+<dimensions>330x296x150</dimensions>
+<price>1860</price>
+<warranty>2</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Latronics</manufacturer>
+<model>LS 2012</model>
+<voltage>12</voltage>
+<capacity>2000</capacity>
+<halfHourRating>2200W</halfHourRating>
+<surgeRating>5500W</surgeRating>
+<batteryVoltageRange>10.5-17V</batteryVoltageRange>
+<efficiency>90</efficiency>
+<standbyCurrent>75mA</standbyCurrent>
+<weight>22kg</weight>
+<outputVoltage>240V AC +/-4%</outputVoltage>
+<outputFrequency>50Hz +/- 0.1%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 4%</totalHarmonicDistortion>
+<dimensions>370x386x180</dimensions>
+<price>2673</price>
+<warranty>3</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Latronics</manufacturer>
+<model>LS 2324</model>
+<voltage>24</voltage>
+<capacity>2300</capacity>
+<halfHourRating>2800W</halfHourRating>
+<surgeRating>7000W</surgeRating>
+<batteryVoltageRange>21-34V</batteryVoltageRange>
+<efficiency>94</efficiency>
+<standbyCurrent>45mA</standbyCurrent>
+<weight>22kg</weight>
+<outputVoltage>240V AC +/-4%</outputVoltage>
+<outputFrequency>50Hz +/- 0.1%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 4%</totalHarmonicDistortion>
+<dimensions>370x386x180</dimensions>
+<price>2540</price>
+<warranty>3</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Latronics</manufacturer>
+<model>LS 2548</model>
+<voltage>48</voltage>
+<capacity>2500</capacity>
+<halfHourRating>3000W</halfHourRating>
+<surgeRating>7500W</surgeRating>
+<batteryVoltageRange>42-68V</batteryVoltageRange>
+<efficiency>94</efficiency>
+<standbyCurrent>35mA</standbyCurrent>
+<weight>22kg</weight>
+<outputVoltage>240V AC +/-4%</outputVoltage>
+<outputFrequency>50Hz +/- 0.1%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 4%</totalHarmonicDistortion>
+<dimensions>370x386x180</dimensions>
+<price>2720</price>
+<warranty>3</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Latronics</manufacturer>
+<model>LS 3024</model>
+<voltage>24</voltage>
+<capacity>3000</capacity>
+<halfHourRating>3700W</halfHourRating>
+<surgeRating>9000W</surgeRating>
+<batteryVoltageRange>21-34V</batteryVoltageRange>
+<efficiency>93</efficiency>
+<standbyCurrent>50mA</standbyCurrent>
+<weight>24kg</weight>
+<outputVoltage>240V AC +/-4%</outputVoltage>
+<outputFrequency>50Hz +/- 0.1%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 4%</totalHarmonicDistortion>
+<dimensions>370x386x180</dimensions>
+<price>2999</price>
+<warranty>3</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Latronics</manufacturer>
+<model>LS 3548</model>
+<voltage>48</voltage>
+<capacity>3500</capacity>
+<halfHourRating>4100W</halfHourRating>
+<surgeRating>10500W</surgeRating>
+<batteryVoltageRange>42-68V</batteryVoltageRange>
+<efficiency>94</efficiency>
+<standbyCurrent>40mA</standbyCurrent>
+<weight>24kg</weight>
+<outputVoltage>240V AC +/-4%</outputVoltage>
+<outputFrequency>50Hz +/- 0.1%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 4%</totalHarmonicDistortion>
+<dimensions>370x386x180</dimensions>
+<price>3190</price>
+<warranty>3</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Latronics</manufacturer>
+<model>LS 4024</model>
+<voltage>24</voltage>
+<capacity>4000</capacity>
+<halfHourRating>4500W</halfHourRating>
+<surgeRating>12000W</surgeRating>
+<batteryVoltageRange>21-34V</batteryVoltageRange>
+<efficiency>94</efficiency>
+<standbyCurrent>60mA</standbyCurrent>
+<weight>30kg</weight>
+<outputVoltage>240V AC +/-4%</outputVoltage>
+<outputFrequency>50Hz +/- 0.1%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 4%</totalHarmonicDistortion>
+<dimensions>370x386x180</dimensions>
+<price>4050</price>
+<warranty>3</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Latronics</manufacturer>
+<model>LS 5048</model>
+<voltage>48</voltage>
+<capacity>5000</capacity>
+<halfHourRating>6000W</halfHourRating>
+<surgeRating>15000W</surgeRating>
+<batteryVoltageRange>42-68V</batteryVoltageRange>
+<efficiency>95</efficiency>
+<standbyCurrent>55mA</standbyCurrent>
+<weight>30kg</weight>
+<outputVoltage>240V AC +/-4%</outputVoltage>
+<outputFrequency>50Hz +/- 0.1%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 4%</totalHarmonicDistortion>
+<dimensions>475x458x187</dimensions>
+<price>4690</price>
+<warranty>3</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Latronics</manufacturer>
+<model>LS 7048</model>
+<voltage>48</voltage>
+<capacity>7000</capacity>
+<halfHourRating>8500W</halfHourRating>
+<surgeRating>20000W</surgeRating>
+<batteryVoltageRange>42-68V</batteryVoltageRange>
+<efficiency>95</efficiency>
+<standbyCurrent>60mA</standbyCurrent>
+<weight>34kg</weight>
+<outputVoltage>240V AC +/-4%</outputVoltage>
+<outputFrequency>50Hz +/- 0.1%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 4%</totalHarmonicDistortion>
+<dimensions>475x458x187</dimensions>
+<price>5650</price>
+<warranty>3</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Studer</manufacturer>
+<model>AJ 275-12</model>
+<voltage>12</voltage>
+<capacity>200</capacity>
+<halfHourRating>0</halfHourRating>
+<surgeRating>450W</surgeRating>
+<batteryVoltageRange>10.5-16V</batteryVoltageRange>
+<efficiency>93</efficiency>
+<standbyCurrent>0</standbyCurrent>
+<weight>2.4kg</weight>
+<outputVoltage>230V AC</outputVoltage>
+<outputFrequency>50Hz +/- 0.05%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 5%</totalHarmonicDistortion>
+<dimensions>142x163x84</dimensions>
+<price>420</price>
+<warranty>5</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Studer</manufacturer>
+<model>AJ 500-12</model>
+<voltage>12</voltage>
+<capacity>400</capacity>
+<halfHourRating>0</halfHourRating>
+<surgeRating>100W</surgeRating>
+<batteryVoltageRange>10.5-16V</batteryVoltageRange>
+<efficiency>93</efficiency>
+<standbyCurrent>0</standbyCurrent>
+<weight>4.5kg</weight>
+<outputVoltage>230V AC</outputVoltage>
+<outputFrequency>50Hz +/- 0.05%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 5%</totalHarmonicDistortion>
+<dimensions>142x240x84</dimensions>
+<price>770</price>
+<warranty>5</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Studer</manufacturer>
+<model>AJ 1000-12</model>
+<voltage>12</voltage>
+<capacity>800</capacity>
+<halfHourRating>0</halfHourRating>
+<surgeRating>2200W</surgeRating>
+<batteryVoltageRange>10.5-16V</batteryVoltageRange>
+<efficiency>93</efficiency>
+<standbyCurrent>0</standbyCurrent>
+<weight>8.5kg</weight>
+<outputVoltage>230V AC</outputVoltage>
+<outputFrequency>50Hz +/- 0.05%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 5%</totalHarmonicDistortion>
+<dimensions>142x428x84</dimensions>
+<price>1260</price>
+<warranty>5</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Studer</manufacturer>
+<model>AJ 2100-12</model>
+<voltage>12</voltage>
+<capacity>2000</capacity>
+<halfHourRating>0</halfHourRating>
+<surgeRating>5000W</surgeRating>
+<batteryVoltageRange>10.5-16V</batteryVoltageRange>
+<efficiency>92</efficiency>
+<standbyCurrent>0</standbyCurrent>
+<weight>19kg</weight>
+<outputVoltage>230V AC</outputVoltage>
+<outputFrequency>50Hz +/- 0.05%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 5%</totalHarmonicDistortion>
+<dimensions>273x399x117</dimensions>
+<price>2450</price>
+<warranty>5</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Studer</manufacturer>
+<model>AJ 350-24</model>
+<voltage>24</voltage>
+<capacity>300</capacity>
+<halfHourRating>0</halfHourRating>
+<surgeRating>650W</surgeRating>
+<batteryVoltageRange>21-32V</batteryVoltageRange>
+<efficiency>94</efficiency>
+<standbyCurrent>0</standbyCurrent>
+<weight>2.6kg</weight>
+<outputVoltage>230V AC</outputVoltage>
+<outputFrequency>50Hz +/- 0.05%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 5%</totalHarmonicDistortion>
+<dimensions>142x163x84</dimensions>
+<price>460</price>
+<warranty>5</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Studer</manufacturer>
+<model>AJ 600-24</model>
+<voltage>24</voltage>
+<capacity>500</capacity>
+<halfHourRating>0</halfHourRating>
+<surgeRating>1200W</surgeRating>
+<batteryVoltageRange>21-32V</batteryVoltageRange>
+<efficiency>94</efficiency>
+<standbyCurrent>0</standbyCurrent>
+<weight>4.5kg</weight>
+<outputVoltage>230V AC</outputVoltage>
+<outputFrequency>50Hz +/- 0.05%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 5%</totalHarmonicDistortion>
+<dimensions>142x240x84</dimensions>
+<price>770</price>
+<warranty>5</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Studer</manufacturer>
+<model>AJ 1300-24</model>
+<voltage>24</voltage>
+<capacity>1000</capacity>
+<halfHourRating>0</halfHourRating>
+<surgeRating>2800W</surgeRating>
+<batteryVoltageRange>21-32V</batteryVoltageRange>
+<efficiency>94</efficiency>
+<standbyCurrent>0</standbyCurrent>
+<weight>8.5kg</weight>
+<outputVoltage>230V AC</outputVoltage>
+<outputFrequency>50Hz +/- 0.05%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 5%</totalHarmonicDistortion>
+<dimensions>142x428x84</dimensions>
+<price>1260</price>
+<warranty>5</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Studer</manufacturer>
+<model>AJ 2400-24</model>
+<voltage>24</voltage>
+<capacity>2000</capacity>
+<halfHourRating>0</halfHourRating>
+<surgeRating>5200W</surgeRating>
+<batteryVoltageRange>21-32V</batteryVoltageRange>
+<efficiency>94</efficiency>
+<standbyCurrent>0</standbyCurrent>
+<weight>18kg</weight>
+<outputVoltage>230V AC</outputVoltage>
+<outputFrequency>50Hz +/- 0.05%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 5%</totalHarmonicDistortion>
+<dimensions>273x399x117</dimensions>
+<price>2030</price>
+<warranty>5</warranty>
+<note></note>
+</inverter>
+<inverter>
+<manufacturer>Studer</manufacturer>
+<model>AJ 400-48</model>
+<voltage>48</voltage>
+<capacity>300</capacity>
+<halfHourRating>0</halfHourRating>
+<surgeRating>1000W</surgeRating>
+<batteryVoltageRange>42 - 64V</batteryVoltageRange>
+<efficiency>94</efficiency>
+<standbyCurrent>0</standbyCurrent>
+<weight>2.6kg</weight>
+<outputVoltage>230 Volts AC</outputVoltage>
+<outputFrequency>50Hz +/- 0.05%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 5%</totalHarmonicDistortion>
+<dimensions>84 x 142 x 163</dimensions>
+<price>490</price>
+<warranty>5</warranty>
+<note>Power Draw (Idle):
+1.1W
+Power Draw (Standby):
+5.2W</note>
+</inverter>
+<inverter>
+<manufacturer>Studer</manufacturer>
+<model>AJ 700-48</model>
+<voltage>48</voltage>
+<capacity>500</capacity>
+<halfHourRating>0</halfHourRating>
+<surgeRating>1400W</surgeRating>
+<batteryVoltageRange>42 - 64V</batteryVoltageRange>
+<efficiency>94</efficiency>
+<standbyCurrent>0</standbyCurrent>
+<weight>4.5kg</weight>
+<outputVoltage>230 Volts AC</outputVoltage>
+<outputFrequency>50Hz +/- 0.05%</outputFrequency>
+<outputWaveform>True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 5%</totalHarmonicDistortion>
+<dimensions>84 x 142 x 240</dimensions>
+<price>840</price>
+<warranty>5</warranty>
+<note>Power Draw (Idle):
+1.5W
+Power Draw (Standby):
+12W</note>
+</inverter>
+<inverter>
+<manufacturer>Xantrex</manufacturer>
+<model>PROsine 1000i-12 ATS</model>
+<voltage>12</voltage>
+<capacity>1000</capacity>
+<halfHourRating>0</halfHourRating>
+<surgeRating>1500W</surgeRating>
+<batteryVoltageRange>10 - 16V</batteryVoltageRange>
+<efficiency>90</efficiency>
+<standbyCurrent>0</standbyCurrent>
+<weight>7.0kg</weight>
+<outputVoltage>230 Volts AC +/- 3%</outputVoltage>
+<outputFrequency>50Hz +/- 0.05%</outputFrequency>
+<outputWaveform>
+True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 3%</totalHarmonicDistortion>
+<dimensions>115L x 280W x 390</dimensions>
+<price>1396</price>
+<warranty>2</warranty>
+<note>Power Draw (Idle):
+&lt; 22W
+Power Draw (Standby):
+&lt; 1.5W</note>
+</inverter>
+<inverter>
+<manufacturer>Xantrex</manufacturer>
+<model>PROsine 1000i-24</model>
+<voltage>24</voltage>
+<capacity>1000</capacity>
+<halfHourRating>0</halfHourRating>
+<surgeRating>1500W</surgeRating>
+<batteryVoltageRange> 20 - 32V</batteryVoltageRange>
+<efficiency>90</efficiency>
+<standbyCurrent>0</standbyCurrent>
+<weight>7.0kg</weight>
+<outputVoltage>230 Volts AC +/- 3%</outputVoltage>
+<outputFrequency>50Hz +/- 0.05%</outputFrequency>
+<outputWaveform>
+True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 3%</totalHarmonicDistortion>
+<dimensions>115L x 280W x 390</dimensions>
+<price>1520</price>
+<warranty>2</warranty>
+<note>Power Draw (Idle):
+&lt; 22W
+Power Draw (Standby):
+&lt; 1.5W</note>
+</inverter>
+<inverter>
+<manufacturer>Xantrex</manufacturer>
+<model>PROsine 1800i-12</model>
+<voltage>12</voltage>
+<capacity>1800</capacity>
+<halfHourRating>0</halfHourRating>
+<surgeRating>2900W</surgeRating>
+<batteryVoltageRange>10 - 16V</batteryVoltageRange>
+<efficiency>0</efficiency>
+<standbyCurrent>0</standbyCurrent>
+<weight>7.5kg</weight>
+<outputVoltage>230 Volts AC +/- 3%</outputVoltage>
+<outputFrequency>50Hz +/- 0.05%</outputFrequency>
+<outputWaveform>
+True Sine Wave</outputWaveform>
+<totalHarmonicDistortion>Less than 3%</totalHarmonicDistortion>
+<dimensions>115L x 280W x 390</dimensions>
+<price>1797</price>
+<warranty>2</warranty>
+<note>Power Draw (Idle):
+&lt; 22W
+Power Draw (Standby):
+&lt; 1.5W</note>
+</inverter>
+</inverters>
