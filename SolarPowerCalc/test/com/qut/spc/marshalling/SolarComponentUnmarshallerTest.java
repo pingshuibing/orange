@@ -12,11 +12,10 @@ import com.qut.spc.model.PanelContainer;
 public class SolarComponentUnmarshallerTest {
 	
 	private List<Panel> panels;
-	private String input;
+	private String input = "test/panels_test.xml";
 
 	@Before
 	public void setup(){
-		input = "<panels><panel><id>43</id><name>PANEL 15</name><model>ABCD3</model><manufacturer>M 0</manufacturer><price>343.51759647942526</price><capacity>567.4477359039762</capacity><voltage>0.0</voltage><dimensions/><description>Panel number: 15</description><warranty>24</warranty><efficiencyDecrease>0.0</efficiencyDecrease><postcode><postcode>1111</postcode></postcode><operatingCurrent>0.0</operatingCurrent></panel><panel><id>4039</id><name>PANEL 21</name><model>ABCD3</model><manufacturer>M 0</manufacturer><price>1211.9665573233776</price><capacity>1606.3252642163527</capacity><voltage>0.0</voltage><dimensions/><description>Panel number: 21</description><warranty>24</warranty><efficiencyDecrease>0.0</efficiencyDecrease><postcode><postcode>2222</postcode></postcode><operatingCurrent>0.0</operatingCurrent></panel><panel><id>5037</id><name>PANEL 0</name><model>ABCD0</model><manufacturer>M 0</manufacturer><price>517.5408852050549</price><capacity>524.092392798865</capacity><voltage>0.0</voltage><dimensions/><description>Panel number: 0</description><warranty>24</warranty><efficiencyDecrease>0.0</efficiencyDecrease><postcode><postcode>2222</postcode></postcode><operatingCurrent>0.0</operatingCurrent></panel></panels>";
 		SolarComponentUnmarshaller scu=new SolarComponentUnmarshaller();
 		
 		PanelContainer p= scu.unmarshall(PanelContainer.class, input);
