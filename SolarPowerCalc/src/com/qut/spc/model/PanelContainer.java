@@ -37,6 +37,11 @@ public class PanelContainer extends ComponentContainer
 	public List<Panel> getList() {
 		return list;
 	}
+	
+	public void setList(List<Panel> panels)
+	{
+		this.list=panels;
+	}
 
 	@Override
 	public List<Panel> search() throws IllegalArgumentException {
