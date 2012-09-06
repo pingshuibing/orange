@@ -8,7 +8,7 @@
 
     <div class="container_12 content">
         <div class="grid_12" style="margin-bottom:40px;">
-            <h1>Find Solar Panels</h1>
+            <h1 id="componentName">Find Solar Panels</h1>
         </div>
         <div class="clear">
         </div>
@@ -25,7 +25,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th colspan="2">PRICE</th>
+                    <th colspan="2">PRICE (AUD)</th>
                 </tr>
                 <tr>
                     <td>
@@ -47,7 +47,7 @@
                 </tr>
                 <tr>
                     <th colspan="2">
-                        EFFICIENCY
+                        EFFICIENCY (KW)
                     </th>
                 </tr>
                 <tr>
@@ -73,7 +73,7 @@
                 <img src="images/ajax-loader.gif" />
             </div>
             <div id="divNoResults">
-                <h2>Please use the options on the right to search for components</h2>
+                <h2>Please use the options on the left to search for components</h2>
             </div>
             <div id="divResults" style="display: none;">
                 <h3>YOUR RESULTS:</h3>
@@ -103,17 +103,15 @@
                 e.preventDefault();
 
                 //build the url to connect with servlet
-                //uncomment the following lines to connect with real url
                 var url = new UrlBuilder();
                 url.GoogleAppsEngineBaseUrl = "http://solarpowercalc.appspot.com";
-
                 url.ComponentName = 'panel';
                 url.Postcode = $('#txtPostcode').val();
                 url.MinimumPrice = $('#txtMinimumPrice').val();
                 url.MaximumPrice = $('#txtMaximumPrice').val();
                 url.MinimumCapacity = $('#txtMinimumEfficiency').val();
                 url.MaximumCapacity = $('#txtMaximumEfficiency').val();
-                //alert(url.toString());
+                alert(url.toString());
 
                 //create a dummy url
                 url = new UrlBuilder();
@@ -158,68 +156,7 @@
             //remove any existing table, if exists
             $('#tblResults').remove();
 
-            //create table element and assign basic attributes 
-            var $table = $('<table>').attr({ 'id': 'tblResults' });
-
-            //create header row
-            var $theader = $('<thead>');
-
-            //assign column names into header
-            $thead = $('<tr>');
-            $thead.append($('<td>').text('MODEL'));
-            $thead.append($('<td>').text('MANUFACTURER'));
-            $thead.append($('<td>').text('PRICE (AUD)'));
-            $thead.append($('<td>').text('CAPACITY (KW)'));
-            $theader.append($thead);
-
-            //append headers into table
-            $table.append($theader);
-
-            //append body into table
-            $table.append($('<tbody>'));
-
-            var id = 0;
-            //iterating through every panel in the xml
-            $(xml).find("panel").each(function ()
-            {
-                //increment for id
-                id = id+1;
-
-                //put the current xml row into memory
-                $xmlRow = $(this);
-
-                //create row element for main elements
-                var $row = $('<tr>').attr({'class': 'row-main','id':'row_'+id});
-
-                //create html cell and append into row
-                $row.append(createCell(readValueFromXml($xmlRow, 'model')));
-                $row.append(createCell(readValueFromXml($xmlRow, 'manufacturer')));
-                var price = readValueFromXml($xmlRow, 'price')
-                $row.append(createCell(roundNumber(price, 2)));
-                var capacity = readValueFromXml($xmlRow, 'capacity')
-                $row.append(createCell(roundNumber(capacity, 2)));
-
-                $table.append($row);
-
-                //create row for details elements
-                $row = $('<tr>').attr('class', 'row-details');
-                $row.append(
-                    $('<td>').attr({ 'colspan': '4' }).html
-                    (
-                        '<h5>Additional Information for ' + readValueFromXml($xmlRow, 'name') + '</h5>' +
-                        'VOLTAGE: ' + readValueFromXml($xmlRow, 'voltage') + '</br>' +
-                        'DIMENSIONS: ' + readValueFromXml($xmlRow, 'dimensions') + '</br>' +
-                        'EFFIENCY DECREASE: ' + readValueFromXml($xmlRow, 'efficiencyDecrease') + '</br>' +
-                        'OPERATING CURRENT: ' + readValueFromXml($xmlRow, 'operatingCurrent') + '</br>' +
-                        'WARRANTY: ' + readValueFromXml($xmlRow, 'warranty') + '</br>' +
-                        readValueFromXml($xmlRow, 'description')
-
-                    )
-                );
-                $table.append($row);
-
-
-            });
+            var $table = createPanelTable(xml);
 
             //append the table into divResults
             $('#divResults').append($table);
@@ -252,6 +189,74 @@
         {
             var result = Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
             return result;
+        }
+
+        function createPanelTable(xml)
+        {
+            //create table element and assign basic attributes 
+            var $table = $('<table>').attr({ 'id': 'tblResults' });
+
+            //create header row
+            var $theader = $('<thead>');
+
+            //assign column names into header
+            $thead = $('<tr>');
+            $thead.append($('<td>').text('MODEL'));
+            $thead.append($('<td>').text('MANUFACTURER'));
+            $thead.append($('<td>').text('PRICE (AUD)'));
+            $thead.append($('<td>').text('CAPACITY (KW)'));
+            $theader.append($thead);
+
+            //append headers into table
+            $table.append($theader);
+
+            //append body into table
+            $table.append($('<tbody>'));
+
+            var id = 0;
+            //iterating through every panel in the xml
+            $(xml).find("panel").each(function ()
+            {
+                //increment for id
+                id = id + 1;
+
+                //put the current xml row into memory
+                $xmlRow = $(this);
+
+                //create row element for main elements
+                var $row = $('<tr>').attr({ 'class': 'row-main', 'id': 'row_' + id });
+
+                //create html cell and append into row
+                $row.append(createCell(readValueFromXml($xmlRow, 'model')));
+                $row.append(createCell(readValueFromXml($xmlRow, 'manufacturer')));
+                var price = readValueFromXml($xmlRow, 'price')
+                $row.append(createCell(roundNumber(price, 2)));
+                var capacity = readValueFromXml($xmlRow, 'capacity')
+                $row.append(createCell(roundNumber(capacity, 2)));
+
+                $table.append($row);
+
+                //create row for details elements
+                $row = $('<tr>').attr('class', 'row-details');
+                $row.append(
+                    $('<td>').attr({ 'colspan': '4' }).html
+                    (
+                        '<h5>Additional Information for ' + readValueFromXml($xmlRow, 'name') + '</h5>' +
+                        'VOLTAGE: ' + readValueFromXml($xmlRow, 'voltage') + '</br>' +
+                        'DIMENSIONS: ' + readValueFromXml($xmlRow, 'dimensions') + '</br>' +
+                        'EFFIENCY DECREASE: ' + readValueFromXml($xmlRow, 'efficiencyDecrease') + '</br>' +
+                        'OPERATING CURRENT: ' + readValueFromXml($xmlRow, 'operatingCurrent') + '</br>' +
+                        'WARRANTY: ' + readValueFromXml($xmlRow, 'warranty') + '</br>' +
+                        readValueFromXml($xmlRow, 'description')
+
+                    )
+                );
+                $table.append($row);
+
+
+            });
+
+            return $table;
         }
 
       

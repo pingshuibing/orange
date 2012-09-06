@@ -21,12 +21,13 @@ function UrlBuilder()
 
             if (this.ComponentName != "")
             {
-                completeUrl += "/" + this.ComponentName;
+                completeUrl += "/" + this.ComponentName + "?";
             }
 
             if (this.MinimumPrice != "" || this.MaximumPrice != "")
             {
-                completeUrl += "/price/" + this.MinimumPrice + "/" + this.MaximumPrice;
+                completeUrl += "minPrice=" + this.MinimumPrice + "&maxPrice=" + this.MaximumPrice;
+
             }
 
             if (this.Postcode != "")
