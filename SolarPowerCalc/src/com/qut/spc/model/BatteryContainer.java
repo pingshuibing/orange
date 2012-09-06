@@ -34,16 +34,8 @@ public class BatteryContainer extends ComponentContainer<Battery>
 		list = new ArrayList<Battery>();
 	}
 	
-	public BatteryContainer(List<Battery> list) {
-		this.list = list;
-	}
-	
 	public List<Battery> getList() {
 		return list;
-	}
-	
-	public void setList(List<Battery> list) {
-		this.list = list;
 	}
 
 	@Override
