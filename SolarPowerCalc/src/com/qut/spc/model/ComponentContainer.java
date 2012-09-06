@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 
 import com.qut.spc.EMF;
 import com.qut.spc.api.ComponentFilterAPI;
@@ -15,6 +18,7 @@ import com.qut.spc.postcode.PostcodeUtil;
  * Common container for all Panel/Battery/Inverter
  * @author QuocViet
  */
+@XmlAccessorType(XmlAccessType.NONE)
 public abstract class ComponentContainer<T extends SolarComponent> implements ComponentFilterAPI {
 	private double minPrice = 0.0;
 	
@@ -126,6 +130,8 @@ public abstract class ComponentContainer<T extends SolarComponent> implements Co
 		return ret;	
 	}
 	
+	
+	@XmlTransient
 	public abstract List<T> getList();
 	
 	public void save(){
