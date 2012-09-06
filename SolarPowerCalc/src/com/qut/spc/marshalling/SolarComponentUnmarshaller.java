@@ -14,6 +14,13 @@ import com.qut.spc.model.PanelContainer;
 
 public class SolarComponentUnmarshaller {
 	
+	/**
+	 * Unmarshalls the given XML file into the specified ComponentContainer class type
+	 * @param type Type of class to unmarshal into
+	 * @param xml XML string to be unmarshalled
+	 * @return T extends ComponentContainer, unmarshalled XML file
+	 * @throws IllegalArgumentException
+	 */
 	public <T extends ComponentContainer> T unmarshall(Class<T> type,String xml) throws IllegalArgumentException{
 		try {
 			JAXBContext jc=JAXBContext.newInstance(type);
