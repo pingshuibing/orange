@@ -47,7 +47,7 @@
         {
             var url = new UrlBuilder();
             url.GoogleAppsEngineBaseUrl = "http://baseurl";
-            equal(url.toString(), "http://baseurl", "testing baseUrl: http://baseurl");
+            equal(url.toString(), "http://baseurl?", "testing baseUrl: http://baseurl?");
 
             url.ComponentName = "panel";
             equal(url.toString(), "http://baseurl/panel?", "testing component: http://baseurl/panel?");
@@ -67,7 +67,7 @@
             url.GoogleAppsEngineBaseUrl = "http://baseurl";
             url.ComponentName = "component";
             url.Postcode = "4121";
-            equal(url.toString(), "http://baseurl/component&postcode=4121", "only postcode: http://baseurl/component&postcode=4121");
+            equal(url.toString(), "http://baseurl/component?postcode=4121", "only postcode: http://baseurl/component?postcode=4121");
 
         });
         
