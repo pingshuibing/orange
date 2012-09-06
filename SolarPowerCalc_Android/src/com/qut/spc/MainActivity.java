@@ -41,8 +41,9 @@ public class MainActivity extends Activity  {
     
     private String GetPanelPrices(String priceMin,String priceMax)
     {
-    	
-    	 return JSONGETRequest("http://solarpowercalc.appspot.com/component?priceMin="+priceMin+"&priceMax="+priceMax);
+    	// the actual send of the information is commented to use later
+    	 //return JSONGETRequest("http://solarpowercalc.appspot.com/component?priceMin="+priceMin+"&priceMax="+priceMax);
+    	 return JSONGETRequest("http://solarpowercalc.appspot.com/panel");
     }
     
    private String JSONGETRequest(String ServiceRequest)
@@ -53,13 +54,15 @@ public class MainActivity extends Activity  {
 			URL url = new URL(ServiceRequest);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
-			conn.setRequestProperty("Accept", "application/json");
-	 
-			if (conn.getResponseCode() != 200) {
-				throw new RuntimeException("Failed : HTTP error code : "
-						+ conn.getResponseCode());
-			}
-	 
+			
+			
+
+// this code is to check for the response health later
+//			if (conn.getResponseCode() != HttpURLConnection.) {
+//				throw new RuntimeException("Failed : HTTP error code : "
+//						+ conn.getResponseCode());
+//			}
+//	 
 			BufferedReader br = new BufferedReader(new InputStreamReader(
 				(conn.getInputStream())));
 	 
