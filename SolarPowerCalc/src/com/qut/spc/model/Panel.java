@@ -52,4 +52,19 @@ public class Panel extends SolarComponent {
 	public void save() {
 		Database.saveComponent(this);
 	}
+
+	@Override
+	public String toString() {
+		return "Panel [operatingCurrent=" + operatingCurrent + ", getId()="
+				+ getId() + ", getName()=" + getName() + ", getModel()="
+				+ getModel() + ", getManufacturer()=" + getManufacturer()
+				+ ", getPrice()=" + getPrice() + ", getCapacity()="
+				+ getCapacity() + ", getVoltage()=" + getVoltage()
+				+ ", getEfficiencyDecrease()=" + getEfficiencyDecrease()
+				+ ", getWarranty()=" + getWarranty() + ", getDimensions()="
+				+ getDimensions() + ", getDescription()=" + getDescription()
+				+ ", getPostcode()=" + getPostcode() + "]";
+	}
+	
+	
 }
