@@ -85,6 +85,7 @@ public abstract class ComponentContainer<T extends SolarComponent> implements Co
 		QueryBuilder qbCapacity = new QueryBuilder(table);
 		QueryBuilder qbPostcode = new QueryBuilder(table);
 		
+		
 		qbPrice.addRange("price", minPrice, maxPrice);
 		qbCapacity.addRange("capacity", minCapacity, maxCapacity);
 		qbPostcode.addStringInList("postcode", postcode);
@@ -92,6 +93,7 @@ public abstract class ComponentContainer<T extends SolarComponent> implements Co
 		List<T> price=makeQueryAndExecute(qbPrice);
 		List<T> capacity=makeQueryAndExecute(qbCapacity);
 		List<T> postcode=makeQueryAndExecute(qbPostcode);
+		
 		
 		return intersection(intersection(price, capacity),postcode);
 	}

@@ -17,7 +17,7 @@ public class Battery extends SolarComponent {
 	}
 	
 	@XmlElement
-	private String type;
+	private String type="";
 	
 	public String getType(){
 		return type;
