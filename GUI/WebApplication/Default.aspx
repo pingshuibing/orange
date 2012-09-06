@@ -156,7 +156,7 @@
         function bindPanelXmlToTable(xml)
         {
             //remove any existing table, if exists
-            $('#tblResults_wrapper').remove();
+            $('#tblResults').remove();
 
             //create table element and assign basic attributes 
             var $table = $('<table>').attr({ 'id': 'tblResults' });
@@ -166,7 +166,7 @@
 
             //assign column names into header
             $thead = $('<tr>');
-            $thead.append($('<td>').text('NAME'));
+            $thead.append($('<td>').text('MODEL'));
             $thead.append($('<td>').text('MANUFACTURER'));
             $thead.append($('<td>').text('PRICE (AUD)'));
             $thead.append($('<td>').text('CAPACITY (KW)'));
@@ -192,7 +192,7 @@
                 var $row = $('<tr>').attr({'class': 'row-main','id':'row_'+id});
 
                 //create html cell and append into row
-                $row.append(createCell(readValueFromXml($xmlRow, 'name')));
+                $row.append(createCell(readValueFromXml($xmlRow, 'model')));
                 $row.append(createCell(readValueFromXml($xmlRow, 'manufacturer')));
                 var price = readValueFromXml($xmlRow, 'price')
                 $row.append(createCell(roundNumber(price, 2)));
