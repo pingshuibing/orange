@@ -24,7 +24,7 @@ import com.qut.spc.api.InverterFilterAPI;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="inverters")
-public class InverterContainer extends ComponentContainer
+public class InverterContainer extends ComponentContainer<Inverter>
 		implements InverterFilterAPI {
 	
 	@XmlElement(name="inverter")

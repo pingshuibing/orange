@@ -15,7 +15,7 @@ import com.qut.spc.postcode.PostcodeUtil;
  * Common container for all Panel/Battery/Inverter
  * @author QuocViet
  */
-public abstract class ComponentContainer implements ComponentFilterAPI {
+public abstract class ComponentContainer<T extends SolarComponent> implements ComponentFilterAPI {
 	private double minPrice = 0.0;
 	
 	private double maxPrice = 0.0;
@@ -69,7 +69,7 @@ public abstract class ComponentContainer implements ComponentFilterAPI {
 		this.postcode = postcode;
 	}
 
-	protected <T extends SolarComponent> List<T> fetchComponents(String table)
+	protected List<T> fetchComponents(String table)
 			throws IllegalArgumentException {
 		if (maxPrice != 0.0 && maxPrice < minPrice) {
 			throw new IllegalArgumentException(
@@ -97,7 +97,7 @@ public abstract class ComponentContainer implements ComponentFilterAPI {
 	}
 	
 	
-	private <T extends SolarComponent> List<T> makeQueryAndExecute(QueryBuilder builder){
+	private List<T> makeQueryAndExecute(QueryBuilder builder){
 		EntityManager em = EMF.get().createEntityManager();
 		
 		Query query = builder.getQuery(em);
@@ -113,7 +113,7 @@ public abstract class ComponentContainer implements ComponentFilterAPI {
 		
 	}
 	
-	private <T extends SolarComponent> List<T> intersection(List<T>list1,List<T>list2){
+	private List<T> intersection(List<T>list1,List<T>list2){
 		List<T>ret=new ArrayList<T>();
 		for(T t: list1){
 			if(list2.contains(t))
@@ -121,4 +121,6 @@ public abstract class ComponentContainer implements ComponentFilterAPI {
 		}
 		return ret;	
 	}
+	
+	public abstract List<T> getList();
 }

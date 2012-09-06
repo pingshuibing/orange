@@ -24,7 +24,7 @@ import com.qut.spc.api.PanelFilterAPI;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="panels")
-public class PanelContainer extends ComponentContainer
+public class PanelContainer extends ComponentContainer<Panel>
 		implements PanelFilterAPI {
 
 	@XmlElement(name="panel")

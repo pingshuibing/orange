@@ -24,7 +24,7 @@ import com.qut.spc.api.BatteryFilterAPI;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="batteries")
-public class BatteryContainer extends ComponentContainer
+public class BatteryContainer extends ComponentContainer<Battery>
 		implements BatteryFilterAPI {
 	
 	@XmlElement(name="battery")
