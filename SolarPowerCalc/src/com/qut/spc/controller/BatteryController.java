@@ -31,7 +31,7 @@ public class BatteryController {
 			@QueryParam("priceMax") @DefaultValue("0") double maxPrice,
 			@QueryParam("capacityMin") @DefaultValue("0") double minCapacity,
 			@QueryParam("capacityMax") @DefaultValue("0") double maxCapacity,
-			@QueryParam("postcode") @DefaultValue("0000") String postcode)
+			@QueryParam("postcode") @DefaultValue("") String postcode)
 					throws InvalidArgumentException{
 		try {
 			db.setMaxCapacity(maxCapacity);
@@ -41,35 +41,11 @@ public class BatteryController {
 			db.setPostcode(postcode);
 			db.search();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new InvalidArgumentException(e.getMessage());
 		}
 		
-		BatteryContainer container=new BatteryContainer();
-		Battery battery=new Battery();
-		battery.setDimensions("asdjiadsj");
-		battery.setEfficiencyDecrease(10);
-		battery.setManufacturer("a");
-		battery.setModel("AA");
-		battery.setName("aa");
-		
-		battery.setType("ASD");
-		
-		ArrayList<String> pc=new ArrayList<String>();
-		pc.add("1111");
-		pc.add("2222");
-		
-		battery.setPostcode(pc);
-		battery.setPrice(4242);
-		battery.setVoltage(42);
-		battery.setWarranty(25);
-		
-		ArrayList<Battery> ret=new ArrayList<Battery>();
-		ret.add(battery);
-		container.setList(ret);
-		return container;
 		
 		
-//		return db;
+		return db;
 	}
 }

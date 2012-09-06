@@ -29,7 +29,7 @@ public class InverterController {
 			@QueryParam("priceMax") @DefaultValue("0") double maxPrice,
 			@QueryParam("capacityMin") @DefaultValue("0") double minCapacity,
 			@QueryParam("capacityMax") @DefaultValue("0") double maxCapacity,
-			@QueryParam("postcode") @DefaultValue("0000") String postcode)
+			@QueryParam("postcode") @DefaultValue("") String postcode)
 					throws InvalidArgumentException{
 		try {
 			db.setMaxCapacity(maxCapacity);
