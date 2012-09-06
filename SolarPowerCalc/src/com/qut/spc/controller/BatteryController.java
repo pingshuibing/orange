@@ -1,5 +1,7 @@
 package com.qut.spc.controller;
 
+import java.util.ArrayList;
+
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -8,7 +10,10 @@ import javax.ws.rs.QueryParam;
 
 import com.qut.spc.api.BatteryFilterAPI;
 import com.qut.spc.exceptions.InvalidArgumentException;
+import com.qut.spc.model.Battery;
 import com.qut.spc.model.BatteryContainer;
+import com.qut.spc.model.Inverter;
+import com.qut.spc.model.InverterContainer;
 
 @Path("/battery/")
 public class BatteryController {
@@ -39,6 +44,32 @@ public class BatteryController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return db;
+		
+		BatteryContainer container=new BatteryContainer();
+		Battery battery=new Battery();
+		battery.setDimensions("asdjiadsj");
+		battery.setEfficiencyDecrease(10);
+		battery.setManufacturer("a");
+		battery.setModel("AA");
+		battery.setName("aa");
+		
+		battery.setType("ASD");
+		
+		ArrayList<String> pc=new ArrayList<String>();
+		pc.add("1111");
+		pc.add("2222");
+		
+		battery.setPostcode(pc);
+		battery.setPrice(4242);
+		battery.setVoltage(42);
+		battery.setWarranty(25);
+		
+		ArrayList<Battery> ret=new ArrayList<Battery>();
+		ret.add(battery);
+		container.setList(ret);
+		return container;
+		
+		
+//		return db;
 	}
 }
