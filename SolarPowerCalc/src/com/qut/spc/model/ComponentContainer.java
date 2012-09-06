@@ -113,6 +113,8 @@ public abstract class ComponentContainer<T extends SolarComponent> implements Co
 		
 	}
 	
+	public abstract void setList(List<T> list);
+	
 	private List<T> intersection(List<T>list1,List<T>list2){
 		List<T>ret=new ArrayList<T>();
 		for(T t: list1){
@@ -123,4 +125,9 @@ public abstract class ComponentContainer<T extends SolarComponent> implements Co
 	}
 	
 	public abstract List<T> getList();
+	
+	public void save(){
+		for(SolarComponent c:getList())
+			c.save();
+	}
 }
