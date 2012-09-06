@@ -58,16 +58,16 @@
 
             url.MaximumCapacity = "50";
             url.MinimumCapacity = "20";
-            equal(url.toString(), "http://baseurl/panel/price/100/500/capacity/20/50", "testing capacity: http://baseurl/panel/price/100/500/capacity/20/50");
+            equal(url.toString(), "http://baseurl/panel?priceMin=100&priceMax=500&capacityMin=20&capacityMax=50", "testing capacity: http://baseurl/panel?priceMin=100&priceMax=500&capacityMin=20&capacityMax=50");
 
             url.Postcode = "4121";
-            equal(url.toString(), "http://baseurl/panel/price/100/500/postcode/4121/capacity/20/50", "testing postcode: http://baseurl/panel/price/100/500/postcode/4121/capacity/20/50");
+            equal(url.toString(), "http://baseurl/panel?priceMin=100&priceMax=500&postcode=4121&capacityMin=20&capacityMax=50", "testing postcode: http://baseurl/panel?priceMin=100&priceMax=500&postcode=4121&capacityMin=20&capacityMax=50");
 
             url = new UrlBuilder();
             url.GoogleAppsEngineBaseUrl = "http://baseurl";
             url.ComponentName = "component";
             url.Postcode = "4121";
-            equal(url.toString(), "http://baseurl/component/postcode/4121", "only postcode: http://baseurl/component/postcode/4121");
+            equal(url.toString(), "http://baseurl/component&postcode=4121", "only postcode: http://baseurl/component&postcode=4121");
 
         });
         

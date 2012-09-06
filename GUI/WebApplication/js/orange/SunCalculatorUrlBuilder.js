@@ -26,18 +26,18 @@ function UrlBuilder()
 
             if (this.MinimumPrice != "" || this.MaximumPrice != "")
             {
-                completeUrl += "minPrice=" + this.MinimumPrice + "&maxPrice=" + this.MaximumPrice;
+                completeUrl += "priceMin=" + this.MinimumPrice + "&priceMax=" + this.MaximumPrice;
 
             }
 
             if (this.Postcode != "")
             {
-                completeUrl += "/postcode/" + this.Postcode;
+                completeUrl += "&postcode=" + this.Postcode;
             }
 
             if (this.MinimumCapacity != "" || this.MaximumCapacity != "")
             {
-                completeUrl += "/capacity/" + this.MinimumCapacity + "/" + this.MaximumCapacity;
+                completeUrl += "&capacityMin=" + this.MinimumCapacity + "&capacityMax=" + this.MaximumCapacity;
             }
         }
 
