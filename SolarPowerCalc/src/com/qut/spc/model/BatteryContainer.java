@@ -43,4 +43,11 @@ public class BatteryContainer extends ComponentContainer<Battery>
 		list = fetchComponents(Battery.class.getName());
 		return list;
 	}
+
+	@Override
+	public void setList(List<Battery> list) {
+		this.list=list;
+	}
+
+
 }

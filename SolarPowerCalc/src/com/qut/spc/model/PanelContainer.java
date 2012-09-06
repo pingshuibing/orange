@@ -38,6 +38,7 @@ public class PanelContainer extends ComponentContainer<Panel>
 		return list;
 	}
 	
+	@Override
 	public void setList(List<Panel> panels)
 	{
 		this.list=panels;

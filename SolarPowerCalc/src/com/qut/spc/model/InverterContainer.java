@@ -43,4 +43,9 @@ public class InverterContainer extends ComponentContainer<Inverter>
 		list = fetchComponents(Inverter.class.getName());
 		return list;
 	}
+
+	@Override
+	public void setList(List<Inverter> list) {
+		this.list=list;
+	}
 }
