@@ -21,6 +21,10 @@ public class Inverter extends SolarComponent {
 	@XmlElement
 	private String outputFrequency = "";
 	
+	@XmlElement
+	private int efficiency=100;
+	
+
 	public Inverter() {
 		
 	}
@@ -63,6 +67,13 @@ public class Inverter extends SolarComponent {
 
 	public void setOutputFrequency(String outputFrequency) {
 		this.outputFrequency = outputFrequency;
+	}
+	public int getEfficiency() {
+		return efficiency;
+	}
+	
+	public void setEfficiency(int efficiency) {
+		this.efficiency = efficiency;
 	}
 	
 	public static Inverter load(long id) {

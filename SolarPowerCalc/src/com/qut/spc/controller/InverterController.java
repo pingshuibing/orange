@@ -42,32 +42,6 @@ public class InverterController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		InverterContainer container=new InverterContainer();
-		Inverter inverter=new Inverter();
-		inverter.setBatteryVoltageRange("aa");
-		inverter.setCapacity(500);
-		inverter.setDimensions("asdjiadsj");
-		inverter.setEfficiencyDecrease(10);
-		inverter.setManufacturer("a");
-		inverter.setModel("AA");
-		inverter.setName("aa");
-		inverter.setOutputFrequency("aa");
-		inverter.setOutputVoltage("aaa");
-		
-		ArrayList<String> pc=new ArrayList<String>();
-		pc.add("1111");
-		pc.add("2222");
-		
-		inverter.setPostcode(pc);
-		inverter.setPrice(4242);
-		inverter.setVoltage(42);
-		inverter.setWarranty(25);
-		
-		ArrayList<Inverter> ret=new ArrayList<Inverter>();
-		ret.add(inverter);
-		container.setList(ret);
-		return container;
-//		return db;
+		return db;
 	}
 }
