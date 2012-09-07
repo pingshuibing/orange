@@ -39,4 +39,6 @@ public interface ComponentFilterAPI {
 	void setMaxCapacity(double maxCapacity) throws IllegalArgumentException;
 	
 	void setPostcode(String postcode) throws IllegalArgumentException;
+	
+
 }

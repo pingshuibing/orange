@@ -1,6 +1,7 @@
 package com.qut.spc.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -99,8 +100,10 @@ public abstract class ComponentContainer<T extends SolarComponent> implements Co
 		List<T> capacity=makeQueryAndExecute(qbCapacity);
 		List<T> postcode=makeQueryAndExecute(qbPostcode);
 		
+		List<T> result=intersection(intersection(price,capacity), postcode);
+		Collections.sort(result);
 		
-		return intersection(intersection(price, capacity),postcode);
+		return result;
 	}
 	
 	

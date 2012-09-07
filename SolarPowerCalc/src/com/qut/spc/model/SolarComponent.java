@@ -31,7 +31,7 @@ import com.qut.spc.postcode.PostcodeUtil;
 @Entity
 @MappedSuperclass
 @XmlAccessorType(XmlAccessType.FIELD)
-public abstract class SolarComponent {
+public abstract class SolarComponent implements Comparable<SolarComponent>{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -285,4 +285,12 @@ public abstract class SolarComponent {
 		}
 		return super.equals(obj);
 	};
+	
+	@Override
+	public int compareTo(SolarComponent o) {
+		return Double.compare(price, o.price);
+	}
+	
+	
+	
 }

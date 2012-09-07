@@ -22,4 +22,5 @@ public interface PanelFilterAPI extends ComponentFilterAPI {
 	 * @throws IllegalArgumentException if a filter is invalid 
 	 */
 	List<Panel> search() throws IllegalArgumentException;
+
 }
