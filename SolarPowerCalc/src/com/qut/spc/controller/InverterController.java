@@ -36,8 +36,7 @@ public class InverterController {
 			db.setPostcode(postcode);
 			db.search();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new InvalidArgumentException(e.getMessage());
 		}
 		return db;
 	}
