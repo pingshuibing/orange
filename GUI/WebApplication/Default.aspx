@@ -3,9 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
-
-
+      
     <div class="container_12 content">
         <div class="grid_12" style="margin-bottom:40px;">
             <h1 id="componentName">FIND SOLAR PANELS</h1>
@@ -62,7 +60,7 @@
                     </td>
                 </tr>
             </table>
-            <input type="submit" id="btnSubmit" value="FIND SOLAR PANELS" style="float: right" />
+            <input type="submit" id="btnSubmit" style="float: right" />
         </div>
         <div class="grid_9">
             <div id="divLoading" style="display:none; text-align:center;">
@@ -86,12 +84,13 @@
     
     <script type="text/javascript">
         //script to make ajax calls and deal with form
-        
+
 
 
         $(document).ready(function ()
         {
-          
+            var globalVars = new OrangeGlobalVars();
+
 
             $('#btnSubmit').click(function (e)
             {
@@ -102,18 +101,19 @@
 
                 //build the url to connect with servlet
                 var url = new UrlBuilder();
-                url.GoogleAppsEngineBaseUrl = "http://solarpowercalc.appspot.com";
+                url.GoogleAppsEngineBaseUrl = globalVars.GoogleAppsEngineBaseUrl;
                 url.ComponentName = componentName;
                 url.Postcode = $('#txtPostcode').val();
                 url.MinimumPrice = $('#txtMinimumPrice').val();
                 url.MaximumPrice = $('#txtMaximumPrice').val();
                 url.MinimumCapacity = $('#txtMinimumEfficiency').val();
                 url.MaximumCapacity = $('#txtMaximumEfficiency').val();
-                
+
                 //create a dummy url
                 //url = new UrlBuilder();
                 //url.GoogleAppsEngineBaseUrl = "http://solarpowercalc.appspot.com/panel";
 
+                //hide or show a 'please wait' message
                 $('#divLoading').toggle();
 
 
@@ -150,9 +150,9 @@
 
         function bindXmlToTable(xml)
         {
-            //remove any existing table, if exists
+            //remove any existing results table, if exists
             $('#tblResults').remove();
-
+                       
             var componentName = $('#txtComponentName').val();
             var $table;
 
@@ -180,27 +180,7 @@
 
         }
 
-        //creates a td element with a given value
-        function createCell(dataValue)
-        {
-            return $('<td>').text(dataValue);
-        }
-
-        function errorWhileRetrievingUrl(errorInfo)
-        {
-            alert("there was an error trying to retrieve the url: " + url.toString());
-        }
-
-        function readValueFromXml($xmlRow, propertyName)
-        {
-            return $xmlRow.find(propertyName).text();
-        }
-
-        function roundNumber(num, dec)
-        {
-            var result = Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
-            return result;
-        }
+        
 
         
     </script>
@@ -469,5 +449,31 @@
             
         }
         
+    </script>
+
+    <script type="text/javascript">
+        //helper functions
+
+        //creates a td element with a given value
+        function createCell(dataValue)
+        {
+            return $('<td>').text(dataValue);
+        }
+
+        function errorWhileRetrievingUrl(errorInfo)
+        {
+            alert("there was an error trying to retrieve the url: " + url.toString());
+        }
+
+        function readValueFromXml($xmlRow, propertyName)
+        {
+            return $xmlRow.find(propertyName).text();
+        }
+
+        function roundNumber(num, dec)
+        {
+            var result = Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
+            return result;
+        }
     </script>
 </asp:Content>
