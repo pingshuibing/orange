@@ -1,7 +1,5 @@
 package com.qut.spc.controller;
 
-import java.util.ArrayList;
-
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -10,7 +8,6 @@ import javax.ws.rs.QueryParam;
 
 import com.qut.spc.api.InverterFilterAPI;
 import com.qut.spc.exceptions.InvalidArgumentException;
-import com.qut.spc.model.Inverter;
 import com.qut.spc.model.InverterContainer;
 
 @Path("/inverter/")
