@@ -7,10 +7,9 @@
 
 package com.qut.spc.model;
 
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,9 +18,6 @@ import javax.persistence.MappedSuperclass;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-
-import com.qut.spc.postcode.PostcodeUtil;
 
 /**
  * Common interface for each component in solar system.
@@ -68,11 +64,9 @@ public abstract class SolarComponent implements Comparable<SolarComponent>{
 	
 	@XmlElement
 	private double efficiencyDecrease = 0.0;
-	
-	@Basic
-	@XmlElementWrapper
+
 	@XmlElement
-	private List<String> postcode = new ArrayList<String>();
+	private String postcode = "";
 	
 	public SolarComponent() {
 	}
@@ -229,16 +223,26 @@ public abstract class SolarComponent implements Comparable<SolarComponent>{
 		this.description = description;
 	}
 	
-	public List<String> getPostcode() {
+	public String getPostcode() {
 		return postcode;
 	}
 
-	public void setPostcode(List<String> postcode)
-			throws IllegalArgumentException {
-		for (String s : postcode) {
-			PostcodeUtil.validatePostcode(s);
-		}
+	public void setPostcode(String postcode) {
 		this.postcode = postcode;
+	}
+	
+	public void setPostcode(List<String> postcode) {
+		Iterator<String> it = postcode.iterator();
+		
+		if (it.hasNext()) {
+			this.postcode = it.next();
+			
+			while (it.hasNext()) {
+				this.postcode += it.next();
+			}
+		} else {
+			this.postcode = "";
+		}
 	}
 	
 	/**
@@ -266,31 +270,17 @@ public abstract class SolarComponent implements Comparable<SolarComponent>{
 	 */
 	public abstract void save();
 	
+	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof SolarComponent){
-			SolarComponent s=(SolarComponent)obj;
-			boolean ret= s.capacity==capacity & 
-					s.efficiencyDecrease==efficiencyDecrease&
-					s.price==price &
-					s.voltage==voltage&
-					s.manufacturer.equals(manufacturer)&
-					s.description.equals(description)&
-					s.dimensions.equals(dimensions)&
-					s.model.equals(model)&
-					s.name.equals(name);
-			for(String pos:s.postcode)
-				ret=ret&postcode.contains(pos);
-			return ret;
-			
+		if (obj instanceof SolarComponent) {
+			SolarComponent s = (SolarComponent) obj;
+			return (s.getId() == getId());
 		}
 		return super.equals(obj);
-	};
+	}
 	
 	@Override
 	public int compareTo(SolarComponent o) {
 		return Double.compare(price, o.price);
 	}
-	
-	
-	
 }

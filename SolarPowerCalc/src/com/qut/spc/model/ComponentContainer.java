@@ -71,8 +71,12 @@ public abstract class ComponentContainer<T extends SolarComponent> implements Co
 	}
 
 	@Override
-	public void setPostcode(String postcode) {
-		this.postcode = postcode;
+	public void setPostcode(String postcode) throws IllegalArgumentException {
+		if (postcode.isEmpty()) {
+			this.postcode = "";
+		} else {
+			this.postcode = PostcodeUtil.transformPostcode(postcode);
+		}
 	}
 
 	protected List<T> fetchComponents(String table)
@@ -123,6 +127,9 @@ public abstract class ComponentContainer<T extends SolarComponent> implements Co
 		
 	}
 	
+	@XmlTransient
+	public abstract List<T> getList();
+	
 	public abstract void setList(List<T> list);
 	
 	private List<T> intersection(List<T>list1,List<T>list2){
@@ -133,11 +140,7 @@ public abstract class ComponentContainer<T extends SolarComponent> implements Co
 		}
 		return ret;	
 	}
-	
-	
-	@XmlTransient
-	public abstract List<T> getList();
-	
+
 	public void save(){
 		for(SolarComponent c:getList())
 			c.save();

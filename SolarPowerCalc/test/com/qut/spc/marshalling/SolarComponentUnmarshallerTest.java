@@ -44,7 +44,7 @@ public class SolarComponentUnmarshallerTest {
 		assertEquals("Panel number: 21", p.getDescription());
 		assertEquals(24, p.getWarranty());
 		assertEquals(0.0, p.getEfficiencyDecrease(),0.0001);
-		assertEquals("2222", p.getPostcode().get(0));
+		assertEquals("2222", p.getPostcode());
 		assertEquals(0.0, p.getOperatingCurrent(),0.0001);		
 	}
 	

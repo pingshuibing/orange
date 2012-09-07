@@ -202,7 +202,7 @@ public class SolarComponentTest {
 		ArrayList<String> l=new ArrayList<String>();
 		l.add("1234");
 		component.setPostcode(l);
-		assertEquals("1234", component.getPostcode().get(0));		
+		assertEquals("1234", component.getPostcode());		
 	}
 
 	
@@ -233,6 +233,6 @@ public class SolarComponentTest {
 		assertEquals(c1.getDimensions(), c2.getDimensions());
 		assertEquals(c1.getDescription(), c2.getDescription());
 		assertEquals(c1.getMockValue(), c2.getMockValue(), EPSILON);
-		assertEquals("1233", c2.getPostcode().get(0));
+		assertEquals("1233", c2.getPostcode());
 	}
 }
