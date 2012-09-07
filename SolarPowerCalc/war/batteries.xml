@@ -11,6 +11,7 @@
 <dimension>196*130*184</dimension>
 <weight>11.0kg</weight>
 <price>165</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>GEL-TECH</manufacturer>
@@ -23,6 +24,7 @@
 <dimension>238*140*235</dimension>
 <weight>17.1kg</weight>
 <price>249</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>GEL-TECH</manufacturer>
@@ -35,6 +37,7 @@
 <dimension>276*171*251</dimension>
 <weight>24.3kg</weight>
 <price>325</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>GEL-TECH</manufacturer>
@@ -47,6 +50,7 @@
 <dimension>327*171*251</dimension>
 <weight>28.7kg</weight>
 <price>375</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>GEL-TECH</manufacturer>
@@ -59,6 +63,7 @@
 <dimension>329*171*248</dimension>
 <weight>32.5kg</weight>
 <price>419</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>GEL-TECH</manufacturer>
@@ -71,6 +76,7 @@
 <dimension>527*216*254</dimension>
 <weight>59.9kg</weight>
 <price>815</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>GEL-TECH</manufacturer>
@@ -83,6 +89,7 @@
 <dimension>527*279*254</dimension>
 <weight>72.9kg</weight>
 <price>929</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>GEL-TECH</manufacturer>
@@ -95,6 +102,7 @@
 <dimension>260*181*276</dimension>
 <weight>32.5kg</weight>
 <price>419</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Lifeline</manufacturer>
@@ -107,6 +115,7 @@
 <dimension>196*132*175</dimension>
 <weight>10.9kg</weight>
 <price>199</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Lifeline</manufacturer>
@@ -119,6 +128,7 @@
 <dimension>283*172*235</dimension>
 <weight>25.5kg</weight>
 <price>415</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Lifeline</manufacturer>
@@ -131,6 +141,7 @@
 <dimension>333*172*235</dimension>
 <weight>29.5kg</weight>
 <price>465</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Lifeline</manufacturer>
@@ -143,6 +154,7 @@
 <dimension>328*172*236</dimension>
 <weight>31.4kg</weight>
 <price>475</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Lifeline</manufacturer>
@@ -155,6 +167,7 @@
 <dimension>528*222*257</dimension>
 <weight>61.2kg</weight>
 <price>940</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Lifeline</manufacturer>
@@ -167,6 +180,7 @@
 <dimension>527*278*260</dimension>
 <weight>73.6kg</weight>
 <price>1090</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Lifeline</manufacturer>
@@ -179,6 +193,7 @@
 <dimension>261*181*294</dimension>
 <weight>30.0kg</weight>
 <price>475</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Lifeline</manufacturer>
@@ -191,6 +206,7 @@
 <dimension>261*180*331</dimension>
 <weight>42.2kg</weight>
 <price>610</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Remco</manufacturer>
@@ -203,6 +219,7 @@
 <dimension>259*165*208</dimension>
 <weight>25.0kg</weight>
 <price>285</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Remco</manufacturer>
@@ -215,6 +232,7 @@
 <dimension>204*165*208</dimension>
 <weight>30.5kg</weight>
 <price>325</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Enersun SSR</manufacturer>
@@ -227,6 +245,7 @@
 <dimension>340*165*640</dimension>
 <weight>88kg</weight>
 <price>1100</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Enersun SSR</manufacturer>
@@ -239,6 +258,7 @@
 <dimension>340*165*640</dimension>
 <weight>81kg</weight>
 <price>1010</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Enersun SSR</manufacturer>
@@ -251,6 +271,7 @@
 <dimension>435*165*640</dimension>
 <weight>109kg</weight>
 <price>1270</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Enersun SSR</manufacturer>
@@ -263,6 +284,7 @@
 <dimension>531*165*640</dimension>
 <weight>133kg</weight>
 <price>1450</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Enersun SSR</manufacturer>
@@ -275,6 +297,7 @@
 <dimension>326*215*640</dimension>
 <weight>133kg</weight>
 <price>1250</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Enersun SSR</manufacturer>
@@ -287,6 +310,7 @@
 <dimension>340*320*640</dimension>
 <weight>140kg</weight>
 <price>1390</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Raylite</manufacturer>
@@ -299,6 +323,7 @@
 <dimension>585*198*460</dimension>
 <weight>91kg</weight>
 <price>1312</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Raylite</manufacturer>
@@ -311,6 +336,7 @@
 <dimension>585*230*460</dimension>
 <weight>116kg</weight>
 <price>1538</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Raylite</manufacturer>
@@ -323,6 +349,7 @@
 <dimension>585*262*460</dimension>
 <weight>133kg</weight>
 <price>1792</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Raylite</manufacturer>
@@ -335,6 +362,7 @@
 <dimension>411*262*530</dimension>
 <weight>97kg</weight>
 <price>1312</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Raylite</manufacturer>
@@ -347,6 +375,7 @@
 <dimension>415*230*740</dimension>
 <weight>127kg</weight>
 <price>1530</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
 <manufacturer>Raylite</manufacturer>
@@ -359,9 +388,10 @@
 <dimension>415*262*740</dimension>
 <weight>145kg</weight>
 <price>1796</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
-<manufacturer>AUSSIE BATTERIES %amp; SOLAR</manufacturer>
+<manufacturer>AUSSIE BATTERIES &amp; SOLAR</manufacturer>
 <type>AGM</type>
 <model>28AH</model>
 <voltage>12</voltage>
@@ -371,9 +401,10 @@
 <dimension>167*173*128</dimension>
 <weight>8.4kg</weight>
 <price>99</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
-<manufacturer>AUSSIE BATTERIES %amp; SOLAR</manufacturer>
+<manufacturer>AUSSIE BATTERIES &amp; SOLAR</manufacturer>
 <type>AGM</type>
 <model>33AH</model>
 <voltage>12</voltage>
@@ -383,9 +414,10 @@
 <dimension>196*131*176</dimension>
 <weight>10.5kg</weight>
 <price>109</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
-<manufacturer>AUSSIE BATTERIES %amp; SOLAR</manufacturer>
+<manufacturer>AUSSIE BATTERIES &amp; SOLAR</manufacturer>
 <type>AGM</type>
 <model>45AH</model>
 <voltage>12</voltage>
@@ -395,9 +427,10 @@
 <dimension>197*165*170</dimension>
 <weight>13.7kg</weight>
 <price>149</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
-<manufacturer>AUSSIE BATTERIES %amp; SOLAR</manufacturer>
+<manufacturer>AUSSIE BATTERIES &amp; SOLAR</manufacturer>
 <type>AGM</type>
 <model>60AH</model>
 <voltage>12</voltage>
@@ -407,9 +440,10 @@
 <dimension>228*137*210</dimension>
 <weight>17.7kg</weight>
 <price>229</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
-<manufacturer>AUSSIE BATTERIES %amp; SOLAR</manufacturer>
+<manufacturer>AUSSIE BATTERIES &amp; SOLAR</manufacturer>
 <type>AGM</type>
 <model>110AH</model>
 <voltage>12</voltage>
@@ -419,9 +453,10 @@
 <dimension>330*173*212</dimension>
 <weight>29.4kg</weight>
 <price>299</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
-<manufacturer>AUSSIE BATTERIES %amp; SOLAR</manufacturer>
+<manufacturer>AUSSIE BATTERIES &amp; SOLAR</manufacturer>
 <type>AGM</type>
 <model>120AH</model>
 <voltage>12</voltage>
@@ -431,9 +466,10 @@
 <dimension>330*173*220</dimension>
 <weight>31.4kg</weight>
 <price>319</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
-<manufacturer>AUSSIE BATTERIES %amp; SOLAR</manufacturer>
+<manufacturer>AUSSIE BATTERIES &amp; SOLAR</manufacturer>
 <type>AGM</type>
 <model>135AH</model>
 <voltage>12</voltage>
@@ -443,9 +479,10 @@
 <dimension>410*177*255</dimension>
 <weight>34.4kg</weight>
 <price>399</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
-<manufacturer>AUSSIE BATTERIES %amp; SOLAR</manufacturer>
+<manufacturer>AUSSIE BATTERIES &amp; SOLAR</manufacturer>
 <type>AGM</type>
 <model>150AH</model>
 <voltage>12</voltage>
@@ -455,9 +492,10 @@
 <dimension>341*172*288</dimension>
 <weight>44.0kg</weight>
 <price>359</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
-<manufacturer>AUSSIE BATTERIES %amp; SOLAR</manufacturer>
+<manufacturer>AUSSIE BATTERIES &amp; SOLAR</manufacturer>
 <type>AGM</type>
 <model>165AH</model>
 <voltage>12</voltage>
@@ -467,9 +505,10 @@
 <dimension>485*172*240</dimension>
 <weight>46.0kg</weight>
 <price>399</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
-<manufacturer>AUSSIE BATTERIES %amp; SOLAR</manufacturer>
+<manufacturer>AUSSIE BATTERIES &amp; SOLAR</manufacturer>
 <type>AGM</type>
 <model>230AH</model>
 <voltage>12</voltage>
@@ -479,9 +518,10 @@
 <dimension>525*243*245</dimension>
 <weight>63.0kg</weight>
 <price>479</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
-<manufacturer>AUSSIE BATTERIES %amp; SOLAR</manufacturer>
+<manufacturer>AUSSIE BATTERIES &amp; SOLAR</manufacturer>
 <type>AGM</type>
 <model>280AH</model>
 <voltage>12</voltage>
@@ -491,9 +531,10 @@
 <dimension>525*268*249</dimension>
 <weight>74.0kg</weight>
 <price>589</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
-<manufacturer>AUSSIE BATTERIES %amp; SOLAR</manufacturer>
+<manufacturer>AUSSIE BATTERIES &amp; SOLAR</manufacturer>
 <type>AGM</type>
 <model>80AH</model>
 <voltage>12</voltage>
@@ -503,9 +544,10 @@
 <dimension>260*170*214</dimension>
 <weight>23.5kg</weight>
 <price>219</price>
+<postcode>4000</postcode>
 </battery>
 <battery>
-<manufacturer>AUSSIE BATTERIES %amp; SOLAR</manufacturer>
+<manufacturer>AUSSIE BATTERIES &amp; SOLAR</manufacturer>
 <type>AGM</type>
 <model>232AH</model>
 <voltage>12</voltage>
@@ -515,5 +557,6 @@
 <dimension>260*181*287</dimension>
 <weight>23.6kg</weight>
 <price>239</price>
+<postcode>4000</postcode>
 </battery>
 </batteries>

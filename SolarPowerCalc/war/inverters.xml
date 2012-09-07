@@ -19,6 +19,7 @@
 <price>790</price>
 <warranty>2</warranty>
 <note>http://www.solaronline.com.au</note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Latronics</manufacturer>
@@ -39,6 +40,7 @@
 <price>840</price>
 <warranty>2</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Latronics</manufacturer>
@@ -59,6 +61,7 @@
 <price>1370</price>
 <warranty>2</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Latronics</manufacturer>
@@ -79,6 +82,7 @@
 <price>1420</price>
 <warranty>2</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Latronics</manufacturer>
@@ -99,6 +103,7 @@
 <price>1780</price>
 <warranty>2</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Latronics</manufacturer>
@@ -119,6 +124,7 @@
 <price>1860</price>
 <warranty>2</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Latronics</manufacturer>
@@ -139,6 +145,7 @@
 <price>2673</price>
 <warranty>3</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Latronics</manufacturer>
@@ -159,6 +166,7 @@
 <price>2540</price>
 <warranty>3</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Latronics</manufacturer>
@@ -179,6 +187,7 @@
 <price>2720</price>
 <warranty>3</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Latronics</manufacturer>
@@ -199,6 +208,7 @@
 <price>2999</price>
 <warranty>3</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Latronics</manufacturer>
@@ -219,6 +229,7 @@
 <price>3190</price>
 <warranty>3</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Latronics</manufacturer>
@@ -239,6 +250,7 @@
 <price>4050</price>
 <warranty>3</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Latronics</manufacturer>
@@ -259,6 +271,7 @@
 <price>4690</price>
 <warranty>3</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Latronics</manufacturer>
@@ -279,6 +292,7 @@
 <price>5650</price>
 <warranty>3</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Studer</manufacturer>
@@ -299,6 +313,7 @@
 <price>420</price>
 <warranty>5</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Studer</manufacturer>
@@ -319,6 +334,7 @@
 <price>770</price>
 <warranty>5</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Studer</manufacturer>
@@ -339,6 +355,7 @@
 <price>1260</price>
 <warranty>5</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Studer</manufacturer>
@@ -359,6 +376,7 @@
 <price>2450</price>
 <warranty>5</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Studer</manufacturer>
@@ -379,6 +397,7 @@
 <price>460</price>
 <warranty>5</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Studer</manufacturer>
@@ -399,6 +418,7 @@
 <price>770</price>
 <warranty>5</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Studer</manufacturer>
@@ -419,6 +439,7 @@
 <price>1260</price>
 <warranty>5</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Studer</manufacturer>
@@ -439,6 +460,7 @@
 <price>2030</price>
 <warranty>5</warranty>
 <note></note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Studer</manufacturer>
@@ -462,6 +484,7 @@
 1.1W
 Power Draw (Standby):
 5.2W</note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Studer</manufacturer>
@@ -485,6 +508,7 @@ Power Draw (Standby):
 1.5W
 Power Draw (Standby):
 12W</note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Xantrex</manufacturer>
@@ -509,6 +533,7 @@ True Sine Wave</outputWaveform>
 &lt; 22W
 Power Draw (Standby):
 &lt; 1.5W</note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Xantrex</manufacturer>
@@ -533,6 +558,7 @@ True Sine Wave</outputWaveform>
 &lt; 22W
 Power Draw (Standby):
 &lt; 1.5W</note>
+<postcode>4000</postcode>
 </inverter>
 <inverter>
 <manufacturer>Xantrex</manufacturer>
@@ -557,5 +583,6 @@ True Sine Wave</outputWaveform>
 &lt; 22W
 Power Draw (Standby):
 &lt; 1.5W</note>
+<postcode>4000</postcode>
 </inverter>
 </inverters>
