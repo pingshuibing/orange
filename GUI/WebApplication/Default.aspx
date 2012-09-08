@@ -135,18 +135,7 @@
 
         });
 
-        function fillSelect(min, max, interval,$element)
-        {
-            $element.append(
-                    $('<option>').attr('value', '').text('None')
-                );
-            for (i = min; i <= max; i += interval)
-            {
-                $element.append(
-                    $('<option>').attr('value', i).text(i)
-                );
-            }
-        }
+     
 
         function bindXmlToTable(xml)
         {
@@ -446,7 +435,22 @@
 
             //set up componentName
             $('#txtComponentName').val(componentName);
-            
+
+        }
+
+        function fillSelect(min, max, interval, $element)
+        {
+            $element.find('option').remove().end();
+
+            $element.append(
+                    $('<option>').attr('value', '').text('None')
+                );
+            for (i = min; i <= max; i += interval)
+            {
+                $element.append(
+                    $('<option>').attr('value', i).text(i)
+                );
+            }
         }
         
     </script>
