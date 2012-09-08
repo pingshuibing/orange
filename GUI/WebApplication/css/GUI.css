@@ -1,7 +1,7 @@
 ﻿/*MAIN ELEMENTS*/
 body { font-family:'Lato', Sans-Serif;}
-header { font-family:'Lato', Sans-Serif;  padding-bottom:10px; padding-top:10px;  }
-footer {font-family: 'Lato', sans-serif; font-size:0.8em;background-color:#0a0907;color:#f5f5f5;} 
+.header { font-family:'Lato', Sans-Serif;  padding-bottom:10px; padding-top:10px;  }
+.footer {font-family: 'Lato', sans-serif; font-size:0.8em;background-color:#0a0907;color:#f5f5f5;} 
 h1{font-family:'Lato';font-size:4em;text-transform:uppercase;font-weight:bold;border-bottom:1px dotted #f5f5f5;}
 h2{font-family:'Lato';font-size:3em;text-transform:uppercase;font-weight:bold;margin: 0 auto;}
 h3{font-family:'Lato';font-size:2.5em;text-transform:uppercase;font-weight:bold;margin: 0 auto;}
@@ -97,9 +97,12 @@ input[type=submit]:hover {background-color:#f5f5f5;color:#ff8b00;}
 	    color-stop(0, #E07B00),
 	    color-stop(0.53, #FF8C00)
     );     
+    
+    
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#E07B00', endColorstr='#FF8C00')"; /* IE8 */
 }
 
-header{
+.header{
     background-image: linear-gradient(bottom, #D6D6D6 0%, #FFFFFF 43%);
     background-image: -o-linear-gradient(bottom, #D6D6D6 0%, #FFFFFF 43%);
     background-image: -moz-linear-gradient(bottom, #D6D6D6 0%, #FFFFFF 43%);
@@ -113,11 +116,11 @@ header{
 	    color-stop(0, #D6D6D6),
 	    color-stop(0.43, #FFFFFF)
     );
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#D6D6D6', endColorstr='#FFFFFF')"; /* IE8 */
 }
 
 .content {
-    -moz-border-radius: 15px;
-    border-radius: 15px;
+  
 }
 
 #divNoResults{margin-left:100px;}

@@ -72,6 +72,11 @@
 	<td>FIND SOLAR PANELS</td>
 </tr>
 <tr>
+	<td>type</td>
+	<td>id=txtPostcode</td>
+	<td>4009</td>
+</tr>
+<tr>
 	<td>click</td>
 	<td>id=btnSubmit</td>
 	<td></td>
@@ -112,11 +117,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>waitForElementNotPresent</td>
-	<td>id=tblResults</td>
-	<td></td>
-</tr>
-<tr>
 	<td>assertValue</td>
 	<td>id=btnSubmit</td>
 	<td>FIND BATTERIES</td>
@@ -182,6 +182,16 @@
 	<td>FIND BATTERIES</td>
 </tr>
 <tr>
+	<td>select</td>
+	<td>id=txtMinimumPrice</td>
+	<td>200</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=txtMaximumPrice</td>
+	<td>600</td>
+</tr>
+<tr>
 	<td>click</td>
 	<td>id=btnSubmit</td>
 	<td></td>
@@ -217,19 +227,14 @@
 	<td></td>
 </tr>
 <tr>
-	<td>waitForElementNotPresent</td>
-	<td>id=tblResults</td>
-	<td></td>
-</tr>
-<tr>
 	<td>assertText</td>
 	<td>id=componentName</td>
 	<td>FIND INVERTERS</td>
 </tr>
 <tr>
-	<td>assertText</td>
+	<td>assertValue</td>
 	<td>id=btnSubmit</td>
-	<td>Find Inverters</td>
+	<td>FIND INVERTERS</td>
 </tr>
 <tr>
 	<td>assertElementPresent</td>
@@ -287,6 +292,16 @@
 	<td></td>
 </tr>
 <tr>
+	<td>select</td>
+	<td>id=txtMinimumEfficiency</td>
+	<td>50</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=txtMaximumEfficiency</td>
+	<td>200</td>
+</tr>
+<tr>
 	<td>click</td>
 	<td>id=btnSubmit</td>
 	<td></td>
@@ -304,16 +319,6 @@
 <tr>
 	<td>clickAt</td>
 	<td>id=row_1</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>id=row_1</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>id=row_2</td>
 	<td></td>
 </tr>
 </tbody></table>
