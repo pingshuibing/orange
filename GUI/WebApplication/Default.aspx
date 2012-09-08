@@ -86,7 +86,6 @@
         //script to make ajax calls and deal with form
 
 
-
         $(document).ready(function ()
         {
             var globalVars = new OrangeGlobalVars();
@@ -226,15 +225,17 @@
                 $row.append(
                     $('<td>').attr({ 'colspan': '4' }).html
                     (
-                        '<h5>Additional Information for ' + readValueFromXml($xmlRow, 'name') + '</h5>' +
-                        'POSTCODE: ' + readValueFromXml($xmlRow, 'postcode') + '</br>' +
-                        'IDENTIFIER: ' + readValueFromXml($xmlRow, 'id') + '</br>' +
-                        'VOLTAGE: ' + readValueFromXml($xmlRow, 'voltage') + '</br>' +
-                        'DIMENSIONS: ' + readValueFromXml($xmlRow, 'dimensions') + '</br>' +
-                        'EFFIENCY DECREASE: ' + readValueFromXml($xmlRow, 'efficiencyDecrease') + '</br>' +
-                        'OPERATING CURRENT: ' + readValueFromXml($xmlRow, 'operatingCurrent') + '</br>' +
-                        'WARRANTY: ' + readValueFromXml($xmlRow, 'warranty') + '</br>' +
-                        readValueFromXml($xmlRow, 'description')
+                        '<h5>Additional Information for ' + readValueFromXml($xmlRow, 'model') + '</h5>' +
+                        '<ul>'+
+                        '<li>POSTCODE: ' + readValueFromXml($xmlRow, 'postcode')  + '</li>' +
+                        '<li>IDENTIFIER: ' + readValueFromXml($xmlRow, 'id')  + '</li>' +
+                        '<li>VOLTAGE: ' + readValueFromXml($xmlRow, 'voltage')  + '</li>' +
+                        '<li>DIMENSIONS: ' + readValueFromXml($xmlRow, 'dimensions')  + '</li>' +
+                        '<li>EFFIENCY DECREASE: ' + readValueFromXml($xmlRow, 'efficiencyDecrease')  + '</li>' +
+                        '<li>OPERATING CURRENT: ' + readValueFromXml($xmlRow, 'operatingCurrent')  + '</li>' +
+                        '<li>WARRANTY: ' + readValueFromXml($xmlRow, 'warranty')  + '</li>' +
+                        '<li>DESCRIPTION: '+ readValueFromXml($xmlRow, 'description')+'</li>'+
+                        '</ul>'
 
                     )
                 );
@@ -300,17 +301,18 @@
                     $('<td>').attr({ 'colspan': '4' }).html
                     (
                         '<h5>Additional Information for ' + readValueFromXml($xmlRow, 'name') + '</h5>' +
-                        'POSTCODE: ' + readValueFromXml($xmlRow, 'postcode') + '</br>' +
-                        'IDENTIFIER: ' + readValueFromXml($xmlRow, 'id') + '</br>' +
-                        'VOLTAGE: ' + readValueFromXml($xmlRow, 'voltage') + '</br>' +
-                        'DIMENSIONS: ' + readValueFromXml($xmlRow, 'dimensions') + '</br>' +
-                        'EFFIENCY DECREASE: ' + readValueFromXml($xmlRow, 'efficiencyDecrease') + '</br>' +
-                        'WARRANTY: ' + readValueFromXml($xmlRow, 'warranty') + '</br>' +
-                        'BATTERY VOLTAGE RANGE: ' + readValueFromXml($xmlRow, 'batteryVoltageRange') + '</br>' +
-                        'OUTPUT VOLTAGE: ' + readValueFromXml($xmlRow, 'outputVoltage') + '</br>' +
-                        'OUTPUT FREQUENCY: ' + readValueFromXml($xmlRow, 'outputFrequency') + '</br>' +
-                        readValueFromXml($xmlRow, 'description')
-
+                        '<ul>' +
+                        '<li>POSTCODE: ' + readValueFromXml($xmlRow, 'postcode') + '</li>' +
+                        '<li>IDENTIFIER: ' + readValueFromXml($xmlRow, 'id') + '</li>' +
+                        '<li>VOLTAGE: ' + readValueFromXml($xmlRow, 'voltage') + '</li>' +
+                        '<li>DIMENSIONS: ' + readValueFromXml($xmlRow, 'dimensions') + '</li>' +
+                        '<li>EFFIENCY DECREASE: ' + readValueFromXml($xmlRow, 'efficiencyDecrease') + '</li>' +
+                        '<li>WARRANTY: ' + readValueFromXml($xmlRow, 'warranty') + '</li>' +
+                        '<li>BATTERY VOLTAGE RANGE: ' + readValueFromXml($xmlRow, 'batteryVoltageRange') + '</li>' +
+                        '<li>OUTPUT VOLTAGE: ' + readValueFromXml($xmlRow, 'outputVoltage') + '</li>' +
+                        '<li>OUTPUT FREQUENCY: ' + readValueFromXml($xmlRow, 'outputFrequency') + '</li>' +
+                        '<li>DESCRIPTION: ' + readValueFromXml($xmlRow, 'description') + '</li>' +
+                        '</ul>' 
                     )
                 );
                 $table.append($row);
@@ -375,14 +377,15 @@
                     $('<td>').attr({ 'colspan': '4' }).html
                     (
                         '<h5>Additional Information for ' + readValueFromXml($xmlRow, 'name') + '</h5>' +
-                        'IDENTIFIER: ' + readValueFromXml($xmlRow, 'id') + '</br>' +
-                        'POSTCODE: ' + readValueFromXml($xmlRow, 'postcode') + '</br>' +
-                        'VOLTAGE: ' + readValueFromXml($xmlRow, 'voltage') + '</br>' +
-                        'DIMENSIONS: ' + readValueFromXml($xmlRow, 'dimensions') + '</br>' +
-                        'EFFIENCY DECREASE: ' + readValueFromXml($xmlRow, 'efficiencyDecrease') + '</br>' +
-                        'WARRANTY: ' + readValueFromXml($xmlRow, 'warranty') + '</br>' +
-                        readValueFromXml($xmlRow, 'description')
-
+                        '<ul>' +
+                        '<li>IDENTIFIER: ' + readValueFromXml($xmlRow, 'id') + '</li>' +
+                        '<li>POSTCODE: ' + readValueFromXml($xmlRow, 'postcode') + '</li>' +
+                        '<li>VOLTAGE: ' + readValueFromXml($xmlRow, 'voltage') + '</li>' +
+                        '<li>DIMENSIONS: ' + readValueFromXml($xmlRow, 'dimensions') + '</li>' +
+                        '<li>EFFIENCY DECREASE: ' + readValueFromXml($xmlRow, 'efficiencyDecrease') + '</li>' +
+                        '<li>WARRANTY: ' + readValueFromXml($xmlRow, 'warranty') + '</li>' +
+                        '<li>DESCRIPTION: '+ readValueFromXml($xmlRow, 'description') + '</li>' +
+                        '</ul>' 
                     )
                 );
                 $table.append($row);
