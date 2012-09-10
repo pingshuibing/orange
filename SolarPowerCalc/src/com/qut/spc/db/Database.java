@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.Query;
 
 import com.qut.spc.EMF;
@@ -143,26 +144,17 @@ public class Database {
 	 * @param cls Class name of the object, e.g. "Panel.class"
 	 * @return Object which full properties are retrieved from database 
 	 */
-	public static <T> T loadComponent(Object id, Class<T> cls) {
+	public static <T> T loadComponent(Object id, Class<T> cls) throws EntityNotFoundException{
 		EntityManager em = EMF.get().createEntityManager();
 		T self;
 		try {
 			self = em.find(cls, id);
-		} finally {
+		} catch(Exception e){
+			throw new EntityNotFoundException(e.getMessage());
+		}
+		finally {
 			em.close();
 		}
 		return self;
-	}
-
-	public static <T> List<T> getComponentById(Class<T> class1, long panelId) {
-		EntityManager em=EMF.get().createEntityManager();
-		Query query=fetchComponentsByField(class1.getName(),"id",panelId+"",em);
-		return getResultList(query, em);
-	}
-
-	private static Query fetchComponentsByField(String table,String field, String parameter,EntityManager em) {
-		String queryString="SELECT FROM "+table+" WHERE "+field+"="+ parameter; 
-		Query query=em.createQuery(queryString);
-		return query;
 	}
 }
