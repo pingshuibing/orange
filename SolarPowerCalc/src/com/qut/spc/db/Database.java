@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
 import com.qut.spc.EMF;
+import com.qut.spc.model.Panel;
 import com.qut.spc.model.SolarComponent;
 
 public class Database {
@@ -73,6 +75,10 @@ public class Database {
 			query.setParameter("max", max);
 		}
 		
+		return getResultList(query, em) ;
+	}
+	
+	private static <T> List<T> getResultList(Query query,EntityManager em){
 		List<T> resultList;
 		try {
 			resultList = new ArrayList<T>(query.getResultList());
@@ -81,7 +87,6 @@ public class Database {
 		}
 		return resultList;
 	}
-	
 	
 	/**
 	 * Build string to query min/max value
@@ -147,5 +152,17 @@ public class Database {
 			em.close();
 		}
 		return self;
+	}
+
+	public static <T> List<T> getComponentById(Class<T> class1, long panelId) {
+		EntityManager em=EMF.get().createEntityManager();
+		Query query=fetchComponentsByField(class1.getName(),"id",panelId+"",em);
+		return getResultList(query, em);
+	}
+
+	private static Query fetchComponentsByField(String table,String field, String parameter,EntityManager em) {
+		String queryString="SELECT FROM "+table+" WHERE "+field+"="+ parameter; 
+		Query query=em.createQuery(queryString);
+		return query;
 	}
 }
