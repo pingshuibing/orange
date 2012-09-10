@@ -44,7 +44,7 @@
                 </tr>
                 <tr>
                     <th colspan="2">
-                        EFFICIENCY (KW)
+                        EFFICIENCY (W)
                     </th>
                 </tr>
                 <tr>
