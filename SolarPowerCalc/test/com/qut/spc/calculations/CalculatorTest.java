@@ -11,17 +11,26 @@ import com.qut.spc.model.BatteryContainer;
 public class CalculatorTest {
 
 	
+	//@Test
+	//public void test() {
+	//	fail("Not yet implemented");
+	//}
+	
+	
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void getElectricityProduction_capacity () {
+		Calculator calculator = new Calculator();
+		double electricity = calculator.getElectricityProduction(100.0,0.8,0.7,120.0,4.0);
+		//System.out.println(electricity);
+		assertEquals(179.20,electricity,0.01);
 	}
 	
-	
 	@Test
-	public void getElectricityProduction_normal () {
+	public void getElectricityProduction_sunEngergy () {
 		Calculator calculator = new Calculator();
-		double electricity = calculator.getElectricityProduction(2.0,0.9,0.8,3.0,4.0);
-		assertEquals(17.28,electricity,0.001);
+		double electricity = calculator.getElectricityProduction(120.0,0.8,0.7,100.0,4.0);
+		//System.out.println(electricity);
+		assertEquals(215.04,electricity,0.01);
 	}
 
 }
