@@ -9,6 +9,9 @@
     <string name="post">Post Code</string>
     <string name="logoImageText">logo image</string>
     <string name="choosprice">Chose your price range</string>
-	<string name="ToString">To</string>
-	<string name="GetPricesString">Get Prices</string>
-</resources>	
+    <string name="ToString">To</string>
+    <string name="GetPricesString">Get Prices</string>
+    <string name="title_activity_display_panels_list">DisplayPanelsList</string>
+    <string name="title_activity_panel_view">PanelView</string>
+
+</resources>

@@ -1,7 +1,11 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="fill_parent" >
+
+    <!-- android:layout_height="wrap_content" -->
 
     <ImageView
         android:id="@+id/slogan"
@@ -41,28 +45,8 @@
         android:layout_centerVertical="true"
         android:ems="3"
         android:inputType="number" />
+    
 
-    <TextView
-        android:id="@+id/ToText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/TextMinPrice"
-        android:layout_toRightOf="@+id/TextMinPrice"
-        android:text="@string/ToString"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <EditText
-        android:id="@+id/TextMaxPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/ToText"
-        android:ems="3"
-        android:inputType="number" >
-
-        <requestFocus />
-    </EditText>
-
     <Button
         android:id="@+id/GetPricesButton"
         android:layout_width="wrap_content"
@@ -71,7 +55,22 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="28dp"
         android:text="@string/GetPricesString" />
-
+
+    
+       <EditText
+        android:id="@+id/TextMaxPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/ToText"
+        android:ems="3"
+        android:inputType="number" >
+
+        <requestFocus android:layout_width="wrap_content" />
+
+    </EditText>
+  
+
     <EditText
         android:id="@+id/outText"
         android:layout_width="wrap_content"
@@ -83,4 +82,16 @@
         android:layout_marginTop="23dp"
         android:ems="10" />
 
+
+    <TextView
+        android:id="@+id/ToText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/TextMinPrice"
+        android:layout_marginLeft="18dp"
+        android:layout_toRightOf="@+id/TextMinPrice"
+        android:text="@string/ToString"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+   
 </RelativeLayout>
+
