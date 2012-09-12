@@ -36,6 +36,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.qut.spc.MainActivity" />
         </activity>
+        <activity
+            android:name=".SearchResultActivity"
+            android:label="@string/title_activity_search_result" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.qut.spc.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
