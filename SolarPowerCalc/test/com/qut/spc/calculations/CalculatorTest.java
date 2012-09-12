@@ -55,8 +55,8 @@ public class CalculatorTest {
 	
 	@Test
 	public void restrictInput_normalDailySun () {
-		Calculator calculator = new Calculator();
-		calculator.getElectricityProduction(100.0,0.8,0.7,100.0,4.0);
+		double electricity = calculator.getElectricityProduction(100.0,0.8,0.7,120.0,4.0);
+		assertEquals(179.20,electricity,0.01);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -85,8 +85,8 @@ public class CalculatorTest {
 	
 	@Test
 	public void restrictInput_normalinverterEfficiency () {
-		Calculator calculator = new Calculator();
-		calculator.getElectricityProduction(100.0,0.8,0.7,100.0,4.0);
+		double electricity = calculator.getElectricityProduction(100.0,0.8,0.7,120.0,4.0);
+		assertEquals(179.20,electricity,0.01);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -115,8 +115,8 @@ public class CalculatorTest {
 	
 	@Test
 	public void restrictInput_normalSolarPanelEfficiency () {
-		Calculator calculator = new Calculator();
-		calculator.getElectricityProduction(100.0,0.8,0.7,100.0,4.0);
+		double electricity = calculator.getElectricityProduction(100.0,0.8,0.7,120.0,4.0);
+		assertEquals(179.20,electricity,0.01);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -133,8 +133,8 @@ public class CalculatorTest {
 	
 	@Test
 	public void restrictInput_normalSolarPowerOutput () {
-		Calculator calculator = new Calculator();
-		calculator.getElectricityProduction(100.0,0.8,0.7,100.0,4.0);
+		double electricity = calculator.getElectricityProduction(100.0,0.8,0.7,120.0,4.0);
+		assertEquals(179.20,electricity,0.01);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -151,8 +151,8 @@ public class CalculatorTest {
 	
 	@Test
 	public void restrictInput_normalTimespan () {
-		Calculator calculator = new Calculator();
-		calculator.getElectricityProduction(100.0,0.8,0.7,100.0,4.0);
+		double electricity = calculator.getElectricityProduction(100.0,0.8,0.7,120.0,4.0);
+		assertEquals(179.20,electricity,0.01);
 	}
 	
 	
