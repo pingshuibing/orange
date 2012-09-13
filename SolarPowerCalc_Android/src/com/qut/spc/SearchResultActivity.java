@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.support.v4.app.NavUtils;
 
@@ -83,7 +84,8 @@ public class SearchResultActivity extends Activity {
 			ListAdapter adapter = new SimpleAdapter(SearchResultActivity.this,
 					vwList, R.layout.component_list, from, to);
 
-//			setListAdapter(adapter);
+			ListView view = (ListView)SearchResultActivity.this.findViewById(R.id.searchResultListView);
+			view.setAdapter(adapter);
 		}
 	}
 }

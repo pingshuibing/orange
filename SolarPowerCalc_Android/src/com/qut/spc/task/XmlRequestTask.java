@@ -18,8 +18,8 @@ import android.util.Xml;
  * @see http://developer.android.com/training/basics/network-ops/xml.html
  */
 public abstract class XmlRequestTask extends AsyncTask<String, Void, XmlPullParser> {
-	private final int READ_TIMEOUT = 10000; /* milliseconds */
-	private final int CONNECT_TIMEOUT = 15000; /* milliseconds */
+	private final int READ_TIMEOUT = 30000; /* milliseconds */
+	private final int CONNECT_TIMEOUT = 60000; /* milliseconds */
 
 	private String method = "GET";
 

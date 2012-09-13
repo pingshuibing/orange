@@ -57,12 +57,12 @@ public class ListRequestTask<T> extends XmlRequestTask {
 			}
 			break;
 		case XmlPullParser.END_TAG:
-			--depth;
 			name = parser.getName();
 			if (depth == 2 && name.equals(itemName) && component != null) {
 				list.add(component);
 				component = null;
 			}
+			--depth;
 			break;
 		case XmlPullParser.TEXT:
 			if (depth == 3 && component != null) {
