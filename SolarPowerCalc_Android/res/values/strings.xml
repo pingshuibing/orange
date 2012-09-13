@@ -3,20 +3,14 @@
     <string name="app_name">Solar power calculator</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">Orange Solar</string>
-    <string name="Logo"></string>
+    <string name="title_activity_main">Solar power calculator</string>
     <string name="greeting">Hello!.. nsert your data</string>
-    <string name="post">Post Code</string>
-    <string name="logoImageText">logo image</string>
-    <string name="choosprice">Chose your price range</string>
-    <string name="ToString">To</string>
-    <string name="GetPricesString">Get Prices</string>
-    <string name="title_activity_display_panels_list">DisplayPanelsList</string>
-    <string name="title_activity_panel_view">PanelView</string>
     <string name="title_activity_search_result">Search result</string>
     <string name="postcode">Postcode</string>
     <string name="price">Price</string>
     <string name="capacity">Capacity</string>
     <string name="search">Search</string>
+    <string name="min">Min</string>
+    <string name="max">Max</string>
 
 </resources>

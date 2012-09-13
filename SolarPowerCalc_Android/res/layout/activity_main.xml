@@ -58,12 +58,14 @@
                     android:id="@+id/priceMin"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/min"
                     android:inputType="number" />
 
                 <EditText
                     android:id="@+id/priceMax"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/max"
                     android:inputType="number" />
 
             </TableRow>
@@ -83,13 +85,16 @@
                     android:id="@+id/capacityMin"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/min"
                     android:inputType="number" >
+
                 </EditText>
 
                 <EditText
                     android:id="@+id/capacityMax"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/max"
                     android:inputType="number" />
 
             </TableRow>
