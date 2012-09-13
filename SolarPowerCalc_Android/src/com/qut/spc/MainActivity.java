@@ -32,8 +32,9 @@ public class MainActivity extends Activity {
         		"Iinverters",
         		"Batteries",
         };
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.id.spComponent, list);
-//        spComponent.setAdapter(adapter);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        		android.R.layout.simple_spinner_dropdown_item, list);
+        spComponent.setAdapter(adapter);
     }
 
     @Override
@@ -48,6 +49,7 @@ public class MainActivity extends Activity {
     	int priceMax = 0;
     	int capacityMin = 0;
     	int capacityMax = 0;
+    	String component = "panel";
     	String str;
     	
     	str = etPostcode.getText().toString();
@@ -70,7 +72,14 @@ public class MainActivity extends Activity {
     	if (str.length() > 0) {
     		capacityMax = Integer.parseInt(str);
     	}
-    	String component = "panel";
+    	str = spComponent.getSelectedItem().toString();
+    	if (str.equals("Panels")) {
+    		component = "panel";
+    	} else if (str.equals("Inverters")) {
+    		component = "inverter";
+    	} else if (str.equals("Batteries")) {
+    		component = "battery";
+    	}  
     	
     	String query = "";
     	if (postcode > 0) {
