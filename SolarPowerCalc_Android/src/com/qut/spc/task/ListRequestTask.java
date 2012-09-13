@@ -1,6 +1,5 @@
 package com.qut.spc.task;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -87,13 +86,19 @@ public class ListRequestTask<T> extends XmlRequestTask {
 	 * @param value
 	 */
 	private void bindProperty(Object obj, String method, String value) {
-		Method m = setterMethods.get(method);
+		Method setter = setterMethods.get(method);
 		
-		if (m != null) {
+		if (setter != null) {
 			// invoke this method to set property
-			Class<?> paramType = m.getParameterTypes()[0];
+			Class<?> paramType = setter.getParameterTypes()[0];
 			try {
-				m.invoke(obj, paramType.getDeclaredMethod("valueOf", String.class).invoke(null, value));
+				if (paramType.equals(String.class)) {
+					setter.invoke(obj, value);
+				} else {
+					Method conv = paramType.getDeclaredMethod("valueOf", String.class);
+					conv.setAccessible(true);
+					setter.invoke(obj, conv.invoke(null, value));
+				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
@@ -110,6 +115,7 @@ public class ListRequestTask<T> extends XmlRequestTask {
 			if (name.startsWith("set")
 					&& m.getParameterTypes().length == 1
 					&& m.getReturnType().equals(Void.TYPE)) {
+				m.setAccessible(true);
 				setterMethods.put(name, m);
 			}
 		}

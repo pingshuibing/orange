@@ -14,5 +14,9 @@
     <string name="title_activity_display_panels_list">DisplayPanelsList</string>
     <string name="title_activity_panel_view">PanelView</string>
     <string name="title_activity_search_result">Search result</string>
+    <string name="postcode">Postcode</string>
+    <string name="price">Price</string>
+    <string name="capacity">Capacity</string>
+    <string name="search">Search</string>
 
 </resources>

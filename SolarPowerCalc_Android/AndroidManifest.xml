@@ -23,20 +23,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DisplayPanelsList"
-            android:label="@string/title_activity_display_panels_list" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.qut.spc.MainActivity" />
-        </activity>
-        <activity
-            android:name=".PanelView"
-            android:label="@string/title_activity_panel_view" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.qut.spc.MainActivity" />
-        </activity>
-        <activity
             android:name=".SearchResultActivity"
             android:label="@string/title_activity_search_result" >
             <meta-data

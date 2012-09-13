@@ -8,6 +8,7 @@ import com.qut.spc.model.*;
 import com.qut.spc.task.ListRequestTask;
 
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +18,8 @@ import android.support.v4.app.NavUtils;
 
 public class SearchResultActivity extends Activity {
 
-    @Override
+    @SuppressLint("NewApi")
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
@@ -59,6 +61,9 @@ public class SearchResultActivity extends Activity {
 		
 		@Override
 		protected void onPostExecute(List<T> list) {
+			if (list == null) {
+				return;
+			}
 			List<HashMap<String, String>> vwList = new ArrayList<HashMap<String, String>>();
 
 			for (T component : list) {
@@ -76,7 +81,7 @@ public class SearchResultActivity extends Activity {
 			int[] to = new int[] { R.id.model, R.id.manufacturer, R.id.price,
 					R.id.capacity, };
 			ListAdapter adapter = new SimpleAdapter(SearchResultActivity.this,
-					vwList, R.layout.componentlist, from, to);
+					vwList, R.layout.component_list, from, to);
 
 //			setListAdapter(adapter);
 		}
