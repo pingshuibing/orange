@@ -2,20 +2,24 @@ package com.qut.spc;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
-import com.qut.spc.model.*;
-import com.qut.spc.task.ListRequestTask;
-
-import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.support.v4.app.NavUtils;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
+import android.widget.SimpleExpandableListAdapter;
+
+import com.qut.spc.model.Battery;
+import com.qut.spc.model.Inverter;
+import com.qut.spc.model.Panel;
+import com.qut.spc.model.SolarComponent;
+import com.qut.spc.task.ListRequestTask;
 
 public class SearchResultActivity extends Activity {
 
@@ -65,26 +69,49 @@ public class SearchResultActivity extends Activity {
 			if (list == null) {
 				return;
 			}
-			List<HashMap<String, String>> vwList = new ArrayList<HashMap<String, String>>();
+			
+			List<HashMap<String, String>> groupData =
+					new ArrayList<HashMap<String, String>>();
+			List<LinkedList<HashMap<String, String>>> childData =
+					new ArrayList<LinkedList<HashMap<String, String>>>();
 
 			for (T component : list) {
+				// Group item
 				HashMap<String, String> item = new HashMap<String, String>();
 
-				item.put("id", Long.toString(component.getId()));
-				item.put("model", component.getModel());
-				item.put("manufacturer", component.getManufacturer());
-				item.put("price", Double.toString(component.getPrice()));
-				item.put("capacity", Double.toString(component.getCapacity()));
-				vwList.add(item);
+				item.put("name", component.getManufacturer() + " - " + component.getModel());
+				groupData.add(item);
+				
+				// Child item
+				LinkedList<HashMap<String, String>> childRow = new LinkedList<HashMap<String,String>>();
+				
+				item = new HashMap<String, String>();
+				item.put("key", "Price: ");
+				item.put("value", component.getPrice().toString());
+				childRow.add(item);
+				
+				item = new HashMap<String, String>();
+				item.put("key", "Capacity: ");
+				item.put("value", component.getCapacity().toString());
+				childRow.add(item);
+				
+				childData.add(childRow);
 			}
-			String[] from = new String[] { "model", "manufacturer", "price",
-					"capacity" };
-			int[] to = new int[] { R.id.model, R.id.manufacturer, R.id.price,
-					R.id.capacity, };
-			ListAdapter adapter = new SimpleAdapter(SearchResultActivity.this,
-					vwList, R.layout.component_list, from, to);
-
-			ListView view = (ListView)SearchResultActivity.this.findViewById(R.id.searchResultListView);
+			
+			String[] groupFrom = new String[] { "name" };
+			int[] groupTo = new int[] { R.id.component_name };
+			
+			String[] childFrom = new String[] { "key", "value" };
+			int[] childTo = new int[] { R.id.component_key, R.id.component_value };
+			
+			ExpandableListAdapter adapter = new SimpleExpandableListAdapter(SearchResultActivity.this,
+					groupData, R.layout.component_list,
+					groupFrom, groupTo,
+					childData, R.layout.component_detail,
+					childFrom, childTo);
+			
+			ExpandableListView view = (ExpandableListView)
+					SearchResultActivity.this.findViewById(R.id.search_result_view);
 			view.setAdapter(adapter);
 		}
 	}

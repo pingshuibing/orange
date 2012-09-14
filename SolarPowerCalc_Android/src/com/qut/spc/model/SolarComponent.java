@@ -35,9 +35,9 @@ public class SolarComponent {
 		this.manufacturer = manufacturer;
 	}
 
-	private double price = 0;
+	private Double price = 0.0;
 	
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 	
@@ -45,9 +45,9 @@ public class SolarComponent {
 		this.price = price;
 	}
 	
-	private double capacity = 0;
+	private Double capacity = 0.0;
 	
-	public double getCapacity() {
+	public Double getCapacity() {
 		return capacity;
 	}
 	
