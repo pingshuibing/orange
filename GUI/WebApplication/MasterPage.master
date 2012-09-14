@@ -50,7 +50,10 @@
                 <a class="menu-link" id="linkFindBatteries" href="Default.aspx">BATTERIES</a>
             </div>
             <div class="grid_3 menu-item">
-                MEASURE</div>
+                MEASURE
+                <br />
+                <a class="menu-link" id="linkCalculateEfficiency" href="Calculate.aspx">ENERGY EFFICIENCY</a>
+            </div>
             <div class="grid_2 menu-item">
                 ABOUT</div>
             <div class="clear">
@@ -76,7 +79,6 @@
                 <li>HERMAN</li>
                 <li>SEBASTIAN</li>
                 <li>ALAN</li>
-                <li><a style="text-decoration:none; color:#f5f5f5;" target="_blank" href="https://docs.google.com/a/alansoto.info/presentation/d/1M7HK53ueDDhBWTLrKYzKQtWBit8V7isc7j1iQfIqqsk/present#slide=id.p">#</a></li>
             </ul>
         </div>
             <div class="clear"></div>
