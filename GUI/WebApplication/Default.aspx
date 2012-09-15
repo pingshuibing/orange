@@ -81,14 +81,15 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderJquery" runat="Server">
     <script src="js/orange/SunCalculatorUrlBuilder.js" type="text/javascript"></script>
     <script src="js/libs/jExpand.js" type="text/javascript"></script>
+    <script src="js/orange/HelperFunctions.js" type="text/javascript"></script>
     
+    <!-- start: script to make ajax calls and deal with form -->
     <script type="text/javascript">
-        //script to make ajax calls and deal with form
-
-
+        
         $(document).ready(function ()
         {
             var globalVars = new OrangeGlobalVars();
+
 
 
             $('#btnSubmit').click(function (e)
@@ -168,13 +169,20 @@
 
         }
 
-        
+        function errorWhileRetrievingUrl(errorInfo)
+        {
+            alert("there was an error trying to retrieve the url: " + url.toString());
+        }
+
 
         
     </script>
+    <!-- end: script to make ajax calls and deal with form -->
     
+    
+    <!-- start: create a solar panel table element from xml data -->
     <script type="text/javascript">
-        //create a panel table element from xml data
+        
         function createPanelTable(xml)
         {
             //create table element and assign basic attributes 
@@ -201,6 +209,8 @@
             //iterating through every panel in the xml
             $(xml).find("panel").each(function ()
             {
+                var helper = new HelperFunctions();
+
                 //increment for id
                 id = id + 1;
 
@@ -211,12 +221,12 @@
                 var $row = $('<tr>').attr({ 'class': 'row-main', 'id': 'row_' + id });
 
                 //create html cell and append into row
-                $row.append(createCell(readValueFromXml($xmlRow, 'model')));
-                $row.append(createCell(readValueFromXml($xmlRow, 'manufacturer')));
-                var price = readValueFromXml($xmlRow, 'price')
-                $row.append(createCell(roundNumber(price, 2)));
-                var capacity = readValueFromXml($xmlRow, 'capacity')
-                $row.append(createCell(roundNumber(capacity, 2)));
+                $row.append(helper.createCell(helper.readValueFromXml($xmlRow, 'model')));
+                $row.append(helper.createCell(helper.readValueFromXml($xmlRow, 'manufacturer')));
+                var price = helper.readValueFromXml($xmlRow, 'price')
+                $row.append(helper.createCell(helper.roundNumber(price, 2)));
+                var capacity = helper.readValueFromXml($xmlRow, 'capacity')
+                $row.append(helper.createCell(helper.roundNumber(capacity, 2)));
 
                 $table.append($row);
 
@@ -226,15 +236,15 @@
                     $('<td>').attr({ 'colspan': '4' }).html
                     (
                         '<h5>Additional Information for ' + readValueFromXml($xmlRow, 'model') + '</h5>' +
-                        '<ul>'+
-                        '<li>POSTCODE: ' + readValueFromXml($xmlRow, 'postcode')  + '</li>' +
-                        '<li>IDENTIFIER: ' + readValueFromXml($xmlRow, 'id')  + '</li>' +
-                        '<li>VOLTAGE: ' + readValueFromXml($xmlRow, 'voltage')  + '</li>' +
-                        '<li>DIMENSIONS: ' + readValueFromXml($xmlRow, 'dimensions')  + '</li>' +
-                        '<li>EFFIENCY DECREASE: ' + readValueFromXml($xmlRow, 'efficiencyDecrease')  + '</li>' +
-                        '<li>OPERATING CURRENT: ' + readValueFromXml($xmlRow, 'operatingCurrent')  + '</li>' +
-                        '<li>WARRANTY: ' + readValueFromXml($xmlRow, 'warranty')  + '</li>' +
-                        '<li>DESCRIPTION: '+ readValueFromXml($xmlRow, 'description')+'</li>'+
+                        '<ul>' +
+                        '<li>POSTCODE: ' + helper.readValueFromXml($xmlRow, 'postcode') + '</li>' +
+                        '<li>IDENTIFIER: ' + helper.readValueFromXml($xmlRow, 'id') + '</li>' +
+                        '<li>VOLTAGE: ' + helper.readValueFromXml($xmlRow, 'voltage') + '</li>' +
+                        '<li>DIMENSIONS: ' + helper.readValueFromXml($xmlRow, 'dimensions') + '</li>' +
+                        '<li>EFFIENCY DECREASE: ' + helper.readValueFromXml($xmlRow, 'efficiencyDecrease') + '</li>' +
+                        '<li>OPERATING CURRENT: ' + helper.readValueFromXml($xmlRow, 'operatingCurrent') + '</li>' +
+                        '<li>WARRANTY: ' + helper.readValueFromXml($xmlRow, 'warranty') + '</li>' +
+                        '<li>DESCRIPTION: ' + helper.readValueFromXml($xmlRow, 'description') + '</li>' +
                         '</ul>'
 
                     )
@@ -247,9 +257,12 @@
             return $table;
         }
     </script>
+    <!-- end: create a solar panel table element from xml data -->
 
+    
+    <!-- start: create a inverter table element from xml data-->
     <script type="text/javascript">
-        //create a inverter table element from xml data
+        
         function createInverterTable(xml)
         {
             //create table element and assign basic attributes 
@@ -286,12 +299,12 @@
                 var $row = $('<tr>').attr({ 'class': 'row-main', 'id': 'row_' + id });
 
                 //create html cell and append into row
-                $row.append(createCell(readValueFromXml($xmlRow, 'model')));
-                $row.append(createCell(readValueFromXml($xmlRow, 'manufacturer')));
-                var price = readValueFromXml($xmlRow, 'price')
-                $row.append(createCell(roundNumber(price, 2)));
-                var capacity = readValueFromXml($xmlRow, 'capacity')
-                $row.append(createCell(roundNumber(capacity, 2)));
+                $row.append(helper.createCell(helper.readValueFromXml($xmlRow, 'model')));
+                $row.append(helper.createCell(helper.readValueFromXml($xmlRow, 'manufacturer')));
+                var price = helper.readValueFromXml($xmlRow, 'price')
+                $row.append(createCell(helper.roundNumber(price, 2)));
+                var capacity = helper.readValueFromXml($xmlRow, 'capacity')
+                $row.append(helper.createCell(helper.roundNumber(capacity, 2)));
 
                 $table.append($row);
 
@@ -300,18 +313,18 @@
                 $row.append(
                     $('<td>').attr({ 'colspan': '4' }).html
                     (
-                        '<h5>Additional Information for ' + readValueFromXml($xmlRow, 'name') + '</h5>' +
+                        '<h5>Additional Information for ' + helper.readValueFromXml($xmlRow, 'name') + '</h5>' +
                         '<ul>' +
-                        '<li>POSTCODE: ' + readValueFromXml($xmlRow, 'postcode') + '</li>' +
-                        '<li>IDENTIFIER: ' + readValueFromXml($xmlRow, 'id') + '</li>' +
-                        '<li>VOLTAGE: ' + readValueFromXml($xmlRow, 'voltage') + '</li>' +
-                        '<li>DIMENSIONS: ' + readValueFromXml($xmlRow, 'dimensions') + '</li>' +
-                        '<li>EFFIENCY DECREASE: ' + readValueFromXml($xmlRow, 'efficiencyDecrease') + '</li>' +
-                        '<li>WARRANTY: ' + readValueFromXml($xmlRow, 'warranty') + '</li>' +
-                        '<li>BATTERY VOLTAGE RANGE: ' + readValueFromXml($xmlRow, 'batteryVoltageRange') + '</li>' +
-                        '<li>OUTPUT VOLTAGE: ' + readValueFromXml($xmlRow, 'outputVoltage') + '</li>' +
-                        '<li>OUTPUT FREQUENCY: ' + readValueFromXml($xmlRow, 'outputFrequency') + '</li>' +
-                        '<li>DESCRIPTION: ' + readValueFromXml($xmlRow, 'description') + '</li>' +
+                        '<li>POSTCODE: ' + helper.readValueFromXml($xmlRow, 'postcode') + '</li>' +
+                        '<li>IDENTIFIER: ' + helper.readValueFromXml($xmlRow, 'id') + '</li>' +
+                        '<li>VOLTAGE: ' + helper.readValueFromXml($xmlRow, 'voltage') + '</li>' +
+                        '<li>DIMENSIONS: ' + helper.readValueFromXml($xmlRow, 'dimensions') + '</li>' +
+                        '<li>EFFIENCY DECREASE: ' + helper.readValueFromXml($xmlRow, 'efficiencyDecrease') + '</li>' +
+                        '<li>WARRANTY: ' + helper.readValueFromXml($xmlRow, 'warranty') + '</li>' +
+                        '<li>BATTERY VOLTAGE RANGE: ' + helper.readValueFromXml($xmlRow, 'batteryVoltageRange') + '</li>' +
+                        '<li>OUTPUT VOLTAGE: ' + helper.readValueFromXml($xmlRow, 'outputVoltage') + '</li>' +
+                        '<li>OUTPUT FREQUENCY: ' + helper.readValueFromXml($xmlRow, 'outputFrequency') + '</li>' +
+                        '<li>DESCRIPTION: ' + helper.readValueFromXml($xmlRow, 'description') + '</li>' +
                         '</ul>' 
                     )
                 );
@@ -323,11 +336,15 @@
             return $table;
         }
     </script>
+    <!-- end: create a inverter table element from xml data-->
 
+    
+    <!-- start: create a battery table element from xml data-->
     <script type="text/javascript">
-        //create a battery table element from xml data
         function createBatteryTable(xml)
         {
+            var helper = new HelperFunctions();
+
             //create table element and assign basic attributes 
             var $table = $('<table>').attr({ 'id': 'tblResults' });
 
@@ -362,12 +379,12 @@
                 var $row = $('<tr>').attr({ 'class': 'row-main', 'id': 'row_' + id });
 
                 //create html cell and append into row
-                $row.append(createCell(readValueFromXml($xmlRow, 'model')));
-                $row.append(createCell(readValueFromXml($xmlRow, 'manufacturer')));
-                var price = readValueFromXml($xmlRow, 'price')
-                $row.append(createCell(roundNumber(price, 2)));
-                var capacity = readValueFromXml($xmlRow, 'capacity')
-                $row.append(createCell(roundNumber(capacity, 2)));
+                $row.append(helper.createCell(helper.readValueFromXml($xmlRow, 'model')));
+                $row.append(helper.createCell(helper.readValueFromXml($xmlRow, 'manufacturer')));
+                var price = helper.readValueFromXml($xmlRow, 'price')
+                $row.append(helper.createCell(helper.roundNumber(price, 2)));
+                var capacity = helper.readValueFromXml($xmlRow, 'capacity')
+                $row.append(helper.createCell(helper.roundNumber(capacity, 2)));
 
                 $table.append($row);
 
@@ -378,13 +395,13 @@
                     (
                         '<h5>Additional Information for ' + readValueFromXml($xmlRow, 'name') + '</h5>' +
                         '<ul>' +
-                        '<li>IDENTIFIER: ' + readValueFromXml($xmlRow, 'id') + '</li>' +
-                        '<li>POSTCODE: ' + readValueFromXml($xmlRow, 'postcode') + '</li>' +
-                        '<li>VOLTAGE: ' + readValueFromXml($xmlRow, 'voltage') + '</li>' +
-                        '<li>DIMENSIONS: ' + readValueFromXml($xmlRow, 'dimensions') + '</li>' +
-                        '<li>EFFIENCY DECREASE: ' + readValueFromXml($xmlRow, 'efficiencyDecrease') + '</li>' +
-                        '<li>WARRANTY: ' + readValueFromXml($xmlRow, 'warranty') + '</li>' +
-                        '<li>DESCRIPTION: '+ readValueFromXml($xmlRow, 'description') + '</li>' +
+                        '<li>IDENTIFIER: ' + helper.readValueFromXml($xmlRow, 'id') + '</li>' +
+                        '<li>POSTCODE: ' + helper.readValueFromXml($xmlRow, 'postcode') + '</li>' +
+                        '<li>VOLTAGE: ' + helper.readValueFromXml($xmlRow, 'voltage') + '</li>' +
+                        '<li>DIMENSIONS: ' + helper.readValueFromXml($xmlRow, 'dimensions') + '</li>' +
+                        '<li>EFFIENCY DECREASE: ' + helper.readValueFromXml($xmlRow, 'efficiencyDecrease') + '</li>' +
+                        '<li>WARRANTY: ' + helper.readValueFromXml($xmlRow, 'warranty') + '</li>' +
+                        '<li>DESCRIPTION: ' + helper.readValueFromXml($xmlRow, 'description') + '</li>' +
                         '</ul>' 
                     )
                 );
@@ -396,9 +413,12 @@
             return $table;
         }
     </script>
+    <!-- end: create a battery table element from xml data-->
 
+    
+    <!-- start: script to deal with link names-->
     <script type="text/javascript">
-        //script to deal with link names
+        
         $(document).ready(function ()
         {
             resetForm('panel', 'SOLAR PANELS');
@@ -431,56 +451,20 @@
             $('#btnSubmit').val('FIND ' + labelName);
 
             //reset dropdowns
-            fillSelect(100, 1000, 100, $('#txtMinimumPrice'));
-            fillSelect(100, 1000, 100, $('#txtMaximumPrice'));
-            fillSelect(50, 300, 50, $('#txtMinimumEfficiency'));
-            fillSelect(50, 300, 50, $('#txtMaximumEfficiency'));
+            var helper = new HelperFunctions();
+            helper.fillSelect(100, 1000, 100, $('#txtMinimumPrice'));
+            helper.fillSelect(100, 1000, 100, $('#txtMaximumPrice'));
+            helper.fillSelect(50, 300, 50, $('#txtMinimumEfficiency'));
+            helper.fillSelect(50, 300, 50, $('#txtMaximumEfficiency'));
 
             //set up componentName
             $('#txtComponentName').val(componentName);
 
         }
 
-        function fillSelect(min, max, interval, $element)
-        {
-            $element.find('option').remove().end();
 
-            $element.append(
-                    $('<option>').attr('value', '').text('None')
-                );
-            for (i = min; i <= max; i += interval)
-            {
-                $element.append(
-                    $('<option>').attr('value', i).text(i)
-                );
-            }
-        }
         
     </script>
-
-    <script type="text/javascript">
-        //helper functions
-
-        //creates a td element with a given value
-        function createCell(dataValue)
-        {
-            return $('<td>').text(dataValue);
-        }
-
-        function errorWhileRetrievingUrl(errorInfo)
-        {
-            alert("there was an error trying to retrieve the url: " + url.toString());
-        }
-
-        function readValueFromXml($xmlRow, propertyName)
-        {
-            return $xmlRow.find(propertyName).text();
-        }
-
-        function roundNumber(num, dec)
-        {
-            var result = Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
-            return result;
-        }
-    </script>
+    <!-- end: script to deal with link names-->
+  
 </asp:Content>
