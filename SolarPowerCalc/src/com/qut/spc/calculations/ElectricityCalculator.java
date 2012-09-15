@@ -2,7 +2,7 @@ package com.qut.spc.calculations;
 
 import com.qut.spc.api.ElectricityCalculationApi;
 
-public class Calculator implements ElectricityCalculationApi{
+public class ElectricityCalculator implements ElectricityCalculationApi{
 	
 	//from google docs
 	private static final double CORRECTION_FACTOR = 1.25;
