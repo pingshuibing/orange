@@ -23,6 +23,7 @@
         <!-- start: filter results area -->
         <div class="grid_3">
             <table style="width: 100%">
+                <h3>Filter Options</h3>
                 <tr>
                     <th colspan="2">LOCATION</th>
                 </tr>
@@ -79,7 +80,7 @@
 
         <div class="grid_7">
             <h4>Please select a component from the list below. You can also narrow your results by using the filters on the left.</h4>
-            <p>Don't have that model? <input type="submit" id="btnManualInput" value="Input Details Manually" /></p>
+            <p>Don't have that component? <br /><input type="submit" id="btnManualInput" value="Input Details Manually" /></p>
 
         </div>
 
