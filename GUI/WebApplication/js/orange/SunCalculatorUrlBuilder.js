@@ -29,7 +29,20 @@ function UrlBuilder()
 
             if (this.MinimumPrice != "" || this.MaximumPrice != "")
             {
-                parameters += "&priceMin=" + this.MinimumPrice + "&priceMax=" + this.MaximumPrice;
+
+                var min = 0; var max = 0;
+                if (this.MinimumPrice <= this.MaximumPrice)
+                {
+                    min = this.MinimumPrice;
+                    max = this.MaximumPrice;
+                }
+                else
+                {
+                    min = this.MaximumPrice;
+                    max = this.MinimumPrice;
+                }
+
+                parameters += "&priceMin=" + min + "&priceMax=" + max;
             }
 
             if (this.Postcode != "")
@@ -39,7 +52,19 @@ function UrlBuilder()
 
             if (this.MinimumCapacity != "" || this.MaximumCapacity != "")
             {
-                parameters += "&capacityMin=" + this.MinimumCapacity + "&capacityMax=" + this.MaximumCapacity;
+                var min = 0; var max = 0;
+                if (this.MinimumCapacity <= this.MaximumCapacity)
+                {
+                    min = this.MinimumCapacity;
+                    max = this.MaximumCapacity;
+                }
+                else
+                {
+                    min = this.MaximumCapacity;
+                    max = this.MinimumCapacity;
+                }
+
+                parameters += "&capacityMin=" + min + "&capacityMax=" + max;
             }
 
             if (parameters.indexOf("&") == 0)

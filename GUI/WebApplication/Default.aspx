@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                     <th colspan="2">
-                        EFFICIENCY (KW)
+                        EFFICIENCY (W)
                     </th>
                 </tr>
                 <tr>
@@ -432,10 +432,10 @@
             $('#btnSubmit').val('FIND ' + labelName);
 
             //reset dropdowns
-            fillSelect(100, 5000, 100, $('#txtMinimumPrice'));
-            fillSelect(100, 5000, 100, $('#txtMaximumPrice'));
-            fillSelect(50, 500, 50, $('#txtMinimumEfficiency'));
-            fillSelect(50, 500, 50, $('#txtMaximumEfficiency'));
+            fillSelect(100, 1000, 100, $('#txtMinimumPrice'));
+            fillSelect(100, 1000, 100, $('#txtMaximumPrice'));
+            fillSelect(50, 300, 50, $('#txtMinimumEfficiency'));
+            fillSelect(50, 300, 50, $('#txtMaximumEfficiency'));
 
             //set up componentName
             $('#txtComponentName').val(componentName);

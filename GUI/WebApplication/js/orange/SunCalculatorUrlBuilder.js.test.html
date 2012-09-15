@@ -69,6 +69,22 @@
             url.Postcode = "4121";
             equal(url.toString(), "http://baseurl/component?postcode=4121", "only postcode: http://baseurl/component?postcode=4121");
 
+            url = new UrlBuilder();
+            url.GoogleAppsEngineBaseUrl = "http://baseurl";
+            url.ComponentName = "component";
+            url.MinimumCapacity = "500";
+            url.MaximumCapacity = "100";
+            equal(url.toString(), "http://baseurl/component?capacityMin=100&capacityMax=500", "capacity min more than capacity max");
+
+            url = new UrlBuilder();
+            url.GoogleAppsEngineBaseUrl = "http://baseurl";
+            url.ComponentName = "component";
+            url.MinimumPrice = "500";
+            url.MaximumPrice = "100";
+            equal(url.toString(), "http://baseurl/component?priceMin=100&priceMax=500", "price min more than Price max");
+
+
+
         });
         
     </script>
