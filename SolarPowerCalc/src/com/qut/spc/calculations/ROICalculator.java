@@ -38,6 +38,10 @@ public class ROICalculator implements ROICalculationAPI {
 		this.systemCost = cost;
 	}
 	
+	public void getROI () {
+		
+	}
+	
 	
 
 }
