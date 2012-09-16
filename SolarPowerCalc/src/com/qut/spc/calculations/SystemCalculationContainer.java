@@ -1,6 +1,5 @@
 package com.qut.spc.calculations;
 
-import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -68,17 +67,10 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 
 	@Override
 	public double getElectricityProduction() throws EntityNotFoundException{
-		ElectricityCalculationApi calculator = null;
+		ElectricityCalculationApi calculator = new Calculator();
 		
 		double dailySun=DailySunProvider.getDailySunByPostcode(location);
-		System.out.println(panel);
-		System.out.println(inverter);
-		System.out.println(battery);
 		return calculator.getElectricityProduction(dailySun, inverter.getEfficiency(), 100, panel.getCapacity(), timespan);
-	
-		
-		
-		
 	}
 
 	@Override
