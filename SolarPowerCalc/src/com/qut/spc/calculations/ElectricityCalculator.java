@@ -10,27 +10,27 @@ public class ElectricityCalculator implements ElectricityCalculationApi{
 	@Override
 	public double getElectricityProduction(double dailySun,
 			double inverterEfficiency, double solarPanelEfficiency,
-			double solarPowerOutput, double timespan) throws IllegalArgumentException {
+			double solarPowerOutput,double dailyHours, double timespan) throws IllegalArgumentException {
 		
 		//formula: (  estimated watt need/timespan*1.25)*(invertefficiency) 
 		//assume that capacity(solarPowerOutput) is peak electricity generation per hour
 		
-		restrictInput(dailySun,inverterEfficiency,  solarPanelEfficiency,solarPowerOutput,timespan);
+		restrictInput(dailySun,inverterEfficiency,  solarPanelEfficiency,solarPowerOutput,dailyHours,timespan);
 		
 		double actualSunPower = (dailySun/CORRECTION_FACTOR)*solarPanelEfficiency; //a sunlight correction factor of southern hemisphere
 		double electricity;
 		if (solarPowerOutput >= actualSunPower){
-			electricity = actualSunPower*timespan*inverterEfficiency;
+			electricity = actualSunPower*dailyHours*timespan*inverterEfficiency;
 			return electricity;
 		}else {
-			electricity = (solarPowerOutput*timespan)*inverterEfficiency;
+			electricity = (solarPowerOutput*dailyHours*timespan)*inverterEfficiency;
 			return electricity;
 		}
 		
 	}
 
 	private void restrictInput(double dailySun, double inverterEfficiency,
-			double solarPanelEfficiency, double solarPowerOutput,
+			double solarPanelEfficiency, double solarPowerOutput, double dailyHours,
 			double timespan) throws IllegalArgumentException{
 		
 		if (dailySun < 0) {
@@ -45,8 +45,12 @@ public class ElectricityCalculator implements ElectricityCalculationApi{
 		} else if (solarPowerOutput < 0) {
 			throw new IllegalArgumentException("Invaild solarPowerOutPut input, " +
 					"the solar power output parameter shoulbe be more than zero. ");
-		} else if (timespan < 0) {
-			throw new IllegalArgumentException("Invaild time span input, " +
+		} else if (dailyHours < 0) {
+			throw new IllegalArgumentException("Invaild daily hours input, " +
+					"the dailyHours parameter should be more than zero.");
+		}
+		else if (timespan < 0) {
+			throw new IllegalArgumentException("Invaild time  span input, " +
 					"the time span parameter should be more than zero.");
 		}
 		
