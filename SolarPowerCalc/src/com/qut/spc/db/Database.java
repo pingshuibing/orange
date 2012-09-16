@@ -155,6 +155,9 @@ public class Database {
 		finally {
 			em.close();
 		}
+		if(self==null)
+			throw new EntityNotFoundException(cls.getName() +" With id "+id+" wasn't found");
+
 		return self;
 	}
 }

@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PostcodeUtil {
+	
+	private static String DEFAULT_POSTCODE="4000";
+	
 	/**
 	 * 2000 - NSW
 	 * 2900 - ACT
@@ -49,6 +52,8 @@ public class PostcodeUtil {
 			throws IllegalArgumentException {
 
 		if (validatePostcode(postcode)) {
+			if(postcode.equals(""))
+				return DEFAULT_POSTCODE;
 			int p = Integer.parseInt(postcode);
 			for (int[] range : postcodeMapping.keySet()) {
 				if (p <= range[1] && p >= range[0]) {
