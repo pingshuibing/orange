@@ -8,14 +8,14 @@ import com.qut.spc.postcode.PostcodeUtil;
 
 public class DailySunProvider {
 	
-	private static Map<String,Double> locationToSunHours=new HashMap<String, Double>(){
+	private static Map<String,double[]> locationToSunHoursIntensity=new HashMap<String, double[]>(){
 		{
-			put("4000", 7.5);
-			put("5000",6.75);
-			put("2000",7.33);
-			put("3000",5.58);
-			put("2900",7.33);
-			put("6000",7.92);
+			put("4000",new double[]{7.5,4});
+			put("5000",new double[]{6.75,4});
+			put("2000",new double[]{7.33,4});
+			put("3000",new double[]{5.58,4});
+			put("2900",new double[]{7.33,4});
+			put("6000",new double[]{7.92,4});
 
 
 
@@ -26,20 +26,33 @@ public class DailySunProvider {
 	public static double getDailySunByPostcode(String location) throws IllegalArgumentException {
 		if(PostcodeUtil.validatePostcode(location)){
 			String postcode =PostcodeUtil.transformPostcode(location);
-			if(locationToSunHours.containsKey(postcode))
-				return locationToSunHours.get(location);			
+			if(locationToSunHoursIntensity.containsKey(postcode))
+				return locationToSunHoursIntensity.get(location)[0];			
 		}
 		
-		return average(locationToSunHours.values());
+		return average(locationToSunHoursIntensity.values(),0);
 	}
 
 
 
-	private static double average(Collection<Double> values) {
+	private static double average(Collection<double[]> values,int index) {
 		double sum=0;
-		for(Double d:values)
-			sum+=d;
+		for(double[] d:values){
+			if(index<d.length&&index>=0)
+				sum+=d[index];
+		}
 		return sum/values.size();
+	}
+
+
+
+	public static double getDailySunLight(String location) {
+		if(PostcodeUtil.validatePostcode(location)){
+			String postcode=PostcodeUtil.transformPostcode(location);
+			if(locationToSunHoursIntensity.containsKey(postcode))
+				return locationToSunHoursIntensity.get(location)[1];
+		}
+		return average(locationToSunHoursIntensity.values(),1);
 	}
 
 }
