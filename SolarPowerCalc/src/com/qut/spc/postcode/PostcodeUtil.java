@@ -4,7 +4,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PostcodeUtil {
-
+	/**
+	 * 2000 - NSW
+	 * 2900 - ACT
+	 * 3000 - VIC
+	 * 4000 - QLD
+	 * 5000 - SA
+	 * 6000 - WA
+	 * 7000 - TAS
+	 * 0800 - NT
+	 */
 	private static Map<int[], String> postcodeMapping = new HashMap<int[], String>() {
 		{
 			put(new int[] { 1000, 2599 }, "2000");

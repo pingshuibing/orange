@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.Query;
 
 import com.qut.spc.EMF;
+import com.qut.spc.model.Panel;
 import com.qut.spc.model.SolarComponent;
 
 public class Database {
@@ -73,6 +76,10 @@ public class Database {
 			query.setParameter("max", max);
 		}
 		
+		return getResultList(query, em) ;
+	}
+	
+	private static <T> List<T> getResultList(Query query,EntityManager em){
 		List<T> resultList;
 		try {
 			resultList = new ArrayList<T>(query.getResultList());
@@ -81,7 +88,6 @@ public class Database {
 		}
 		return resultList;
 	}
-	
 	
 	/**
 	 * Build string to query min/max value
@@ -138,12 +144,15 @@ public class Database {
 	 * @param cls Class name of the object, e.g. "Panel.class"
 	 * @return Object which full properties are retrieved from database 
 	 */
-	public static <T> T loadComponent(Object id, Class<T> cls) {
+	public static <T> T loadComponent(Object id, Class<T> cls) throws EntityNotFoundException{
 		EntityManager em = EMF.get().createEntityManager();
 		T self;
 		try {
 			self = em.find(cls, id);
-		} finally {
+		} catch(Exception e){
+			throw new EntityNotFoundException(e.getMessage());
+		}
+		finally {
 			em.close();
 		}
 		return self;
