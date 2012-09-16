@@ -12,6 +12,9 @@ public class ElectricityCalculator implements ElectricityCalculationApi{
 			double inverterEfficiency, double solarPanelEfficiency,
 			double solarPowerOutput,double dailyHours, double timespan) throws IllegalArgumentException {
 		
+		inverterEfficiency=inverterEfficiency/100;
+		solarPanelEfficiency=solarPanelEfficiency/100;
+		
 		//formula: (  estimated watt need/timespan*1.25)*(invertefficiency) 
 		//assume that capacity(solarPowerOutput) is peak electricity generation per hour
 		
