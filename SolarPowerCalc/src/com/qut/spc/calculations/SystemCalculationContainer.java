@@ -9,6 +9,7 @@ import com.qut.spc.db.Database;
 import com.qut.spc.model.Battery;
 import com.qut.spc.model.Inverter;
 import com.qut.spc.model.Panel;
+import com.qut.spc.postcode.PostcodeUtil;
 import com.qut.spc.weather.DailySunProvider;
 
 public class SystemCalculationContainer implements SystemCalculationAPI{
@@ -18,11 +19,17 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 	private int timespan;
 	private Battery battery;
 	private Inverter inverter;
+	
+	private ElectricityCalculationApi calculator;
+
+	public SystemCalculationContainer(ElectricityCalculationApi calculator){
+		this.calculator=calculator;
+	}
 
 	@Override
 	public void setPanelId(long id) throws EntityNotFoundException{
 		if(panel==null || panel.getId()!=id){
-			this.panel=Database.loadComponent(id,Panel.class);
+			this.panel=Database.loadComponent((int)id,Panel.class);
 		}
 	}
 
@@ -31,16 +38,16 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 	}
 
 	@Override
-	public void setInverterId(long id) {
+	public void setInverterId(long id) throws EntityNotFoundException {
 		if(inverter==null || inverter.getId()!=id){
-			this.inverter=Database.loadComponent(id,Inverter.class);
+			this.inverter=Database.loadComponent((int)id,Inverter.class);
 		}
 	}
 
 	@Override
-	public void setBatteryId(long id) {
+	public void setBatteryId(long id) throws EntityNotFoundException{
 		if(battery==null || battery.getId()!=id){
-			this.battery=Database.loadComponent(id,Battery.class);
+			this.battery=Database.loadComponent((int)id,Battery.class);
 		}	
 	}
 
@@ -50,8 +57,9 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 	}
 
 	@Override
-	public void setLocation(String postcode) {
-		this.location=postcode;
+	public void setLocation(String postcode) throws IllegalArgumentException{
+		if(PostcodeUtil.validatePostcode(postcode))
+			this.location=PostcodeUtil.transformPostcode(postcode);
 	}
 
 	@Override
@@ -67,16 +75,32 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 
 	@Override
 	public double getElectricityProduction() throws EntityNotFoundException{
-		ElectricityCalculationApi calculator = new Calculator();
 		
 		double dailySun=DailySunProvider.getDailySunByPostcode(location);
-		return calculator.getElectricityProduction(dailySun, inverter.getEfficiency(), 100, panel.getCapacity(), timespan);
+		double sunIntensity=DailySunProvider.getDailySunLight(location);
+		double elProd=calculator.getElectricityProduction(sunIntensity, inverter.getEfficiency(), 100, panel.getCapacity(),dailySun, timespan);
+		return elProd;
 	}
 
 	@Override
 	public double getROI() {
-		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public Panel getPanel() {
+		return panel;
+	}
+
+	public Inverter getInverter() {
+		return inverter;
+	}
+
+	public Battery getBattery() {
+		return battery;
+	}
+
+	public String getLocation() {
+		return location;
 	}
 
 }

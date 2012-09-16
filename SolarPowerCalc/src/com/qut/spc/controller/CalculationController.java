@@ -7,6 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 import com.qut.spc.api.SystemCalculationAPI;
+import com.qut.spc.calculations.ElectricityCalculator;
 import com.qut.spc.calculations.SystemCalculationContainer;
 
 @Path("/calculate/")
@@ -15,7 +16,7 @@ public class CalculationController {
 	private SystemCalculationAPI calculator;
 
 	public CalculationController(){
-		calculator=new SystemCalculationContainer();
+		calculator=new SystemCalculationContainer(new ElectricityCalculator());
 	}
 	public CalculationController(SystemCalculationAPI calculator) {
 		this.calculator=calculator;
