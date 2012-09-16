@@ -81,7 +81,7 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 		
 
 
-		double elProd=calculator.getElectricityProduction(sunIntensity, inverter.getEfficiency(), 100, panel.getCapacity(),dailySun, timespan);
+		double elProd=calculator.getElectricityProduction(sunIntensity, (double)inverter.getEfficiency()/100, 1, panel.getCapacity(),dailySun, timespan);
 		return elProd;
 	}
 

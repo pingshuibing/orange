@@ -22,6 +22,7 @@ public class CalculationController {
 	public CalculationController(){
 		calculator=new SystemCalculationContainer(new ElectricityCalculator());
 	}
+	
 	public CalculationController(SystemCalculationAPI calculator) {
 		this.calculator=calculator;
 	}
