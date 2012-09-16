@@ -78,6 +78,9 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 		
 		double dailySun=DailySunProvider.getDailySunByPostcode(location);
 		double sunIntensity=DailySunProvider.getDailySunLight(location);
+		
+
+
 		double elProd=calculator.getElectricityProduction(sunIntensity, inverter.getEfficiency(), 100, panel.getCapacity(),dailySun, timespan);
 		return elProd;
 	}
