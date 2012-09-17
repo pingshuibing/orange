@@ -11,7 +11,8 @@
         </div>
         <div id="divWelcomePanel" class="grid_12">
             <h3>THIS WIZARD WILL ALLOW YOU TO ACCURATELY CALCULATE ENERGY EFFICIENCY FOR YOUR SOLAR PANEL SYSTEM</h3>
-            <input type="submit" id="btnStartTutorial" style="float: right" value="I AM READY, START NOW" />
+            <input type="submit" id="btnStartWizard" style="float: right" 
+                value="I AM READY, START NOW" />
         </div>
         <div class="clear"></div>
         
