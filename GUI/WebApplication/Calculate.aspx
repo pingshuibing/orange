@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="container_12 content">
         <div class="grid_12">
-            <h1>CALCULATE your system fitness</h1>
+            <h1>CALCULATE YOUR SYSTEM FITNESS</h1>
         </div>
         <div class="clear"></div>
 
@@ -19,9 +19,9 @@
 
         <!-- start: Your System -->
         <div class="grid_12" id="divUserSelection">
-            <h3>Your System</h3>
-            <input type="text" id="currentComponent" style="display:none;" />
-            <table>
+            <h2>Your System</h2>
+            <input type="text" id="currentComponent" />
+            <table  style="background-color:#0A0907;">
                 <tr>
                     <td>
                         <h4>Solar Panel</h4>
@@ -42,16 +42,13 @@
         <!-- end: Your System -->
 
         <!-- start: title caption -->
-        <h3 class="grid_12" id="txtCaptionTitle"></h3>
+        <h2 class="grid_12" id="txtCaptionTitle" style="margin-top:30px; margin-bottom:30px;"></h2>
         <div class="clear"></div>
         <!-- end: title caption -->
-
-
+        
         <!-- start: filter results area -->
-        <div class="grid_3">
-            <div id="divFilterResults">
+        <div class="grid_3" id="divFilterResults">
             <table style="width: 100%">
-                <h3>Filter Options</h3>
                 <tr>
                     <th colspan="2">LOCATION</th>
                 </tr>
@@ -103,7 +100,6 @@
                 </tr>
             </table>
             <input type="submit" id="btnFilterResults" style="float: right" />
-            </div>.
         </div>
         <!-- end: filter results area -->
 
@@ -122,17 +118,14 @@
         <div class="clear"></div>
         <!-- end: wizard steps -->
 
-
-
-        
-
+        <!-- start: results panel -->
         <div id="divResultsPanel" class="grid_12">
             <h3>YOUR SYSTEM EFFICIENCY IS</h3>
             <h2>54</h2>
             <p>WATTS / MONTH</p>
         </div>
-        <div class="clear">
-        </div>
+        <div class="clear"></div>
+        <!-- end: results panel -->
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderJquery" runat="Server">
@@ -141,9 +134,9 @@
     <script src="js/orange/SunCalculatorUrlBuilder.js" type="text/javascript"></script>
     <script src="js/libs/jExpand.js" type="text/javascript"></script>
     
-      <!-- start: steps set up -->
+    <!-- start: steps set up -->
     <script type="text/javascript">
-        function StepZero() {
+        function stepZero() {
             //scroll to beggining of the page
             window.scrollTo(0, 0);
 
@@ -157,31 +150,40 @@
             //reset 'Your System' area
             $('#selectionSolarPanel').text('NOT SELECTED');
             $('#selectionInverter').text('NOT SELECTED');
+            $('#selectionBattery').text('NOT SELECTED');
             
 
             //clear textbox for currentComponent
-            $('#currentComponent').val('');
+            $('#currentComponent').val('start');
 
             //hide and display appropriate tabs
-            /*
             $('#divWelcomePanel').show();
-            $('#divUserSelection').hide();
             $('#divStepOne').hide();
             $('#divStepTwo').hide();
             $('#divStepThree').hide();
             $('#divResultsPanel').hide();
             $('#txtCaptionTitle').hide();
             $('#divFilterResults').hide();
-            $('#btnNext').hide();
-            $('#btnPrevious').hide();
-            */
+            $('#divUserSelection').hide();
+            
         }
 
-        function StepOne() {
+        function stepOne() {
+            //hide and display appropriate tabs
+            $('#divUserSelection').show();
+            $('#divWelcomePanel').hide();
+            $('#divStepOne').show();
+            $('#divStepTwo').hide();
+            $('#divStepThree').hide();
+            $('#divResultsPanel').hide();
+            $('#txtCaptionTitle').show();
+            $('#divFilterResults').show();
+
             //scroll to beggining of the page
             $('html, body').animate({
                 scrollTop: $("#divUserSelection").offset().top
             }, 2000);
+            
 
             //set up textbox for currentComponent
             $('#currentComponent').val('panel');
@@ -189,22 +191,22 @@
             //set up caption
             $('#txtCaptionTitle').text('STEP 1 OF 3: SELECT A SOLAR PANEL');
 
-            /*
-            //hide and display appropriate tabs
-            $('#divWelcomePanel').hide();
-            $('#divUserSelection').show();
-            $('#divStepOne').show();
-            $('#divStepTwo').hide();
-            $('#divStepThree').hide();
-            $('#divResultsPanel').hide();
-            $('#txtCaptionTitle').show();
-            $('#divFilterResults').show();
-            $('#btnNext').show();
-            $('#btnPrevious').hide();
-            */
+            
+            
         }
 
-        function StepTwo() {
+        function stepTwo() {
+            //hide and display appropriate tabs
+            $('#divWelcomePanel').hide('slideRight');
+            $('#divUserSelection').show('slideLeft');
+            $('#divStepOne').hide('slideRight');
+            $('#divStepTwo').show('slideLeft');
+            $('#divStepThree').hide('slideRight');
+            $('#divResultsPanel').hide('slideRight');
+            $('#txtCaptionTitle').show('slideLeft');
+            $('#divFilterResults').show('slideLeft');
+
+
             //scroll to beggining of the page
             $('html, body').animate({
                 scrollTop: $("#divUserSelection").offset().top
@@ -215,45 +217,54 @@
             //set up text
             $('#txtCaptionTitle').text('STEP 2 OF 3: SELECT AN INVERTER');
 
-            /*
-            //hide and display appropriate tabs
-            $('#divWelcomePanel').hide();
-            $('#divUserSelection').show();
-            $('#divStepOne').hide();
-            $('#divStepTwo').show();
-            $('#divStepThree').hide();
-            $('#divResultsPanel').hide();
-            $('#txtCaptionTitle').text('STEP 2 OF 3: SELECT AN INVERTER').show();
-            $('#divFilterResults').show();
-            $('#btnNext').show();
-            $('#btnPrevious').show();
-            */
+            
         }
 
-        function StepThree() {
+        function stepThree() {
+            //hide and display appropriate tabs
+            $('#divWelcomePanel').hide('slideRight');
+            $('#divUserSelection').show('slideLeft');
+            $('#divStepOne').hide('slideRight');
+            $('#divStepTwo').hide('slideRight');
+            $('#divStepThree').show('slideLeft');
+            $('#divResultsPanel').hide('slideRight');
+            $('#txtCaptionTitle').show('slideLeft');
+            $('#divFilterResults').show('slideLeft');
+
             //scroll to beggining of the page
             $('html, body').animate({
                 scrollTop: $("#divUserSelection").offset().top
             }, 2000);
 
-            $('#currentComponent').val('timespan');
+            $('#currentComponent').val('battery');
 
             //set up caption
             $('#txtCaptionTitle').text('STEP 3 OF 3: SELECT A BATTERY');
 
-            /*
+            
+        }
+
+        function stepResults() {
             //hide and display appropriate tabs
-            $('#divWelcomePanel').hide();
-            $('#divUserSelection').show();
-            $('#divStepOne').hide();
-            $('#divStepTwo').hide();
-            $('#divStepThree').show();
-            $('#divResultsPanel').hide();
-            $('#txtCaptionTitle').text('STEP 3 OF 3: SELECT A TIMESPAN').show();
-            $('#divFilterResults').hide();
-            $('#btnNext').show();
-            $('#btnPrevious').show();
-            */
+            $('#divWelcomePanel').hide('slideRight');
+            $('#divUserSelection').show('slideLeft');
+            $('#divStepOne').hide('slideRight');
+            $('#divStepTwo').hide('slideRight');
+            $('#divStepThree').hide('slideRight');
+            $('#divResultsPanel').show('slideLeft');
+            $('#txtCaptionTitle').hide('slideRight');
+            $('#divFilterResults').hide('slideRight');
+
+            //scroll to beggining of the page
+            $('html, body').animate({
+                scrollTop: $("#divUserSelection").offset().top
+            }, 2000);
+
+            $('#currentComponent').val('results');
+
+            //set up caption
+            $('#txtCaptionTitle').text('STEP 3 OF 3: SELECT A BATTERY');
+
         }
 
         
@@ -267,7 +278,7 @@
 
         $(document).ready(function () {
             //reset form
-            StepZero();
+            stepZero();
 
 
             //create variables to make subsequent ajax calls
@@ -377,7 +388,7 @@
                 $row.append(helper.createCell(helper.roundNumber(capacity, 2)));
 
                 //create cell for the call to action
-                var $callToAction = $('<input>').attr({ 'id': helper.readValueFromXml($xmlRow, 'id'), 'class': 'panel-select', 'type':'submit' }).val('Select');
+                var $callToAction = $('<input>').attr({ 'id': 'panel_id_' + helper.readValueFromXml($xmlRow, 'id'), 'class': 'panel-select', 'type':'submit' }).val('Select');
                 $row.append($('<td>').append($callToAction));
 
 
@@ -446,7 +457,7 @@
             $table.append($('<tbody>'));
 
             var id = 0;
-            //iterating through every panel in the xml
+            //iterating through every inverter in the xml
             $(xml).find("inverter").each(function () {
                 var helper = new HelperFunctions();
 
@@ -469,7 +480,7 @@
                 $row.append(helper.createCell(helper.roundNumber(capacity, 2)));
 
                 //create cell for call to action
-                var $callToAction = $('<input>').attr({ 'id': helper.readValueFromXml($xmlRow, 'id'), 'class': 'inverter-select', 'type': 'submit' }).val('Select');
+                var $callToAction = $('<input>').attr({ 'id': 'inverter_id_'+helper.readValueFromXml($xmlRow, 'id'), 'class': 'inverter-select', 'type': 'submit' }).val('Select');
                 $row.append($('<td>').append($callToAction));
 
                 $table.append($row);
@@ -534,8 +545,8 @@
             $table.append($('<tbody>'));
 
             var id = 0;
-            //iterating through every panel in the xml
-            $(xml).find("inverter").each(function () {
+            //iterating through every battery in the xml
+            $(xml).find("battery").each(function () {
                 var helper = new HelperFunctions();
 
                 //increment for id
@@ -545,7 +556,7 @@
                 $xmlRow = $(this);
 
                 //create row element for main elements
-                var $row = $('<tr>').attr({ 'class': 'row-main', 'id': 'inverter_row_' + id });
+                var $row = $('<tr>').attr({ 'class': 'row-main', 'id': 'battery_row_' + id });
 
                 //create html cells and append into row
                 $row.append(helper.createCell(
@@ -557,7 +568,7 @@
                 $row.append(helper.createCell(helper.roundNumber(capacity, 2)));
 
                 //create cell for call to action
-                var $callToAction = $('<input>').attr({ 'id': helper.readValueFromXml($xmlRow, 'id'), 'class': 'inverter-select', 'type': 'submit' }).val('Select');
+                var $callToAction = $('<input>').attr({ 'id': 'battery_id_'+helper.readValueFromXml($xmlRow, 'id'), 'class': 'battery-select', 'type': 'submit' }).val('Select');
                 $row.append($('<td>').append($callToAction));
 
                 $table.append($row);
@@ -569,15 +580,12 @@
                     (
                         '<h5>Additional Information for ' + helper.readValueFromXml($xmlRow, 'name') + '</h5>' +
                         '<ul>' +
-                        '<li>POSTCODE: ' + helper.readValueFromXml($xmlRow, 'postcode') + '</li>' +
                         '<li>IDENTIFIER: ' + helper.readValueFromXml($xmlRow, 'id') + '</li>' +
+                        '<li>POSTCODE: ' + helper.readValueFromXml($xmlRow, 'postcode') + '</li>' +
                         '<li>VOLTAGE: ' + helper.readValueFromXml($xmlRow, 'voltage') + '</li>' +
                         '<li>DIMENSIONS: ' + helper.readValueFromXml($xmlRow, 'dimensions') + '</li>' +
                         '<li>EFFIENCY DECREASE: ' + helper.readValueFromXml($xmlRow, 'efficiencyDecrease') + '</li>' +
                         '<li>WARRANTY: ' + helper.readValueFromXml($xmlRow, 'warranty') + '</li>' +
-                        '<li>BATTERY VOLTAGE RANGE: ' + helper.readValueFromXml($xmlRow, 'batteryVoltageRange') + '</li>' +
-                        '<li>OUTPUT VOLTAGE: ' + helper.readValueFromXml($xmlRow, 'outputVoltage') + '</li>' +
-                        '<li>OUTPUT FREQUENCY: ' + helper.readValueFromXml($xmlRow, 'outputFrequency') + '</li>' +
                         '<li>DESCRIPTION: ' + helper.readValueFromXml($xmlRow, 'description') + '</li>' +
                         '</ul>'
                     )
@@ -601,7 +609,7 @@
             $('#btnStartWizard').click(function (e) 
             {
                 e.preventDefault();
-                StepOne();
+                stepOne();
             });
         });
     </script>
@@ -613,7 +621,7 @@
             $('#divStepOne').on('click', '.panel-select', function (e) {
                 e.preventDefault();
                 $('#selectionSolarPanel').text($(this).attr('id'));
-                StepTwo();
+                stepTwo();
             });
         });
     </script>
@@ -625,11 +633,38 @@
             $('#divStepTwo').on('click', '.inverter-select', function (e) {
                 e.preventDefault();
                 $('#selectionInverter').text($(this).attr('id'));
-                StepThree();
+                stepThree();
             });
         });
     </script>
     <!-- end: inverter selection -->
+
+    <!-- start: battery selection -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#divStepThree').on('click', '.battery-select', function (e) {
+                e.preventDefault();
+                $('#selectionBattery').text($(this).attr('id'));
+                getResults();
+                stepResults();
+            });
+        });
+
+        function getResults() {
+            var url = new UrlBuilder();
+            url.GoogleAppsEngineBaseUrl = 'http://localhost:50681/WebApplication/TestCalculate.xml';
+            //url.ComponentName = 'calculate';
+            //url.Postcode = '4000';
+
+            $.ajax({
+                type: 'POST',
+                url: 'proxy.aspx',
+                dataType: 'xml',
+                data: { servletCallUrl: url.toString() }
+            }).done(function () { alert('yes!'); }).fail(genericAjaxErrorHandler);
+        }
+    </script>
+    <!-- end: battery selection -->
 
 
 
