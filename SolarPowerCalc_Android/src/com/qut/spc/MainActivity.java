@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
 
 	final String[] componentTypes = {
 			"Panels",
-			"Iinverters",
+			"Inverters",
 			"Batteries",
 	};
 
