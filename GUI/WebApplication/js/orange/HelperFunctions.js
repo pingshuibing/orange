@@ -21,7 +21,7 @@
     //creates a td element with a given value
     this.createCell = function createCell(dataValue)
     {
-        return $('<td>').text(dataValue);
+        return $('<td>').html(dataValue);
     }
 
     //returns a data value given an xml row

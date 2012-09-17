@@ -88,6 +88,12 @@
             </div>
             <div id="divStepThree">
                 <h5>PLEASE CHOOSE A TIME SPAN</h5>
+                <h4>Timespan is the unit of time in which you want to see the results. For example watts per month, or watts per year</h4>
+                <select id="txtTimeSpan">
+                    <option>Weeks</option>
+                    <option>Months</option>
+                    <option>Years</option>
+                </select>
             </div>
             <input type="submit" id="btnNext" style="float: right" value="Next" />
             <input type="submit" id="btnPrevious" style="float: right" value="Previous" />
@@ -187,10 +193,10 @@
             //assign column names into header
             $thead = $('<tr>');
 
-            $thead.append($('<td>').text('MANUFACTURER'));
-            $thead.append($('<td>').text('MODEL'));
+            $thead.append($('<td>').text('MANUFACTURER / MODEL'));
             $thead.append($('<td>').text('PRICE (AUD)'));
-            $thead.append($('<td>').text('CAPACITY (KW)'));
+            $thead.append($('<td>').text('CAPACITY (W)'));
+            $thead.append($('<td>').text('ACTION'));
             $theader.append($thead);
 
             //append headers into table
@@ -203,7 +209,7 @@
             //iterating through every panel in the xml
             $(xml).find("panel").each(function () {
                 var helper = new HelperFunctions();
-                
+
                 //increment for id
                 id = id + 1;
 
@@ -213,21 +219,31 @@
                 //create row element for main elements
                 var $row = $('<tr>').attr({ 'class': 'row-main', 'id': 'row_' + id });
 
-                //create html cell and append into row
-                $row.append(helper.createCell(helper.readValueFromXml($xmlRow, 'model')));
-                $row.append(helper.createCell(helper.readValueFromXml($xmlRow, 'manufacturer')));
+                //create html cells and append into row
+                $row.append(
+                    helper.createCell(
+                        '<strong>' + helper.readValueFromXml($xmlRow, 'manufacturer') + '</strong><br />' + helper.readValueFromXml($xmlRow, 'model')
+                    )
+                );
                 var price = helper.readValueFromXml($xmlRow, 'price')
                 $row.append(helper.createCell(helper.roundNumber(price, 2)));
                 var capacity = helper.readValueFromXml($xmlRow, 'capacity')
                 $row.append(helper.createCell(helper.roundNumber(capacity, 2)));
 
+                //create cell for the call to action
+                var $callToAction = $('<input>').attr({ 'id': helper.readValueFromXml($xmlRow, 'id'), 'class': 'panel-select', 'type':'submit' }).val('Select');
+                $row.append($('<td>').append($callToAction));
+
+
+
+                //append all main row to table
                 $table.append($row);
 
                 //create row for details elements
                 var $rowDetails = $('<tr>').attr('class', 'row-details');
                 $rowDetails.append(
                     $('<td>').attr({ 'colspan': '4' }).html(
-                        '<h5>Additional Information for ' + helper.readValueFromXml($xmlRow, 'model') + '</h5>'+
+                        '<h5>Additional Information for ' + helper.readValueFromXml($xmlRow, 'model') + '</h5>' +
                         '<ul>' +
                         '<li>POSTCODE: ' + helper.readValueFromXml($xmlRow, 'postcode') + '</li>' +
                         '<li>IDENTIFIER: ' + helper.readValueFromXml($xmlRow, 'id') + '</li>' +
@@ -241,6 +257,7 @@
                     )
                 );
 
+                //append details row to table
                 $table.append($rowDetails);
 
             });
@@ -270,10 +287,10 @@
 
             //assign column names into header
             $thead = $('<tr>');
-            $thead.append($('<td>').text('MODEL'));
-            $thead.append($('<td>').text('MANUFACTURER'));
+            $thead.append($('<td>').text('MANUFACTURER / MODEL'));
             $thead.append($('<td>').text('PRICE (AUD)'));
-            $thead.append($('<td>').text('CAPACITY (KW)'));
+            $thead.append($('<td>').text('CAPACITY (W)'));
+            $thead.append($('<td>').text('ACTION'));
             $theader.append($thead);
 
             //append headers into table
@@ -296,13 +313,18 @@
                 //create row element for main elements
                 var $row = $('<tr>').attr({ 'class': 'row-main', 'id': 'row_' + id });
 
-                //create html cell and append into row
-                $row.append(helper.createCell(helper.readValueFromXml($xmlRow, 'model')));
-                $row.append(helper.createCell(helper.readValueFromXml($xmlRow, 'manufacturer')));
+                //create html cells and append into row
+                $row.append(helper.createCell(
+                    '<strong>'+helper.readValueFromXml($xmlRow, 'manufacturer')+'</strong><br />' +helper.readValueFromXml($xmlRow, 'model')
+                ));
                 var price = helper.readValueFromXml($xmlRow, 'price')
                 $row.append(helper.createCell(helper.roundNumber(price, 2)));
                 var capacity = helper.readValueFromXml($xmlRow, 'capacity')
                 $row.append(helper.createCell(helper.roundNumber(capacity, 2)));
+
+                //create cell for call to action
+                var $callToAction = $('<input>').attr({ 'id': helper.readValueFromXml($xmlRow, 'id'), 'class': 'panel-select', 'type': 'submit' }).val('Select');
+                $row.append($('<td>').append($callToAction));
 
                 $table.append($row);
 
