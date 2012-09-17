@@ -460,17 +460,17 @@
     </script>
     <!-- start: script to fill inverter table -->
     
-    <!-- start: btnStartTutorial -->
+    <!-- start: btnStartWizard -->
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#btnStartTutorial').click(function (e) 
+            $('#btnStartWizard').click(function (e) 
             {
                 e.preventDefault();
                 StepOne();
             });
         });
     </script>
-    <!-- end: btnStartTutorial -->
+    <!-- end: btnStartWizard -->
 
     <!-- start: solar panel selection -->
     <script type="text/javascript">
