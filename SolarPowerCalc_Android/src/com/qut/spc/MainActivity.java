@@ -28,12 +28,12 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		spComponent = (Spinner)findViewById(R.id.spComponent);
-		etPostcode = (EditText)findViewById(R.id.postcode);
-		etPriceMin = (EditText)findViewById(R.id.priceMin);
-		etPriceMax = (EditText)findViewById(R.id.priceMax);
-		etCapacityMin = (EditText)findViewById(R.id.capacityMin);
-		etCapacityMax = (EditText)findViewById(R.id.capacityMax);
+		spComponent = (Spinner) findViewById(R.id.spComponent);
+		etPostcode = (EditText) findViewById(R.id.postcode);
+		etPriceMin = (EditText) findViewById(R.id.priceMin);
+		etPriceMax = (EditText) findViewById(R.id.priceMax);
+		etCapacityMin = (EditText) findViewById(R.id.capacityMin);
+		etCapacityMax = (EditText) findViewById(R.id.capacityMax);
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_dropdown_item, componentTypes);
@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
 		state.putString("capacityMin", etCapacityMin.getText().toString());
 		state.putString("capacityMax", etCapacityMax.getText().toString());
 	}
-	
+
 	@Override
 	// onRestoreInstanceState is only called when the program is terminated
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -100,67 +100,33 @@ public class MainActivity extends Activity {
 		}
 	}
 
-    public void onSearchClick(View v) {
-    	int postcode = 0;
-    	int priceMin = 0;
-    	int priceMax = 0;
-    	int capacityMin = 0;
-    	int capacityMax = 0;
-    	String component = "panel";
-    	String str;
-    	
-    	str = etPostcode.getText().toString();
-    	if (str.length() > 0) {
-    		postcode = Integer.parseInt(str);
-    	}
-    	str = etPriceMin.getText().toString();
-    	if (str.length() > 0) {
-    		priceMin = Integer.parseInt(str);
-    	}
-    	str = etPriceMax.getText().toString();
-    	if (str.length() > 0) {
-    		priceMax = Integer.parseInt(str);
-    	}
-    	str = etCapacityMin.getText().toString();
-    	if (str.length() > 0) {
-    		capacityMin = Integer.parseInt(str);
-    	}
-    	str = etCapacityMax.getText().toString();
-    	if (str.length() > 0) {
-    		capacityMax = Integer.parseInt(str);
-    	}
-    	str = spComponent.getSelectedItem().toString();
-    	if (str.equals("Panels")) {
-    		component = "panel";
-    	} else if (str.equals("Inverters")) {
-    		component = "inverter";
-    	} else if (str.equals("Batteries")) {
-    		component = "battery";
-    	}  
-    	
-    	String query = "";
-    	if (postcode > 0) {
-    		query += "postcode=" + postcode + "&";
-    	}
-    	if (priceMin > 0) {
-    		query += "priceMin=" + priceMin + "&";
-    	}
-    	if (priceMax > 0) {
-    		query += "priceMax=" + priceMax + "&";
-    	}
-    	if (capacityMin > 0) {
-    		query += "capacityMin=" + capacityMin + "&";
-    	}
-    	if (capacityMax > 0) {
-    		query += "capacityMax=" + capacityMax + "&";
-    	}
-    	search(SPC_URL + "/" + component + "?" + query, component);
-    }
-    
-    private void search(String url, String component) {
-    	Intent i = new Intent(this, SearchResultActivity.class);
-    	i.putExtra("url", url);
-    	i.putExtra("component", component);
-    	startActivity(i);
-    }
+	public void onSearchClick(View v) {
+		String component = "panel";
+		String str;
+
+		str = spComponent.getSelectedItem().toString();
+		if (str.equals("Panels")) {
+			component = "panel";
+		} else if (str.equals("Inverters")) {
+			component = "inverter";
+		} else if (str.equals("Batteries")) {
+			component = "battery";
+		}
+
+		String query = "";
+		query += "postcode=" + etPostcode.getText().toString() + "&";
+		query += "priceMin=" + etPriceMin.getText().toString() + "&";
+		query += "priceMax=" + etPriceMax.getText().toString() + "&";
+		query += "capacityMin=" + etCapacityMin.getText().toString() + "&";
+		query += "capacityMax=" + etCapacityMax.getText().toString() + "&";
+
+		search(SPC_URL + "/" + component + "?" + query, component);
+	}
+
+	private void search(String url, String component) {
+		Intent i = new Intent(this, SearchResultActivity.class);
+		i.putExtra("url", url);
+		i.putExtra("component", component);
+		startActivity(i);
+	}
 }
