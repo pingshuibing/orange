@@ -103,11 +103,11 @@
         <!-- start: Your System -->
         <div class="grid_2" id="divUserSelection">
             <h3>Your System</h3>
-            <input type="text" id="currentComponent" />
+            <input type="text" id="currentComponent" style="display:none;" />
             <h4>Solar Panel</h4>
-            <p id="selectionSolarPanel">SOLAR-E 6542FG</p>
+            <p id="selectionSolarPanel"></p>
             <h4>Inverter</h4>
-            <p id="selectionInverter">SOLAR-E 6542FG</p>
+            <p id="selectionInverter"></p>
             <h4>Timespan</h4>
             <p id="selectionTimeSpan">months</p>
         </div>
