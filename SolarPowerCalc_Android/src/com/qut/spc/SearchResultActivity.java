@@ -103,12 +103,22 @@ public class SearchResultActivity extends Activity {
 				item.put("key", "Price: ");
 				item.put("value", component.getPrice().toString());
 				childRow.add(item);
-
 				item = new HashMap<String, String>();
 				item.put("key", "Capacity: ");
 				item.put("value", component.getCapacity().toString());
 				childRow.add(item);
-
+				item = new HashMap<String, String>();
+				item.put("key", "Postcode: ");
+				item.put("value", component.getPostcode());
+				childRow.add(item);
+				item = new HashMap<String, String>();
+				item.put("key", "Voltage: ");
+				item.put("value", component.getVoltage().toString());
+				childRow.add(item);
+				item = new HashMap<String, String>();
+				item.put("key", "Dimensions: ");
+				item.put("value", component.getDimensions());
+				childRow.add(item);
 				childData.add(childRow);
 			}
 
