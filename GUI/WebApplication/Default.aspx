@@ -82,6 +82,7 @@
     <script src="js/orange/SunCalculatorUrlBuilder.js" type="text/javascript"></script>
     <script src="js/libs/jExpand.js" type="text/javascript"></script>
     <script src="js/orange/HelperFunctions.js" type="text/javascript"></script>
+    <script src="js/orange/GlobalVars.js" type="text/javascript"></script>
     
     <!-- start: script to make ajax calls and deal with form -->
     <script type="text/javascript">
@@ -89,8 +90,6 @@
         $(document).ready(function ()
         {
             var globalVars = new OrangeGlobalVars();
-
-
 
             $('#btnSubmit').click(function (e)
             {
@@ -128,7 +127,6 @@
                 ).fail(
                 errorWhileRetrievingUrl
                 );
-
 
             });
 
@@ -178,7 +176,6 @@
         
     </script>
     <!-- end: script to make ajax calls and deal with form -->
-    
     
     <!-- start: create a solar panel table element from xml data -->
     <script type="text/javascript">
@@ -235,7 +232,7 @@
                 $row.append(
                     $('<td>').attr({ 'colspan': '4' }).html
                     (
-                        '<h5>Additional Information for ' + readValueFromXml($xmlRow, 'model') + '</h5>' +
+                        '<h5>Additional Information for ' + helper.readValueFromXml($xmlRow, 'model') + '</h5>' +
                         '<ul>' +
                         '<li>POSTCODE: ' + helper.readValueFromXml($xmlRow, 'postcode') + '</li>' +
                         '<li>IDENTIFIER: ' + helper.readValueFromXml($xmlRow, 'id') + '</li>' +
@@ -289,6 +286,8 @@
             //iterating through every panel in the xml
             $(xml).find("inverter").each(function ()
             {
+                var helper = new HelperFunctions();
+
                 //increment for id
                 id = id + 1;
 
@@ -302,7 +301,7 @@
                 $row.append(helper.createCell(helper.readValueFromXml($xmlRow, 'model')));
                 $row.append(helper.createCell(helper.readValueFromXml($xmlRow, 'manufacturer')));
                 var price = helper.readValueFromXml($xmlRow, 'price')
-                $row.append(createCell(helper.roundNumber(price, 2)));
+                $row.append(helper.createCell(helper.roundNumber(price, 2)));
                 var capacity = helper.readValueFromXml($xmlRow, 'capacity')
                 $row.append(helper.createCell(helper.roundNumber(capacity, 2)));
 
@@ -325,7 +324,7 @@
                         '<li>OUTPUT VOLTAGE: ' + helper.readValueFromXml($xmlRow, 'outputVoltage') + '</li>' +
                         '<li>OUTPUT FREQUENCY: ' + helper.readValueFromXml($xmlRow, 'outputFrequency') + '</li>' +
                         '<li>DESCRIPTION: ' + helper.readValueFromXml($xmlRow, 'description') + '</li>' +
-                        '</ul>' 
+                        '</ul>'
                     )
                 );
                 $table.append($row);
@@ -393,7 +392,7 @@
                 $row.append(
                     $('<td>').attr({ 'colspan': '4' }).html
                     (
-                        '<h5>Additional Information for ' + readValueFromXml($xmlRow, 'name') + '</h5>' +
+                        '<h5>Additional Information for ' + helper.readValueFromXml($xmlRow, 'name') + '</h5>' +
                         '<ul>' +
                         '<li>IDENTIFIER: ' + helper.readValueFromXml($xmlRow, 'id') + '</li>' +
                         '<li>POSTCODE: ' + helper.readValueFromXml($xmlRow, 'postcode') + '</li>' +
