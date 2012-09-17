@@ -11,15 +11,16 @@
         </div>
         <div id="divWelcomePanel" class="grid_12">
             <h3>THIS WIZARD WILL ALLOW YOU TO ACCURATELY CALCULATE ENERGY EFFICIENCY FOR YOUR SOLAR PANEL SYSTEM</h3>
-            <input type="submit" id="btnSubmit" style="float: right" value="I AM READY, START NOW" />
+            <input type="submit" id="btnStartTutorial" style="float: right" value="I AM READY, START NOW" />
         </div>
-        <div class="clear">
-        </div>
+        <div class="clear"></div>
+        
         <h3 class="grid_12" id="txtCaptionTitle">STEP 1 OF 3: ABOUT YOUR SOLAR PANEL </h3>
-        <div class="clear">
-        </div>
+        <div class="clear"></div>
+
         <!-- start: filter results area -->
         <div class="grid_3">
+            <div id="divFilterResults">
             <table style="width: 100%">
                 <h3>Filter Options</h3>
                 <tr>
@@ -73,45 +74,46 @@
                 </tr>
             </table>
             <input type="submit" id="btnFilterResults" style="float: right" />
+            </div>.
         </div>
         <!-- end: filter results area -->
+
         <!-- start: wizard steps -->
         <div class="grid_7">
             <div id="divStepOne">
-                <h5>PLEASE CHOOSE A SOLAR PANEL</h5>
                 <h4>Please select a component from the list below. You can also narrow your results by using the filters on the left.</h4>
                 <p>Don't have that component?<br />
                 <a href="#"><strong>Input Details Manually</strong></a> </p>
             </div>
             <div id="divStepTwo">
-                <h5>PLEASE CHOOSE AN INVERTER</h5>
             </div>
             <div id="divStepThree">
-                <h5>PLEASE CHOOSE A TIME SPAN</h5>
                 <h4>Timespan is the unit of time in which you want to see the results. For example watts per month, or watts per year</h4>
                 <select id="txtTimeSpan">
-                    <option>Weeks</option>
                     <option>Months</option>
                     <option>Years</option>
+                    <option>Weeks</option>
                 </select>
             </div>
             <input type="submit" id="btnNext" style="float: right" value="Next" />
             <input type="submit" id="btnPrevious" style="float: right" value="Previous" />
         </div>
         <!-- end: wizard steps -->
+
         <!-- start: Your System -->
-        <div class="grid_2">
+        <div class="grid_2" id="divUserSelection">
             <h3>Your System</h3>
+            <input type="text" id="currentComponent" />
             <h4>Solar Panel</h4>
-            <p>SOLAR-E 6542FG</p>
+            <p id="selectionSolarPanel">SOLAR-E 6542FG</p>
             <h4>Inverter</h4>
-            <p>SOLAR-E 6542FG</p>
+            <p id="selectionInverter">SOLAR-E 6542FG</p>
             <h4>Timespan</h4>
-            <p>months</p>
+            <p id="selectionTimeSpan">months</p>
         </div>
-        <div class="clear">
-        </div>
+        <div class="clear"></div>
         <!-- end: Your System -->
+
         <div id="divResultsPanel" class="grid_12">
             <h3>YOUR SYSTEM EFFICIENCY IS</h3>
             <h2>54</h2>
@@ -126,9 +128,13 @@
     <script src="js/orange/HelperFunctions.js" type="text/javascript"></script>
     <script src="js/orange/SunCalculatorUrlBuilder.js" type="text/javascript"></script>
     <script src="js/libs/jExpand.js" type="text/javascript"></script>
-    <!-- start: script to initialize form -->
+    
+      <!-- start: steps set up -->
     <script type="text/javascript">
-        $(document).ready(function () {
+        function StepZero() {
+            //scroll to beggining of the page
+            window.scrollTo(0, 0);
+
             //reset dropdowns
             var helper = new HelperFunctions();
             helper.fillSelect(100, 1000, 100, $('#txtMinimumPrice'));
@@ -136,14 +142,106 @@
             helper.fillSelect(50, 300, 50, $('#txtMinimumEfficiency'));
             helper.fillSelect(50, 300, 50, $('#txtMaximumEfficiency'));
 
+            //reset 'Your System' area
+            $('#selectionSolarPanel').text('NOT SELECTED');
+            $('#selectionInverter').text('NOT SELECTED');
+            $('#selectionTimeSpan').text('MONTHS');
+
+            //clear textbox for currentComponent
+            $('#currentComponent').val('');
+
+            //hide and display appropriate tabs
+            $('#divWelcomePanel').show();
+            $('#divUserSelection').hide();
+            $('#divStepOne').hide();
+            $('#divStepTwo').hide();
+            $('#divStepThree').hide();
+            $('#divResultsPanel').hide();
+            $('#txtCaptionTitle').hide();
+            $('#divFilterResults').hide();
+            $('#btnNext').hide();
+            $('#btnPrevious').hide();
+        }
+
+        function StepOne() {
+            //scroll to beggining of the page
+            window.scrollTo(0, 0);
+
+            //set up textbox for currentComponent
+            $('#currentComponent').val('panel');
+            
+            //hide and display appropriate tabs
+            $('#divWelcomePanel').hide();
+            $('#divUserSelection').show();
+            $('#divStepOne').show();
+            $('#divStepTwo').hide();
+            $('#divStepThree').hide();
+            $('#divResultsPanel').hide();
+            $('#txtCaptionTitle').text('STEP 1 OF 3: SELECT A SOLAR PANEL').show();
+            $('#divFilterResults').show();
+            $('#btnNext').show();
+            $('#btnPrevious').hide();
+        }
+
+        function StepTwo() {
+            //scroll to beggining of the page
+            window.scrollTo(0, 0);
+
+            $('#currentComponent').val('inverter');
+
+            //hide and display appropriate tabs
+            $('#divWelcomePanel').hide();
+            $('#divUserSelection').show();
+            $('#divStepOne').hide();
+            $('#divStepTwo').show();
+            $('#divStepThree').hide();
+            $('#divResultsPanel').hide();
+            $('#txtCaptionTitle').text('STEP 2 OF 3: SELECT AN INVERTER').show();
+            $('#divFilterResults').show();
+            $('#btnNext').show();
+            $('#btnPrevious').show();
+        }
+
+        function StepThree() {
+            //scroll to beggining of the page
+            window.scrollTo(0, 0);
+
+            $('#currentComponent').val('timespan');
+
+            //hide and display appropriate tabs
+            $('#divWelcomePanel').hide();
+            $('#divUserSelection').show();
+            $('#divStepOne').hide();
+            $('#divStepTwo').hide();
+            $('#divStepThree').show();
+            $('#divResultsPanel').hide();
+            $('#txtCaptionTitle').text('STEP 3 OF 3: SELECT A TIMESPAN').show();
+            $('#divFilterResults').hide();
+            $('#btnNext').show();
+            $('#btnPrevious').show();
+        }
+
+        
+    </script>
+    <!-- end: steps set up -->
+
+    <!-- start: script to initialize form -->
+    <script type="text/javascript">
+        //create global variables
+        var globalVars = new OrangeGlobalVars();
+
+        $(document).ready(function () {
+            //reset form
+            StepZero();
+
+
             //create variables to make subsequent ajax calls
-            var globalVars = new OrangeGlobalVars();
             var urlBuilder = new UrlBuilder();
 
             //set variables to fill panel table
             urlBuilder.GoogleAppsEngineBaseUrl = globalVars.GoogleAppsEngineBaseUrl;
-            urlBuilder.ComponentName = 'panel'            
-            
+            urlBuilder.ComponentName = 'panel'
+
             //make ajax call to fil panel table
             $.ajax({
                 type: 'POST',
@@ -323,7 +421,7 @@
                 $row.append(helper.createCell(helper.roundNumber(capacity, 2)));
 
                 //create cell for call to action
-                var $callToAction = $('<input>').attr({ 'id': helper.readValueFromXml($xmlRow, 'id'), 'class': 'panel-select', 'type': 'submit' }).val('Select');
+                var $callToAction = $('<input>').attr({ 'id': helper.readValueFromXml($xmlRow, 'id'), 'class': 'inverter-select', 'type': 'submit' }).val('Select');
                 $row.append($('<td>').append($callToAction));
 
                 $table.append($row);
@@ -360,7 +458,51 @@
         }
     </script>
     <!-- start: script to fill inverter table -->
-
     
+    <!-- start: btnStartTutorial -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnStartTutorial').click(function (e) 
+            {
+                e.preventDefault();
+                StepOne();
+            });
+        });
+    </script>
+    <!-- end: btnStartTutorial -->
+
+    <!-- start: solar panel selection -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#divStepOne').on('click', '.panel-select', function (e) {
+                e.preventDefault();
+                $('#selectionSolarPanel').text($(this).attr('id'));
+                StepTwo();
+            });
+        });
+    </script>
+    <!-- end: solar panel selection -->
+
+    <!-- start: inverter selection -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#divStepTwo').on('click', '.inverter-select', function (e) {
+                e.preventDefault();
+                $('#selectionInverter').text($(this).attr('id'));
+                StepThree();
+            });
+        });
+    </script>
+    <!-- end: inverter selection -->
+
+    <!-- start: timespan selection -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#txtTimeSpan').change(function (e) {
+                $('#selectionTimeSpan').text($(this).val());
+            });
+        });
+    </script>
+    <!-- end: timespan selection -->
 
 </asp:Content>
