@@ -5,6 +5,7 @@ import javax.persistence.EntityNotFoundException;
 
 import com.qut.spc.api.ElectricityCalculationApi;
 import com.qut.spc.api.SystemCalculationAPI;
+import com.qut.spc.api.TotalCostCalculationAPI;
 import com.qut.spc.db.Database;
 import com.qut.spc.model.Battery;
 import com.qut.spc.model.Inverter;
@@ -20,10 +21,13 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 	private Battery battery;
 	private Inverter inverter;
 	
-	private ElectricityCalculationApi calculator;
+	private ElectricityCalculationApi electricityCalculator;
+	private TotalCostCalculationAPI costCalculator;
 
-	public SystemCalculationContainer(ElectricityCalculationApi calculator){
-		this.calculator=calculator;
+
+	public SystemCalculationContainer(ElectricityCalculationApi electricityCalculator,TotalCostCalculationAPI costCalculator){
+		this.electricityCalculator=electricityCalculator;
+		this.costCalculator=costCalculator;
 	}
 
 	@Override
@@ -68,9 +72,8 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 	}
 
 	@Override
-	public double getTotalCost() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double getTotalCost() {		
+		return costCalculator.getSystemTotalCost(panel.getPrice(), 1, battery.getPrice(), 1, inverter.getPrice());
 	}
 
 	@Override
@@ -81,7 +84,7 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 		
 
 
-		double elProd=calculator.getElectricityProduction(sunIntensity, (double)inverter.getEfficiency()/100, 1, panel.getCapacity(),dailySun, timespan);
+		double elProd=electricityCalculator.getElectricityProduction(sunIntensity, (double)inverter.getEfficiency()/100, 1, panel.getCapacity(),dailySun, timespan);
 		return elProd;
 	}
 
