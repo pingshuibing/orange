@@ -2,12 +2,18 @@ package com.qut.spc.api;
 
 public interface ROICalculationAPI {
 	
+//	/**
+//	 * Set system output energy. E.g. 5kW
+//	 * @param size Output energy in kW
+//	 * @throws IllegalArgumentException if size is less than zero
+//	 */
+//	void setSystemSize(double size) throws IllegalArgumentException;
 	/**
-	 * Set system output energy. E.g. 5kW
-	 * @param size Output energy in kW
+	 * Set annual electricity generation from system. E.g. 5kW
+	 * @param annual electricity production in kW
 	 * @throws IllegalArgumentException if size is less than zero
 	 */
-	void setSystemSize(double size) throws IllegalArgumentException;
+	void setAnnualElectricityProduction(double electricity) throws IllegalArgumentException;
 	
 	/**
 	 * Set feed-in tariff. E.g. $0.44
@@ -30,17 +36,23 @@ public interface ROICalculationAPI {
 	 */
 	void setDailyUsage(double usage) throws IllegalArgumentException;
 	
-	/**
-	 * Set daily sun hours
-	 * @param hours Average sun hours per day
-	 * @throws IllegalArgumentException if hours is less than zero
-	 */
-	void setDailySunHours(double hours) throws IllegalArgumentException;
+//	/**
+//	 * Set daily sun hours
+//	 * @param hours Average sun hours per day
+//	 * @throws IllegalArgumentException if hours is less than zero
+//	 */
+//	void setDailySunHours(double hours) throws IllegalArgumentException;
 	
 	/**
 	 * Set cost of the system
 	 * @param cost System cost
 	 * @throws IllegalArgumentException if cost is less than zero
 	 */
-	void setSystemCost(double cost) throws IllegalArgumentException;
+	void setSystemCost(double cost) ;
+	
+	/**
+	 * get the annual ROI
+	 * 
+	 */
+	double getAnnualROI();
 }

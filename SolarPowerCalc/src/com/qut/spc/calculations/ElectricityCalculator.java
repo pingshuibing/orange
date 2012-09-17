@@ -2,6 +2,11 @@ package com.qut.spc.calculations;
 
 import com.qut.spc.api.ElectricityCalculationApi;
 
+/**
+ * @author Zuojun Chen
+ *
+ */
+
 public class ElectricityCalculator implements ElectricityCalculationApi{
 	
 	//from google docs
@@ -48,8 +53,7 @@ public class ElectricityCalculator implements ElectricityCalculationApi{
 		} else if (dailyHours < 0) {
 			throw new IllegalArgumentException("Invaild daily hours input, " +
 					"the dailyHours parameter should be more than zero.");
-		}
-		else if (timespan < 0) {
+		} else if (timespan < 0) {
 			throw new IllegalArgumentException("Invaild time  span input, " +
 					"the time span parameter should be more than zero.");
 		}
