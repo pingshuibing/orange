@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="container_12 content">
         <div class="grid_12">
-            <h1>Energy Efficiency</h1>
+            <h1>CALCULATE your system fitness</h1>
         </div>
         <div class="clear">
         </div>
