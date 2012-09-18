@@ -123,9 +123,35 @@
 
         <!-- start: results panel -->
         <div id="divResultsPanel" class="grid_12">
-            <h3>YOUR SYSTEM EFFICIENCY IS</h3>
-            <h2>54</h2>
-            <p>WATTS / MONTH</p>
+            <h3>YOUR RESULTS</h3>
+            <table>
+                <tr>
+                    <td></td>
+                    <td>PER YEAR</td>
+                    <td>PER MONTH</td>
+                    <td>PER WEEK</td>
+                </tr>
+                <tr>
+                    <td><h4>ELECTRICITY PRODUCTION (WATTS)</h4></td>
+                    <td><h2>12</h2></td>
+                    <td><h2>12</h2></td>
+                    <td><h2>12</h2></td>
+                </tr>
+                <tr>
+                    <td><h4>TOTAL COST</h4></td>
+                    <td><h2>12</h2></td>
+                    <td><h2>12</h2></td>
+                    <td><h2>12</h2></td>
+                </tr>
+                <tr>
+                    <td><h4>RETURN ON INVESTMENT</h4></td>
+                    <td><h2>12</h2></td>
+                    <td><h2>12</h2></td>
+                    <td><h2>12</h2></td>
+                </tr>
+                
+            </table>
+
         </div>
         <div class="clear"></div>
         <!-- end: results panel -->
