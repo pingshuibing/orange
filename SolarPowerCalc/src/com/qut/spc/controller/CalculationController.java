@@ -11,7 +11,7 @@ import javax.ws.rs.QueryParam;
 
 import com.qut.spc.api.SystemCalculationAPI;
 import com.qut.spc.calculations.ElectricityCalculator;
-import com.qut.spc.calculations.SystemCalculationContainer;
+import com.qut.spc.calculations.SolarSystem;
 import com.qut.spc.calculations.TotalCostCalculator;
 import com.qut.spc.exceptions.InvalidArgumentException;
 import com.qut.spc.model.Battery;
@@ -24,7 +24,7 @@ public class CalculationController {
 	private SystemCalculationAPI calculator;
 
 	public CalculationController(){
-		calculator=new SystemCalculationContainer(new ElectricityCalculator(),new TotalCostCalculator());
+		calculator=new SolarSystem(new ElectricityCalculator(),new TotalCostCalculator());
 	}
 	
 	public CalculationController(SystemCalculationAPI calculator) {
@@ -35,7 +35,8 @@ public class CalculationController {
 	@Produces("application/xml")
 	@Path("/")
 	public String getCalculations(
-			@QueryParam("panelId")@DefaultValue("-1") int panelId,@QueryParam("panelCount")@DefaultValue("1") int panelCount, 
+			@QueryParam("panelId")@DefaultValue("-1") int panelId,
+			@QueryParam("panelCount")@DefaultValue("1") int panelCount, 
 			@QueryParam("batteryId")@DefaultValue("-1")int batteryId,
 			@QueryParam("inverterId")@DefaultValue("-1")int inverterId, 
 			@QueryParam("postcode")@DefaultValue("")String postcode,
@@ -48,7 +49,7 @@ public class CalculationController {
 				inverterEfficiency, panelEfficiency, panelOutput);
 		
 		setComponents(panelId, batteryId, inverterId, postcode,
-				inverterEfficiency, panelOutput, panelCount,panelEfficiency);
+				inverterEfficiency, panelOutput, panelCount,panelEfficiency,systemCost);
 		
 		
 		DecimalFormat df=new DecimalFormat("#.##");
@@ -57,16 +58,19 @@ public class CalculationController {
 		builder.append("<calculations>");
 		calculateThings(builder, df);
 		builder.append("</calculations>");
+		
+		
 		return 	builder.toString();
 	}
 
 	private void setComponents(int panelId, int batteryId, int inverterId,
-			String postcode, double inverterEfficiency, double panelOutput, int panelCount,double panelEfficiency) {
+			String postcode, double inverterEfficiency, double panelOutput, int panelCount,double panelEfficiency, double systemCost) {
 		try{
 			//If battery isn't specified, then set a default battery
 			if(batteryId<0){
 				Battery battery=new Battery();
 				calculator.setBattery(battery);
+				calculator.setSystemCost(systemCost);
 			}else{
 				calculator.setBatteryId(batteryId);				
 			}
@@ -76,6 +80,7 @@ public class CalculationController {
 				Panel panel=new Panel();
 				panel.setCapacity(panelOutput);
 				panel.setEfficiency(panelEfficiency);
+				calculator.setSystemCost(systemCost);
 				calculator.setPanel(panel);
 			}else{
 				calculator.setPanelId(panelId);
@@ -86,6 +91,7 @@ public class CalculationController {
 			if(inverterId<0){
 				Inverter inverter=new Inverter();
 				inverter.setEfficiency(inverterEfficiency);
+				calculator.setSystemCost(systemCost);
 				calculator.setInverter(inverter);
 			}else{
 				calculator.setInverterId(inverterId);				
@@ -105,13 +111,13 @@ public class CalculationController {
 			double panelEfficiency, double panelOutput) {
 		String errorMessage="";
 		if(panelId<0 && (panelEfficiency<0||panelOutput<0||systemCost<0)){
-			errorMessage+="PanelId or panelEfficiency and panelOutput is not defined \n";
+			errorMessage+="PanelId and panelEfficiency, panelOutput or systemCost is not defined \n";
 		}
 		if(batteryId<0&&systemCost<0){
-			errorMessage+="BatteryId is not defined \n";
+			errorMessage+="BatteryId is not defined and neither is systemCost \n";
 		}
 		if(inverterId<0&& (inverterEfficiency<0||systemCost<0)){
-			errorMessage+="InverterId or inverterEfficiency is not defined \n";
+			errorMessage+="InverterId and inverterEfficiency or systemCost is not defined \n";
 		}
 		if(!errorMessage.equals("")){
 			throw new InvalidArgumentException(errorMessage);

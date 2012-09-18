@@ -52,25 +52,25 @@ public class CalculationControllerTest {
 	}
 	
 	private void testCalculationInputPanels(double eff,double output,double cost){
-		verifyErrorMessageFromCalculation("PanelId or panelEfficiency and panelOutput is not defined \n",-1, 1, 1, 1, "1111", cost, 100, eff,output);
+		verifyErrorMessageFromCalculation("PanelId and panelEfficiency, panelOutput or systemCost is not defined \n",-1, 1, 1, 1, "1111", cost, 100, eff,output);
 
 	}
 	
 	@Test
 	public void testCalculationInputBattery_invalidBatteryAndSystemCost_correctErrorMessageIsReturned(){
-		verifyErrorMessageFromCalculation("BatteryId is not defined \n",1, 1, -1, 1, "1111", -1, 100, 100,100);
+		verifyErrorMessageFromCalculation("BatteryId is not defined and neither is systemCost \n",1, 1, -1, 1, "1111", -1, 100, 100,100);
 
 	}
 	
 	@Test
 	public void testCalculationInputInverter_invalidInverterIdAndEfficiency_correctErrorMessageIsReturned(){
-		verifyErrorMessageFromCalculation("InverterId or inverterEfficiency is not defined \n",1, 1, 1, -1, "1111", 1, -100, 100,100);
+		verifyErrorMessageFromCalculation("InverterId and inverterEfficiency or systemCost is not defined \n",1, 1, 1, -1, "1111", 1, -100, 100,100);
 	}
 	
 	
 	@Test
 	public void testCalculationInputInverter_invalidInverterIdAndSystemCost_correctErrorMessageIsReturned(){
-		verifyErrorMessageFromCalculation("InverterId or inverterEfficiency is not defined \n",1, 1, 1, -1, "1111", -1, 100, 100,100);		
+		verifyErrorMessageFromCalculation("InverterId and inverterEfficiency or systemCost is not defined \n",1, 1, 1, -1, "1111", -1, 100, 100,100);		
 
 	}
 

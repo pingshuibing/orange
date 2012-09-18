@@ -66,4 +66,6 @@ public interface SystemCalculationAPI {
 	void setInverter(Inverter inverter);
 
 	void setpanelCount(int panelCount);
+
+	void setSystemCost(double systemCost);
 }
