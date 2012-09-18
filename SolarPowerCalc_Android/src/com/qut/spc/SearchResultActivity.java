@@ -100,24 +100,7 @@ public class SearchResultActivity extends Activity {
 				LinkedList<HashMap<String, String>> childRow = new LinkedList<HashMap<String, String>>();
 
 				item = new HashMap<String, String>();
-				item.put("key", "Price: ");
-				item.put("value", component.getPrice().toString());
-				childRow.add(item);
-				item = new HashMap<String, String>();
-				item.put("key", "Capacity: ");
-				item.put("value", component.getCapacity().toString());
-				childRow.add(item);
-				item = new HashMap<String, String>();
-				item.put("key", "Postcode: ");
-				item.put("value", component.getPostcode());
-				childRow.add(item);
-				item = new HashMap<String, String>();
-				item.put("key", "Voltage: ");
-				item.put("value", component.getVoltage().toString());
-				childRow.add(item);
-				item = new HashMap<String, String>();
-				item.put("key", "Dimensions: ");
-				item.put("value", component.getDimensions());
+				component.bindMap(item);
 				childRow.add(item);
 				childData.add(childRow);
 			}
@@ -125,9 +108,8 @@ public class SearchResultActivity extends Activity {
 			String[] groupFrom = new String[] { "name" };
 			int[] groupTo = new int[] { R.id.component_name };
 
-			String[] childFrom = new String[] { "key", "value" };
-			int[] childTo = new int[] { R.id.component_key,
-					R.id.component_value };
+			String[] childFrom = new String[] { "price", "capacity", "voltage", "dimensions", "postcode" };
+			int[] childTo = new int[] { R.id.price, R.id.capacity, R.id.voltage, R.id.dimensions, R.id.postcode };
 
 			ExpandableListAdapter adapter = new SimpleExpandableListAdapter(
 					SearchResultActivity.this, groupData,

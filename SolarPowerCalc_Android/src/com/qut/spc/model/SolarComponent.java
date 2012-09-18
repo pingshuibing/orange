@@ -1,5 +1,7 @@
 package com.qut.spc.model;
 
+import java.util.Map;
+
 public class SolarComponent {
 	
 	private Long id = 0L;
@@ -77,5 +79,18 @@ public class SolarComponent {
 	
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
+	}
+	
+	/**
+	 * Bind properties to string map
+	 */
+	public void bindMap(Map<String, String> map) {
+		map.put("model", model);
+		map.put("manufacture", manufacturer);
+		map.put("price", price.toString());
+		map.put("capacity", capacity.toString());
+		map.put("voltage", voltage.toString());
+		map.put("dimensions", dimensions);
+		map.put("postcode", postcode);
 	}
 }
