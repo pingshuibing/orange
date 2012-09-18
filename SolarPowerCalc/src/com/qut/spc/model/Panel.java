@@ -22,6 +22,9 @@ public class Panel extends SolarComponent {
 	@XmlElement
 	private double operatingCurrent = 0.0;
 	
+	@XmlElement
+	private double efficiency=30;
+	
 	public Panel() {
 	}
 	
@@ -64,6 +67,10 @@ public class Panel extends SolarComponent {
 				+ ", getWarranty()=" + getWarranty() + ", getDimensions()="
 				+ getDimensions() + ", getDescription()=" + getDescription()
 				+ ", getPostcode()=" + getPostcode() + "]";
+	}
+
+	public void setEfficiency(double panelEfficiency) {
+		this.efficiency=panelEfficiency;
 	}
 	
 	
