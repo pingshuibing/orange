@@ -6,13 +6,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 public class MainActivity extends Activity {
-	final String SPC_URL = "http://solarpowercalc.appspot.com";
 
 	final String[] componentTypes = {
 			"Panels",
@@ -48,6 +48,17 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.calculation:
+			openCalculationPage();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+	    }
+	}
+	
 	@Override
 	protected void onSaveInstanceState(Bundle state) {
 		super.onSaveInstanceState(state);
@@ -120,13 +131,18 @@ public class MainActivity extends Activity {
 		query += "capacityMin=" + etCapacityMin.getText().toString() + "&";
 		query += "capacityMax=" + etCapacityMax.getText().toString() + "&";
 
-		search(SPC_URL + "/" + component + "?" + query, component);
+		search(getString(R.string.app_url) + "/" + component + "?" + query, component);
 	}
 
 	private void search(String url, String component) {
 		Intent i = new Intent(this, SearchResultActivity.class);
 		i.putExtra("url", url);
 		i.putExtra("component", component);
+		startActivity(i);
+	}
+	
+	private void openCalculationPage() {
+		Intent i = new Intent(this, ElectricityProductionActivity.class);
 		startActivity(i);
 	}
 }

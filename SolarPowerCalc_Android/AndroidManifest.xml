@@ -29,6 +29,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.qut.spc.MainActivity" />
         </activity>
+        <activity
+            android:name=".ElectricityProductionActivity"
+            android:label="@string/title_activity_electricity_production" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
