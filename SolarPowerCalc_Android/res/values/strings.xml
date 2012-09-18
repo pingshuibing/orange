@@ -34,5 +34,7 @@
     <string name="return_on_investment">Return on investment</string>
     <string name="months">Months</string>
     <string name="w_per_month">W/month</string>
+    <string name="current_address">Current address</string>
+    <string name="update">Update</string>
 
 </resources>

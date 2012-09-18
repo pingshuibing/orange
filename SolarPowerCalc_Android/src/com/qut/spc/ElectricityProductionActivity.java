@@ -1,23 +1,20 @@
 package com.qut.spc;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 
 import org.xmlpull.v1.XmlPullParser;
 
-import com.qut.spc.task.XmlRequestTask;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.qut.spc.task.XmlRequestTask;
 
 /**
  * Activity for Calculation of Electricity Production  
@@ -118,7 +115,7 @@ public class ElectricityProductionActivity extends Activity {
 		}
 
 		@Override
-		protected void onXmlTag(XmlPullParser parser, int eventType) {
+		protected boolean onXmlTag(XmlPullParser parser, int eventType) {
 			String name;
 			
 			switch (eventType) {
@@ -151,6 +148,7 @@ public class ElectricityProductionActivity extends Activity {
 				}
 				break;
 			}
+			return true;
 		}
 		
 		@Override

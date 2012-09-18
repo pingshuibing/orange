@@ -1,145 +1,48 @@
 package com.qut.spc.task;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 
-import android.os.AsyncTask;
-
-public abstract class LocationTask extends AsyncTask<String, Void, String> {
-
-	public enum LocationRequiredData {
-		Address, PostCode, Country
-	}
-
-	private LocationRequiredData requiredData;
+/**
+ * http://maps.google.com/maps/geo?ll=-27.46197644877817,153.0120849609375&output=xml
+ *
+ */
+public class LocationTask extends XmlRequestTask {
+	protected String address = "";
+	protected String postcode = "";
 	
-	public void requestAddress()
-	{
-		requiredData=requiredData.Address;
-	}
+	public static final String MAP_URL = "http://maps.google.com/maps/geo?output=xml";
 	
-	public void requestCountry()
-	{
-		requiredData=requiredData.Country;
-	}
-	
-	public void requestPostcode()
-	{
-		requiredData=requiredData.PostCode;
-	}
-
 	@Override
-	protected String doInBackground(String... params) {
-		String jsonString = RestfulRequest(params[0]);
-		try {
-
-			switch (requiredData) {
-			case Address:
-
-				getAddress(jsonString);
-
-				break;
-			case Country:
-				getCountry(jsonString);
-				break;
-			case PostCode:
-				getPostcode(jsonString);
-				break;
-			default:
-				getAddress(jsonString);
-				break;
-			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	protected boolean onXmlTag(XmlPullParser parser, int eventType)
+			throws IOException, XmlPullParserException {
+		if (eventType != XmlPullParser.START_TAG) {
+			return true;
 		}
-
-		return jsonString;
+		String name = parser.getName();
+		
+		if (name == "Placemark") {
+			if (address.length() == 0) {
+				address = findText(parser, "address");
+			}
+			if (postcode.length() == 0) {
+				postcode = findText(parser, "PostalCodeNumber");
+			}
+		}
+		if (address.length() > 0 && postcode.length() > 0) {
+			return false;
+		}
+		return true;
 	}
-
-	// override this methode and request which data you want using ether:
-	// requestPostcode, requestCountry or requestAddress
-	protected abstract void onPostExecute(String result);
 	
-
-	public String getAddress(String JSONString) throws JSONException {
-		JSONObject job = new JSONObject(JSONString);
-		String placemark = job.getJSONArray("Placemark").getString(0);
-		JSONObject jobPlacemark = new JSONObject(placemark);
-		String Address = jobPlacemark.getString("address");
-		return Address;
+	@Override
+	protected void onPostExecute(XmlPullParser parser) {
+		onPostExecute(postcode.length() > 0);
 	}
-
-	public String getCountry(String JSONString) throws JSONException {
-		JSONObject job = new JSONObject(JSONString);
-		String placemark = job.getJSONArray("Placemark").getString(4);
-		JSONObject jobPlacemark = new JSONObject(placemark);
-		String Address = jobPlacemark.getString("address");
-		return Address;
+	
+	protected void onPostExecute(boolean postcodeFound) {
+		// Sub class should override this
 	}
-
-	public String getPostcode(String JSONString) throws JSONException {
-		JSONObject job = new JSONObject(JSONString);
-		String placemark = job.getJSONArray("Placemark").getString(0);
-		JSONObject jobPlacemark = new JSONObject(placemark)
-				.getJSONObject("AddressDetails").getJSONObject("Country")
-				.getJSONObject("AdministrativeArea").getJSONObject("Locality")
-				.getJSONObject("PostalCode");
-		String postcode = jobPlacemark.getString("PostalCodeNumber");
-
-		return postcode;
-	}
-
-	private static JSONObject getJSONObjectFromURL(String URL)
-			throws JSONException {
-		String JSONString = RestfulRequest(URL);
-		JSONObject job = new JSONObject(JSONString);
-
-		return job;
-	}
-
-	private static String RestfulRequest(String ServiceRequest) {
-		String Output = "error";
-		try {
-
-			URL url = new URL(ServiceRequest);
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestMethod("GET");
-
-			// this code is to check for the response health later
-			// if (conn.getResponseCode() != HttpURLConnection.) {
-			// throw new RuntimeException("Failed : HTTP error code : "
-			// + conn.getResponseCode());
-			// }
-			//
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					(conn.getInputStream())));
-
-			String output;
-			Output = "";
-			while ((output = br.readLine()) != null) {
-				Output += output;
-			}
-
-			conn.disconnect();
-
-		} catch (MalformedURLException e) {
-
-			e.printStackTrace();
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
-
-		}
-		return Output;
-	}
-
 }

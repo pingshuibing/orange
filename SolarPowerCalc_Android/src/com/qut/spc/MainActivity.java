@@ -3,7 +3,10 @@ package com.qut.spc;
 import java.util.Arrays;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +14,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import com.qut.spc.service.LocationService;
+import com.qut.spc.task.LocationTask;
 
 public class MainActivity extends Activity {
 
@@ -133,6 +139,35 @@ public class MainActivity extends Activity {
 
 		search(getString(R.string.app_url) + "/" + component + "?" + query, component);
 	}
+	
+	public void onUpdatePostcodeClick(View v) {
+		// Get location first
+		LocationService ls = new LocationService(MainActivity.this) {
+			@Override
+			public void onLocationChanged(Location location) {
+				super.onLocationChanged(location);
+				if (location != null) {
+					String url = String.format(LocationTask.MAP_URL + "&ll=%f,%f",
+							getLatitude(), getLongtude());
+					new UpdateLocationTask().execute(url);
+				} else {
+					AlertDialog alert = new AlertDialog.Builder(MainActivity.this).create();
+					alert.setTitle("Error");
+					alert.setMessage("Could not get location");
+					alert.setButton("Ok", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							// do nothing
+						}
+					});
+					alert.show();
+				}
+			}
+		};
+		ls.updateLocationFromGPS();
+		String url = String.format(LocationTask.MAP_URL + "&ll=%f,%f",
+				-27.46197644877817, 153.0120849609375);
+		new UpdateLocationTask().execute(url);
+	}
 
 	private void search(String url, String component) {
 		Intent i = new Intent(this, SearchResultActivity.class);
@@ -144,5 +179,17 @@ public class MainActivity extends Activity {
 	private void openCalculationPage() {
 		Intent i = new Intent(this, ElectricityProductionActivity.class);
 		startActivity(i);
+	}
+	
+	/**
+	 * Update location task
+	 */
+	class UpdateLocationTask extends LocationTask {
+		
+		@Override
+		protected void onPostExecute(boolean postcodeFound) {
+			etPostcode.setText(postcode);
+		}
+		
 	}
 }

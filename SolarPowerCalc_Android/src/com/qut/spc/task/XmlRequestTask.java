@@ -45,8 +45,9 @@ public abstract class XmlRequestTask extends AsyncTask<String, Void, XmlPullPars
 		}
 		return null;
 	}
-
-	protected abstract void onXmlTag(XmlPullParser parser, int eventType);
+	
+	protected abstract boolean onXmlTag(XmlPullParser parser, int eventType)
+			throws IOException, XmlPullParserException;
 
 	private XmlPullParser parseXml(InputStream stream)
 			throws XmlPullParserException, IOException {
@@ -57,7 +58,10 @@ public abstract class XmlRequestTask extends AsyncTask<String, Void, XmlPullPars
 		
 		int type = parser.getEventType();
 		while (type != XmlPullParser.END_DOCUMENT) {
-			onXmlTag(parser, type);
+			// Stop parsing if the callback returns false
+			if (!onXmlTag(parser, type)) {
+				break;
+			}
 			type = parser.next();
 		}
 		return parser;
@@ -77,5 +81,31 @@ public abstract class XmlRequestTask extends AsyncTask<String, Void, XmlPullPars
 		// Starts the query
 		conn.connect();
 		return conn.getInputStream();
+	}
+	
+	protected static boolean findTag(XmlPullParser parser, String tagName)
+			throws XmlPullParserException, IOException {
+		int type = parser.getEventType();
+		
+		while (type != XmlPullParser.END_DOCUMENT) {
+			if (type == XmlPullParser.START_TAG) {
+				if (parser.getName().equals(tagName)) {
+					return true;
+				}
+			}
+			type = parser.next();
+		}
+		return false;
+	}
+	
+	protected static String findText(XmlPullParser parser, String tagName)
+			throws IOException, XmlPullParserException {
+		String txt = "";
+		if (findTag(parser, tagName)) {
+			if (parser.next() == XmlPullParser.TEXT) {
+				txt = parser.getText();
+			}
+		}
+		return txt;
 	}
 }
