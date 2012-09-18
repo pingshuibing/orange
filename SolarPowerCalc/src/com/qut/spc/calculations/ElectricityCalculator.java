@@ -17,7 +17,6 @@ public class ElectricityCalculator implements ElectricityCalculationApi{
 			double inverterEfficiency, double solarPanelEfficiency,
 			double solarPowerOutput,double dailyHours, double timespan) throws IllegalArgumentException {
 		
-		
 		//formula: (  estimated watt need/timespan*1.25)*(invertefficiency) 
 		//assume that capacity(solarPowerOutput) is peak electricity generation per hour
 		
@@ -47,7 +46,7 @@ public class ElectricityCalculator implements ElectricityCalculationApi{
 					"the inverter efficiency parameter shoulbe be between 0 and 1. ");
 		} else if (solarPanelEfficiency > 1 || solarPanelEfficiency < 0) {
 			throw new IllegalArgumentException("Invaild solarPanelEfficiency input," +
-					"the solar panel efficiency parameter shoulbe be between 0 and 1. ");
+					"the solar panel efficiency parameter shoulbe be between 0 and 1. "+solarPanelEfficiency);
 		} else if (solarPowerOutput < 0) {
 			throw new IllegalArgumentException("Invaild solarPowerOutPut input, " +
 					"the solar power output parameter shoulbe be more than zero. ");

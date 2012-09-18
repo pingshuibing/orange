@@ -8,17 +8,17 @@ import com.qut.spc.postcode.PostcodeUtil;
 
 public class DailySunProvider {
 	
+	
+	//hours / W/m^2
+	
 	private static Map<String,double[]> locationToSunHoursIntensity=new HashMap<String, double[]>(){
 		{
-			put("4000",new double[]{7.5,4});
-			put("5000",new double[]{6.75,4});
-			put("2000",new double[]{7.33,4});
-			put("3000",new double[]{5.58,4});
-			put("2900",new double[]{7.33,4});
-			put("6000",new double[]{7.92,4});
-
-
-
+			put("4000",new double[]{7.5,1000});
+			put("5000",new double[]{6.75,1000});
+			put("2000",new double[]{7.33,1000});
+			put("3000",new double[]{5.58,1000});
+			put("2900",new double[]{7.33,1000});
+			put("6000",new double[]{7.92,1000});
 		}};
 
 	
