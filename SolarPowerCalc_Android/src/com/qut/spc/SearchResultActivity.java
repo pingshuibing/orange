@@ -5,13 +5,10 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.SimpleExpandableListAdapter;
@@ -26,12 +23,10 @@ public class SearchResultActivity extends Activity {
 
 	ProgressDialog progressDlg;
 
-	@TargetApi(11)
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_result);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		String url = getIntent().getStringExtra("url");
 		String component = getIntent().getStringExtra("component");
@@ -50,16 +45,6 @@ public class SearchResultActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_search_result, menu);
 		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
 	}
 
 	class ComponentListTask<T extends SolarComponent> extends

@@ -52,7 +52,9 @@ public abstract class XmlRequestTask extends AsyncTask<String, Void, XmlPullPars
 			throws XmlPullParserException, IOException {
 		XmlPullParser parser = Xml.newPullParser();
 
-		parser.setInput(stream, "UTF_8");
+		parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+		parser.setInput(stream, null);
+		
 		int type = parser.getEventType();
 		while (type != XmlPullParser.END_DOCUMENT) {
 			onXmlTag(parser, type);
