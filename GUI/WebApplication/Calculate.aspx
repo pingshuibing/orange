@@ -20,7 +20,7 @@
         <!-- start: Your System -->
         <div class="grid_12" id="divUserSelection">
             <h2>Your System</h2>
-            <input type="text" id="currentComponent" />
+            <input type="text" id="currentComponent" style="display:none;" />
             <table class="your-system">
                 <tr>
                     <td id="tdSolarPanelSelection">
@@ -154,6 +154,9 @@
             $('#selectionSolarPanel').text('NOT SELECTED');
             $('#selectionInverter').text('NOT SELECTED');
             $('#selectionBattery').text('NOT SELECTED');
+            $('#detailsSolarPanel').text('');
+            $('#selectionBattery').text('');
+            $('#selectionBattery').text('');
             
 
             //clear textbox for currentComponent
@@ -170,9 +173,9 @@
             $('#divUserSelection').hide();
 
             //styles for "your system" area
-            $('#tdSolarPanelSelection').removeClass('selected').addClass('not-selected');
-            $('#tdInverterSelection').removeClass('selected').addClass('not-selected');
-            $('#tdBatterySelection').removeClass('selected').addClass('not-selected');
+            $('#tdSolarPanelSelection').attr('class', '').addClass('not-selected');
+            $('#tdInverterSelection').attr('class', '').addClass('not-selected');
+            $('#tdBatterySelection').attr('class', '').addClass('not-selected');
             
         }
 
@@ -191,7 +194,14 @@
             $('html, body').animate({
                 scrollTop: $("#divUserSelection").offset().top
             }, 2000);
+
+            //reset 'Your System' area
+            $('#detailsSolarPanel').text('CURRENTLY SELECTING');
+            $('#detailsInverter').text('');
+            $('#detailsBattery').text('');
             
+
+
 
             //set up textbox for currentComponent
             $('#currentComponent').val('panel');
@@ -200,9 +210,9 @@
             $('#txtCaptionTitle').text('STEP 1 OF 3: SELECT A SOLAR PANEL');
 
             //styles for "your system" area
-            $('#tdSolarPanelSelection').removeClass('not-selected').addClass('selected');
-            $('#tdInverterSelection').removeClass('selected').addClass('not-selected');
-            $('#tdBatterySelection').removeClass('selected').addClass('not-selected');
+            $('#tdSolarPanelSelection').attr('class','').addClass('selecting');
+            $('#tdInverterSelection').attr('class', '').addClass('not-selected');
+            $('#tdBatterySelection').attr('class', '').addClass('not-selected');
 
             
             
@@ -225,16 +235,18 @@
                 scrollTop: $("#divUserSelection").offset().top
             }, 2000);
 
-            $('#currentComponent').val('inverter');
+            //reset 'Your System' area
+            //$('#detailsSolarPanel').text('PLEASE SELECT');
+            $('#detailsInverter').text('CURRENTLY SELECTING');
+            $('#detailsBattery').text('');
 
             //set up text
             $('#txtCaptionTitle').text('STEP 2 OF 3: SELECT AN INVERTER');
 
             //styles for "your system" area
-            $('#tdSolarPanelSelection').removeClass('not-selected').addClass('selected');
-            $('#tdInverterSelection').removeClass('not-selected').addClass('selected');
-            $('#tdBatterySelection').removeClass('selected').addClass('not-selected');
-
+            $('#tdSolarPanelSelection').attr('class', '').addClass('selected');
+            $('#tdInverterSelection').attr('class', '').addClass('selecting');
+            $('#tdBatterySelection').attr('class', '').addClass('not-selected');
             
         }
 
@@ -256,8 +268,18 @@
 
             $('#currentComponent').val('battery');
 
+            //reset 'Your System' area
+            //$('#detailsSolarPanel').text('PLEASE SELECT');
+            //$('#detailsInverter').text('PLEASE SELECT');
+            $('#detailsBattery').text('CURRENTLY SELECTING');
+
             //set up caption
             $('#txtCaptionTitle').text('STEP 3 OF 3: SELECT A BATTERY');
+
+            //styles for "your system" area
+            $('#tdSolarPanelSelection').attr('class', '').addClass('selected');
+            $('#tdInverterSelection').attr('class', '').addClass('selected');
+            $('#tdBatterySelection').attr('class', '').addClass('selecting');
 
             
         }
@@ -279,6 +301,12 @@
             }, 2000);
 
             $('#currentComponent').val('results');
+
+            //styles for "your system" area
+            $('#tdSolarPanelSelection').attr('class', '').addClass('selected');
+            $('#tdInverterSelection').attr('class', '').addClass('selected');
+            $('#tdBatterySelection').attr('class', '').addClass('selected');
+
 
         }
 
