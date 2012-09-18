@@ -26,7 +26,7 @@ public class LocationService implements LocationListener {
 				.getSystemService(Context.LOCATION_SERVICE);
 		Criteria crit = new Criteria();
 		// we don't need high accuracy.. better save the battery
-		crit.setAccuracy(Criteria.ACCURACY_LOW);
+		crit.setAccuracy(Criteria.ACCURACY_COARSE);
 		String provider = manager.getBestProvider(crit, true);
 
 		// this will not connect to GPS.. just Last Known Location
