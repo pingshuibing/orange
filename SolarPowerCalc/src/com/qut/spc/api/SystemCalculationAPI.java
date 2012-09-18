@@ -28,7 +28,7 @@ public interface SystemCalculationAPI {
 	/**
 	 * Set time span in months
 	 */
-	void setTimespan(int months);
+	void setTimespan(int months); //months or day?
 	
 	/**
 	 * Set user location

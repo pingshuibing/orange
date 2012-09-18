@@ -7,9 +7,11 @@
 
 package com.qut.spc.model;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -65,8 +67,9 @@ public abstract class SolarComponent implements Comparable<SolarComponent>{
 	@XmlElement
 	private double efficiencyDecrease = 0.0;
 
-	@XmlElement
-	private String postcode = "";
+	@Basic
+	@XmlElement(name="postcode")
+	private List<String> postcode = new ArrayList<String>();
 	
 	public SolarComponent() {
 	}
@@ -223,26 +226,14 @@ public abstract class SolarComponent implements Comparable<SolarComponent>{
 		this.description = description;
 	}
 	
-	public String getPostcode() {
+	public List<String> getPostcode() {
 		return postcode;
 	}
 
-	public void setPostcode(String postcode) {
-		this.postcode = postcode;
-	}
+
 	
 	public void setPostcode(List<String> postcode) {
-		Iterator<String> it = postcode.iterator();
-		
-		if (it.hasNext()) {
-			this.postcode = it.next();
-			
-			while (it.hasNext()) {
-				this.postcode += it.next();
-			}
-		} else {
-			this.postcode = "";
-		}
+		this.postcode=postcode;
 	}
 	
 	/**
