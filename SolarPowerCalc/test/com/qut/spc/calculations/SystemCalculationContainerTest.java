@@ -5,12 +5,12 @@ import javax.persistence.EntityNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.verification.VerificationMode;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.qut.spc.api.ElectricityCalculationApi;
+import com.qut.spc.api.TotalCostCalculationAPI;
 import com.qut.spc.db.Database;
 import com.qut.spc.model.Battery;
 import com.qut.spc.model.Inverter;
@@ -22,30 +22,35 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(Database.class)
+@PrepareForTest({Database.class,DailySunProvider.class,PostcodeUtil.class})
 public class SystemCalculationContainerTest {
 	private SystemCalculationContainer container;
 	private Panel panel;
 	private Inverter inverter;
 	private Battery battery;
 	private ElectricityCalculationApi calc;
+	private TotalCostCalculationAPI costcalc;
 	
 	@Before
 	public void setup(){
 		calc = mock(ElectricityCalculationApi.class);
+		costcalc=mock(TotalCostCalculationAPI.class);
 		
-		container=spy(new SystemCalculationContainer(calc));
+		container=spy(new SystemCalculationContainer(calc,costcalc));
 		when(container.getLocation()).thenReturn("4000");
 		
 		
 		PowerMockito.mockStatic(Database.class);
 		PowerMockito.mockStatic(DailySunProvider.class);
-		
+		PowerMockito.mockStatic(PostcodeUtil.class);
 
 		
 		panel=mock(Panel.class);
 		inverter=mock(Inverter.class);
 		battery=mock(Battery.class);
+		
+		when(panel.getCapacity()).thenReturn(23d);
+		when(inverter.getEfficiency()).thenReturn(4242);
 		
 		PowerMockito.when(Database.loadComponent(25, Panel.class)).thenReturn(panel);
 		PowerMockito.when(Database.loadComponent(-411, Panel.class)).thenThrow(EntityNotFoundException.class);
@@ -55,7 +60,11 @@ public class SystemCalculationContainerTest {
 
 		PowerMockito.when(Database.loadComponent(25, Battery.class)).thenReturn(battery);
 		PowerMockito.when(Database.loadComponent(-411, Battery.class)).thenThrow(EntityNotFoundException.class);
-
+		
+		PowerMockito.when(PostcodeUtil.transformPostcode("4000")).thenReturn("4000");
+		
+		
+		
 
 	}
 	
@@ -103,28 +112,53 @@ public class SystemCalculationContainerTest {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testSetLocation_invalidLocation_ExceptionIsThrown(){
-		container.setLocation("SDIF");
+		when(PostcodeUtil.validatePostcode("SDIFW")).thenThrow(IllegalArgumentException.class);
+		container.setLocation("SDIFW");
 	}
 	
 	@Test
 	public void getElectricityProduction_validInput_dailySunIsFetchedAndUsed(){
 
-//		PowerMockito.when(DailySunProvider.getDailySunByPostcode("4000")).thenReturn(40d);
-//		PowerMockito.when(DailySunProvider.getDailySunLight("4000")).thenReturn(60d);
-		PowerMockito.when(DailySunProvider.getDailySunByPostcode(any(String.class))).thenReturn(24d);
-		PowerMockito.when(DailySunProvider.getDailySunLight(any(String.class))).thenReturn(276d);
-		
+		PowerMockito.when(DailySunProvider.getDailySunByPostcode("4000")).thenReturn(24d);
+		PowerMockito.when(DailySunProvider.getDailySunLight("4000")).thenReturn(276d);
 		PowerMockito.when(PostcodeUtil.validatePostcode("4000")).thenReturn(true);
 
 		
-		when(calc.getElectricityProduction(any(Double.class), any(Double.class), any(Double.class), any(Double.class), any(Double.class), any(Double.class))).thenReturn(42d);
+		when(calc.getElectricityProduction(anyDouble(), anyDouble(), anyDouble(), anyDouble(),anyDouble(), anyDouble())).thenReturn(42d);
 		
+		container.setBatteryId(25);
+		container.setInverterId(25);
+		container.setPanelId(25);
+		container.setLocation("4000");
+
+		container.getElectricityProduction();
+
+		
+		PowerMockito.verifyStatic();
+		DailySunProvider.getDailySunByPostcode("4000");
 		
 
-		PowerMockito.verifyStatic();
+	}
+	
+	@Test
+	public void getElectricityProduction_validInput_sunIntensityIsFetchedAndUsed(){
+		PowerMockito.when(DailySunProvider.getDailySunByPostcode("4000")).thenReturn(24d);
+		PowerMockito.when(DailySunProvider.getDailySunLight("4000")).thenReturn(276d);
+		PowerMockito.when(PostcodeUtil.validatePostcode("4000")).thenReturn(true);
+
 		
-		DailySunProvider.getDailySunByPostcode("4000");
+		when(calc.getElectricityProduction(anyDouble(), anyDouble(), anyDouble(), anyDouble(),anyDouble(), anyDouble())).thenReturn(42d);
+		
+		container.setBatteryId(25);
+		container.setInverterId(25);
+		container.setPanelId(25);
+		container.setLocation("4000");
+
 		container.getElectricityProduction();
+		
+		PowerMockito.verifyStatic();
+		DailySunProvider.getDailySunLight("4000");
+		
 
 	}
 }

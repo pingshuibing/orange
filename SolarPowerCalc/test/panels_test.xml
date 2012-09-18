@@ -12,7 +12,7 @@
     <description>Panel number: 15</description>
     <warranty>24</warranty>
     <efficiencyDecrease>0.0</efficiencyDecrease>
-    <postcode><postcode>1111</postcode></postcode>
+    <postcode>1111</postcode>
     <operatingCurrent>0.0</operatingCurrent>
   </panel>
   <panel>
@@ -27,7 +27,7 @@
     <description>Panel number: 21</description>
     <warranty>24</warranty>
     <efficiencyDecrease>0.0</efficiencyDecrease>
-    <postcode><postcode>2222</postcode></postcode>
+    <postcode>2222</postcode>
     <operatingCurrent>0.0</operatingCurrent>
   </panel>
   <panel>
@@ -42,7 +42,7 @@
     <description>Panel number: 0</description>
     <warranty>24</warranty>
     <efficiencyDecrease>0.0</efficiencyDecrease>
-    <postcode><postcode>2222</postcode></postcode>
+    <postcode>2222</postcode>
     <operatingCurrent>0.0</operatingCurrent>
   </panel>
 </panels>

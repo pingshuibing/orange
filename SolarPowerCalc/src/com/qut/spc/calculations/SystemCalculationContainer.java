@@ -16,8 +16,8 @@ import com.qut.spc.weather.DailySunProvider;
 public class SystemCalculationContainer implements SystemCalculationAPI{
 
 	private Panel panel;
-	private String location;
-	private int timespan;
+	private String location="";
+	private int timespan=12;
 	private Battery battery;
 	private Inverter inverter;
 	
@@ -62,8 +62,9 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 
 	@Override
 	public void setLocation(String postcode) throws IllegalArgumentException{
-		if(PostcodeUtil.validatePostcode(postcode))
+		if(PostcodeUtil.validatePostcode(postcode)){
 			this.location=PostcodeUtil.transformPostcode(postcode);
+		}
 	}
 
 	@Override
@@ -78,12 +79,10 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 
 	@Override
 	public double getElectricityProduction() throws EntityNotFoundException{
-		
+
 		double dailySun=DailySunProvider.getDailySunByPostcode(location);
 		double sunIntensity=DailySunProvider.getDailySunLight(location);
 		
-
-
 		double elProd=electricityCalculator.getElectricityProduction(sunIntensity, (double)inverter.getEfficiency()/100, 1, panel.getCapacity(),dailySun, timespan);
 		return elProd;
 	}

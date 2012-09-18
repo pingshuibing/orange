@@ -12,6 +12,7 @@ import javax.ws.rs.QueryParam;
 import com.qut.spc.api.SystemCalculationAPI;
 import com.qut.spc.calculations.ElectricityCalculator;
 import com.qut.spc.calculations.SystemCalculationContainer;
+import com.qut.spc.calculations.TotalCostCalculator;
 import com.qut.spc.exceptions.InvalidArgumentException;
 
 @Path("/calculate/")
@@ -20,7 +21,7 @@ public class CalculationController {
 	private SystemCalculationAPI calculator;
 
 	public CalculationController(){
-		calculator=new SystemCalculationContainer(new ElectricityCalculator());
+		calculator=new SystemCalculationContainer(new ElectricityCalculator(),new TotalCostCalculator());
 	}
 	
 	public CalculationController(SystemCalculationAPI calculator) {
