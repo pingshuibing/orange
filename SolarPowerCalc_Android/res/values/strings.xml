@@ -1,6 +1,7 @@
 <resources>
 
     <string name="app_name">Solar power calculator</string>
+    <string name="app_url">http://solarpowercalc.appspot.com</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Solar power calculator</string>
@@ -13,5 +14,27 @@
     <string name="min">Min</string>
     <string name="max">Max</string>
     <string name="no_items">No items</string>
+    <string name="no_results">No results</string>
+    <string name="aud">AUD</string>
+    <string name="w">W</string>
+    <string name="voltage">Voltage</string>
+    <string name="v">V</string>
+    <string name="dimensions">Dimensions</string>
+    <string name="mm">mm</string>
+    <string name="title_activity_electricity_production">Electricity production</string>
+    <string name="calculation">Calculation</string>
+    <string name="electricity_production">Electricity production</string>
+    <string name="system_cost">System cost</string>
+    <string name="panel_output">Panel output</string>
+    <string name="panel_efficiency">Panel efficiency</string>
+    <string name="from_0_to_100">From 0 to 100</string>
+    <string name="inverter_efficiency">Inverter efficiency</string>
+    <string name="calculate">Calculate</string>
+    <string name="calculation_result">Calculation result</string>
+    <string name="return_on_investment">Return on investment</string>
+    <string name="months">Months</string>
+    <string name="w_per_month">W/month</string>
+    <string name="current_address">Current address</string>
+    <string name="update">Update</string>
 
 </resources>
