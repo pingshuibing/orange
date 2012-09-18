@@ -21,19 +21,22 @@
         <div class="grid_12" id="divUserSelection">
             <h2>Your System</h2>
             <input type="text" id="currentComponent" />
-            <table  style="background-color:#0A0907;">
+            <table class="your-system">
                 <tr>
-                    <td>
+                    <td id="tdSolarPanelSelection">
                         <h4>Solar Panel</h4>
-                        <p id="selectionSolarPanel"></p>
+                        <p id="selectionSolarPanel" style="display:none;"></p>
+                        <p id="detailsSolarPanel"></p>
                     </td>
-                    <td>
+                    <td id="tdInverterSelection">
                         <h4>Inverter</h4>
-                        <p id="selectionInverter"></p>
+                        <p id="selectionInverter" style="display:none;"></p>
+                        <p id="detailsInverter"></p>
                     </td>
-                    <td>
+                    <td id="tdBatterySelection">
                         <h4>Battery</h4>
-                        <p id="selectionBattery">months</p>
+                        <p id="selectionBattery" style="display:none;"></p>
+                        <p id="detailsBattery"></p>
                     </td>
                 </tr>
             </table>
@@ -165,6 +168,11 @@
             $('#txtCaptionTitle').hide();
             $('#divFilterResults').hide();
             $('#divUserSelection').hide();
+
+            //styles for "your system" area
+            $('#tdSolarPanelSelection').removeClass('selected').addClass('not-selected');
+            $('#tdInverterSelection').removeClass('selected').addClass('not-selected');
+            $('#tdBatterySelection').removeClass('selected').addClass('not-selected');
             
         }
 
@@ -191,6 +199,11 @@
             //set up caption
             $('#txtCaptionTitle').text('STEP 1 OF 3: SELECT A SOLAR PANEL');
 
+            //styles for "your system" area
+            $('#tdSolarPanelSelection').removeClass('not-selected').addClass('selected');
+            $('#tdInverterSelection').removeClass('selected').addClass('not-selected');
+            $('#tdBatterySelection').removeClass('selected').addClass('not-selected');
+
             
             
         }
@@ -216,6 +229,11 @@
 
             //set up text
             $('#txtCaptionTitle').text('STEP 2 OF 3: SELECT AN INVERTER');
+
+            //styles for "your system" area
+            $('#tdSolarPanelSelection').removeClass('not-selected').addClass('selected');
+            $('#tdInverterSelection').removeClass('not-selected').addClass('selected');
+            $('#tdBatterySelection').removeClass('selected').addClass('not-selected');
 
             
         }
@@ -261,9 +279,6 @@
             }, 2000);
 
             $('#currentComponent').val('results');
-
-            //set up caption
-            $('#txtCaptionTitle').text('STEP 3 OF 3: SELECT A BATTERY');
 
         }
 
@@ -621,6 +636,7 @@
             $('#divStepOne').on('click', '.panel-select', function (e) {
                 e.preventDefault();
                 $('#selectionSolarPanel').text($(this).attr('id'));
+                $('#detailsSolarPanel').html($(this).parent().prev().prev().prev().html());
                 stepTwo();
             });
         });
@@ -633,6 +649,7 @@
             $('#divStepTwo').on('click', '.inverter-select', function (e) {
                 e.preventDefault();
                 $('#selectionInverter').text($(this).attr('id'));
+                $('#detailsInverter').html($(this).parent().prev().prev().prev().html());
                 stepThree();
             });
         });
@@ -645,6 +662,7 @@
             $('#divStepThree').on('click', '.battery-select', function (e) {
                 e.preventDefault();
                 $('#selectionBattery').text($(this).attr('id'));
+                $('#detailsBattery').html($(this).parent().prev().prev().prev().html());
                 getResults();
                 stepResults();
             });
@@ -653,15 +671,20 @@
         function getResults() {
             var url = new UrlBuilder();
             url.GoogleAppsEngineBaseUrl = 'http://localhost:50681/WebApplication/TestCalculate.xml';
-            //url.ComponentName = 'calculate';
-            //url.Postcode = '4000';
+            url.Operation = "calculate";
+            url.BatteryId = ($('#selectionBattery').text()).replace("battery_id_", "");
+            url.PanelId = ($('#selectionSolarPanel').text()).replace("panel_id_", "");
+            url.InverterId = ($('#selectionInverter').text()).replace("inverter_id_", "");
+            alert(url.toString());
 
+            /*
             $.ajax({
                 type: 'POST',
                 url: 'proxy.aspx',
                 dataType: 'xml',
                 data: { servletCallUrl: url.toString() }
             }).done(function () { alert('yes!'); }).fail(genericAjaxErrorHandler);
+            */
         }
     </script>
     <!-- end: battery selection -->
