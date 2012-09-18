@@ -23,8 +23,8 @@ import static org.mockito.Mockito.*;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({Database.class,DailySunProvider.class,PostcodeUtil.class})
-public class SystemCalculationContainerTest {
-	private SystemCalculationContainer container;
+public class SolarSystemTest {
+	private SolarSystem container;
 	private Panel panel;
 	private Inverter inverter;
 	private Battery battery;
@@ -36,7 +36,7 @@ public class SystemCalculationContainerTest {
 		calc = mock(ElectricityCalculationApi.class);
 		costcalc=mock(TotalCostCalculationAPI.class);
 		
-		container=spy(new SystemCalculationContainer(calc,costcalc));
+		container=spy(new SolarSystem(calc,costcalc));
 		when(container.getLocation()).thenReturn("4000");
 		
 		

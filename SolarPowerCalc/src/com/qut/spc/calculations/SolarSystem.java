@@ -13,7 +13,7 @@ import com.qut.spc.model.Panel;
 import com.qut.spc.postcode.PostcodeUtil;
 import com.qut.spc.weather.DailySunProvider;
 
-public class SystemCalculationContainer implements SystemCalculationAPI{
+public class SolarSystem implements SystemCalculationAPI{
 
 	private Panel panel;
 	private String location="";
@@ -24,9 +24,10 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 	private ElectricityCalculationApi electricityCalculator;
 	private TotalCostCalculationAPI costCalculator;
 	private int panelCount=1;
+	private double totalCost=-1;
 
 
-	public SystemCalculationContainer(ElectricityCalculationApi electricityCalculator,TotalCostCalculationAPI costCalculator){
+	public SolarSystem(ElectricityCalculationApi electricityCalculator,TotalCostCalculationAPI costCalculator){
 		this.electricityCalculator=electricityCalculator;
 		this.costCalculator=costCalculator;
 	}
@@ -75,6 +76,8 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 
 	@Override
 	public double getTotalCost() {		
+		if(totalCost>=0)
+			return totalCost;		
 		return costCalculator.getSystemTotalCost(panel.getPrice(), panelCount, battery.getPrice(), 1, inverter.getPrice());
 	}
 
@@ -84,8 +87,7 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 		double dailySun=DailySunProvider.getDailySunByPostcode(location);
 		double sunIntensity=DailySunProvider.getDailySunLight(location);
 		
-		double elProd=electricityCalculator.getElectricityProduction(sunIntensity, (double)inverter.getEfficiency()/100, 1, panel.getCapacity(),dailySun, timespan);
-		return elProd;
+		return electricityCalculator.getElectricityProduction(sunIntensity, inverter.getEfficiency()/100d, panel.getEfficiency()/100d, panel.getCapacity(),dailySun, timespan);
 	}
 
 	@Override
@@ -127,6 +129,11 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 	@Override
 	public void setpanelCount(int panelCount) {
 		this.panelCount=panelCount;
+	}
+
+	@Override
+	public void setSystemCost(double systemCost) {
+		this.totalCost=systemCost;
 	}
 
 }
