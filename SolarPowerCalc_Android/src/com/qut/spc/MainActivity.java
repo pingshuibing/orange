@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.qut.spc.service.LocationService;
 import com.qut.spc.task.LocationTask;
@@ -28,7 +29,8 @@ public class MainActivity extends Activity {
 
 	private Spinner spComponent;
 	private EditText etPostcode, etPriceMin, etPriceMax, etCapacityMin, etCapacityMax;
-
+	private TextView tvAddress; 
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,6 +38,7 @@ public class MainActivity extends Activity {
 
 		spComponent = (Spinner) findViewById(R.id.spComponent);
 		etPostcode = (EditText) findViewById(R.id.postcode);
+		tvAddress = (TextView) findViewById(R.id.current_address);
 		etPriceMin = (EditText) findViewById(R.id.priceMin);
 		etPriceMax = (EditText) findViewById(R.id.priceMax);
 		etCapacityMin = (EditText) findViewById(R.id.capacityMin);
@@ -151,22 +154,32 @@ public class MainActivity extends Activity {
 							getLatitude(), getLongtude());
 					new UpdateLocationTask().execute(url);
 				} else {
-					AlertDialog alert = new AlertDialog.Builder(MainActivity.this).create();
-					alert.setTitle("Error");
-					alert.setMessage("Could not get location");
-					alert.setButton("Ok", new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int which) {
-							// do nothing
-						}
-					});
-					alert.show();
+					showError("Could not get location");
 				}
 			}
 		};
-		ls.updateLocationFromGPS();
-		String url = String.format(LocationTask.MAP_URL + "&ll=%f,%f",
-				-27.46197644877817, 153.0120849609375);
-		new UpdateLocationTask().execute(url);
+		// -27.46197644877817, 153.0120849609375
+		if (ls.getLatitude() != 0 && ls.getLongtude() != 0) {
+			String url = String.format(LocationTask.MAP_URL + "&ll=%f,%f",
+					ls.getLatitude(), ls.getLongtude());
+			new UpdateLocationTask().execute(url);
+		}
+		
+		if (!ls.updateLocation()) {
+			showError("Could not get location. Please enable your GPS");
+		}
+	}
+	
+	private void showError(String msg) {
+		AlertDialog alert = new AlertDialog.Builder(this).create();
+		alert.setTitle("Error");
+		alert.setMessage(msg);
+		alert.setButton("Ok", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				// do nothing
+			}
+		});
+		alert.show();
 	}
 
 	private void search(String url, String component) {
@@ -189,6 +202,7 @@ public class MainActivity extends Activity {
 		@Override
 		protected void onPostExecute(boolean postcodeFound) {
 			etPostcode.setText(postcode);
+			tvAddress.setText("Current address: " + address);
 		}
 		
 	}
