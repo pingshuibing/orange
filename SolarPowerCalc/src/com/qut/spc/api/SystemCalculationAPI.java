@@ -2,6 +2,10 @@ package com.qut.spc.api;
 
 import javax.persistence.EntityNotFoundException;
 
+import com.qut.spc.model.Battery;
+import com.qut.spc.model.Inverter;
+import com.qut.spc.model.Panel;
+
 
 public interface SystemCalculationAPI {
 	
@@ -28,7 +32,7 @@ public interface SystemCalculationAPI {
 	/**
 	 * Set time span in months
 	 */
-	void setTimespan(int months); //months or day?
+	void setTimespan(double d); //months or day?
 	
 	/**
 	 * Set user location
@@ -54,4 +58,12 @@ public interface SystemCalculationAPI {
 	 * Get return of investment
 	 */
 	double getROI();
+
+	void setBattery(Battery battery);
+
+	void setPanel(Panel panel);
+
+	void setInverter(Inverter inverter);
+
+	void setpanelCount(int panelCount);
 }
