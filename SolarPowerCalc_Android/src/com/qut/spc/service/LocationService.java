@@ -26,22 +26,44 @@ public class LocationService implements LocationListener {
 				.getSystemService(Context.LOCATION_SERVICE);
 		Criteria crit = new Criteria();
 		// we don't need high accuracy.. better save the battery
-		crit.setAccuracy(Criteria.ACCURACY_LOW);
+		crit.setAccuracy(Criteria.ACCURACY_COARSE);
 		String provider = manager.getBestProvider(crit, true);
 
 		// this will not connect to GPS.. just Last Known Location
 		setLocation(manager.getLastKnownLocation(provider));
 	}
 
-	public void updateLocationFromGPS() {
-		manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0,
+	public boolean updateLocation() {
+		boolean enabled;
+		
+		try {
+			enabled = manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+		} catch (Exception ex) {
+			enabled = false;
+		}
+		if (enabled) {
+			manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0,
 				this);
+			return true;
+		}
+		try {
+			enabled = manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+		} catch (Exception ex) {
+			enabled = false;
+		}
+		if (enabled) {
+			manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0,
+				this);
+			return true;
+		}
+		return false;
 	}
 	
 	public void onLocationChanged(Location location) {
 		// Called when a new location is found after the location
 		// manager request
 		// the provider update
+		manager.removeUpdates(this);
 		setLocation(location);
 	}
 
