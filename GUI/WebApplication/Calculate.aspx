@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="container_12 content">
-        <div class="grid_12">
+        <div class="grid_12" id="divMainTitle">
             <h1>CALCULATE YOUR SYSTEM FITNESS</h1>
         </div>
         <div class="clear"></div>
@@ -138,13 +138,13 @@
                     <td><h2>12</h2></td>
                 </tr>
                 <tr>
-                    <td><h4>TOTAL COST</h4></td>
+                    <td><h4>TOTAL COST (AUD)</h4></td>
                     <td><h2>12</h2></td>
                     <td><h2>12</h2></td>
                     <td><h2>12</h2></td>
                 </tr>
                 <tr>
-                    <td><h4>RETURN ON INVESTMENT</h4></td>
+                    <td><h4>RETURN ON INVESTMENT (AUD)</h4></td>
                     <td><h2>12</h2></td>
                     <td><h2>12</h2></td>
                     <td><h2>12</h2></td>
@@ -323,7 +323,7 @@
 
             //scroll to beggining of the page
             $('html, body').animate({
-                scrollTop: $("#divUserSelection").offset().top
+                scrollTop: $("#divMainTitle").offset().top
             }, 2000);
 
             $('#currentComponent').val('results');
