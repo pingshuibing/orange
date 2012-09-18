@@ -102,7 +102,8 @@ public class SearchResultActivity extends Activity {
 					R.layout.component_detail, childFrom, childTo);
 
 			ExpandableListView view = (ExpandableListView) SearchResultActivity.this
-					.findViewById(R.id.search_result_view);
+					.findViewById(R.id.result_view);
+			view.setEmptyView(findViewById(R.id.result_empty));
 			view.setAdapter(adapter);
 		}
 	}
