@@ -17,12 +17,13 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 
 	private Panel panel;
 	private String location="";
-	private int timespan=12;
+	private double timespan=12;
 	private Battery battery;
 	private Inverter inverter;
 	
 	private ElectricityCalculationApi electricityCalculator;
 	private TotalCostCalculationAPI costCalculator;
+	private int panelCount=1;
 
 
 	public SystemCalculationContainer(ElectricityCalculationApi electricityCalculator,TotalCostCalculationAPI costCalculator){
@@ -56,7 +57,7 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 	}
 
 	@Override
-	public void setTimespan(int months) {
+	public void setTimespan(double months) {
 		this.timespan=months;
 	}
 
@@ -74,7 +75,7 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 
 	@Override
 	public double getTotalCost() {		
-		return costCalculator.getSystemTotalCost(panel.getPrice(), 1, battery.getPrice(), 1, inverter.getPrice());
+		return costCalculator.getSystemTotalCost(panel.getPrice(), panelCount, battery.getPrice(), 1, inverter.getPrice());
 	}
 
 	@Override
@@ -106,6 +107,26 @@ public class SystemCalculationContainer implements SystemCalculationAPI{
 
 	public String getLocation() {
 		return location;
+	}
+
+	@Override
+	public void setBattery(Battery battery) {
+		this.battery=battery;
+	}
+
+	@Override
+	public void setPanel(Panel panel) {
+		this.panel=panel;
+	}
+
+	@Override
+	public void setInverter(Inverter inverter) {
+		this.inverter=inverter;
+	}
+
+	@Override
+	public void setpanelCount(int panelCount) {
+		this.panelCount=panelCount;
 	}
 
 }

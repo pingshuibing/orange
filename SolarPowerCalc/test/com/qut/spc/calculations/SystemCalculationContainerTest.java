@@ -50,7 +50,7 @@ public class SystemCalculationContainerTest {
 		battery=mock(Battery.class);
 		
 		when(panel.getCapacity()).thenReturn(23d);
-		when(inverter.getEfficiency()).thenReturn(4242);
+		when(inverter.getEfficiency()).thenReturn(4242d);
 		
 		PowerMockito.when(Database.loadComponent(25, Panel.class)).thenReturn(panel);
 		PowerMockito.when(Database.loadComponent(-411, Panel.class)).thenThrow(EntityNotFoundException.class);
