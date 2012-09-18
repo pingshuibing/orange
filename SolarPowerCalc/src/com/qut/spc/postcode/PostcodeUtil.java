@@ -4,7 +4,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PostcodeUtil {
-
+	
+	private static String DEFAULT_POSTCODE="4000";
+	
+	/**
+	 * 2000 - NSW
+	 * 2900 - ACT
+	 * 3000 - VIC
+	 * 4000 - QLD
+	 * 5000 - SA
+	 * 6000 - WA
+	 * 7000 - TAS
+	 * 0800 - NT
+	 */
 	private static Map<int[], String> postcodeMapping = new HashMap<int[], String>() {
 		{
 			put(new int[] { 1000, 2599 }, "2000");
@@ -40,6 +52,8 @@ public class PostcodeUtil {
 			throws IllegalArgumentException {
 
 		if (validatePostcode(postcode)) {
+			if(postcode.equals(""))
+				return DEFAULT_POSTCODE;
 			int p = Integer.parseInt(postcode);
 			for (int[] range : postcodeMapping.keySet()) {
 				if (p <= range[1] && p >= range[0]) {

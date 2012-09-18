@@ -1,4 +1,4 @@
-package com.qut.spc.calculations;
+ package com.qut.spc.calculations;
 
 import com.qut.spc.api.ElectricityCalculationApi;
 
@@ -20,7 +20,7 @@ public class ElectricityCalculator implements ElectricityCalculationApi{
 		//formula: (  estimated watt need/timespan*1.25)*(invertefficiency) 
 		//assume that capacity(solarPowerOutput) is peak electricity generation per hour
 		
-		restrictInput(dailySun,inverterEfficiency,  solarPanelEfficiency,solarPowerOutput,dailyHours,timespan);
+		restrictInput(dailySun,inverterEfficiency, solarPanelEfficiency,solarPowerOutput,dailyHours,timespan);
 		
 		double actualSunPower = (dailySun/CORRECTION_FACTOR)*solarPanelEfficiency; //a sunlight correction factor of southern hemisphere
 		double electricity;
@@ -46,7 +46,7 @@ public class ElectricityCalculator implements ElectricityCalculationApi{
 					"the inverter efficiency parameter shoulbe be between 0 and 1. ");
 		} else if (solarPanelEfficiency > 1 || solarPanelEfficiency < 0) {
 			throw new IllegalArgumentException("Invaild solarPanelEfficiency input," +
-					"the solar panel efficiency parameter shoulbe be between 0 and 1. ");
+					"the solar panel efficiency parameter shoulbe be between 0 and 1. "+solarPanelEfficiency);
 		} else if (solarPowerOutput < 0) {
 			throw new IllegalArgumentException("Invaild solarPowerOutPut input, " +
 					"the solar power output parameter shoulbe be more than zero. ");

@@ -21,4 +21,5 @@ public interface ElectricityCalculationApi {
 			double solarPowerOutput, 
 			double dailyHours, 
 			double timespan);
+
 }

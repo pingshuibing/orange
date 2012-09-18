@@ -401,17 +401,17 @@ public class PanelContainerTest {
 		
 		panel = new Panel();
 		panel.setModel("B");
-		panel.setPostcode(Arrays.asList("1000", "4000"));
+		panel.setPostcode(Arrays.asList("4000","1111"));
 		panel.save();
 		
 		panel = new Panel();
 		panel.setModel("C");
-		panel.setPostcode(Arrays.asList("2000", "4000"));
+		panel.setPostcode(Arrays.asList("9424","4000"));
 		panel.save();
 		
 		panel = new Panel();
 		panel.setModel("D");
-		panel.setPostcode(Arrays.asList("1000", "4009", "4100"));
+		panel.setPostcode(Arrays.asList("4100"));
 		panel.save();
 		
 		container.setPostcode("4000");

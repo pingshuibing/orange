@@ -22,8 +22,8 @@ public class Panel extends SolarComponent {
 	@XmlElement
 	private double operatingCurrent = 0.0;
 	
-	public Panel() {
-	}
+	@XmlElement
+	private double efficiency=100;
 	
 	/**
 	 * Get max power (Operating current) in A
@@ -64,6 +64,14 @@ public class Panel extends SolarComponent {
 				+ ", getWarranty()=" + getWarranty() + ", getDimensions()="
 				+ getDimensions() + ", getDescription()=" + getDescription()
 				+ ", getPostcode()=" + getPostcode() + "]";
+	}
+
+	public void setEfficiency(double panelEfficiency) {
+		this.efficiency=panelEfficiency;
+	}
+
+	public double getEfficiency() {
+		return efficiency;
 	}
 	
 	

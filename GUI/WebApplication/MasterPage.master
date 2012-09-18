@@ -51,7 +51,10 @@
                 <a class="menu-link" id="linkFindBatteries" href="Default.aspx">BATTERIES</a>
             </div>
             <div class="grid_3 menu-item">
-                MEASURE</div>
+                MEASURE
+                <br />
+                <a class="menu-link" id="linkCalculateEfficiency" href="Calculate.aspx">ENERGY EFFICIENCY</a>
+            </div>
             <div class="grid_2 menu-item">
                 ABOUT</div>
             <div class="clear">
@@ -84,18 +87,17 @@
     </footer>
     <!-- JavaScript at the bottom for fast page loading -->
     <!-- Grab ASP.NET CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
-    <script>        window.jQuery || document.write('<script src="js/libs/jquery-1.8.0.min.js"><\/script>')</script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js" type="text/javascript"></script>
+    <script type="text/javascript">window.jQuery || document.write('<script src="js/libs/jquery-1.8.0.min.js"><\/script>')</script>
     <asp:ContentPlaceHolder ID="ContentPlaceHolderJquery" runat="server">
     </asp:ContentPlaceHolder>
     </form>
     <!-- scripts concatenated and minified via build script -->
-    <script src="js/plugins.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/plugins.js" type="text/javascript"></script>
     <!-- end scripts -->
     <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
        mathiasbynens.be/notes/async-analytics-snippet -->
-    <script>
+    <script type="text/javascript">
         var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
         (function (d, t)
         {

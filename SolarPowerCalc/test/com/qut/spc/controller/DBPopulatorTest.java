@@ -24,21 +24,7 @@ public class DBPopulatorTest {
 		um = Mockito.mock(SolarComponentUnmarshaller.class);
 		populator = new DBPopulator(um);
 	}
-	
-	@Test
-	public void populateDB_ValidxmlString_ContainerIsReturned(){
-		SolarComponentUnmarshaller um=Mockito.mock(SolarComponentUnmarshaller.class);
-		DBPopulator populator=new DBPopulator(um);
-		PanelContainer pc=Mockito.mock(PanelContainer.class);
 		
-		
-		
-		Mockito.when(um.unmarshall(PanelContainer.class, input)).thenReturn(pc);
-		String res=populator.populateDB(input,"","");
-		
-		assertTrue(!res.isEmpty());
-	}
-	
 	@Test (expected=InvalidArgumentException.class)
 	public void populateDB_invalidPanelXML_InvalidInputExceptionIsThrown(){
 		Mockito.when(um.unmarshall(PanelContainer.class, input)).thenThrow(IllegalArgumentException.class);
