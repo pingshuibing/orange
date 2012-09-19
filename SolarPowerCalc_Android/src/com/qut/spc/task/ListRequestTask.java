@@ -1,5 +1,6 @@
 package com.qut.spc.task;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 
 /**
  * Binding Xml to Solar component
@@ -31,7 +33,8 @@ public class ListRequestTask<T> extends XmlRequestTask {
 	}
 	
 	@Override
-	protected void onXmlTag(XmlPullParser parser, int eventType) {
+	protected boolean onXmlTag(XmlPullParser parser, int eventType)
+			throws IOException, XmlPullParserException {
 		String name;
 		
 		switch (eventType) {
@@ -70,6 +73,7 @@ public class ListRequestTask<T> extends XmlRequestTask {
 			}
 			break;
 		}
+		return true;
 	}
 	
 	@Override

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
     <ExpandableListView
-        android:id="@+id/search_result_view"
+        android:id="@+id/result_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -12,4 +12,12 @@
 
     </ExpandableListView>
 
+    <TextView
+        android:id="@+id/result_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/no_results"
+        android:textSize="20dp"
+        android:visibility="gone" />
 </RelativeLayout>

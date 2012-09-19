@@ -3,37 +3,46 @@ package com.qut.spc;
 import java.util.Arrays;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import com.qut.spc.service.LocationService;
+import com.qut.spc.task.LocationTask;
 
 public class MainActivity extends Activity {
-	final String SPC_URL = "http://solarpowercalc.appspot.com";
 
 	final String[] componentTypes = {
 			"Panels",
-			"Iinverters",
+			"Inverters",
 			"Batteries",
 	};
 
 	private Spinner spComponent;
 	private EditText etPostcode, etPriceMin, etPriceMax, etCapacityMin, etCapacityMax;
-
+	private TextView tvAddress; 
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		spComponent = (Spinner)findViewById(R.id.spComponent);
-		etPostcode = (EditText)findViewById(R.id.postcode);
-		etPriceMin = (EditText)findViewById(R.id.priceMin);
-		etPriceMax = (EditText)findViewById(R.id.priceMax);
-		etCapacityMin = (EditText)findViewById(R.id.capacityMin);
-		etCapacityMax = (EditText)findViewById(R.id.capacityMax);
+		spComponent = (Spinner) findViewById(R.id.spComponent);
+		etPostcode = (EditText) findViewById(R.id.postcode);
+		tvAddress = (TextView) findViewById(R.id.current_address);
+		etPriceMin = (EditText) findViewById(R.id.priceMin);
+		etPriceMax = (EditText) findViewById(R.id.priceMax);
+		etCapacityMin = (EditText) findViewById(R.id.capacityMin);
+		etCapacityMax = (EditText) findViewById(R.id.capacityMax);
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_dropdown_item, componentTypes);
@@ -49,6 +58,17 @@ public class MainActivity extends Activity {
 	}
 
 	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.calculation:
+			openCalculationPage();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+	@Override
 	protected void onSaveInstanceState(Bundle state) {
 		super.onSaveInstanceState(state);
 
@@ -59,7 +79,7 @@ public class MainActivity extends Activity {
 		state.putString("capacityMin", etCapacityMin.getText().toString());
 		state.putString("capacityMax", etCapacityMax.getText().toString());
 	}
-	
+
 	@Override
 	// onRestoreInstanceState is only called when the program is terminated
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -100,67 +120,98 @@ public class MainActivity extends Activity {
 		}
 	}
 
-    public void onSearchClick(View v) {
-    	int postcode = 0;
-    	int priceMin = 0;
-    	int priceMax = 0;
-    	int capacityMin = 0;
-    	int capacityMax = 0;
-    	String component = "panel";
-    	String str;
-    	
-    	str = etPostcode.getText().toString();
-    	if (str.length() > 0) {
-    		postcode = Integer.parseInt(str);
-    	}
-    	str = etPriceMin.getText().toString();
-    	if (str.length() > 0) {
-    		priceMin = Integer.parseInt(str);
-    	}
-    	str = etPriceMax.getText().toString();
-    	if (str.length() > 0) {
-    		priceMax = Integer.parseInt(str);
-    	}
-    	str = etCapacityMin.getText().toString();
-    	if (str.length() > 0) {
-    		capacityMin = Integer.parseInt(str);
-    	}
-    	str = etCapacityMax.getText().toString();
-    	if (str.length() > 0) {
-    		capacityMax = Integer.parseInt(str);
-    	}
-    	str = spComponent.getSelectedItem().toString();
-    	if (str.equals("Panels")) {
-    		component = "panel";
-    	} else if (str.equals("Inverters")) {
-    		component = "inverter";
-    	} else if (str.equals("Batteries")) {
-    		component = "battery";
-    	}  
-    	
-    	String query = "";
-    	if (postcode > 0) {
-    		query += "postcode=" + postcode + "&";
-    	}
-    	if (priceMin > 0) {
-    		query += "priceMin=" + priceMin + "&";
-    	}
-    	if (priceMax > 0) {
-    		query += "priceMax=" + priceMax + "&";
-    	}
-    	if (capacityMin > 0) {
-    		query += "capacityMin=" + capacityMin + "&";
-    	}
-    	if (capacityMax > 0) {
-    		query += "capacityMax=" + capacityMax + "&";
-    	}
-    	search(SPC_URL + "/" + component + "?" + query, component);
-    }
-    
-    private void search(String url, String component) {
-    	Intent i = new Intent(this, SearchResultActivity.class);
-    	i.putExtra("url", url);
-    	i.putExtra("component", component);
-    	startActivity(i);
-    }
+	public void onSearchClick(View v) {
+		String component = "panel";
+		String str;
+
+		str = spComponent.getSelectedItem().toString();
+		if (str.equals("Panels")) {
+			component = "panel";
+		} else if (str.equals("Inverters")) {
+			component = "inverter";
+		} else if (str.equals("Batteries")) {
+			component = "battery";
+		}
+
+		String query = "";
+		query += "postcode=" + etPostcode.getText().toString() + "&";
+		query += "priceMin=" + etPriceMin.getText().toString() + "&";
+		query += "priceMax=" + etPriceMax.getText().toString() + "&";
+		query += "capacityMin=" + etCapacityMin.getText().toString() + "&";
+		query += "capacityMax=" + etCapacityMax.getText().toString() + "&";
+
+		search(getString(R.string.app_url) + "/" + component + "?" + query, component);
+	}
+	
+	public void onUpdatePostcodeClick(View v) {
+		// Get location first
+		LocationService ls = new LocationService(MainActivity.this) {
+			@Override
+			public void onLocationChanged(Location location) {
+				super.onLocationChanged(location);
+				if (location != null) {
+					String url = String.format(LocationTask.MAP_URL + "&ll=%f,%f",
+							getLatitude(), getLongtude());
+					new UpdateLocationTask().execute(url);
+				} else {
+					showError("Could not get location");
+				}
+			}
+		};
+		// -27.46197644877817, 153.0120849609375
+		if (ls.getLatitude() != 0 && ls.getLongtude() != 0) {
+			String url = String.format(LocationTask.MAP_URL + "&ll=%f,%f",
+					ls.getLatitude(), ls.getLongtude());
+			new UpdateLocationTask().execute(url);
+		}
+		
+		if (!ls.updateLocation()) {
+			showError("Could not get location. Please enable your GPS");
+		}
+	}
+	
+	private void showError(String msg) {
+		AlertDialog alert = new AlertDialog.Builder(this).create();
+		alert.setTitle("Error");
+		alert.setMessage(msg);
+		alert.setButton("Ok", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				// do nothing
+			}
+		});
+		alert.show();
+	}
+
+	private void search(String url, String component) {
+		Intent i = new Intent(this, SearchResultActivity.class);
+		i.putExtra("url", url);
+		i.putExtra("component", component);
+		startActivity(i);
+	}
+	
+	private void openCalculationPage() {
+		Intent i = new Intent(this, ElectricityProductionActivity.class);
+		startActivity(i);
+	}
+	
+	/**
+	 * Update location task
+	 */
+	class UpdateLocationTask extends LocationTask {
+		@Override
+		protected void onPreExecute() {
+			tvAddress.setText("Finding location...");
+		}
+		
+		@Override
+		protected void onPostExecute(boolean postcodeFound) {
+			if (postcodeFound) {
+				etPostcode.setText(postcode);
+				tvAddress.setText("Current address: " + address);
+			} else {
+				tvAddress.setText("Unable to find your location");
+			}
+		}
+		
+	}
 }
