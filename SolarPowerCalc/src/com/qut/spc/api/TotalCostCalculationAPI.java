@@ -4,11 +4,11 @@ public interface TotalCostCalculationAPI {
 	/**
 	 * Get total cost of the system
 	 * 
-	 * @param panelPrice The price for a panel 
+	 * @param panelPrice The price for a panel (AUD)
 	 * @param panelQuantity The number of panels
-	 * @param batteryPrice The price of a battery
+	 * @param batteryPrice The price of a battery(AUD)
 	 * @param batteryQuantity The number of batteries -- if only one battery in using, 1 as default
-	 * @param interterPrice The price of a inverter
+	 * @param interterPrice The price of a inverter(AUD)
 	 * 
 	 * @throws IllegalArgumentException If input is invalid
 	 */
