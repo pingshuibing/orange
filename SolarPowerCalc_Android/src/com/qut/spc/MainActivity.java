@@ -198,11 +198,19 @@ public class MainActivity extends Activity {
 	 * Update location task
 	 */
 	class UpdateLocationTask extends LocationTask {
+		@Override
+		protected void onPreExecute() {
+			tvAddress.setText("Finding location...");
+		}
 		
 		@Override
 		protected void onPostExecute(boolean postcodeFound) {
-			etPostcode.setText(postcode);
-			tvAddress.setText("Current address: " + address);
+			if (postcodeFound) {
+				etPostcode.setText(postcode);
+				tvAddress.setText("Current address: " + address);
+			} else {
+				tvAddress.setText("Unable to find your location");
+			}
 		}
 		
 	}
