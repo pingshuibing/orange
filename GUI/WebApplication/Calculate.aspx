@@ -111,7 +111,7 @@
             <div id="divStepOne">
                 <h4>Please select a component from the list below. You can also narrow your results by using the filters on the left.</h4>
                 <p>Don't have that component?<br />
-                <a href="#" id="linkManualInput"><strong>Input Details Manually</strong></a> </p>
+                <a href="#" id="linkManualInpsut"><strong>Input Details Manually</strong></a> </p>
             </div>
             <div id="divStepTwo">
             </div>
