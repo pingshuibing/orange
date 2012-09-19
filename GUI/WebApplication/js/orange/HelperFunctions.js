@@ -37,4 +37,16 @@
         return result;
     }
 
+    //facilitates a quick ajax call to GAE engine
+    this.ajaxCallViaProxy = function ajaxCallViaProxy (doneFunction, failFunction, completeUrl){
+        //make ajax call to fil inverter table
+        $.ajax({
+            type: 'POST',
+            url: 'proxy.aspx',
+            dataType: 'xml',
+            data: { servletCallUrl: completeUrl }
+        }).done(doneFunction).fail(failFunction);
+    }
+
+
 }

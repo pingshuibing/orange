@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="container_12 content">
-        <div class="grid_12">
+        <div class="grid_12" id="divMainTitle">
             <h1>CALCULATE YOUR SYSTEM FITNESS</h1>
         </div>
         <div class="clear"></div>
@@ -20,20 +20,23 @@
         <!-- start: Your System -->
         <div class="grid_12" id="divUserSelection">
             <h2>Your System</h2>
-            <input type="text" id="currentComponent" />
-            <table  style="background-color:#0A0907;">
+            <input type="text" id="currentComponent" name="currentComponent" />
+            <table class="your-system">
                 <tr>
-                    <td>
+                    <td id="tdSolarPanelSelection">
                         <h4>Solar Panel</h4>
-                        <p id="selectionSolarPanel"></p>
+                        <p id="selectionSolarPanel" style="display:none;"></p>
+                        <p id="detailsSolarPanel"></p>
                     </td>
-                    <td>
+                    <td id="tdInverterSelection">
                         <h4>Inverter</h4>
-                        <p id="selectionInverter"></p>
+                        <p id="selectionInverter" style="display:none;"></p>
+                        <p id="detailsInverter"></p>
                     </td>
-                    <td>
+                    <td id="tdBatterySelection">
                         <h4>Battery</h4>
-                        <p id="selectionBattery">months</p>
+                        <p id="selectionBattery" style="display:none;"></p>
+                        <p id="detailsBattery"></p>
                     </td>
                 </tr>
             </table>
@@ -57,7 +60,7 @@
                         Postcode
                     </td>
                     <td>
-                        <input id="txtPostcode" type="text" />
+                        <input id="txtPostcode" type="text" name="txtPostcode" />
                     </td>
                 </tr>
                 <tr>
@@ -120,9 +123,35 @@
 
         <!-- start: results panel -->
         <div id="divResultsPanel" class="grid_12">
-            <h3>YOUR SYSTEM EFFICIENCY IS</h3>
-            <h2>54</h2>
-            <p>WATTS / MONTH</p>
+            <h3>YOUR RESULTS</h3>
+            <table>
+                <tr>
+                    <td></td>
+                    <td>PER YEAR</td>
+                    <td>PER MONTH</td>
+                    <td>PER WEEK</td>
+                </tr>
+                <tr>
+                    <td><h4>ELECTRICITY PRODUCTION (WATTS)</h4></td>
+                    <td><h2 id="electricity_year">12</h2></td>
+                    <td><h2 id="electricity_month">12</h2></td>
+                    <td><h2 id="electricity_week">12</h2></td>
+                </tr>
+                <tr>
+                    <td><h4>TOTAL COST (AUD)</h4></td>
+                    <td><h2 id="totalCost_year">12</h2></td>
+                    <td><h2 id="totalCost_month">12</h2></td>
+                    <td><h2 id="totalCost_week">12</h2></td>
+                </tr>
+                <tr>
+                    <td><h4>RETURN ON INVESTMENT (AUD)</h4></td>
+                    <td><h2 id="roi_year">12</h2></td>
+                    <td><h2 id="roi_month">12</h2></td>
+                    <td><h2 id="roi_week">12</h2></td>
+                </tr>
+                
+            </table>
+
         </div>
         <div class="clear"></div>
         <!-- end: results panel -->
@@ -151,6 +180,9 @@
             $('#selectionSolarPanel').text('NOT SELECTED');
             $('#selectionInverter').text('NOT SELECTED');
             $('#selectionBattery').text('NOT SELECTED');
+            $('#detailsSolarPanel').text('');
+            $('#selectionBattery').text('');
+            $('#selectionBattery').text('');
             
 
             //clear textbox for currentComponent
@@ -165,6 +197,11 @@
             $('#txtCaptionTitle').hide();
             $('#divFilterResults').hide();
             $('#divUserSelection').hide();
+
+            //styles for "your system" area
+            $('#tdSolarPanelSelection').attr('class', '').addClass('not-selected');
+            $('#tdInverterSelection').attr('class', '').addClass('not-selected');
+            $('#tdBatterySelection').attr('class', '').addClass('not-selected');
             
         }
 
@@ -183,13 +220,25 @@
             $('html, body').animate({
                 scrollTop: $("#divUserSelection").offset().top
             }, 2000);
+
+            //reset 'Your System' area
+            $('#detailsSolarPanel').text('CURRENTLY SELECTING');
+            $('#detailsInverter').text('');
+            $('#detailsBattery').text('');
             
+
+
 
             //set up textbox for currentComponent
             $('#currentComponent').val('panel');
 
             //set up caption
             $('#txtCaptionTitle').text('STEP 1 OF 3: SELECT A SOLAR PANEL');
+
+            //styles for "your system" area
+            $('#tdSolarPanelSelection').attr('class','').addClass('selecting');
+            $('#tdInverterSelection').attr('class', '').addClass('not-selected');
+            $('#tdBatterySelection').attr('class', '').addClass('not-selected');
 
             
             
@@ -212,11 +261,21 @@
                 scrollTop: $("#divUserSelection").offset().top
             }, 2000);
 
-            $('#currentComponent').val('inverter');
+            //reset 'Your System' area
+            //$('#detailsSolarPanel').text('PLEASE SELECT');
+            $('#detailsInverter').text('CURRENTLY SELECTING');
+            $('#detailsBattery').text('');
 
+            //set up textbox for currentComponent
+            $('#currentComponent').val('inverter');
+            
             //set up text
             $('#txtCaptionTitle').text('STEP 2 OF 3: SELECT AN INVERTER');
 
+            //styles for "your system" area
+            $('#tdSolarPanelSelection').attr('class', '').addClass('selected');
+            $('#tdInverterSelection').attr('class', '').addClass('selecting');
+            $('#tdBatterySelection').attr('class', '').addClass('not-selected');
             
         }
 
@@ -238,8 +297,18 @@
 
             $('#currentComponent').val('battery');
 
+            //reset 'Your System' area
+            //$('#detailsSolarPanel').text('PLEASE SELECT');
+            //$('#detailsInverter').text('PLEASE SELECT');
+            $('#detailsBattery').text('CURRENTLY SELECTING');
+
             //set up caption
             $('#txtCaptionTitle').text('STEP 3 OF 3: SELECT A BATTERY');
+
+            //styles for "your system" area
+            $('#tdSolarPanelSelection').attr('class', '').addClass('selected');
+            $('#tdInverterSelection').attr('class', '').addClass('selected');
+            $('#tdBatterySelection').attr('class', '').addClass('selecting');
 
             
         }
@@ -262,8 +331,11 @@
 
             $('#currentComponent').val('results');
 
-            //set up caption
-            $('#txtCaptionTitle').text('STEP 3 OF 3: SELECT A BATTERY');
+            //styles for "your system" area
+            $('#tdSolarPanelSelection').attr('class', '').addClass('selected');
+            $('#tdInverterSelection').attr('class', '').addClass('selected');
+            $('#tdBatterySelection').attr('class', '').addClass('selected');
+
 
         }
 
@@ -282,45 +354,31 @@
 
 
             //create variables to make subsequent ajax calls
-            var urlBuilder = new UrlBuilder();
+            var urlBuilder;
+            var h = new HelperFunctions();
 
             //set variables to fill panel table
+            urlBuilder = new UrlBuilder();
             urlBuilder.GoogleAppsEngineBaseUrl = globalVars.GoogleAppsEngineBaseUrl;
             urlBuilder.ComponentName = 'panel'
-
-            //make ajax call to fil panel table
-            $.ajax({
-                type: 'POST',
-                url: 'proxy.aspx',
-                dataType: 'xml',
-                data: { servletCallUrl: urlBuilder.toString() }
-            }).done(createPanelTable).fail(genericAjaxErrorHandler);
+            //make ajax call to fill panel table
+            h.ajaxCallViaProxy(createPanelTable, genericAjaxErrorHandler, urlBuilder.toString());
 
             //set variables to fill inverter table
             urlBuilder = new UrlBuilder();
             urlBuilder.GoogleAppsEngineBaseUrl = globalVars.GoogleAppsEngineBaseUrl;
             urlBuilder.ComponentName = 'inverter'
-
             //make ajax call to fil inverter table
-            $.ajax({
-                type: 'POST',
-                url: 'proxy.aspx',
-                dataType: 'xml',
-                data: { servletCallUrl: urlBuilder.toString() }
-            }).done(createInverterTable).fail(genericAjaxErrorHandler);
+            h.ajaxCallViaProxy(createInverterTable, genericAjaxErrorHandler, urlBuilder.toString());
+            
 
             //set variables to fill battery table
             urlBuilder = new UrlBuilder();
             urlBuilder.GoogleAppsEngineBaseUrl = globalVars.GoogleAppsEngineBaseUrl;
             urlBuilder.ComponentName = 'battery'
+            //make ajax call to fill battery table
+            h.ajaxCallViaProxy(createBatteryTable, genericAjaxErrorHandler, urlBuilder.toString());
 
-            //make ajax call to fil inverter table
-            $.ajax({
-                type: 'POST',
-                url: 'proxy.aspx',
-                dataType: 'xml',
-                data: { servletCallUrl: urlBuilder.toString() }
-            }).done(createBatteryTable).fail(genericAjaxErrorHandler);
 
         });
     </script>
@@ -334,6 +392,72 @@
     </script>
     <!-- end: generic ajax error handler -->
 
+    <!-- start: filter results panel -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //bind click event
+            $('#btnFilterResults').click(function (e) {
+                e.preventDefault();
+
+                var h = new HelperFunctions();
+
+                if ($('#currentComponent').val() == 'panel') {
+                    //set variables to fill panel table
+                    var urlBuilder = new UrlBuilder();
+                    urlBuilder.GoogleAppsEngineBaseUrl = globalVars.GoogleAppsEngineBaseUrl;
+                    urlBuilder.ComponentName = 'panel';
+                    urlBuilder.Postcode = $('#txtPostcode').val();
+                    urlBuilder.MinimumCapacity = $('#txtMinimumEfficiency').val();
+                    urlBuilder.MaximumCapacity = $('#txtMaximumEfficiency').val();
+                    urlBuilder.MinimumPrice = $('#txtMinimumPrice').val();
+                    urlBuilder.MaximumPrice = $('#txtMaximumPrice').val();
+
+
+                    //make ajax call to fill panel table
+                    h.ajaxCallViaProxy(createPanelTable, genericAjaxErrorHandler, urlBuilder.toString());
+
+                }
+                else if ($('#currentComponent').val() == 'inverter') {
+                    //set variables to fill inverter table
+                    var urlBuilder = new UrlBuilder();
+                    urlBuilder.GoogleAppsEngineBaseUrl = globalVars.GoogleAppsEngineBaseUrl;
+                    urlBuilder.ComponentName = 'inverter';
+                    urlBuilder.Postcode = $('#txtPostcode').val();
+                    urlBuilder.MinimumCapacity = $('#txtMinimumEfficiency').val();
+                    urlBuilder.MaximumCapacity = $('#txtMaximumEfficiency').val();
+                    urlBuilder.MinimumPrice = $('#txtMinimumPrice').val();
+                    urlBuilder.MaximumPrice = $('#txtMaximumPrice').val();
+
+
+                    //make ajax call to fill inverter table
+                    h.ajaxCallViaProxy(createInverterTable, genericAjaxErrorHandler, urlBuilder.toString());
+
+
+                }
+                else if ($('#currentComponent').val() == 'battery') {
+                    //set variables to fill battery table
+                    var urlBuilder = new UrlBuilder();
+                    urlBuilder.GoogleAppsEngineBaseUrl = globalVars.GoogleAppsEngineBaseUrl;
+                    urlBuilder.ComponentName = 'battery';
+                    urlBuilder.Postcode = $('#txtPostcode').val();
+                    urlBuilder.MinimumCapacity = $('#txtMinimumEfficiency').val();
+                    urlBuilder.MaximumCapacity = $('#txtMaximumEfficiency').val();
+                    urlBuilder.MinimumPrice = $('#txtMinimumPrice').val();
+                    urlBuilder.MaximumPrice = $('#txtMaximumPrice').val();
+
+
+                    //make ajax call to fill battery table
+                    h.ajaxCallViaProxy(createBatteryTable, genericAjaxErrorHandler, urlBuilder.toString());
+
+
+                }
+            });
+
+        });
+    
+    </script>
+    <!-- end: filter results panel -->
+    
     <!-- start: script to fill  solar panel tables -->
     <script type="text/javascript">
         function createPanelTable(xml)
@@ -364,7 +488,7 @@
 
             var id = 0;
             //iterating through every panel in the xml
-            $(xml).find("panel").each(function () {
+            $(xml).find("panel ").each(function () {
                 var helper = new HelperFunctions();
 
                 //increment for id
@@ -621,6 +745,7 @@
             $('#divStepOne').on('click', '.panel-select', function (e) {
                 e.preventDefault();
                 $('#selectionSolarPanel').text($(this).attr('id'));
+                $('#detailsSolarPanel').html($(this).parent().prev().prev().prev().html());
                 stepTwo();
             });
         });
@@ -633,6 +758,7 @@
             $('#divStepTwo').on('click', '.inverter-select', function (e) {
                 e.preventDefault();
                 $('#selectionInverter').text($(this).attr('id'));
+                $('#detailsInverter').html($(this).parent().prev().prev().prev().html());
                 stepThree();
             });
         });
@@ -645,27 +771,55 @@
             $('#divStepThree').on('click', '.battery-select', function (e) {
                 e.preventDefault();
                 $('#selectionBattery').text($(this).attr('id'));
+                $('#detailsBattery').html($(this).parent().prev().prev().prev().html());
                 getResults();
                 stepResults();
             });
         });
 
+        
+    </script>
+    <!-- end: battery selection -->
+
+    <!-- start: get results and bind to controls -->
+    <script type="text/javascript">
         function getResults() {
             var url = new UrlBuilder();
-            url.GoogleAppsEngineBaseUrl = 'http://localhost:50681/WebApplication/TestCalculate.xml';
-            //url.ComponentName = 'calculate';
-            //url.Postcode = '4000';
+            url.GoogleAppsEngineBaseUrl = 'http://orange.alansoto.com';
+            //url.Operation = "calculate";
+            url.Operation= 'TestCalculate.xml'
+            url.BatteryId = ($('#selectionBattery').text()).replace("battery_id_", "");
+            url.PanelId = ($('#selectionSolarPanel').text()).replace("panel_id_", "");
+            url.InverterId = ($('#selectionInverter').text()).replace("inverter_id_", "");
+            //alert(url.toString());
+
 
             $.ajax({
                 type: 'POST',
                 url: 'proxy.aspx',
                 dataType: 'xml',
                 data: { servletCallUrl: url.toString() }
-            }).done(function () { alert('yes!'); }).fail(genericAjaxErrorHandler);
+            }).done(bindResults).fail(genericAjaxErrorHandler);
+
         }
+
+        //reads xml and 
+        function bindResults(xml) {
+            $('#electricity_year').text($(xml).find('electricityProduction year').text());
+            $('#electricity_month').text($(xml).find('electricityProduction month').text());
+            $('#electricity_week').text($(xml).find('electricityProduction week').text());
+
+            $('#totalCost_year').text($(xml).find('totalCost year').text());
+            $('#totalCost_month').text($(xml).find('totalCost month').text());
+            $('#totalCost_week').text($(xml).find('totalCost week').text());
+
+            $('#roi_year').text($(xml).find('returnOnInvestment year').text());
+            $('#roi_month').text($(xml).find('returnOnInvestment month').text());
+            $('#roi_week').text($(xml).find('returnOnInvestment week').text());
+            
+
+        }    
     </script>
-    <!-- end: battery selection -->
-
-
+    <!-- end: get results and bind to controls -->
 
 </asp:Content>
