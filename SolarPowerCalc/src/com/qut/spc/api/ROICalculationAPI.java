@@ -52,7 +52,7 @@ public interface ROICalculationAPI {
 	
 	/**
 	 * get the annual ROI
-	 * 
+	 * @throws IllegalArgumentException if any of parameter haven't been set
 	 */
-	double getAnnualROI();
+	double getAnnualROI() throws IllegalArgumentException;
 }

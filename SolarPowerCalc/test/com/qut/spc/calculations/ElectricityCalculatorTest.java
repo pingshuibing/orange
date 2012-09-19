@@ -46,7 +46,7 @@ public class ElectricityCalculatorTest {
 	@Test
 	public void restrictInput_zeroDailySun () {
 		ElectricityCalculator calculator = new ElectricityCalculator();
-		calculator.getElectricityProduction(0.0,0.8,0.7,100.0,4.0,1.0);
+		assertEquals(0.0, calculator.getElectricityProduction(0.0,0.8,0.7,100.0,4.0,1.0), 0.01);
 	}
 	
 	@Test
@@ -70,13 +70,13 @@ public class ElectricityCalculatorTest {
 	@Test
 	public void restrictInput_oneinverterEfficiency () {
 		ElectricityCalculator calculator = new ElectricityCalculator();
-		calculator.getElectricityProduction(100.0,1,0.7,100.0,4.0,1.0);
+		assertEquals(224.0, calculator.getElectricityProduction(100.0,1,0.7,100.0,4.0,1.0), 0.01);
 	}
 	
 	@Test
 	public void restrictInput_zeroinverterEfficiency () {
 		ElectricityCalculator calculator = new ElectricityCalculator();
-		calculator.getElectricityProduction(100.0,0.0,0.7,100.0,4.0,1.0);
+		assertEquals(0.0, calculator.getElectricityProduction(100.0,0.0,0.7,100.0,4.0,1.0), 0.01);
 	}
 	
 	@Test
@@ -100,13 +100,13 @@ public class ElectricityCalculatorTest {
 	@Test
 	public void restrictInput_oneSolarPanelEfficiency () {
 		ElectricityCalculator calculator = new ElectricityCalculator();
-		calculator.getElectricityProduction(100.0,0.8,1.0,100.0,4.0,1.0);
+		assertEquals(256.0, calculator.getElectricityProduction(100.0,0.8,1.0,100.0,4.0,1.0),0.01);
 	}
 	
 	@Test
 	public void restrictInput_zeroSolarPanelEfficiency () {
 		ElectricityCalculator calculator = new ElectricityCalculator();
-		calculator.getElectricityProduction(100.0,0.8,0.0,100.0,4.0,1.0);
+		assertEquals(0.0, calculator.getElectricityProduction(100.0,0.8,0.0,100.0,4.0,1.0),0.01);
 	}
 	
 	@Test
@@ -124,7 +124,7 @@ public class ElectricityCalculatorTest {
 	@Test
 	public void restrictInput_zeroSolarPowerOutput () {
 		ElectricityCalculator calculator = new ElectricityCalculator();
-		calculator.getElectricityProduction(100.0,0.8,0.7,0.0,4.0,1.0);
+		assertEquals(0.0, calculator.getElectricityProduction(100.0,0.8,0.7,0.0,4.0,1.0),0.01);
 	}
 	
 	@Test
@@ -142,7 +142,7 @@ public class ElectricityCalculatorTest {
 	@Test
 	public void restrictInput_zeroDailyHours () {
 		ElectricityCalculator calculator = new ElectricityCalculator();
-		calculator.getElectricityProduction(100.0,0.8,0.7,0.0,0.0,1.0);
+		assertEquals(0.0, calculator.getElectricityProduction(100.0,0.8,0.7,0.0,0.0,1.0),0.01);
 	}
 	
 	@Test
@@ -160,7 +160,7 @@ public class ElectricityCalculatorTest {
 	@Test
 	public void restrictInput_zeroTimespan () {
 		ElectricityCalculator calculator = new ElectricityCalculator();
-		calculator.getElectricityProduction(100.0,0.8,0.7,0.0,0.0,0.0);
+		assertEquals(0.0, calculator.getElectricityProduction(100.0,0.8,0.7,0.0,0.0,0.0),0.01);
 	}
 	
 	@Test
