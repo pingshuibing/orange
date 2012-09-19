@@ -7,14 +7,14 @@
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jersey-bundle-1.13.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/asm-3.1.jar"/>
-	<classpathentry kind="var" path="ECLIPSE_HOME/plugins/com.google.appengine.eclipse.sdkbundle_1.7.0/appengine-java-sdk-1.7.0/lib/testing/appengine-testing.jar"/>
-	<classpathentry kind="var" path="ECLIPSE_HOME/plugins/com.google.appengine.eclipse.sdkbundle_1.7.0/appengine-java-sdk-1.7.0/lib/impl/appengine-api.jar"/>
-	<classpathentry kind="var" path="ECLIPSE_HOME/plugins/com.google.appengine.eclipse.sdkbundle_1.7.0/appengine-java-sdk-1.7.0/lib/impl/appengine-api-labs.jar"/>
-	<classpathentry kind="var" path="ECLIPSE_HOME/plugins/com.google.appengine.eclipse.sdkbundle_1.7.0/appengine-java-sdk-1.7.0/lib/impl/appengine-api-stubs.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/cglib-nodep-2.2.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/javassist-3.16.1-GA.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/objenesis-1.2.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/powermock-mockito-1.4.12-full.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/mockito-all-1.9.0.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse_JUNO/plugins/com.google.appengine.eclipse.sdkbundle_1.7.1/appengine-java-sdk-1.7.1/lib/testing/appengine-testing.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse_JUNO/plugins/com.google.appengine.eclipse.sdkbundle_1.7.1/appengine-java-sdk-1.7.1/lib/impl/appengine-api.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse_JUNO/plugins/com.google.appengine.eclipse.sdkbundle_1.7.1/appengine-java-sdk-1.7.1/lib/impl/appengine-api-labs.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse_JUNO/plugins/com.google.appengine.eclipse.sdkbundle_1.7.1/appengine-java-sdk-1.7.1/lib/impl/appengine-api-stubs.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
