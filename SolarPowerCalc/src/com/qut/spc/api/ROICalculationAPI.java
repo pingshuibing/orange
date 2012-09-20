@@ -3,35 +3,35 @@ package com.qut.spc.api;
 public interface ROICalculationAPI {
 	
 //	/**
-//	 * Set system output energy. E.g. 5kWh
-//	 * @param size Output energy in kWh
+//	 * Set system output energy. E.g. 5kW
+//	 * @param size Output energy in kW
 //	 * @throws IllegalArgumentException if size is less than zero
 //	 */
 //	void setSystemSize(double size) throws IllegalArgumentException;
 	/**
-	 * Set Daily electricity generation from system. E.g. 5kWh
-	 * @param electricity  daily electricity production in kWh
+	 * Set annual electricity generation from system. E.g. 5kW
+	 * @param annual electricity production in kW
 	 * @throws IllegalArgumentException if size is less than zero
 	 */
-	void setDailyElectricityProduction(double electricity) throws IllegalArgumentException;
+	void setAnnualElectricityProduction(double electricity) throws IllegalArgumentException;
 	
 	/**
-	 * Set feed-in tariff. E.g. $0.23/kwh
-	 * @param tariff Tariff in dollars(the price that government buy from individual)
+	 * Set feed-in tariff. E.g. $0.44
+	 * @param tariff Tariff in dollars
 	 * @throws IllegalArgumentException if size is less than zero
 	 */
 	void setFeedInTariff(double tariff) throws IllegalArgumentException;
 	
 	/**
-	 * Set cost of electricity per kW. E.g. $0.44/kWh
-	 * @param cost Cost per kwh (the price that individual buy from government)
+	 * Set cost of electricity per kW. E.g. $0.23/kW
+	 * @param cost Cost in dollars
 	 * @throws IllegalArgumentException if cost is less than zero
 	 */
 	void setCostOfElectricity(double cost) throws IllegalArgumentException;
 	
 	/**
-	 * Set average daily household energy usage(kwh). E.g. 17kWh
-	 * @param usage Average daily usage in kWh
+	 * Set average daily household energy usage. E.g. 1750kW 
+	 * @param usage Average usage in kW
 	 * @throws IllegalArgumentException if usage is less than zero
 	 */
 	void setDailyUsage(double usage) throws IllegalArgumentException;
@@ -44,22 +44,15 @@ public interface ROICalculationAPI {
 //	void setDailySunHours(double hours) throws IllegalArgumentException;
 	
 	/**
-	 * Set total cost(AUD) of the system e.g.$10000  
-	 * @param cost System total cost(AUD)
+	 * Set cost of the system
+	 * @param cost System cost
 	 * @throws IllegalArgumentException if cost is less than zero
 	 */
 	void setSystemCost(double cost) ;
 	
 	/**
-	 * Set time span (day) of ROI e.g. 7days, 30 days, 365 days
-	 * @param timeSpan The time span of ROI (day)
-	 * @throws IllegalArgumentException if cost is less than zero
-	 */
-	void setTimeSpan(double timeSpan) ;
-	
-	/**
-	 * get the time span ROI - e.g. annual ROI: time span is 365.
+	 * get the annual ROI
 	 * @throws IllegalArgumentException if any of parameter haven't been set
 	 */
-	double getROI() throws IllegalArgumentException;
+	double getAnnualROI() throws IllegalArgumentException;
 }

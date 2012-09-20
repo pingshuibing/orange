@@ -13,16 +13,16 @@ public class ElectricityCalculator implements ElectricityCalculationApi{
 	private static final double CORRECTION_FACTOR = 1.25;
 
 	@Override
-	public double getElectricityProduction(double dimension, double dailySun,
+	public double getElectricityProduction(double dailySun,
 			double inverterEfficiency, double solarPanelEfficiency,
 			double solarPowerOutput,double dailyHours, double timespan) throws IllegalArgumentException {
 		
 		//formula: (  estimated watt need/timespan*1.25)*(invertefficiency) 
 		//assume that capacity(solarPowerOutput) is peak electricity generation per hour
 		
-		restrictInput(dimension, dailySun,inverterEfficiency, solarPanelEfficiency,solarPowerOutput,dailyHours,timespan);
+		restrictInput(dailySun,inverterEfficiency, solarPanelEfficiency,solarPowerOutput,dailyHours,timespan);
 		
-		double actualSunPower = ((dailySun*dimension)/CORRECTION_FACTOR)*solarPanelEfficiency; //a sunlight correction factor of southern hemisphere
+		double actualSunPower = (dailySun/CORRECTION_FACTOR)*solarPanelEfficiency; //a sunlight correction factor of southern hemisphere
 		double electricity;
 		if (solarPowerOutput >= actualSunPower){
 			electricity = actualSunPower*dailyHours*timespan*inverterEfficiency;
@@ -34,14 +34,11 @@ public class ElectricityCalculator implements ElectricityCalculationApi{
 		
 	}
 
-	private void restrictInput(double dimension, double dailySun, double inverterEfficiency,
+	private void restrictInput(double dailySun, double inverterEfficiency,
 			double solarPanelEfficiency, double solarPowerOutput, double dailyHours,
 			double timespan) throws IllegalArgumentException{
 		
-		if (dimension < 0) {
-			throw new IllegalArgumentException("Invaild dimension input, " +
-					"the dimension of a panel shoulbe be more than zero. ");
-		}  else if (dailySun < 0) {
+		if (dailySun < 0) {
 			throw new IllegalArgumentException("Invaild dailySun input, " +
 					"the daily sun parameter shoulbe be more than zero. ");
 		}  else if (inverterEfficiency > 1 || inverterEfficiency < 0) {
