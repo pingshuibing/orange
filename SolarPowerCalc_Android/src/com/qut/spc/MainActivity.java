@@ -120,7 +120,21 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	public void onSearchClick(View v) {
+	public void onButtonClick(View v) {
+		switch (v.getId()) {
+		case R.id.btSearch:
+			onSearchClick();
+			break;
+		case R.id.btUpdate:
+			onUpdatePostcodeClick();
+			break;
+		case R.id.btMap:
+			onMapClick();
+			break;
+		}
+	}
+	
+	private void onSearchClick() {
 		String component = "panel";
 		String str;
 
@@ -143,7 +157,7 @@ public class MainActivity extends Activity {
 		search(getString(R.string.app_url) + "/" + component + "?" + query, component);
 	}
 	
-	public void onUpdatePostcodeClick(View v) {
+	private void onUpdatePostcodeClick() {
 		// Get location first
 		LocationService ls = new LocationService(MainActivity.this) {
 			@Override
@@ -168,6 +182,11 @@ public class MainActivity extends Activity {
 		if (!ls.updateLocation()) {
 			showError("Could not get location. Please enable your GPS");
 		}
+	}
+	
+	private void onMapClick() {
+		Intent i = new Intent(this, LocationActivity.class);
+		startActivity(i);
 	}
 	
 	private void showError(String msg) {

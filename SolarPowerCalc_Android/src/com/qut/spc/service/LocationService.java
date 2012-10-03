@@ -59,6 +59,10 @@ public class LocationService implements LocationListener {
 		return false;
 	}
 	
+	public void cancelUpdateLocation() {
+		manager.removeUpdates(this);
+	}
+	
 	public void onLocationChanged(Location location) {
 		// Called when a new location is found after the location
 		// manager request
