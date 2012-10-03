@@ -29,7 +29,9 @@ public class MainActivity extends Activity {
 
 	private Spinner spComponent;
 	private EditText etPostcode, etPriceMin, etPriceMax, etCapacityMin, etCapacityMax;
-	private TextView tvAddress; 
+	private TextView tvAddress;
+	
+	private LocationService locationService;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,27 @@ public class MainActivity extends Activity {
 		spComponent.setAdapter(adapter);
 
 		restoreInstanceState(savedInstanceState);
+		
+		// Get location first
+		locationService = new LocationService(MainActivity.this) {
+			@Override
+			public void onLocationChanged(Location location) {
+				super.onLocationChanged(location);
+				if (location != null) {
+					String url = String.format(LocationTask.MAP_URL + "&ll=%f,%f",
+							getLatitude(), getLongtude());
+					new UpdateLocationTask().execute(url);
+				} else {
+					showError("Could not get location");
+				}
+			}
+		};
+		// Brisbane: -27.46197644877817, 153.0120849609375
+		if (locationService.getLatitude() != 0 && locationService.getLongtude() != 0) {
+			String url = String.format(LocationTask.MAP_URL + "&ll=%f,%f",
+					locationService.getLatitude(), locationService.getLongtude());
+			new UpdateLocationTask().execute(url);
+		}
 	}
 
 	@Override
@@ -158,28 +181,7 @@ public class MainActivity extends Activity {
 	}
 	
 	private void onUpdatePostcodeClick() {
-		// Get location first
-		LocationService ls = new LocationService(MainActivity.this) {
-			@Override
-			public void onLocationChanged(Location location) {
-				super.onLocationChanged(location);
-				if (location != null) {
-					String url = String.format(LocationTask.MAP_URL + "&ll=%f,%f",
-							getLatitude(), getLongtude());
-					new UpdateLocationTask().execute(url);
-				} else {
-					showError("Could not get location");
-				}
-			}
-		};
-		// -27.46197644877817, 153.0120849609375
-		if (ls.getLatitude() != 0 && ls.getLongtude() != 0) {
-			String url = String.format(LocationTask.MAP_URL + "&ll=%f,%f",
-					ls.getLatitude(), ls.getLongtude());
-			new UpdateLocationTask().execute(url);
-		}
-		
-		if (!ls.updateLocation()) {
+		if (!locationService.updateLocation()) {
 			showError("Could not get location. Please enable your GPS");
 		}
 	}
