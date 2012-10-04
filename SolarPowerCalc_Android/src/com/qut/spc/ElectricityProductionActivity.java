@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.qut.spc.service.LocationService;
 import com.qut.spc.task.LocationTask;
 import com.qut.spc.task.XmlRequestTask;
 
@@ -54,6 +55,13 @@ public class ElectricityProductionActivity extends Activity {
 		tvAddress = (TextView) findViewById(R.id.address);
 		
 		vwResult = findViewById(R.id.result);
+
+		LocationService locationService = new LocationService(this);
+		if (locationService.getLatitude() != 0 && locationService.getLongitude() != 0) {
+			String url = LocationTask.buildUrl(locationService.getLatitude(),
+					locationService.getLongitude());
+			new UpdateLocationTask().execute(url);
+		}
 	}
 	
 	@Override
