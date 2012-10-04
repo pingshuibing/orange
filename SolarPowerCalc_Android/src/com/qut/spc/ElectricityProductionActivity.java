@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.qut.spc.task.LocationTask;
 import com.qut.spc.task.XmlRequestTask;
 
 /**
@@ -22,11 +23,14 @@ import com.qut.spc.task.XmlRequestTask;
  * @author QuocViet
  */
 public class ElectricityProductionActivity extends Activity {
-	private EditText etSystemCost, etPanelOutput, etPanelEfficiency, etInverterEfficiency;
+	private EditText etSystemCost, etPanelOutput, etPanelEfficiency,
+		etInverterEfficiency, etPostcode;
 	
-	private TextView tvElectricityProduction, tvReturnOnInvestment;
+	private TextView tvElectricityProduction, tvReturnOnInvestment, tvAddress;
 	
 	private View vwResult;
+	
+	private final int REQUEST_CODE_MAP = 0;
 	
 	private static final String[] DURATIONS = {
 			"week",
@@ -43,9 +47,11 @@ public class ElectricityProductionActivity extends Activity {
 		etPanelOutput = (EditText) findViewById(R.id.panel_output);
 		etPanelEfficiency = (EditText) findViewById(R.id.panel_efficiency);
 		etInverterEfficiency = (EditText) findViewById(R.id.inverter_efficiency);
+		etPostcode = (EditText) findViewById(R.id.postcode);
 		
 		tvElectricityProduction = (TextView) findViewById(R.id.electricity_production);
 		tvReturnOnInvestment = (TextView) findViewById(R.id.return_on_investment);
+		tvAddress = (TextView) findViewById(R.id.address);
 		
 		vwResult = findViewById(R.id.result);
 	}
@@ -54,6 +60,23 @@ public class ElectricityProductionActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_electricity_production, menu);
 		return true;
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (requestCode) {
+		case REQUEST_CODE_MAP:
+			if (resultCode == Activity.RESULT_OK) {
+				double latitude = data.getExtras().getDouble("latitude");
+				double longitude = data.getExtras().getDouble("longitude");
+				if (latitude != 0 && longitude != 0) {
+					String url = LocationTask.buildUrl(latitude, longitude);
+					new UpdateLocationTask().execute(url);
+				}
+			}
+			break;
+		}
 	}
 
 	public void onButtonClick(View v) {
@@ -96,7 +119,7 @@ public class ElectricityProductionActivity extends Activity {
 	
 	private void onMapClick() {
 		Intent i = new Intent(this, LocationActivity.class);
-		startActivity(i);
+		startActivityForResult(i, REQUEST_CODE_MAP);
 	}
 	
 	private void calculate(String url) {
@@ -209,5 +232,26 @@ public class ElectricityProductionActivity extends Activity {
 				}
 			}
 		}
+	}
+	
+	/**
+	 * Update location task
+	 */
+	class UpdateLocationTask extends LocationTask {
+		@Override
+		protected void onPreExecute() {
+			tvAddress.setText("Finding location...");
+		}
+		
+		@Override
+		protected void onPostExecute(boolean postcodeFound) {
+			if (postcodeFound) {
+				etPostcode.setText(postcode);
+				tvAddress.setText("Current address: " + address);
+			} else {
+				tvAddress.setText("Unable to find your location");
+			}
+		}
+		
 	}
 }

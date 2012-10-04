@@ -58,8 +58,7 @@ public class MainActivity extends Activity {
 			public void onLocationChanged(Location location) {
 				super.onLocationChanged(location);
 				if (location != null) {
-					String url = String.format(LocationTask.MAP_URL + "&ll=%f,%f",
-							getLatitude(), getLongtude());
+					String url = LocationTask.buildUrl(getLatitude(), getLongitude());
 					new UpdateLocationTask().execute(url);
 				} else {
 					showError("Could not get location");
@@ -67,9 +66,9 @@ public class MainActivity extends Activity {
 			}
 		};
 		// Brisbane: -27.46197644877817, 153.0120849609375
-		if (locationService.getLatitude() != 0 && locationService.getLongtude() != 0) {
+		if (locationService.getLatitude() != 0 && locationService.getLongitude() != 0) {
 			String url = String.format(LocationTask.MAP_URL + "&ll=%f,%f",
-					locationService.getLatitude(), locationService.getLongtude());
+					locationService.getLatitude(), locationService.getLongitude());
 			new UpdateLocationTask().execute(url);
 		}
 	}

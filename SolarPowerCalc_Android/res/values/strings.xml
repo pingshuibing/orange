@@ -41,5 +41,6 @@
     <string name="kw">kW</string>
     <string name="energy_usage">Energy usage</string>
     <string name="quarterly">Quarterly</string>
+    <string name="set_current_location">Set current location</string>
 
 </resources>

@@ -2,6 +2,8 @@ package com.qut.spc;
 
 import java.util.List;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -9,7 +11,7 @@ import android.graphics.Point;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MotionEvent;
+import android.view.MenuItem;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
@@ -27,7 +29,6 @@ public class LocationActivity extends MapActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		setContentView(R.layout.activity_location);
 
 		// fetch the map view from the layout
 		mapView = new MapView(this, API_KEY_DEBUG);
@@ -54,6 +55,17 @@ public class LocationActivity extends MapActivity {
 	}
 
 	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.save:
+			sendResultAndClose();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+	
+	@Override
 	protected boolean isRouteDisplayed() {
 		return false;
 	}
@@ -70,15 +82,26 @@ public class LocationActivity extends MapActivity {
 		locationService.cancelUpdateLocation();
 	}
 
+	private void sendResultAndClose() {
+		Intent data = new Intent();
+		
+		if (selectedPoint != null) {
+			data.putExtra("latitude", (double)selectedPoint.getLatitudeE6() / 1E6);
+			data.putExtra("longitude", (double)selectedPoint.getLongitudeE6() / 1E6);
+		}
+		setResult(Activity.RESULT_OK, data);
+		finish();
+	}
+	
 	private void updateLocation() {
 		if (locationService.getLatitude() == 0
-				&& locationService.getLongtude() == 0) {
+				&& locationService.getLongitude() == 0) {
 			return;
 		}
 
 		selectedPoint = new GeoPoint(
 				(int) (locationService.getLatitude() * 1E6),
-				(int) (locationService.getLongtude() * 1E6));
+				(int) (locationService.getLongitude() * 1E6));
 
 		// get the MapController object
 		MapController controller = mapView.getController();
