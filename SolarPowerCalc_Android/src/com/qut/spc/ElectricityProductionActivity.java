@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -55,7 +56,18 @@ public class ElectricityProductionActivity extends Activity {
 		return true;
 	}
 
-	public void onCalculateClick(View v) {
+	public void onButtonClick(View v) {
+		switch(v.getId()) {
+		case R.id.btCalculate:
+			onCalculateClick();
+			break;
+		case R.id.btMap:
+			onMapClick();
+			break;
+		}
+	}
+	
+	private void onCalculateClick() {
 		if (etSystemCost.getText().length() == 0) {
 			showError("System cost must not be empty");
 			return;
@@ -80,6 +92,11 @@ public class ElectricityProductionActivity extends Activity {
 		query += "inverterEfficiency=" + etInverterEfficiency.getText().toString() + "&";
 
 		calculate(getString(R.string.app_url) + "/calculate?" + query);
+	}
+	
+	private void onMapClick() {
+		Intent i = new Intent(this, LocationActivity.class);
+		startActivity(i);
 	}
 	
 	private void calculate(String url) {

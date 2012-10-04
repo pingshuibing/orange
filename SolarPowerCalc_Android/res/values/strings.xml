@@ -38,5 +38,8 @@
     <string name="update">Update</string>
     <string name="map">Map</string>
     <string name="title_activity_location">Map</string>
+    <string name="kw">kW</string>
+    <string name="energy_usage">Energy usage</string>
+    <string name="quarterly">Quarterly</string>
 
 </resources>
