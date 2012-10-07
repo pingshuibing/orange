@@ -42,5 +42,6 @@
     <string name="energy_usage">Energy usage</string>
     <string name="quarterly">Quarterly</string>
     <string name="set_current_location">Set current location</string>
+    <string name="title_activity_search">Search</string>
 
 </resources>
