@@ -9,8 +9,10 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -30,6 +32,8 @@ public class ElectricityProductionActivity extends Activity {
 	private TextView tvElectricityProduction, tvReturnOnInvestment, tvAddress;
 	
 	private View vwResult;
+	
+	private LocationService locationService;
 	
 	private final int REQUEST_CODE_MAP = 0;
 	
@@ -56,7 +60,18 @@ public class ElectricityProductionActivity extends Activity {
 		
 		vwResult = findViewById(R.id.result);
 
-		LocationService locationService = new LocationService(this);
+		locationService = new LocationService(this) {
+			@Override
+			public void onLocationChanged(Location location) {
+				super.onLocationChanged(location);
+				if (location != null) {
+					String url = LocationTask.buildUrl(getLatitude(), getLongitude());
+					new UpdateLocationTask().execute(url);
+				} else {
+					showError("Could not get location");
+				}
+			}
+		};
 		if (locationService.getLatitude() != 0 && locationService.getLongitude() != 0) {
 			String url = LocationTask.buildUrl(locationService.getLatitude(),
 					locationService.getLongitude());
@@ -68,6 +83,17 @@ public class ElectricityProductionActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_electricity_production, menu);
 		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.update_location:
+			updatePostcode();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+	    }
 	}
 	
 	@Override
@@ -123,6 +149,12 @@ public class ElectricityProductionActivity extends Activity {
 		query += "inverterEfficiency=" + etInverterEfficiency.getText().toString() + "&";
 
 		calculate(getString(R.string.app_url) + "/calculate?" + query);
+	}
+	
+	private void updatePostcode() {
+		if (!locationService.updateLocation()) {
+			showError("Could not get location. Please enable your GPS");
+		}
 	}
 	
 	private void onMapClick() {
