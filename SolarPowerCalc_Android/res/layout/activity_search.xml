@@ -1,130 +1,36 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
-    <LinearLayout
+    <Spinner
+        android:id="@+id/spComponent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:orientation="vertical" >
+        android:stretchColumns="1,2" >
 
-        <Spinner
-            android:id="@+id/spComponent"
+        <TableRow
+            android:id="@+id/tableRow1"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content" >
 
-        <TableLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:stretchColumns="1,2" >
-
-            <TableRow
-                android:id="@+id/tableRow1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:id="@+id/tvPostcode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/postcode" />
-
-                <EditText
-                    android:id="@+id/postcode"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" >
-
-                    <requestFocus />
-
-                </EditText>
-
-                <Button
-                    android:id="@+id/btUpdate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="onButtonClick"
-                    android:text="@string/update" />
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:id="@+id/current_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_span="3" />
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:id="@+id/tvPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/price" />
-
-                <EditText
-                    android:id="@+id/priceMin"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/min"
-                    android:inputType="number" />
-
-                <EditText
-                    android:id="@+id/priceMax"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/max"
-                    android:inputType="number" />
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow3"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:id="@+id/tvCapacity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/capacity" />
-
-                <EditText
-                    android:id="@+id/capacityMin"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/min"
-                    android:inputType="number" >
-
-                </EditText>
-
-                <EditText
-                    android:id="@+id/capacityMax"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/max"
-                    android:inputType="number" />
-
-            </TableRow>
-
-            <Button
-                android:id="@+id/btSearch"
+            <TextView
+                android:id="@+id/tvPostcode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onButtonClick"
-                android:text="@string/search" />
+                android:text="@string/postcode" />
+
+            <EditText
+                android:id="@+id/postcode"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
 
             <Button
                 android:id="@+id/btMap"
@@ -133,8 +39,87 @@
                 android:onClick="onButtonClick"
                 android:text="@string/map" />
 
-        </TableLayout>
+        </TableRow>
 
-    </LinearLayout>
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/current_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="3" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/price" />
+
+            <EditText
+                android:id="@+id/priceMin"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/min"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/priceMax"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/max"
+                android:inputType="number" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvCapacity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/capacity" />
+
+            <EditText
+                android:id="@+id/capacityMin"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/min"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/capacityMax"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/max"
+                android:inputType="number" />
+        </TableRow>
+
+        <Button
+            android:id="@+id/btSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onButtonClick"
+            android:text="@string/search" />
+
+        <Button
+            android:id="@+id/btUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onButtonClick"
+            android:text="@string/update"
+            android:visibility="gone" />
+
+    </TableLayout>
+
+</LinearLayout>
