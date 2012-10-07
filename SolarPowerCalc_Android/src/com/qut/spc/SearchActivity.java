@@ -15,7 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.qut.spc.service.LocationService;
-import com.qut.spc.task.LocationTask;
+import com.qut.spc.task.AddressTask;
 
 public class SearchActivity extends Activity {
 
@@ -56,8 +56,8 @@ public class SearchActivity extends Activity {
 			public void onLocationChanged(Location location) {
 				super.onLocationChanged(location);
 				if (location != null) {
-					String url = LocationTask.buildUrl(getLatitude(), getLongitude());
-					new UpdateLocationTask().execute(url);
+					new AddressTask(tvAddress, etPostcode)
+							.execute(getLatitude(), getLongitude());
 				} else {
 					MainActivity.showError(SearchActivity.this, "Could not get location");
 				}
@@ -65,9 +65,8 @@ public class SearchActivity extends Activity {
 		};
 		// Brisbane: -27.46197644877817, 153.0120849609375
 		if (locationService.getLatitude() != 0 && locationService.getLongitude() != 0) {
-			String url = LocationTask.buildUrl(locationService.getLatitude(),
-					locationService.getLongitude());
-			new UpdateLocationTask().execute(url);
+			new AddressTask(tvAddress, etPostcode)
+					.execute(locationService.getLatitude(), locationService.getLongitude());
 		}
 	}
 
@@ -106,6 +105,23 @@ public class SearchActivity extends Activity {
 		super.onRestoreInstanceState(savedInstanceState);
 
 		restoreInstanceState(savedInstanceState);
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (requestCode) {
+		case MainActivity.REQUEST_CODE_MAP:
+			if (resultCode == Activity.RESULT_OK && data.getExtras() != null) {
+				double latitude = data.getExtras().getDouble("latitude");
+				double longitude = data.getExtras().getDouble("longitude");
+				if (latitude != 0 && longitude != 0) {
+					new AddressTask(tvAddress, etPostcode)
+							.execute(latitude, longitude);
+				}
+			}
+			break;
+		}
 	}
 
 	private void restoreInstanceState(Bundle state) {
@@ -146,7 +162,7 @@ public class SearchActivity extends Activity {
 			onSearchClick();
 			break;
 		case R.id.btMap:
-			onMapClick();
+			MainActivity.getLocationFromMap(this);
 			break;
 		}
 	}
@@ -179,37 +195,11 @@ public class SearchActivity extends Activity {
 			MainActivity.showError(this, "Could not get location. Please enable your GPS");
 		}
 	}
-	
-	private void onMapClick() {
-		Intent i = new Intent(this, LocationActivity.class);
-		startActivity(i);
-	}
 
 	private void search(String url, String component) {
 		Intent i = new Intent(this, SearchResultActivity.class);
 		i.putExtra("url", url);
 		i.putExtra("component", component);
 		startActivity(i);
-	}
-	
-	/**
-	 * Update location task
-	 */
-	class UpdateLocationTask extends LocationTask {
-		@Override
-		protected void onPreExecute() {
-			tvAddress.setText("Finding location...");
-		}
-		
-		@Override
-		protected void onPostExecute(boolean postcodeFound) {
-			if (postcodeFound) {
-				etPostcode.setText(postcode);
-				tvAddress.setText("Current address: " + address);
-			} else {
-				tvAddress.setText("Unable to find your location");
-			}
-		}
-		
 	}
 }

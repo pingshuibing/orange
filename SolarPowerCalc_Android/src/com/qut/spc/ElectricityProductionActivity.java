@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.qut.spc.service.LocationService;
-import com.qut.spc.task.LocationTask;
+import com.qut.spc.task.AddressTask;
 import com.qut.spc.task.XmlRequestTask;
 
 /**
@@ -32,8 +32,6 @@ public class ElectricityProductionActivity extends Activity {
 	private View vwResult;
 	
 	private LocationService locationService;
-	
-	private final int REQUEST_CODE_MAP = 0;
 	
 	private static final String[] DURATIONS = {
 			"week",
@@ -63,8 +61,8 @@ public class ElectricityProductionActivity extends Activity {
 			public void onLocationChanged(Location location) {
 				super.onLocationChanged(location);
 				if (location != null) {
-					String url = LocationTask.buildUrl(getLatitude(), getLongitude());
-					new UpdateLocationTask().execute(url);
+					new AddressTask(tvAddress, etPostcode)
+							.execute(getLatitude(), getLongitude());
 				} else {
 					MainActivity.showError(ElectricityProductionActivity.this,
 							"Could not get location");
@@ -72,9 +70,8 @@ public class ElectricityProductionActivity extends Activity {
 			}
 		};
 		if (locationService.getLatitude() != 0 && locationService.getLongitude() != 0) {
-			String url = LocationTask.buildUrl(locationService.getLatitude(),
-					locationService.getLongitude());
-			new UpdateLocationTask().execute(url);
+			new AddressTask(tvAddress, etPostcode)
+					.execute(locationService.getLatitude(), locationService.getLongitude());
 		}
 	}
 	
@@ -99,13 +96,13 @@ public class ElectricityProductionActivity extends Activity {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
-		case REQUEST_CODE_MAP:
+		case MainActivity.REQUEST_CODE_MAP:
 			if (resultCode == Activity.RESULT_OK && data.getExtras() != null) {
 				double latitude = data.getExtras().getDouble("latitude");
 				double longitude = data.getExtras().getDouble("longitude");
 				if (latitude != 0 && longitude != 0) {
-					String url = LocationTask.buildUrl(latitude, longitude);
-					new UpdateLocationTask().execute(url);
+					new AddressTask(tvAddress, etPostcode)
+							.execute(latitude, longitude);
 				}
 			}
 			break;
@@ -118,7 +115,7 @@ public class ElectricityProductionActivity extends Activity {
 			onCalculateClick();
 			break;
 		case R.id.btMap:
-			onMapClick();
+			MainActivity.getLocationFromMap(this);
 			break;
 		}
 	}
@@ -154,11 +151,6 @@ public class ElectricityProductionActivity extends Activity {
 		if (!locationService.updateLocation()) {
 			MainActivity.showError(this, "Could not get location. Please enable your GPS");
 		}
-	}
-	
-	private void onMapClick() {
-		Intent i = new Intent(this, LocationActivity.class);
-		startActivityForResult(i, REQUEST_CODE_MAP);
 	}
 	
 	private void calculate(String url) {
@@ -259,26 +251,5 @@ public class ElectricityProductionActivity extends Activity {
 				}
 			}
 		}
-	}
-	
-	/**
-	 * Update location task
-	 */
-	class UpdateLocationTask extends LocationTask {
-		@Override
-		protected void onPreExecute() {
-			tvAddress.setText("Finding location...");
-		}
-		
-		@Override
-		protected void onPostExecute(boolean postcodeFound) {
-			if (postcodeFound) {
-				etPostcode.setText(postcode);
-				tvAddress.setText("Current address: " + address);
-			} else {
-				tvAddress.setText("Unable to find your location");
-			}
-		}
-		
 	}
 }

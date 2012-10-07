@@ -1,5 +1,6 @@
 package com.qut.spc;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.TabActivity;
 import android.content.Context;
@@ -11,6 +12,8 @@ import android.widget.TabHost.TabSpec;
 
 public class MainActivity extends TabActivity {
 	private Intent calculatorIntent, searchIntent;
+
+	public static final int REQUEST_CODE_MAP = 0;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -48,5 +51,10 @@ public class MainActivity extends TabActivity {
 			}
 		});
 		alert.show();
+	}
+	
+	public static void getLocationFromMap(Activity ctx) {
+		Intent i = new Intent(ctx, LocationActivity.class);
+		ctx.startActivityForResult(i, REQUEST_CODE_MAP);
 	}
 }
