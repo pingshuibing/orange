@@ -101,7 +101,7 @@ public class ElectricityProductionActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
 		case REQUEST_CODE_MAP:
-			if (resultCode == Activity.RESULT_OK) {
+			if (resultCode == Activity.RESULT_OK && data.getExtras() != null) {
 				double latitude = data.getExtras().getDouble("latitude");
 				double longitude = data.getExtras().getDouble("longitude");
 				if (latitude != 0 && longitude != 0) {

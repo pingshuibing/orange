@@ -94,25 +94,22 @@ public class LocationActivity extends MapActivity {
 	}
 	
 	private void updateLocation() {
-		if (locationService.getLatitude() == 0
-				&& locationService.getLongitude() == 0) {
-			return;
+		if (locationService.getLatitude() != 0
+				&& locationService.getLongitude() != 0) {
+			selectedPoint = new GeoPoint(
+					(int) (locationService.getLatitude() * 1E6),
+					(int) (locationService.getLongitude() * 1E6));
+	
+			// get the MapController object
+			MapController controller = mapView.getController();
+	
+			// animate to the desired point
+			controller.animateTo(selectedPoint);
+	
+			// set the map zoom
+			// zoom 1 is top world view
+			controller.setZoom(12);
 		}
-
-		selectedPoint = new GeoPoint(
-				(int) (locationService.getLatitude() * 1E6),
-				(int) (locationService.getLongitude() * 1E6));
-
-		// get the MapController object
-		MapController controller = mapView.getController();
-
-		// animate to the desired point
-		controller.animateTo(selectedPoint);
-
-		// set the map zoom
-		// zoom 1 is top world view
-		controller.setZoom(12);
-
 		// Add a location marker
 		LocationOverlay overlay = new LocationOverlay();
 		List<Overlay> listOfOverlays = mapView.getOverlays();
