@@ -3,8 +3,6 @@ package com.qut.spc;
 import java.util.Arrays;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
@@ -61,7 +59,7 @@ public class SearchActivity extends Activity {
 					String url = LocationTask.buildUrl(getLatitude(), getLongitude());
 					new UpdateLocationTask().execute(url);
 				} else {
-					showError("Could not get location");
+					MainActivity.showError(SearchActivity.this, "Could not get location");
 				}
 			}
 		};
@@ -178,25 +176,13 @@ public class SearchActivity extends Activity {
 	
 	private void updatePostcode() {
 		if (!locationService.updateLocation()) {
-			showError("Could not get location. Please enable your GPS");
+			MainActivity.showError(this, "Could not get location. Please enable your GPS");
 		}
 	}
 	
 	private void onMapClick() {
 		Intent i = new Intent(this, LocationActivity.class);
 		startActivity(i);
-	}
-	
-	private void showError(String msg) {
-		AlertDialog alert = new AlertDialog.Builder(this).create();
-		alert.setTitle("Error");
-		alert.setMessage(msg);
-		alert.setButton("Ok", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				// do nothing
-			}
-		});
-		alert.show();
 	}
 
 	private void search(String url, String component) {

@@ -1,6 +1,9 @@
 package com.qut.spc;
 
+import android.app.AlertDialog;
 import android.app.TabActivity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TabHost;
@@ -33,5 +36,17 @@ public class MainActivity extends TabActivity {
 		// Adding all tabs
 		host.addTab(calculatorSpec);
 		host.addTab(searchSpec);
+	}
+	
+	public static void showError(Context ctx, String msg) {
+		AlertDialog alert = new AlertDialog.Builder(ctx).create();
+		alert.setTitle("Error");
+		alert.setMessage(msg);
+		alert.setButton("Ok", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				// do nothing
+			}
+		});
+		alert.show();
 	}
 }

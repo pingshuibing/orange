@@ -5,9 +5,7 @@ import java.util.Arrays;
 import org.xmlpull.v1.XmlPullParser;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
@@ -68,7 +66,8 @@ public class ElectricityProductionActivity extends Activity {
 					String url = LocationTask.buildUrl(getLatitude(), getLongitude());
 					new UpdateLocationTask().execute(url);
 				} else {
-					showError("Could not get location");
+					MainActivity.showError(ElectricityProductionActivity.this,
+							"Could not get location");
 				}
 			}
 		};
@@ -126,19 +125,19 @@ public class ElectricityProductionActivity extends Activity {
 	
 	private void onCalculateClick() {
 		if (etSystemCost.getText().length() == 0) {
-			showError("System cost must not be empty");
+			MainActivity.showError(this, "System cost must not be empty");
 			return;
 		}
 		if (etPanelOutput.getText().length() == 0) {
-			showError("Panel output must not be empty");
+			MainActivity.showError(this, "Panel output must not be empty");
 			return;
 		}
 		if (etPanelEfficiency.getText().length() == 0) {
-			showError("Panel efficiency must not be empty");
+			MainActivity.showError(this, "Panel efficiency must not be empty");
 			return;
 		}
 		if (etInverterEfficiency.getText().length() == 0) {
-			showError("Inverter efficiency must not be empty");
+			MainActivity.showError(this, "Inverter efficiency must not be empty");
 			return;
 		}
 		
@@ -153,7 +152,7 @@ public class ElectricityProductionActivity extends Activity {
 	
 	private void updatePostcode() {
 		if (!locationService.updateLocation()) {
-			showError("Could not get location. Please enable your GPS");
+			MainActivity.showError(this, "Could not get location. Please enable your GPS");
 		}
 	}
 	
@@ -165,18 +164,6 @@ public class ElectricityProductionActivity extends Activity {
 	private void calculate(String url) {
 		findViewById(R.id.result).setVisibility(View.GONE);
 		new ElectricityProductionTask().execute(url);
-	}
-	
-	private void showError(String msg) {
-		AlertDialog alert = new AlertDialog.Builder(this).create();
-		alert.setTitle("Error");
-		alert.setMessage(msg);
-		alert.setButton("Ok", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				// do nothing
-			}
-		});
-		alert.show();
 	}
 	
 	class ElectricityProductionTask extends XmlRequestTask {
