@@ -75,15 +75,15 @@ public class SearchActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_main, menu);
+		getMenuInflater().inflate(R.menu.activity_search, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.calculation:
-			openCalculationPage();
+		case R.id.update_location:
+			updatePostcode();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -147,9 +147,6 @@ public class SearchActivity extends Activity {
 		case R.id.btSearch:
 			onSearchClick();
 			break;
-		case R.id.btUpdate:
-			onUpdatePostcodeClick();
-			break;
 		case R.id.btMap:
 			onMapClick();
 			break;
@@ -179,7 +176,7 @@ public class SearchActivity extends Activity {
 		search(getString(R.string.app_url) + "/" + component + "?" + query, component);
 	}
 	
-	private void onUpdatePostcodeClick() {
+	private void updatePostcode() {
 		if (!locationService.updateLocation()) {
 			showError("Could not get location. Please enable your GPS");
 		}
@@ -206,11 +203,6 @@ public class SearchActivity extends Activity {
 		Intent i = new Intent(this, SearchResultActivity.class);
 		i.putExtra("url", url);
 		i.putExtra("component", component);
-		startActivity(i);
-	}
-	
-	private void openCalculationPage() {
-		Intent i = new Intent(this, ElectricityProductionActivity.class);
 		startActivity(i);
 	}
 	

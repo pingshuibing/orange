@@ -43,5 +43,6 @@
     <string name="quarterly">Quarterly</string>
     <string name="set_current_location">Set current location</string>
     <string name="title_activity_search">Search</string>
+    <string name="update_location">Update location</string>
 
 </resources>
