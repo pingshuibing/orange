@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.qut.spc.service.LocationService;
 import com.qut.spc.task.LocationTask;
 
-public class MainActivity extends Activity {
+public class SearchActivity extends Activity {
 
 	final String[] componentTypes = {
 			"Panels",
@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
 		restoreInstanceState(savedInstanceState);
 		
 		// Get location first
-		locationService = new LocationService(MainActivity.this) {
+		locationService = new LocationService(SearchActivity.this) {
 			@Override
 			public void onLocationChanged(Location location) {
 				super.onLocationChanged(location);

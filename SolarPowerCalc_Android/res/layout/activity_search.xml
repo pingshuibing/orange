@@ -40,7 +40,7 @@
                     <requestFocus />
 
                 </EditText>
-
+
                 <Button
                     android:id="@+id/btUpdate"
                     android:layout_width="wrap_content"
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="onButtonClick"
                 android:text="@string/search" />
-
+
             <Button
                 android:id="@+id/btMap"
                 android:layout_width="wrap_content"
