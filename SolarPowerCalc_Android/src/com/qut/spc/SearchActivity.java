@@ -36,7 +36,7 @@ public class SearchActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_search);
 
 		spComponent = (Spinner) findViewById(R.id.spComponent);
 		etPostcode = (EditText) findViewById(R.id.postcode);
